@@ -1,0 +1,11 @@
+{
+    "name": "ebanx/benjamin",
+    "description": "Business rule provider lib for plugin implementations",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    }
+}
