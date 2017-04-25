@@ -12,5 +12,10 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": [
+            "phpunit tests --bootstrap vendor/autoload.php"
+        ]
     }
 }
