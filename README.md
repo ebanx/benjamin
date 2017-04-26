@@ -7,3 +7,33 @@ The objective is to be a central repository for services and to communicate with
 
 * TDD
 * PSR-2
+
+## Checklist for implementations needed
+
+- [ ] Payment
+	- [ ] Brasil
+		- [ ] Boleto
+		- [ ] Credit Card
+		- [ ] TEF
+		- [ ] EBANX Account
+	- [ ] Mexico
+		- [ ] Credit Card
+		- [ ] Debit Card
+		- [ ] OXXO
+	- [ ] Chile
+		- [ ] Sencillito
+		- [ ] Servipag
+	- [ ] Colombia
+		- [ ] PSE
+		- [ ] Baloto
+		- [ ] Credit Card
+	- [ ] Peru
+		- [ ] SafetyPay
+		- [ ] PagoEfectivo
+- [ ] Refund
+- [ ] Payment Capture
+- [ ] Payment by link
+- [ ] Validator
+- [ ] Notifications
+- [ ] Interest Rates
+- [ ] Taxes
