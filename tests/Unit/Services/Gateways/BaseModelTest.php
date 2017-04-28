@@ -5,11 +5,6 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Ebanx\Benjamin\Models\BaseModel;
 
-class SubModel extends BaseModel
-{
-    public $foo;
-}
-
 class BaseModelTest extends TestCase
 {
     /**
@@ -23,10 +18,15 @@ class BaseModelTest extends TestCase
             'foo' => 'bar',
             'baz' => 'qux'
         ];
-        $subModel = new SubModel($testData);
+        $subModel = new BaseModelImplementation($testData);
 
         $this->assertObjectHasAttribute('foo', $subModel);
-        $this->assertTrue($subModel->foo === $testData['foo']);
+        $this->assertEquals('bar', $subModel->foo);
         $this->assertObjectNotHasAttribute('baz', $subModel);
     }
+}
+
+class BaseModelImplementation extends BaseModel
+{
+    public $foo;
 }
