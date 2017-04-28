@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class Card
+class Card extends BaseModel
 {
     public $autoCapture;
     public $createToken;

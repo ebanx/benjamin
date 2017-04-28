@@ -1,11 +1,15 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class DirectRequest
+class DirectRequest extends BaseModel
 {
-    $bypassBoletoScreen;
-    $integrationKey;
-    $mode;
-    $operation;
-    $payment;
+    const MODE_FULL = "full";
+    const OPERATION_REQUEST = "request";
+
+    public $bypassBoletoScreen;
+    public $integrationKey;
+    public $mode = self::MODE_FULL;
+    public $operation = self::OPERATION_REQUEST;
+    public $payment; // Class
+    public $paymentTypeCode; // Gateway dependent
 }

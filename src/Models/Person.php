@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class Person
+class Person extends BaseModel
 {
     const TYPE_PERSONAL = "personal";
     const TYPE_BUSINESS = "business";

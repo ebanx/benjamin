@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class Address
+class Address extends BaseModel
 {
     public $address;
     public $city;

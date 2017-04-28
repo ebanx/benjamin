@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class Item
+class Item extends BaseModel
 {
     public $sku = null;
     public $name = null;

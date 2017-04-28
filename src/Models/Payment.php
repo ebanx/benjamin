@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Models;
 
-class Payment
+class Payment extends BaseModel
 {
     public $address; // Class
     public $amountTotal;
@@ -10,7 +10,6 @@ class Payment
     public $merchantPaymentCode;
     public $note;
     public $notificationUrl = null;
-    public $paymentTypeCode;
     public $person; // Class
     public $redirectUrl = null;
     public $items = array(); // array of Item class
