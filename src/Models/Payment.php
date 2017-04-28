@@ -114,7 +114,7 @@ class Payment extends BaseModel
 
     /**
      * A Card object.
-     * 
+     *
      * @var Card
      */
     public $card = null; // class
