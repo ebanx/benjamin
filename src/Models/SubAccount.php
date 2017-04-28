@@ -12,7 +12,7 @@ class SubAccount extends BaseModel
 
     /**
      * URL of the logo of the sub account.
-     * 
+     *
      * @var string
      */
     public $imageUrl;
