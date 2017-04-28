@@ -5,7 +5,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Ebanx\Benjamin\Models\BaseModel;
 
-class SubModel extends BaseModel {
+class SubModel extends BaseModel
+{
     public $foo;
 }
 
