@@ -24,4 +24,11 @@ class Payment extends BaseFactory
 
         return $payment;
     }
+
+    public static function boleto()
+    {
+        $faker = self::faker();
+        $payment = self::valid();
+        $payment->dueDate = $faker->dateTimeBetween('now', '+3 days');
+    }
 }
