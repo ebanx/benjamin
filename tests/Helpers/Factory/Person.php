@@ -3,13 +3,12 @@
 namespace Tests\Helpers\Factory;
 
 use Ebanx\Benjamin\Models\Person as PersonModel;
-use Faker;
 
-class Person
+class Person extends BaseFactory
 {
     public static function valid($type = 'personal')
     {
-        $faker = Faker\Factory::create('pt_BR');
+        $faker = self::faker();
 
         $person = new PersonModel();
         $person->birthdate = $faker->dateTimeBetween('-40 years', '-18 years');
