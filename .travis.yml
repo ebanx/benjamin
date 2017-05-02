@@ -11,3 +11,8 @@ install:
   - composer update
   - composer dump-autoload
 script: composer test
+cache:
+  apt: true
+  directories:
+    - $TRAVIS_BUILD_DIR/vendor
+    - $HOME/.composer/cache
