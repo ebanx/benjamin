@@ -38,7 +38,7 @@ class CreditCardConfig extends BaseModel
      */
     public function addInterest($instalmentNumber, $rate)
     {
-        $interestRates[] = new CreditCardInterestRateConfig(array(
+        $this->interestRates[] = new CreditCardInterestRateConfig(array(
             "instalmentNumber" => $instalmentNumber,
             "interestRate" => $rate
         ));
