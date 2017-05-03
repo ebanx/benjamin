@@ -47,13 +47,6 @@ class Payment extends BaseModel
     public $note = null;
 
     /**
-     * The URL to send notifications for this payment.
-     *
-     * @var string
-     */
-    public $notificationUrl = null;
-
-    /**
      * A Person object.
      *
      * @var Person
@@ -73,13 +66,6 @@ class Payment extends BaseModel
      * @var Item[]
      */
     public $items = array();
-
-    /**
-     * A SubAccount object.
-     *
-     * @var SubAccount
-     */
-    public $subAccount = null;
 
     /**
      * Object containing the company’s responsible person information.
