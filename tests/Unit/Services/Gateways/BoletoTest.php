@@ -13,7 +13,7 @@ class BoletoTest extends TestCase
         $config = new Config();
 
         $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
-        $result = T($config)->gateways()->boleto()->create($payment);
+        $result = Benjamin($config)->gateways()->boleto()->create($payment);
 
         $this->assertEquals('hash de pagamento', $result);
 
