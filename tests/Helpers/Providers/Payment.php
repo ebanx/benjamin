@@ -18,7 +18,7 @@ class Payment extends BaseProvider
         $payment->merchantPaymentCode = $this->faker->md5;
         $payment->note = 'Fake payment created by PHPUnit.';
         $payment->items = $this->faker->itemModels($this->faker->randomDigitNotNull());
-        $payment->amountTotal = array_reduce($payment->items, function($carry, $item) {
+        $payment->amountTotal = array_reduce($payment->items, function ($carry, $item) {
             $carry += $item->unitPrice * $item->quantity;
             return $carry;
         });
