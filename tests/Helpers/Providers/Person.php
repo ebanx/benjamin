@@ -16,7 +16,7 @@ class Person extends BaseProvider
         $person->ip = $this->faker->ipv4;
         $person->name = $this->faker->name;
         $person->phoneNumber = $this->faker->phoneNumber;
-        $person->document = $this->faker->cpf(false);
+        $person->document = $this->faker->documentNumber(false);
 
         return $person;
     }
