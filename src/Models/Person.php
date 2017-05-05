@@ -12,7 +12,7 @@ class Person extends BaseModel
      *
      * @var string
      */
-    public $personType = self::TYPE_PERSONAL;
+    public $type = self::TYPE_PERSONAL;
 
     /**
      * Customers birthdate.
