@@ -24,10 +24,6 @@
       "type":"object",
       "required":true,
       "properties":{
-        "person_type":{
-          "type":"string",
-          "required":true
-        }
       }
     }
   }
