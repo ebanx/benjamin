@@ -21,7 +21,7 @@ class Boleto
         // TODO: Return something useful
         $adapter = new RequestAdapter($payment, $this->config);
         $request = $adapter->transform();
-        var_dump($request);
+        //var_dump($request);
         return 'hash de pagamento';
     }
 }

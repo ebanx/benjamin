@@ -22,11 +22,11 @@ class RequestAdapter
 
     public function transform()
     {
-        return array(
+        return (object) array(
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'request',
             'mode' => 'full',
-            'bypass_boleto_screen' => 'true',
+            'bypass_boleto_screen' => true,
             'person_type' => $this->payment->person->type,
             'payment' => $this->transformPayment()
         );
@@ -34,7 +34,7 @@ class RequestAdapter
 
     private function transformPayment()
     {
-        return array(
+        return (object) array(
 
         );
     }
