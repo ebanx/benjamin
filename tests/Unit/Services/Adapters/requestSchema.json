@@ -1,0 +1,34 @@
+{
+  "type":"object",
+  "properties":{
+    "integration_key":{
+      "type":"string",
+      "required":true
+    },
+    "operation":{
+      "type":"string",
+      "required":true
+    },
+    "mode":{
+      "type":"string",
+      "required":true
+    },
+    "bypass_boleto_screen":{
+      "type":"boolean"
+    },
+    "person_type":{
+      "type":"string",
+      "required":true
+    },
+    "payment":{
+      "type":"object",
+      "required":true,
+      "properties":{
+        "person_type":{
+          "type":"string",
+          "required":true
+        }
+      }
+    }
+  }
+}

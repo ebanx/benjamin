@@ -23,34 +23,7 @@ class RequestAdapterTest extends TestCase
         var_dump($result);
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result,(object) [
-            'type' => 'object',
-            'properties' => (object)[
-                'integration_key' => (object)[
-                    'type' => 'string',
-                    'required' => true
-                ],
-                'operation' => (object)[
-                    'type' => 'string',
-                    'required' => true
-                ],
-                'mode' => (object)[
-                    'type' => 'string',
-                    'required' => true
-                ],
-                'bypass_boleto_screen' => (object)[
-                    'type' => 'boolean'
-                ],
-                'person_type' => (object)[
-                    'type' => 'string',
-                    'required' => true
-                ],
-                'payment' => (object)[
-                    'type' => 'object',
-                    'required' => true
-                ]
-            ]
-        ],Constraint::CHECK_MODE_EXCEPTIONS);
+        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__). '/Adapters/requestSchema.json')),Constraint::CHECK_MODE_EXCEPTIONS);
 
         $this->assertTrue($validator->isValid());
     }
