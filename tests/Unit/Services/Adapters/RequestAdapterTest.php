@@ -23,7 +23,7 @@ class RequestAdapterTest extends TestCase
         var_dump($result);
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__). '/Adapters/requestSchema.json')),Constraint::CHECK_MODE_EXCEPTIONS);
+        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__). '/Adapters/requestSchema.json')), Constraint::CHECK_MODE_EXCEPTIONS);
 
         $this->assertTrue($validator->isValid());
     }
