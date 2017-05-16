@@ -52,4 +52,5 @@ class RequestAdapterTest extends TestCase
 }
 
 class FakeAdapter extends RequestAdapter
-{}
+{
+}
