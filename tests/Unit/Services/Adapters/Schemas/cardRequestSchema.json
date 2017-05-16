@@ -97,7 +97,7 @@
                   "maxLength": 200
                 },
                 "unit_price": {
-                  "type": "float"
+                  "type": "number"
                 },
                 "quantity": {
                   "type": "integer"
