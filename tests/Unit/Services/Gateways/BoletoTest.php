@@ -9,7 +9,12 @@ class BoletoTest extends TestCase
 {
     public function testBusinessPersonPayment()
     {
-        $config = new Config();
+        $this->loadEnv();
+
+        $config = new Config([
+            'sandboxIntegrationKey' => getenv('SANDBOX_INTEGRATION_KEY'),
+            'publicSandboxIntegrationKey' => getenv('SANDBOX_PRIVATE_INTEGRATION_KEY')
+        ]);
 
         $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
         $result = Benjamin($config)->gateways()->boleto()->create($payment);
