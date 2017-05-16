@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Helpers\Builders;
 
+use Ebanx\Benjamin\Models\Currency;
 use Faker;
 use Ebanx\Benjamin\Models\Payment;
 
@@ -25,6 +26,7 @@ class PaymentBuilder extends BaseBuilder
 
     public function boleto()
     {
+        $this->instance->currencyCode = Currency::BRL;
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
 
         return $this;

@@ -14,7 +14,7 @@ class Address extends BaseProvider
         $address->address = $this->faker->streetName;
         $address->city = $this->faker->city;
         $address->country = 'Brasil';
-        $address->state = $this->faker->state();
+        $address->state = $this->faker->stateAbbr();
         $address->streetComplement = $this->faker->secondaryAddress();
         $address->streetNumber = $this->faker->buildingNumber;
         $address->zipcode = $this->faker->postcode;

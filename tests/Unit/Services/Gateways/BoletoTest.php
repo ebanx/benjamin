@@ -1,7 +1,6 @@
 <?php
 namespace Tests\Unit\Services\Gateways;
 
-use Ebanx\Benjamin\Models;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;

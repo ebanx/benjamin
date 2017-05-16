@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "bypass_boleto_screen": {
+      "type": "boolean"
+    },
+    "payment": {
+      "properties": {
+        "due_date": {
+          "type": "string",
+          "pattern": "^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
+        }
+      }
+    }
+  }
+}
