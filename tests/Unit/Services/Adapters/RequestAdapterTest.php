@@ -21,12 +21,12 @@ class RequestAdapterTest extends TestCase
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/requestSchema.json')));
+        $validator->validate($result, $this->getSchema('requestSchema'));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
 
-    private function getJsonMessage(JsonSchema\Validator $validator)
+    protected function getJsonMessage(JsonSchema\Validator $validator)
     {
         $message = '';
         $message .= "JSON does not validate. Violations:\n";
@@ -34,6 +34,23 @@ class RequestAdapterTest extends TestCase
             $message .= sprintf("[%s] %s\n", $error['property'], $error['message']);
         }
         return $message;
+    }
+
+    protected function getSchema($schemas)
+    {
+        if (!is_array($schemas)) {
+            $schemas = array($schemas);
+        }
+        
+        $object = array();
+        foreach ($schemas as $schema) {
+            var_dump(json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));
+            $object = array_merge_recursive($object, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));
+        }
+
+        var_dump(json_decode(json_encode($object)));
+
+        return json_decode(json_encode($object));
     }
 }
 

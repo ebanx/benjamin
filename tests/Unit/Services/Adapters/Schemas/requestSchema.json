@@ -47,6 +47,20 @@
         "payment_type_code":{
           "type":"string",
           "maxLength":32
+        },
+        "birth_date":{
+          "type":"string",
+          "pattern":"^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
+        },
+        "customer_ip":{
+          "type":"string",
+          "oneOf" : [
+            { "format": "ipv4" },
+            { "format": "ipv6" }
+          ]
+        },
+        "zipcode":{
+          "type":"string"
         }
       }
     }
