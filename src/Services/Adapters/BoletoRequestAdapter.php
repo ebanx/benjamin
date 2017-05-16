@@ -7,6 +7,7 @@ class BoletoRequestAdapter extends RequestAdapter
     {
         $transformed = parent::transform();
         $transformed->bypass_boleto_screen = true;
+        $transformed->person_type = $this->payment->person->type;
 
         return $transformed;
     }
@@ -14,6 +15,7 @@ class BoletoRequestAdapter extends RequestAdapter
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
+        $transformed->payment_type_code = 'boleto';
 
         return $transformed;
     }

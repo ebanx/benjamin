@@ -2,7 +2,6 @@
 namespace Tests\Unit\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
-use Ebanx\Benjamin\Services\Adapters\BoletoRequestAdapter;
 use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;
