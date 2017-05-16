@@ -2,11 +2,11 @@
 namespace Tests\Unit\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Services\Adapters\BoletoRequestAdapter;
 use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;
 use JsonSchema;
-use JsonSchema\Constraints\Constraint;
 
 class RequestAdapterTest extends TestCase
 {
@@ -17,12 +17,25 @@ class RequestAdapterTest extends TestCase
         ]);
         $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
 
-        $adapter = new RequestAdapter($payment, $config);
+        $adapter = new FakeAdapter($payment, $config);
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__). '/Adapters/requestSchema.json')), Constraint::CHECK_MODE_EXCEPTIONS);
+        $validator->validate($result, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/requestSchema.json')));
 
-        $this->assertTrue($validator->isValid());
+        $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
+    }
+
+    private function getJsonMessage(JsonSchema\Validator $validator)
+    {
+        $message = '';
+        $message .= "JSON does not validate. Violations:\n";
+        foreach ($validator->getErrors() as $error) {
+            $message .= sprintf("[%s] %s\n", $error['property'], $error['message']);
+        }
+        return $message;
     }
 }
+
+class FakeAdapter extends RequestAdapter
+{}

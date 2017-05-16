@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Adapters;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
 
-class RequestAdapter
+abstract class RequestAdapter
 {
     private $payment;
     private $config;
@@ -15,7 +15,7 @@ class RequestAdapter
         $this->config = $config;
     }
 
-    private function getIntegrationKey()
+    protected function getIntegrationKey()
     {
         return $this->config->isSandbox ? $this->config->sandboxIntegrationKey : $this->config->integrationKey;
     }
@@ -26,13 +26,12 @@ class RequestAdapter
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'request',
             'mode' => 'full',
-            'bypass_boleto_screen' => true,
             'person_type' => $this->payment->person->type,
             'payment' => $this->transformPayment()
         );
     }
 
-    private function transformPayment()
+    protected function transformPayment()
     {
         return (object) array(
 
