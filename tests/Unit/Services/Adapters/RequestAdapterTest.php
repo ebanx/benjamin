@@ -44,11 +44,8 @@ class RequestAdapterTest extends TestCase
 
         $object = array();
         foreach ($schemas as $schema) {
-            var_dump(json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));
             $object = array_merge_recursive($object, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));
         }
-
-        var_dump(json_decode(json_encode($object)));
 
         return json_decode(json_encode($object));
     }
