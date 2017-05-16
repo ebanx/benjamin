@@ -41,7 +41,7 @@ class RequestAdapterTest extends TestCase
         if (!is_array($schemas)) {
             $schemas = array($schemas);
         }
-        
+
         $object = array();
         foreach ($schemas as $schema) {
             var_dump(json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));

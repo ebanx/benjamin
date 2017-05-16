@@ -1,28 +1,13 @@
 {
-  "properties":{
-    "bypass_boleto_screen":{
-      "type":"boolean"
+  "properties": {
+    "bypass_boleto_screen": {
+      "type": "boolean"
     },
-    "person_type":{
-      "type":"string",
-      "pattern":"^(personal)|(business)$"
-    },
-    "payment":{
-      "properties":{
-        "currency_code":{
-          "pattern":"^BRL$"
-        },
-        "document":{
-          "type":"string",
-          "pattern":"^([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})$",
-          "required":true
-        },
-        "birth_date":{
-          "required":true
-        },
-        "zipcode":{
-          "pattern":"^[0-9]{5}-?[0-9]{3}$",
-          "required":"true"
+    "payment": {
+      "properties": {
+        "due_date": {
+          "type": "string",
+          "pattern": "^[0-9]{2}/[0-9]{2}/[0-9]{4}$"
         }
       }
     }
