@@ -12,7 +12,7 @@
         "fzaninotto/Faker": "^1.6@dev",
         "justinrainbow/json-schema": "^5.0@dev"
     },
-    "aautoload": {
+    "autoload": {
         "psr-4": {
             "Ebanx\\Benjamin\\": "src/"
         }
