@@ -7,7 +7,6 @@ class BoletoRequestAdapter extends RequestAdapter
     {
         $transformed = parent::transform();
         $transformed->bypass_boleto_screen = true;
-        $transformed->person_type = $this->payment->person->type;
 
         return $transformed;
     }
@@ -16,6 +15,7 @@ class BoletoRequestAdapter extends RequestAdapter
     {
         $transformed = parent::transformPayment();
         $transformed->payment_type_code = 'boleto';
+        $transformed->person_type = $this->payment->person->type;
         $transformed->document = $this->payment->person->document;
 
         if ($this->payment->person->type === 'business') {
@@ -30,7 +30,7 @@ class BoletoRequestAdapter extends RequestAdapter
         return (object) array(
             'name' => $this->payment->responsible->name,
             'document' => $this->payment->responsible->document,
-            'birth_date' => $this->payment->responsible->birthdate
+            'birth_date' => $this->payment->responsible->birthdate->format('d/m/Y')
         );
     }
 }

@@ -1,11 +1,11 @@
 {
   "properties": {
-    "person_type": {
-      "type": "string",
-      "pattern": "^(personal)|(business)$"
-    },
     "payment": {
       "properties": {
+        "person_type": {
+          "type": "string",
+          "pattern": "^(personal)|(business)$"
+        },
         "currency_code": {
           "pattern": "^BRL$"
         },
