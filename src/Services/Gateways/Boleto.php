@@ -4,6 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\BoletoRequestAdapter;
+use GuzzleHttp\Client;
 
 class Boleto
 {
@@ -14,14 +15,25 @@ class Boleto
         $this->config = $config;
     }
 
-    public function create(Payment $payment)
+    public function create(Payment $payment, Client $client = null)
     {
-        // TODO: Call payload tranformation service
-        // TODO: Call communication service
-        // TODO: Return something useful
         $adapter = new BoletoRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
-        //var_dump($request);
-        return 'hash de pagamento';
+
+        // TODO: Maybe some Dependency Injection?
+        $client = $client ?: new Client();
+
+        $url = 'https://api.ebanx.com/ws/direct';
+        if ($this->config->isSandbox) {
+            $url = 'https://sandbox.ebanx.com/ws/direct';
+        }
+
+        $response = $client->post($url, array(
+            'json' => $request
+        ));
+
+        $body = $response->json();
+
+        return $body;
     }
 }

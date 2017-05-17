@@ -7,6 +7,26 @@
 This is the repository for business rules as of implemented by merchant sites for use in e-commerce platform plugins.
 The objective is to be a central repository for services and to communicate with the EBANX API (also known as "Pay").
 
+## Getting Started
+
+It is very simple to use Benjamin. You will only need an instance of `Ebanx\Benjamin\Models\Configs\Config` and an instance of `Ebanx\Benjamin\Models\Payment`:
+
+```php
+<?php
+$config = new Config([
+    'sandboxIntegrationKey' => 'YOUR_SANDBOX_INTEGRATION_KEY',
+    'integrationKey' => 'YOUR_INTEGRATION_KEY',
+    'isSandbox' => true
+]);
+
+$payment = new Payment([
+    //Payment properties
+]);
+
+//You can replace 'boleto' with any other payment method 
+$result = Benjamin($config)->gateways()->boleto()->create($payment);
+```
+
 ## Contributing
 
 * TDD
@@ -16,7 +36,7 @@ The objective is to be a central repository for services and to communicate with
 
 - [ ] Payment
 	- [ ] Brasil
-		- [ ] Boleto
+		- [X] Boleto
 		- [ ] Credit Card
 		- [ ] TEF
 		- [ ] EBANX Account

@@ -4,11 +4,14 @@
     "type": "library",
     "license": "MIT",
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "^5.3.1"
+    },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "fzaninotto/Faker": "^1.6@dev",
-        "justinrainbow/json-schema": "^5.0@dev"
+        "justinrainbow/json-schema": "^5.0@dev",
+        "vlucas/phpdotenv": "^2.4@dev"
     },
     "autoload": {
         "psr-4": {
