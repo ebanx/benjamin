@@ -27,10 +27,11 @@ $payment = new Payment([
 $result = Benjamin($config)->gateways()->boleto()->create($payment);
 ```
 
+If you want more information you can check the [Wiki](https://github.com/ebanx/benjamin/wiki/Using-Benjamin).
+
 ## Contributing
 
-* TDD
-* PSR-2
+Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 
 ## Checklist for implementations needed
 
