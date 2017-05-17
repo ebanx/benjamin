@@ -15,14 +15,13 @@ class Boleto
         $this->config = $config;
     }
 
-    public function create(Payment $payment)
+    public function create(Payment $payment, Client $client = null)
     {
-        // TODO: Call communication service
-        // TODO: Return something useful
         $adapter = new BoletoRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $client = new Client();
+        // TODO: Maybe some Dependency Injection?
+        $client = $client ?: new Client();
 
         $url = 'https://api.ebanx.com/ws/direct';
         if ($this->config->isSandbox) {
