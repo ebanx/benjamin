@@ -56,6 +56,28 @@ abstract class RequestAdapter
             'country' => $this->countryCode[strtolower($this->payment->address->country)],
             'phone_number' => $this->payment->person->phoneNumber,
             // TODO: User Value 1-5
+            'note' => $this->payment->note,
+            // TODO: Sub-account
+            'items' => $this->transformItems(),
+            'device_id' => $this->payment->deviceId,
+            'notification_url' => $this->config->notificationUrl
         );
+    }
+
+    protected function transformItems()
+    {
+        $itemArray = array();
+
+        foreach ($this->payment->items as $item) {
+            $itemArray[] = (object) array(
+                'name' => $item->name,
+                'description' => $item->description,
+                'unit_price' => $item->unitPrice,
+                'quantity' => $item->quantity,
+                'type' => $item->type
+            );
+        }
+
+        return (object) $itemArray;
     }
 }
