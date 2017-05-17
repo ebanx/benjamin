@@ -24,8 +24,7 @@
         }
     },
     "scripts": {
-        "test": [
-            "phpunit tests --bootstrap vendor/autoload.php"
-        ]
+        "test": "phpunit tests --bootstrap vendor/autoload.php",
+        "test-only": "phpunit tests --bootstrap vendor/autoload.php --colors --filter"
     }
 }
