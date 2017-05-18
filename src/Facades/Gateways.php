@@ -17,4 +17,9 @@ class Gateways
     {
         return new Services\Boleto($this->config);
     }
+
+    public function creditCard()
+    {
+        return new Services\CreditCard($this->config);
+    }
 }

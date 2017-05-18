@@ -11,7 +11,7 @@ class PaymentBuilder extends BaseBuilder
      * @var Payment
      */
     protected $instance;
-    
+
     public function __construct(Faker\Generator $faker, Payment $instance = null)
     {
         if (!$instance) {
