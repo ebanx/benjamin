@@ -39,6 +39,7 @@ class PaymentBuilder extends BaseBuilder
 
     public function creditCard($instalmentNumber = 1)
     {
+        $this->instance->currencyCode = Currency::BRL;
         $this->instance->card = $this->faker->cardModel();
         $this->instance->instalments = $instalmentNumber;
 

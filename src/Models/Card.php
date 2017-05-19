@@ -52,4 +52,11 @@ class Card extends BaseModel
      * @var string
      */
     public $token;
+
+    /**
+     * Card flag.
+     *
+     * @var string
+     */
+    public $type;
 }

@@ -17,6 +17,7 @@ class Card extends BaseProvider
         $card->autoCapture = true;
         $card->cvv = '123';
         $card->number = $this->faker->creditCardNumber();
+        $card->type = $this->faker->creditCardType();
 
         return $card;
     }
