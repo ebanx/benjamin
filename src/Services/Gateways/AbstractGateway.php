@@ -23,7 +23,7 @@ abstract class AbstractGateway
         return $this->config->isSandbox ? 'https://sandbox.ebanx.com/ws/direct' : 'https://api.ebanx.com/ws/direct';
     }
 
-    protected function requestPayment(\stdClass $request , Client $client = null)
+    protected function requestPayment(\stdClass $request, Client $client = null)
     {
         // TODO: Maybe some Dependency Injection?
         $client = $client ?: new Client();
