@@ -34,6 +34,7 @@ class BuilderFactory
             self::$faker->addProvider(new Providers\Item(self::$faker));
             self::$faker->addProvider(new Providers\Payment(self::$faker));
             self::$faker->addProvider(new Providers\Person(self::$faker));
+            self::$faker->addProvider(new Providers\Card(self::$faker));
 
             $documentProviderClass = 'Tests\Helpers\Providers\\'.self::$lang.'\Document';
             self::$faker->addProvider(new $documentProviderClass(self::$faker));

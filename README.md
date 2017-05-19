@@ -38,7 +38,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Payment
 	- [ ] Brasil
 		- [X] Boleto
-		- [ ] Credit Card
+		- [X] Credit Card
 		- [ ] TEF
 		- [ ] EBANX Account
 	- [ ] Mexico

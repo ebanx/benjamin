@@ -7,6 +7,11 @@ use Ebanx\Benjamin\Models\Payment;
 
 class PaymentBuilder extends BaseBuilder
 {
+    /**
+     * @var Payment
+     */
+    protected $instance;
+
     public function __construct(Faker\Generator $faker, Payment $instance = null)
     {
         if (!$instance) {
@@ -28,6 +33,15 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->currencyCode = Currency::BRL;
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
+
+        return $this;
+    }
+
+    public function creditCard($instalmentNumber = 1)
+    {
+        $this->instance->currencyCode = Currency::BRL;
+        $this->instance->card = $this->faker->cardModel();
+        $this->instance->instalments = $instalmentNumber;
 
         return $this;
     }

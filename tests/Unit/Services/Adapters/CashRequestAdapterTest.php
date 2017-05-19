@@ -1,12 +1,12 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
-use Ebanx\Benjamin\Services\Adapters\BoletoRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class BoletoRequestAdapterTest extends RequestAdapterTest
+class CashRequestAdapterTest extends RequestAdapterTest
 {
     public function testJsonSchema()
     {
@@ -15,7 +15,7 @@ class BoletoRequestAdapterTest extends RequestAdapterTest
         ]);
         $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
 
-        $adapter = new BoletoRequestAdapter($payment, $config);
+        $adapter = new CashRequestAdapter($payment, $config);
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;

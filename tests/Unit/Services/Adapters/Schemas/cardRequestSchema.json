@@ -6,7 +6,6 @@
           "type": "boolean"
         },
         "token": {
-          "type": "string",
           "minLength": 32,
           "maxLength": 128
         },
@@ -43,7 +42,6 @@
               "type": "boolean"
             },
             "token": {
-              "type": "string",
               "maxLength": 200
             },
             "note": {
