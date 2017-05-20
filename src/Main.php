@@ -23,13 +23,4 @@ class Main
         $instance = call_user_func(array('Ebanx\Benjamin\Facades\Gateways', $payment->type), $this->config);
         return $instance->create($payment);
     }
-
-    public function create(Payment $payment)
-    {
-        if (!method_exists('Ebanx\Benjamin\Facades\Gateways', $payment->type)) {
-            throw new InvalidArgumentException('Invalid payment type');
-        }
-        $instance = call_user_func(array('Ebanx\Benjamin\Facades\Gateways', $payment->type), $this->config);
-        return $instance->create($payment);
-    }
 }
