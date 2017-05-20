@@ -13,7 +13,7 @@ class CreditCardTest extends TestGateway
 
         $payment = BuilderFactory::payment()->creditCard()->businessPerson()->build();
         AbstractGatewayForTests::setClient($client);
-        $result = Benjamin($this->config)->gateways()->creditCard()->create($payment);
+        $result = EBANX($this->config)->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
 

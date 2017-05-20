@@ -31,6 +31,7 @@ class PaymentBuilder extends BaseBuilder
 
     public function boleto()
     {
+        $this->instance->type = 'boleto';
         $this->instance->currencyCode = Currency::BRL;
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
 
@@ -39,6 +40,7 @@ class PaymentBuilder extends BaseBuilder
 
     public function creditCard($instalmentNumber = 1)
     {
+        $this->instance->type = 'creditcard';
         $this->instance->currencyCode = Currency::BRL;
         $this->instance->card = $this->faker->cardModel();
         $this->instance->instalments = $instalmentNumber;
