@@ -3,6 +3,8 @@ namespace Ebanx\Benjamin;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Facades;
+use Ebanx\Benjamin\Models\Payment;
+use Psr\Log\InvalidArgumentException;
 
 class Main
 {
@@ -13,8 +15,12 @@ class Main
         $this->config = $config;
     }
 
-    public function gateways()
+    public function create(Payment $payment)
     {
-        return new Facades\Gateways($this->config);
+        if (!method_exists('Ebanx\Benjamin\Facades\Gateways', $payment->type)) {
+            throw new InvalidArgumentException('Invalid payment type');
+        }
+        $instance = call_user_func(array('Ebanx\Benjamin\Facades\Gateways', $payment->type), $this->config);
+        return $instance->create($payment);
     }
 }
