@@ -5,13 +5,15 @@
     "license": "MIT",
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.4",
         "guzzlehttp/guzzle": "^5.3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
         "fzaninotto/Faker": "^1.6@dev",
         "justinrainbow/json-schema": "^5.0@dev",
-        "vlucas/phpdotenv": "^2.4@dev"
+        "vlucas/phpdotenv": "^2.4@dev",
+        "sebastian/phpcpd": "^2.0.4"
     },
     "autoload": {
         "psr-4": {
@@ -25,6 +27,8 @@
     },
     "scripts": {
         "test": "phpunit tests --bootstrap vendor/autoload.php",
-        "test-only": "phpunit tests --bootstrap vendor/autoload.php --colors --filter"
+        "test-only": "phpunit tests --bootstrap vendor/autoload.php --colors --filter",
+        "check-duplication": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
+        "test-all": "composer test && composer check-duplication"
     }
 }
