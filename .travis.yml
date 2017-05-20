@@ -8,7 +8,7 @@ install:
   - composer update
   - composer dump-autoload
   - cp .env.example .env
-script: composer test
+script: composer test-all
 cache:
   apt: true
   directories:
