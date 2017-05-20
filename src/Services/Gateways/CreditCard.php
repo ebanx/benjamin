@@ -7,12 +7,12 @@ use GuzzleHttp\Client;
 
 class CreditCard extends AbstractGateway
 {
-    public function create(Payment $payment, Client $client = null)
+    public function create(Payment $payment)
     {
         $adapter = new CardRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request, $client);
+        $body = $this->requestPayment($request);
 
         return $body;
     }
