@@ -7,6 +7,7 @@ namespace
     if (!function_exists('EBANX')) {
         /**
          * @param AddableConfig $config,... Configuration objects
+         * @return Main EBANX Main Facade
          */
         function EBANX(AddableConfig $config)
         {
