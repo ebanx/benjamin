@@ -13,19 +13,14 @@ class Main
     private $config;
     private $creditCardConfig;
 
-    private static function leafName($classname)
-    {
-        return basename(str_replace('\\', '/', $classname));
-    }
-
     /**
      * @param AddableConfig $config,... Configuration objects
      */
-    public function addConfig(AddableConfig $config, $_=null)
+    public function addConfig(AddableConfig $config)
     {
         $args = func_get_args();
         foreach ($args as $config) {
-            $class = self::leafName(get_class($config));
+            $class = $config->getShortClassName();
             call_user_func(array($this, 'with'.$class), $config);
         }
 
@@ -71,7 +66,7 @@ class Main
 
         if (count($args) > 0) {
             foreach ($args as $config) {
-                $key = self::leafName(get_class($config));
+                $key = $config->getShortClassName();
                 $arguments[$key] = $config;
             }
         }

@@ -18,4 +18,12 @@ abstract class BaseModel
             $this->{$key} = $value;
         }
     }
+
+    /**
+     * @return string
+     */
+    public function getShortClassname()
+    {
+        return basename(str_replace('\\', '/', get_class($this)));
+    }
 }
