@@ -2,12 +2,18 @@
 namespace
 {
     use Ebanx\Benjamin\Main;
-    use Ebanx\Benjamin\Models\Configs\Config;
+    use Ebanx\Benjamin\Models\Configs\AddableConfig;
 
     if (!function_exists('EBANX')) {
-        function EBANX(Config $config)
+        /**
+         * @param AddableConfig $config,... Configuration objects
+         */
+        function EBANX(AddableConfig $config)
         {
-            return new Main($config);
+            $args = func_get_args();
+
+            $instance = new Main();
+            return call_user_func_array(array($instance, 'addConfig'), $args);
         }
     }
 }

@@ -13,6 +13,8 @@ class BoletoTest extends TestGateway
 
         $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
         AbstractGatewayForTests::setClient($client);
+
+        //$result = EBANX($this->config)->boleto()->create($payment);
         $result = EBANX($this->config)->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
