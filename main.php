@@ -1,6 +1,8 @@
 <?php
 namespace
 {
+    require 'vendor/autoload.php';
+
     use Ebanx\Benjamin\Facade;
     use Ebanx\Benjamin\Models\Configs\AddableConfig;
 
