@@ -1,19 +1,19 @@
 <?php
 namespace
 {
-    use Ebanx\Benjamin\Main;
+    use Ebanx\Benjamin\Facade;
     use Ebanx\Benjamin\Models\Configs\AddableConfig;
 
     if (!function_exists('EBANX')) {
         /**
          * @param AddableConfig $config,... Configuration objects
-         * @return Main EBANX Main Facade
+         * @return Facade EBANX Main Facade
          */
         function EBANX(AddableConfig $config)
         {
             $args = func_get_args();
 
-            $instance = new Main();
+            $instance = new Facade();
             return call_user_func_array(array($instance, 'addConfig'), $args);
         }
     }

@@ -6,10 +6,10 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Gateways\AbstractGateway;
+use Ebanx\Benjamin\Services\Gateways;
 use Psr\Log\InvalidArgumentException;
 
-class Main
+class Facade
 {
     /**
      * @var Config
@@ -23,7 +23,7 @@ class Main
 
     /**
      * @param AddableConfig $config,... Configuration objects
-     * @return Main
+     * @return Facade
      */
     public function addConfig(AddableConfig $config)
     {
@@ -38,7 +38,7 @@ class Main
 
     /**
      * @param Config $config
-     * @return Main
+     * @return Facade
      */
     public function withConfig(Config $config)
     {
@@ -48,7 +48,7 @@ class Main
 
     /**
      * @param CreditCardConfig $creditCardConfig
-     * @return Main
+     * @return Facade
      */
     public function withCreditCardConfig(CreditCardConfig $creditCardConfig)
     {
@@ -66,39 +66,34 @@ class Main
         if ($payment->type === null) {
             throw new InvalidArgumentException('Invalid payment type');
         }
+        if (!method_exists($this, $payment->type)) {
+            throw new InvalidArgumentException('Invalid payment type');
+        }
 
         $instance = call_user_func(array($this, $payment->type));
         return $instance->create($payment);
     }
 
+    # Gateways
+
     /**
-     * @param  string $gateway Gateway name
-     * @param  array  $args
-     * @return AbstractGateway
+     * @return Gateways\Boleto
      */
-    public function __call($gateway, $args = array())
+    public function boleto()
     {
-        if (!method_exists('Ebanx\Benjamin\Facades\Gateways', $gateway)) {
-            throw new InvalidArgumentException('Invalid payment type');
+        return new Gateways\Boleto($this->config);
+    }
+
+    /**
+     * @param  CreditCardConfig $creditCardConfig (optional) credit card config
+     * @return Gateways\CreditCard
+     */
+    public function creditCard(CreditCardConfig $creditCardConfig = null)
+    {
+        if ($creditCardConfig === null) {
+            $creditCardConfig = $this->creditCardConfig;
         }
 
-        $arguments = array(
-            'Config' => $this->config,
-            'CreditCardConfig' => $this->creditCardConfig
-        );
-
-        if (count($args) > 0) {
-            foreach ($args as $config) {
-                $key = $config->getShortClassName();
-                $arguments[$key] = $config;
-            }
-        }
-
-        $instance = call_user_func(
-            array('Ebanx\Benjamin\Facades\Gateways', $gateway),
-            $arguments
-        );
-
-        return $instance;
+        return new Gateways\CreditCard($this->config, $creditCardConfig);
     }
 }
