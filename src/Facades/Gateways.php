@@ -6,20 +6,13 @@ use Ebanx\Benjamin\Services\Gateways as Services;
 
 class Gateways
 {
-    private $config;
-
-    public function __construct(Config $config)
+    public static function boleto(Config $config)
     {
-        $this->config = $config;
+        return new Services\Boleto($config);
     }
 
-    public function boleto()
+    public static function creditCard(Config $config)
     {
-        return new Services\Boleto($this->config);
-    }
-
-    public function creditCard()
-    {
-        return new Services\CreditCard($this->config);
+        return new Services\CreditCard($config);
     }
 }

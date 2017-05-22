@@ -74,6 +74,13 @@ class Payment extends BaseModel
      */
     public $responsible;
 
+    /**
+     * The payment method type
+     *
+     * @var string
+     */
+    public $type;
+
 #EFT Boleto Baloto
     /**
      * Expiry date of the payment.
