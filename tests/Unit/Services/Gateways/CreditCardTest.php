@@ -4,16 +4,21 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\Helpers\Mocks\AbstractGatewayForTests;
 
+use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
+
 class CreditCardTest extends TestGateway
 {
     public function testBusinessPersonPayment()
     {
+        $creditCardConfig = new CreditCardConfig();
+
         $creditCardSuccessfulResponse = $this->getCreditCardSuccessfulResponseJson();
         $client = $this->getMockedClient($creditCardSuccessfulResponse);
 
         $payment = BuilderFactory::payment()->creditCard()->businessPerson()->build();
         AbstractGatewayForTests::setClient($client);
-        $result = EBANX($this->config)->create($payment);
+
+        $result = EBANX($this->config, $creditCardConfig)->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
 

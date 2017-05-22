@@ -9,6 +9,8 @@ class Boleto extends AbstractGateway
 {
     public function create(Payment $payment)
     {
+        $payment->type = "boleto";
+
         $adapter = new CashRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 

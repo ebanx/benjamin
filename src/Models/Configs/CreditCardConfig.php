@@ -3,7 +3,7 @@ namespace Ebanx\Benjamin\Models\Configs;
 
 use Ebanx\Benjamin\Models\BaseModel;
 
-class CreditCardConfig extends BaseModel
+class CreditCardConfig extends BaseModel implements AddableConfig
 {
     const MAX_INSTALMENTS = 12;
 

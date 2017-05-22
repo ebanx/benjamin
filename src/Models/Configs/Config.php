@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Models\Configs;
 use Ebanx\Benjamin\Models\BaseModel;
 use Ebanx\Benjamin\Models\Currency;
 
-class Config extends BaseModel
+class Config extends BaseModel implements AddableConfig
 {
     const IOF = 0.0038;
 

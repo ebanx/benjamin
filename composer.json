@@ -26,8 +26,8 @@
         }
     },
     "scripts": {
-        "test": "phpunit tests --bootstrap vendor/autoload.php",
-        "test-only": "phpunit tests --bootstrap vendor/autoload.php --colors --filter",
+        "test": "phpunit tests --bootstrap main.php --colors",
+        "test-only": "phpunit tests --bootstrap main.php --colors --filter",
         "check-duplication": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
         "test-all": "composer test && composer check-duplication"
     }
