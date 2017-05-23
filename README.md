@@ -15,16 +15,14 @@ It is very simple to use Benjamin. You will only need an instance of `Ebanx\Benj
 <?php
 $config = new Config([
     'sandboxIntegrationKey' => 'YOUR_SANDBOX_INTEGRATION_KEY',
-    'integrationKey' => 'YOUR_INTEGRATION_KEY',
     'isSandbox' => true
 ]);
 
 $payment = new Payment([
-    //Payment properties
+    //Payment properties(see wiki)
 ]);
 
-//You can replace 'boleto' with any other payment method 
-$result = Benjamin($config)->gateways()->boleto()->create($payment);
+$result = Benjamin($config)->create($payment);
 ```
 
 If you want more information you can check the [Wiki](https://github.com/ebanx/benjamin/wiki/Using-Benjamin).
