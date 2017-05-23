@@ -9,11 +9,6 @@ class Environment
 
     public function __construct()
     {
-        $this->reloadEnv();
-    }
-
-    public function reloadEnv()
-    {
         (new Dotenv(__DIR__.'/../../'))->load();
     }
 
