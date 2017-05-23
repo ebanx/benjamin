@@ -13,7 +13,8 @@
         "fzaninotto/Faker": "^1.6@dev",
         "justinrainbow/json-schema": "^5.0@dev",
         "vlucas/phpdotenv": "^2.4@dev",
-        "sebastian/phpcpd": "^2.0.4"
+        "sebastian/phpcpd": "^2.0.4",
+        "friendsofphp/php-cs-fixer": "^2.4@dev"
     },
     "autoload": {
         "psr-4": {
@@ -29,6 +30,8 @@
         "test": "phpunit tests --bootstrap main.php --colors",
         "test-only": "phpunit tests --bootstrap main.php --colors --filter",
         "check-duplication": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
-        "test-all": "composer test && composer check-duplication"
+        "test-all": "composer test && composer check-duplication",
+        "style-check" : "vendor/bin/php-cs-fixer fix --dry-run --verbose --diff ./",
+        "style-fix" : "vendor/bin/php-cs-fixer fix --verbose ./"
     }
 }
