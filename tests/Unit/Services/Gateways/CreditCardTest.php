@@ -6,7 +6,7 @@ use Tests\Helpers\Mocks\AbstractGatewayForTests;
 
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 
-class CreditCardTest extends TestGateway
+class CreditCardTest extends GatewayTestCase
 {
     public function testBusinessPersonPayment()
     {

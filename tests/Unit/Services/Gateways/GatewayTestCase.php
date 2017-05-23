@@ -2,14 +2,14 @@
 namespace Tests\Unit\Services\Gateways;
 
 use Tests\TestCase;
-use Dotenv\Dotenv;
+use Tests\Helpers\Environment;
 use GuzzleHttp\Subscriber\Mock;
 use GuzzleHttp\Message\Response;
 use GuzzleHttp\Client;
 use GuzzleHttp\Stream\Stream;
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class TestGateway extends TestCase
+class GatewayTestCase extends TestCase
 {
     protected $config;
 
@@ -17,23 +17,11 @@ class TestGateway extends TestCase
     {
         parent::__construct($name, $data, $dataName);
 
-        $this->loadEnv();
+        $env = new Environment();
 
         $this->config = new Config([
-            'sandboxIntegrationKey' => $this->envOrDefault('SANDBOX_INTEGRATION_KEY', 'default_integration_key'),
-            'publicSandboxIntegrationKey' => $this->envOrDefault('SANDBOX_PRIVATE_INTEGRATION_KEY', 'default_public_integration_key')
+            'sandboxIntegrationKey' => $env->read('SANDBOX_INTEGRATION_KEY', 'default_integration_key')
         ]);
-    }
-
-    protected function envOrDefault($key, $default)
-    {
-        return getenv($key) ?: $default;
-    }
-
-    protected function loadEnv()
-    {
-        $dotenv = new Dotenv(__DIR__.'/../../../../');
-        $dotenv->load();
     }
 
     protected function getMockedClient($jsonList)

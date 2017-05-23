@@ -4,7 +4,7 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\Helpers\Mocks\AbstractGatewayForTests;
 
-class BoletoTest extends TestGateway
+class BoletoTest extends GatewayTestCase
 {
     public function testBusinessPersonPayment()
     {
