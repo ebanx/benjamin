@@ -96,4 +96,12 @@ class Facade
 
         return new Gateways\CreditCard($this->config, $creditCardConfig);
     }
+
+    /**
+     * @return Gateways\Oxxo
+     */
+    public function oxxo()
+    {
+        return new Gateways\Oxxo($this->config);
+    }
 }
