@@ -7,7 +7,7 @@ use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use GuzzleHttp\Client;
 
-class CreditCard extends AbstractGateway
+class CreditCard extends BaseGateway
 {
     private $creditCardConfig;
 

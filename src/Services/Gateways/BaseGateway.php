@@ -5,7 +5,7 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Http\Client;
 
-abstract class AbstractGateway
+abstract class BaseGateway
 {
     /**
      * @var Config
