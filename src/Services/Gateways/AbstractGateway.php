@@ -3,7 +3,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
-use GuzzleHttp\Client;
+use Ebanx\Benjamin\Services\Http\Client;
 
 abstract class AbstractGateway
 {
@@ -15,36 +15,17 @@ abstract class AbstractGateway
     /**
      * @var Client
      */
-    protected static $client;
+    protected $client;
 
     abstract public function create(Payment $payment);
 
     public function __construct(Config $config)
     {
         $this->config = $config;
-    }
+        $this->client = new Client();
 
-    protected function getUrl()
-    {
-        return $this->config->isSandbox ? 'https://sandbox.ebanx.com/ws/direct' : 'https://api.ebanx.com/ws/direct';
-    }
-
-    protected function requestPayment(\stdClass $request)
-    {
-        $client = self::getClient();
-
-        $response = $client->post($this->getUrl(), array(
-            'json' => $request
-        ));
-
-        return $response->json();
-    }
-
-    private static function getClient()
-    {
-        if (is_null(self::$client)) {
-            self::$client = new Client();
+        if (!$this->config->isSandbox) {
+            $this->client->inLiveMode();
         }
-        return self::$client;
     }
 }

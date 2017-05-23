@@ -24,7 +24,7 @@ class CreditCard extends AbstractGateway
         $adapter = new CardRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request);
+        $body = $this->client->post($request);
 
         return $body;
     }

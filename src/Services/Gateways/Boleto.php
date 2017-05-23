@@ -14,7 +14,7 @@ class Boleto extends AbstractGateway
         $adapter = new CashRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request);
+        $body = $this->client->post($request);
 
         return $body;
     }

@@ -3,10 +3,8 @@ namespace Tests\Unit\Services\Gateways;
 
 use Tests\TestCase;
 use Tests\Helpers\Environment;
-use GuzzleHttp\Subscriber\Mock;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Client;
-use GuzzleHttp\Stream\Stream;
+use Tests\Helpers\Mocks\Http\ClientForTests;
+use Tests\Helpers\Mocks\Http\EchoEngine;
 use Ebanx\Benjamin\Models\Configs\Config;
 
 class GatewayTestCase extends TestCase
@@ -24,21 +22,8 @@ class GatewayTestCase extends TestCase
         ]);
     }
 
-    protected function getMockedClient($jsonList)
+    protected function getMockedClient($response)
     {
-        if (!is_array($jsonList)) {
-            $jsonList = array($jsonList);
-        }
-        $client = new Client();
-
-        $responses = array();
-        foreach ($jsonList as $json) {
-            $responses[] = new Response(200, [], Stream::factory($json));
-        }
-
-        $mock = new Mock($responses);
-        $client->getEmitter()->attach($mock);
-
-        return $client;
+        return new ClientForTests(new EchoEngine($response));
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Helpers\Mocks;
+namespace Tests\Helpers\Mocks\Http;
 
 use GuzzleHttp\Client as Guzzle;
 
@@ -44,6 +44,6 @@ class EchoEngineResponse
      */
     public function json()
     {
-        return $this->response;
+        return json_decode($this->response);
     }
 }

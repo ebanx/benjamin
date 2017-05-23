@@ -1,5 +1,5 @@
 <?php
-namespace Ebanx\Benjamin\Services;
+namespace Ebanx\Benjamin\Services\Http;
 
 use GuzzleHttp\Client as Guzzle;
 
