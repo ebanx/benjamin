@@ -1,0 +1,48 @@
+<?php
+namespace Tests\Unit\Services;
+
+use Tests\TestCase;
+use Tests\Helpers\Mocks\Http\ClientForTests;
+use Tests\Helpers\Mocks\Http\EchoEngine;
+use Ebanx\Benjamin\Services\Http\Client;
+
+class ClientTest extends TestCase
+{
+    public function testModeSwitch()
+    {
+        $subject = new Client();
+
+        $sandboxMode = $subject->inSandboxMode()->getMode();
+        $this->assertTrue($subject->isSandbox());
+
+        $liveMode = $subject->inLiveMode()->getMode();
+        $this->assertFalse($subject->isSandbox());
+
+        $this->assertNotEquals($sandboxMode, $liveMode);
+        $this->assertEquals($sandboxMode, Client::MODE_SANDBOX);
+        $this->assertEquals($liveMode, Client::MODE_LIVE);
+    }
+
+    public function testDefaultUrl()
+    {
+        $subject = new Client();
+
+        $defaultUrl = $subject->getUrl();
+        $this->assertTrue($subject->isSandbox());
+
+        $sandboxUrl = $subject->inSandboxMode()->getUrl();
+        $this->assertTrue($subject->isSandbox());
+
+        $this->assertEquals($sandboxUrl, $defaultUrl);
+    }
+
+    public function testFakeRequest()
+    {
+        $text = '{"message":"This should be OK"}';
+
+        $subject = new ClientForTests(new EchoEngine($text));
+
+        $response = $subject->post((object)array('empty'=>true));
+        $this->assertEquals(json_decode($text, true), $response);
+    }
+}

@@ -5,7 +5,7 @@ use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 use GuzzleHttp\Client;
 
-class Boleto extends AbstractGateway
+class Boleto extends BaseGateway
 {
     public function create(Payment $payment)
     {
@@ -14,7 +14,7 @@ class Boleto extends AbstractGateway
         $adapter = new CashRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request);
+        $body = $this->client->post($request);
 
         return $body;
     }
