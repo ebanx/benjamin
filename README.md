@@ -52,7 +52,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [ ] Credit Card
 	- [ ] Peru
 		- [ ] SafetyPay
-		- [ ] PagoEfectivo
+		- [X] PagoEfectivo
 - [ ] Refund
 - [ ] Payment Capture
 - [ ] Payment by link
