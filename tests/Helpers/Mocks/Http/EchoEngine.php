@@ -18,6 +18,11 @@ class EchoEngine extends Guzzle
         $this->responseObj = new EchoEngineResponse($response);
     }
 
+    /**
+     * @param  string $url     Url to request from
+     * @param  array  $options
+     * @return EchoEngineResponse
+     */
     public function post($url = null, array $options = array())
     {
         return $this->responseObj;
