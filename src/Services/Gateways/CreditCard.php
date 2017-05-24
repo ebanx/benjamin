@@ -7,7 +7,7 @@ use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use GuzzleHttp\Client;
 
-class CreditCard extends AbstractGateway
+class CreditCard extends BaseGateway
 {
     private $creditCardConfig;
 
@@ -24,7 +24,7 @@ class CreditCard extends AbstractGateway
         $adapter = new CardRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request);
+        $body = $this->client->post($request);
 
         return $body;
     }

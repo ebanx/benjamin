@@ -16,25 +16,11 @@ class Config extends BaseModel implements AddableConfig
     public $integrationKey;
 
     /**
-     * Public live integration key.
-     *
-     * @var string
-     */
-    public $publicIntegrationKey;
-
-    /**
      * Sandbox integration key.
      *
      * @var string
      */
     public $sandboxIntegrationKey;
-
-    /**
-     * Public sandbox integration key.
-     *
-     * @var string
-     */
-    public $publicSandboxIntegrationKey;
 
     /**
      * Determines if connection should be made using the sandbox environment settings.
