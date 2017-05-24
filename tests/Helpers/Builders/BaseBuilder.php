@@ -16,9 +16,6 @@ abstract class BaseBuilder
         $this->instance = $instance;
     }
 
-    /**
-     * @return Payment
-     */
     public function build()
     {
         return $this->instance;

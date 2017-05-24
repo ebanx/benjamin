@@ -21,6 +21,14 @@ class PaymentBuilder extends BaseBuilder
         parent::__construct($faker, $instance);
     }
 
+    /**
+     * @return Payment
+     */
+    public function build()
+    {
+        return $this->instance;
+    }
+
     public function businessPerson()
     {
         $this->instance->person = $this->faker->businessPersonModel();
