@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "72e4b21c7d99cef222ab03139d10f172",
+    "content-hash": "35aa8721ddabeb6c1f2cbb095635e3d9",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -274,7 +274,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2017-05-14T21:24:40+00:00"
+            "time": "2017-05-14 21:24:40"
         },
         {
             "name": "doctrine/instantiator",
@@ -382,7 +382,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09T13:34:57+00:00"
+            "time": "2014-09-09 13:34:57"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -461,7 +461,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-05-22T20:28:03+00:00"
+            "time": "2017-05-22 20:28:03"
         },
         {
             "name": "fzaninotto/faker",
@@ -550,7 +550,7 @@
                 "filesystem",
                 "phpunit"
             ],
-            "time": "2016-12-01T11:47:29+00:00"
+            "time": "2016-12-01 11:47:29"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -1369,12 +1369,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2"
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2",
-                "reference": "3c7d21999e815cdfac70c6c7d79d3a9cb1bc7bc2",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/7f066a26a962dbe58ddea9f72a4e82874a3975a4",
+                "reference": "7f066a26a962dbe58ddea9f72a4e82874a3975a4",
                 "shasum": ""
             },
             "require": {
@@ -1413,7 +1413,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-05-18 13:44:30"
+            "time": "2017-05-22T07:24:03+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -1835,12 +1835,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "70a4a261d562eb2564e068d6fbe4ee2821c1f281"
+                "reference": "00425e7ce6c8636e2d086d9f6d525ea7a67fdf4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/70a4a261d562eb2564e068d6fbe4ee2821c1f281",
-                "reference": "70a4a261d562eb2564e068d6fbe4ee2821c1f281",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/00425e7ce6c8636e2d086d9f6d525ea7a67fdf4c",
+                "reference": "00425e7ce6c8636e2d086d9f6d525ea7a67fdf4c",
                 "shasum": ""
             },
             "require": {
@@ -1883,7 +1883,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-19 17:05:40"
+            "time": "2017-05-22T09:03:40+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1946,7 +1946,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-18T12:56:12+00:00"
+            "time": "2017-05-18 12:56:12"
         },
         {
             "name": "symfony/filesystem",
@@ -1995,7 +1995,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-17T16:21:40+00:00"
+            "time": "2017-05-17 16:21:40"
         },
         {
             "name": "symfony/finder",
@@ -2003,12 +2003,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "a90f2adc19a2aa8b58ebf6df6aa6615e371d9b15"
+                "reference": "a10477bbf888f386db9c3ae460b1ada68bc397f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/a90f2adc19a2aa8b58ebf6df6aa6615e371d9b15",
-                "reference": "a90f2adc19a2aa8b58ebf6df6aa6615e371d9b15",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/a10477bbf888f386db9c3ae460b1ada68bc397f4",
+                "reference": "a10477bbf888f386db9c3ae460b1ada68bc397f4",
                 "shasum": ""
             },
             "require": {
@@ -2044,7 +2044,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-17 16:21:40"
+            "time": "2017-05-21T17:11:47+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -2098,7 +2098,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2017-05-17T16:21:40+00:00"
+            "time": "2017-05-17 16:21:40"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2216,7 +2216,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14T01:06:16+00:00"
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "symfony/polyfill-xml",
@@ -2274,7 +2274,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14T01:06:16+00:00"
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "symfony/process",
@@ -2323,7 +2323,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-17T16:21:40+00:00"
+            "time": "2017-05-17 16:21:40"
         },
         {
             "name": "symfony/stopwatch",
@@ -2372,7 +2372,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-17T16:21:40+00:00"
+            "time": "2017-05-17 16:21:40"
         },
         {
             "name": "symfony/yaml",
@@ -2575,8 +2575,7 @@
     "stability-flags": {
         "fzaninotto/faker": 20,
         "justinrainbow/json-schema": 20,
-        "vlucas/phpdotenv": 20,
-        "friendsofphp/php-cs-fixer": 20
+        "vlucas/phpdotenv": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
