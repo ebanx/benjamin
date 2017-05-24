@@ -44,7 +44,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [ ] Debit Card
 		- [X] OXXO
 	- [ ] Chile
-		- [ ] Sencillito
+		- [X] Sencillito
 		- [ ] Servipag
 	- [ ] Colombia
 		- [ ] PSE
