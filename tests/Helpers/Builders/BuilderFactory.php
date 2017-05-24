@@ -28,8 +28,7 @@ class BuilderFactory
     {
         if (!self::$faker || self::$fakerLang != self::$lang) {
             self::$fakerLang = self::$lang;
-            self::$faker = Faker\Factory::create(self::$lang);
-            self::$faker->addProvider(new Providers\Address(self::$faker));
+            self::$faker = Faker\Factory::create(self::convertLangToFakerLang(self::$lang));
             self::$faker->addProvider(new Providers\CurrencyCode(self::$faker));
             self::$faker->addProvider(new Providers\Item(self::$faker));
             self::$faker->addProvider(new Providers\Payment(self::$faker));
@@ -38,9 +37,20 @@ class BuilderFactory
 
             $documentProviderClass = 'Tests\Helpers\Providers\\'.self::$lang.'\Document';
             self::$faker->addProvider(new $documentProviderClass(self::$faker));
+
+            $addressProviderClass = 'Tests\Helpers\Providers\\'.self::$lang.'\Address';
+            self::$faker->addProvider(new $addressProviderClass(self::$faker));
         }
         self::$faker->seed('ebanx');
 
         return self::$faker;
+    }
+
+    private static function convertLangToFakerLang($lang)
+    {
+        if ($lang === 'pt_BR') {
+            return $lang;
+        }
+        return 'es_ES';
     }
 }

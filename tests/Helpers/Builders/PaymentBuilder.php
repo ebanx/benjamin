@@ -47,4 +47,12 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function oxxo()
+    {
+        $this->instance->type = 'oxxo';
+        $this->instance->currencyCode = Currency::USD;
+
+        return $this;
+    }
 }

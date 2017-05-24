@@ -60,7 +60,8 @@ abstract class RequestAdapter
             // TODO: Sub-account
             'items' => $this->transformItems(),
             'device_id' => $this->payment->deviceId,
-            'notification_url' => $this->config->notificationUrl
+            'notification_url' => $this->config->notificationUrl,
+            'payment_type_code' => $this->payment->type
         );
     }
 
