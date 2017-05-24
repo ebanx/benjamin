@@ -29,8 +29,8 @@
     "scripts": {
         "test": "phpunit tests --bootstrap main.php --colors",
         "test-only": "phpunit tests --bootstrap main.php --colors --filter",
-        "check-duplication": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
-        "test-all": "composer test && composer check-duplication",
+        "dup-check": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
+        "test-all": "composer test && composer dup-check",
         "style-check" : "vendor/bin/php-cs-fixer fix --dry-run --verbose --diff ./",
         "style-fix" : "vendor/bin/php-cs-fixer fix --verbose ./"
     }
