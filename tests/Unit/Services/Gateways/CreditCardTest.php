@@ -2,7 +2,6 @@
 namespace Tests\Unit\Services\Gateways;
 
 use Tests\Helpers\Builders\BuilderFactory;
-use Tests\Helpers\Mocks\AbstractGatewayForTests;
 
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\Config;

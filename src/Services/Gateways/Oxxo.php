@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 
-class Oxxo extends AbstractGateway
+class Oxxo extends BaseGateway
 {
     public function create(Payment $payment)
     {
@@ -13,7 +13,7 @@ class Oxxo extends AbstractGateway
         $adapter = new CashRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->requestPayment($request);
+        $body = $this->client->post($request);
 
         return $body;
     }
