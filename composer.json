@@ -28,8 +28,8 @@
         }
     },
     "scripts": {
-        "test": "phpunit tests --colors=always",
-        "test-only": "phpunit tests --colors=always --filter",
+        "test": "phpunit",
+        "test-only": "phpunit --filter",
         "dup-check": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
         "test-all": "composer test && composer dup-check",
         "style-check" : "vendor/bin/php-cs-fixer fix --dry-run --verbose --diff ./",
