@@ -42,7 +42,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 	- [ ] Mexico
 		- [ ] Credit Card
 		- [ ] Debit Card
-		- [ ] OXXO
+		- [X] OXXO
 	- [ ] Chile
 		- [ ] Sencillito
 		- [ ] Servipag
