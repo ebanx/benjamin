@@ -38,6 +38,6 @@ class SencillitoForTests extends Sencillito
     public function __construct(Config $config, Client $client)
     {
         parent::__construct($config);
-//        $this->client = $client;
+        $this->client = $client;
     }
 }
