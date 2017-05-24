@@ -12,6 +12,11 @@ class Environment
         (new Dotenv(__DIR__.'/../../'))->load();
     }
 
+    /**
+     * @param  string $key     Env var name to read
+     * @param  mixed  $default Optional default value
+     * @return string
+     */
     public function read($key, $default = self::ENV_VAR_NOT_SET)
     {
         $result = getenv($key) ?: $default;
