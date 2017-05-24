@@ -18,7 +18,8 @@ class CreditCardTest extends GatewayTestCase
         $creditCardSuccessfulResponse = $this->getCreditCardSuccessfulResponseJson();
         $client = $this->getMockedClient($creditCardSuccessfulResponse);
 
-        $payment = BuilderFactory::payment()->creditCard()->businessPerson()->build();
+        $brFactory = BuilderFactory::lang('pt_BR');
+        $payment = $brFactory::payment()->creditCard()->businessPerson()->build();
         $gateway = new CreditCardForTests($this->config, $creditCardConfig, $client);
 
         $result = $gateway->create($payment);
