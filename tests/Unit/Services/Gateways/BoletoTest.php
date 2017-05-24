@@ -20,7 +20,7 @@ class BoletoTest extends GatewayTestCase
 
         $result = $gateway->create($payment);
 
-        $this->assertObjectHasAttribute('payment', $result);
+        $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
     }

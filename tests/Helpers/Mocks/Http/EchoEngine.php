@@ -49,6 +49,6 @@ class EchoEngineResponse
      */
     public function json()
     {
-        return json_decode($this->response);
+        return json_decode($this->response, true);
     }
 }
