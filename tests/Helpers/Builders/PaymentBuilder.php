@@ -79,4 +79,12 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+  
+    public function sencillito()
+    {
+        $this->instance->type = 'sencillito';
+        $this->instance->currencyCode = Currency::USD;
+
+        return $this;
+    }
 }
