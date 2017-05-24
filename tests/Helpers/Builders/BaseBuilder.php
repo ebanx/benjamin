@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Helpers\Builders;
 
+use Ebanx\Benjamin\Models\Payment;
 use Faker;
 use Ebanx\Benjamin\Models\BaseModel;
 
@@ -15,6 +16,9 @@ abstract class BaseBuilder
         $this->instance = $instance;
     }
 
+    /**
+     * @return Payment
+     */
     public function build()
     {
         return $this->instance;

@@ -55,4 +55,12 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function baloto()
+    {
+        $this->instance->type = 'baloto';
+        $this->instance->currencyCode = Currency::USD;
+
+        return $this;
+    }
 }

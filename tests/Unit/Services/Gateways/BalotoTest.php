@@ -18,6 +18,8 @@ class BalotoTest extends GatewayTestCase
         $payment = $mxFactory::payment()->baloto()->build();
         $gateway = new BalotoForTests($this->config, $client);
 
+        $payment->person->email .= '.co';
+
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
@@ -27,7 +29,7 @@ class BalotoTest extends GatewayTestCase
 
     public function getBalotoSuccessfulResponseJson()
     {
-        return '{"payment":{"hash":"5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e","pin":"484657684","merchant_payment_code":"c15a03ecdea06d3c55db001af76c6186","order_number":null,"status":"PE","status_date":null,"open_date":"2017-05-23 20:32:40","confirm_date":null,"transfer_date":null,"amount_br":"1362.01","amount_ext":"64.55","amount_iof":"0.00","currency_rate":"21.1000","currency_ext":"USD","due_date":"2017-05-26","instalments":"1","payment_type_code":"baloto","baloto_url":"https:\/\/sandbox.ebanx.com\/print\/baloto\/?hash=5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e","baloto_barcode":"51000000000020022017052601362015","pre_approved":false,"capture_available":null,"note":"Fake payment created by PHPUnit.","customer":{"document":"932221309","email":"alfaro.mara@loya.es","name":"LUNA GRANADOS","birth_date":"1966-05-18"}},"status":"SUCCESS"}';
+        return '{"payment":{"hash":"5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5","pin":"484939887","merchant_payment_code":"27c251a65a854cfa74d052e66bdac8e8","order_number":null,"status":"PE","status_date":null,"open_date":"2017-05-24 17:56:05","confirm_date":null,"transfer_date":null,"amount_br":"152023.00","amount_ext":"64.55","amount_iof":"0.00","currency_rate":"2355.1200","currency_ext":"USD","due_date":"2017-05-27","instalments":"1","payment_type_code":"baloto","baloto_url":"https:\/\/sandbox.ebanx.com\/print\/baloto\/?hash=5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5","voucher_id":"484939887","pre_approved":false,"capture_available":null,"note":"Fake payment created by PHPUnit.","customer":{"document":"932221309","email":"alfaro.mara@loya.es.co","name":"LUNA GRANADOS","birth_date":"1966-05-19"}},"status":"SUCCESS"}';
     }
 }
 
