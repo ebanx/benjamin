@@ -7,7 +7,7 @@ use Tests\Helpers\Providers;
 
 class BuilderFactory
 {
-    private static $lang = "pt_BR";
+    private static $lang = null;
 
     private static $fakerLang;
     private static $faker;
@@ -17,6 +17,11 @@ class BuilderFactory
         return new PaymentBuilder(self::setupFaker(), $instance);
     }
 
+    /**
+     * @param string $lang
+     *
+     * @return BuilderFactory
+     */
     public static function lang($lang)
     {
         self::$lang = $lang;
@@ -26,6 +31,11 @@ class BuilderFactory
 
     private static function setupFaker()
     {
+        if (!self::$lang) {
+            // TODO: Make it not static
+            throw new \InvalidArgumentException('You need to set a language with lang() before using any factory.');
+        }
+
         if (!self::$faker || self::$fakerLang != self::$lang) {
             self::$fakerLang = self::$lang;
             self::$faker = Faker\Factory::create(self::convertLangToFakerLang(self::$lang));

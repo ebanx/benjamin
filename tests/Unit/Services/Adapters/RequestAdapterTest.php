@@ -14,7 +14,8 @@ class RequestAdapterTest extends TestCase
         $config = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
-        $payment = BuilderFactory::payment()->boleto()->businessPerson()->build();
+        $factory = BuilderFactory::lang('pt_BR');
+        $payment = $factory::payment()->boleto()->businessPerson()->build();
 
         $adapter = new FakeAdapter($payment, $config);
         $result = $adapter->transform();

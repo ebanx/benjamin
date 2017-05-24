@@ -21,6 +21,14 @@ class PaymentBuilder extends BaseBuilder
         parent::__construct($faker, $instance);
     }
 
+    /**
+     * @return Payment
+     */
+    public function build()
+    {
+        return $this->instance;
+    }
+
     public function businessPerson()
     {
         $this->instance->person = $this->faker->businessPersonModel();
@@ -51,6 +59,14 @@ class PaymentBuilder extends BaseBuilder
     public function oxxo()
     {
         $this->instance->type = 'oxxo';
+        $this->instance->currencyCode = Currency::USD;
+
+        return $this;
+    }
+
+    public function baloto()
+    {
+        $this->instance->type = 'baloto';
         $this->instance->currencyCode = Currency::USD;
 
         return $this;

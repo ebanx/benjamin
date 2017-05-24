@@ -18,6 +18,8 @@ class OxxoTest extends GatewayTestCase
         $payment = $mxFactory::payment()->oxxo()->build();
         $gateway = new OxxoForTests($this->config, $client);
 
+        $payment->person->email .= '.mx';
+
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
