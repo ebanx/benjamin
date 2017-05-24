@@ -48,7 +48,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [ ] Servipag
 	- [ ] Colombia
 		- [ ] PSE
-		- [ ] Baloto
+		- [X] Baloto
 		- [ ] Credit Card
 	- [ ] Peru
 		- [ ] SafetyPay
