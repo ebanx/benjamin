@@ -71,4 +71,12 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function pagoefectivo()
+    {
+        $this->instance->type = 'pagoefectivo';
+        $this->instance->currencyCode = Currency::USD;
+
+        return $this;
+    }
 }
