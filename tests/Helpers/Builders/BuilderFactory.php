@@ -3,7 +3,6 @@ namespace Tests\Helpers\Builders;
 
 use Faker;
 use Ebanx\Benjamin\Models\Payment;
-use Psr\Log\InvalidArgumentException;
 use Tests\Helpers\Providers;
 
 class BuilderFactory
@@ -34,7 +33,7 @@ class BuilderFactory
     {
         if (!self::$lang) {
             // TODO: Make it not static
-            throw new InvalidArgumentException('You need to set a language with lang() before using any factory.');
+            throw new \InvalidArgumentException('You need to set a language with lang() before using any factory.');
         }
 
         if (!self::$faker || self::$fakerLang != self::$lang) {
