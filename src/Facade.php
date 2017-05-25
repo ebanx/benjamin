@@ -120,4 +120,12 @@ class Facade
     {
         return new Gateways\Sencillito($this->config);
     }
+
+    /**
+     * @return Gateways\PagoEfectivo
+     */
+    public function pagoEfectivo()
+    {
+        return new Gateways\PagoEfectivo($this->config);
+    }
 }
