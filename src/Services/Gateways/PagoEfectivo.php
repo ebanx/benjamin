@@ -8,7 +8,7 @@ class PagoEfectivo extends BaseGateway
 {
     public function create(Payment $payment)
     {
-        $payment->type = "pagoefectivo";
+        $payment->type = "pagoEfectivo";
 
         $adapter = new CashRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
