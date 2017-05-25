@@ -29,7 +29,7 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-only": "vendor/bin/phpunit --filter",p
+        "test-only": "vendor/bin/phpunit --filter",
         "dup-check": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
         "test-all": "composer test && composer dup-check",
         "style-check" : "vendor/bin/php-cs-fixer fix --dry-run --verbose --diff ./",
