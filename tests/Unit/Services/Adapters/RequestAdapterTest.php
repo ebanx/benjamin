@@ -28,8 +28,8 @@ class RequestAdapterTest extends TestCase
 
     public function testIntegrationKey()
     {
-        $factory = BuilderFactory::lang('pt_BR');
-        $payment = $factory::payment()->build();
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
 
         $liveKey = 'testIntegrationKey';
         $sandboxKey = 'testSandboxIntegrationKey';
