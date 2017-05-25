@@ -20,12 +20,24 @@ class FacadeTest extends TestCase
      */
     public function testGatewayAccessors($ebanx)
     {
-        foreach ($this->getExpectedGateways() as $gateway) {
+        $gateways = $this->getExpectedGateways();
+
+        foreach ($gateways as $gateway) {
             $this->assertTrue(
                 method_exists($ebanx, $gateway),
                 "Facade has no accessor for gateway \"$gateway\"."
             );
+
+            $this->assertNotNull(
+                $this->tryBuildGatewayUsingFacadeAccessor($ebanx, $gateway),
+                "Accessor failed to build instance of gateway \"$gateway\"."
+            );
         }
+    }
+
+    private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)
+    {
+        return call_user_func(array($facade, $accessor));
     }
 
     private function getExpectedGateways()
