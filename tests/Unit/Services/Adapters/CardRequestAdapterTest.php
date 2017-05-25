@@ -13,8 +13,8 @@ class CardRequestAdapterTest extends RequestAdapterTest
         $config = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
-        $factory = BuilderFactory::lang('pt_BR');
-        $payment = $factory::payment()->creditCard()->businessPerson()->build();
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->creditCard()->businessPerson()->build();
 
         $adapter = new CardRequestAdapter($payment, $config);
         $result = $adapter->transform();

@@ -13,8 +13,8 @@ class CashRequestAdapterTest extends RequestAdapterTest
         $config = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
-        $factory = BuilderFactory::lang('pt_BR');
-        $payment = $factory::payment()->boleto()->businessPerson()->build();
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->boleto()->businessPerson()->build();
 
         $adapter = new CashRequestAdapter($payment, $config);
         $result = $adapter->transform();
