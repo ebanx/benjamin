@@ -77,6 +77,14 @@ class Facade
     # Gateways
 
     /**
+     * @return Gateways\Baloto
+     */
+    public function baloto()
+    {
+        return new Gateways\Baloto($this->config);
+    }
+
+    /**
      * @return Gateways\Boleto
      */
     public function boleto()
@@ -103,5 +111,13 @@ class Facade
     public function oxxo()
     {
         return new Gateways\Oxxo($this->config);
+    }
+
+    /**
+     * @return Gateways\Sencillito
+     */
+    public function sencillito()
+    {
+        return new Gateways\Sencillito($this->config);
     }
 }
