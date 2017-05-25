@@ -19,7 +19,8 @@
     "autoload": {
         "psr-4": {
             "Ebanx\\Benjamin\\": "src/"
-        }
+        },
+        "files": ["main.php"]
     },
     "autoload-dev": {
         "psr-4": {
@@ -27,11 +28,11 @@
         }
     },
     "scripts": {
-        "test": "phpunit tests --bootstrap main.php --colors",
-        "test-only": "phpunit tests --bootstrap main.php --colors --filter",
-        "dup-check": "vendor/bin/phpcpd src && vendor/bin/phpcpd tests",
+        "test": "phpunit",
+        "test-only": "phpunit --filter",
+        "dup-check": "phpcpd src && phpcpd tests",
         "test-all": "composer test && composer dup-check",
-        "style-check" : "vendor/bin/php-cs-fixer fix --dry-run --verbose --diff ./",
-        "style-fix" : "vendor/bin/php-cs-fixer fix --verbose ./"
+        "style-check" : "php-cs-fixer fix --dry-run --verbose --diff ./",
+        "style-fix" : "php-cs-fixer fix --verbose ./"
     }
 }
