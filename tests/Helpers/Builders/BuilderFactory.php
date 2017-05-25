@@ -21,7 +21,7 @@ class BuilderFactory
     }
 
     /**
-     * @param  Payment|null $instance Optional pre-built instance
+     * @param  Payment $instance Optional pre-built instance
      * @return PaymentBuilder
      */
     public function payment(Payment $instance = null)
