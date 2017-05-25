@@ -14,8 +14,8 @@ class BoletoTest extends GatewayTestCase
         $boletoSuccessfulResponse = $this->getBoletoSuccessfulResponseJson();
         $client = $this->getMockedClient($boletoSuccessfulResponse);
 
-        $brFactory = BuilderFactory::lang('pt_BR');
-        $payment = $brFactory::payment()->boleto()->businessPerson()->build();
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->boleto()->businessPerson()->build();
         $gateway = new BoletoForTests($this->config, $client);
 
         $result = $gateway->create($payment);

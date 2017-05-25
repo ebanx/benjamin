@@ -7,14 +7,26 @@ use Tests\Helpers\Providers;
 
 class BuilderFactory
 {
-    private static $lang = null;
+    private $lang;
 
-    private static $fakerLang;
-    private static $faker;
+    private $fakerLang;
+    private $faker;
 
-    public static function payment(Payment $instance = null)
+    /**
+     * @param string $lang
+     */
+    public function __construct($lang)
     {
-        return new PaymentBuilder(self::setupFaker(), $instance);
+        $this->lang = $lang;
+    }
+
+    /**
+     * @param  Payment $instance Optional pre-built instance
+     * @return PaymentBuilder
+     */
+    public function payment(Payment $instance = null)
+    {
+        return new PaymentBuilder($this->setupFaker(), $instance);
     }
 
     /**
@@ -22,38 +34,35 @@ class BuilderFactory
      *
      * @return BuilderFactory
      */
-    public static function lang($lang)
+    public function withLang($lang)
     {
-        self::$lang = $lang;
-
-        return '\Tests\Helpers\Builders\BuilderFactory';
+        $this->lang = $lang;
+        return $this;
     }
 
-    private static function setupFaker()
+    /**
+     * @return Faker\Generator
+     */
+    private function setupFaker()
     {
-        if (!self::$lang) {
-            // TODO: Make it not static
-            throw new \InvalidArgumentException('You need to set a language with lang() before using any factory.');
+        if (!$this->faker || $this->fakerLang != $this->lang) {
+            $this->fakerLang = $this->lang;
+            $this->faker = Faker\Factory::create(self::convertLangToFakerLang($this->lang));
+            $this->faker->addProvider(new Providers\CurrencyCode($this->faker));
+            $this->faker->addProvider(new Providers\Item($this->faker));
+            $this->faker->addProvider(new Providers\Payment($this->faker));
+            $this->faker->addProvider(new Providers\Person($this->faker));
+            $this->faker->addProvider(new Providers\Card($this->faker));
+
+            $documentProviderClass = 'Tests\Helpers\Providers\\'.$this->lang.'\Document';
+            $this->faker->addProvider(new $documentProviderClass($this->faker));
+
+            $addressProviderClass = 'Tests\Helpers\Providers\\'.$this->lang.'\Address';
+            $this->faker->addProvider(new $addressProviderClass($this->faker));
         }
+        $this->faker->seed('ebanx');
 
-        if (!self::$faker || self::$fakerLang != self::$lang) {
-            self::$fakerLang = self::$lang;
-            self::$faker = Faker\Factory::create(self::convertLangToFakerLang(self::$lang));
-            self::$faker->addProvider(new Providers\CurrencyCode(self::$faker));
-            self::$faker->addProvider(new Providers\Item(self::$faker));
-            self::$faker->addProvider(new Providers\Payment(self::$faker));
-            self::$faker->addProvider(new Providers\Person(self::$faker));
-            self::$faker->addProvider(new Providers\Card(self::$faker));
-
-            $documentProviderClass = 'Tests\Helpers\Providers\\'.self::$lang.'\Document';
-            self::$faker->addProvider(new $documentProviderClass(self::$faker));
-
-            $addressProviderClass = 'Tests\Helpers\Providers\\'.self::$lang.'\Address';
-            self::$faker->addProvider(new $addressProviderClass(self::$faker));
-        }
-        self::$faker->seed('ebanx');
-
-        return self::$faker;
+        return $this->faker;
     }
 
     private static function convertLangToFakerLang($lang)
