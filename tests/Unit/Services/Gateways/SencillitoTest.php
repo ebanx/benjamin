@@ -14,8 +14,8 @@ class SencillitoTest extends GatewayTestCase
         $sencillitoSuccessfulResponse = $this->getSencillitoSuccessfulResponseJson();
         $client = $this->getMockedClient($sencillitoSuccessfulResponse);
 
-        $mxFactory = BuilderFactory::lang('es_CL');
-        $payment = $mxFactory::payment()->sencillito()->build();
+        $factory = new BuilderFactory('es_CL');
+        $payment = $factory->payment()->sencillito()->build();
         $gateway = new SencillitoForTests($this->config, $client);
 
         $payment->person->email .= '.cl';
