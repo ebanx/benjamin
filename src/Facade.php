@@ -104,4 +104,12 @@ class Facade
     {
         return new Gateways\Oxxo($this->config);
     }
+
+    /**
+     * @return Gateways\Oxxo
+     */
+    public function pagoEfectivo()
+    {
+        return new Gateways\PagoEfectivo($this->config);
+    }
 }
