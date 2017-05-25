@@ -26,6 +26,29 @@ class RequestAdapterTest extends TestCase
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
 
+    public function testIntegrationKey()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
+
+        $liveKey = 'testIntegrationKey';
+        $sandboxKey = 'testSandboxIntegrationKey';
+
+        $config = new Config([
+            'integrationKey' => $liveKey,
+            'sandboxIntegrationKey' => $sandboxKey
+        ]);
+
+        // Sandbox
+        $adapter = new FakeAdapter($payment, $config);
+        $this->assertEquals($sandboxKey, $adapter->getIntegrationKey());
+
+        // Live
+        $config->isSandbox = false;
+        $adapter = new FakeAdapter($payment, $config);
+        $this->assertEquals($liveKey, $adapter->getIntegrationKey());
+    }
+
     protected function getJsonMessage(JsonSchema\Validator $validator)
     {
         $message = '';
@@ -53,4 +76,8 @@ class RequestAdapterTest extends TestCase
 
 class FakeAdapter extends RequestAdapter
 {
+    public function getIntegrationKey()
+    {
+        return parent::getIntegrationKey();
+    }
 }
