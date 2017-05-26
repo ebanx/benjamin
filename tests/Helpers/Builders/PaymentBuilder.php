@@ -97,4 +97,11 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function withBank($bank)
+    {
+        $this->instance->bankCode = $bank;
+
+        return $this;
+    }
 }
