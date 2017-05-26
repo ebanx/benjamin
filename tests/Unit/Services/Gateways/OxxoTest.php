@@ -4,6 +4,8 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\Oxxo;
 use Ebanx\Benjamin\Services\Http\Client;
 
@@ -25,6 +27,35 @@ class OxxoTest extends GatewayTestCase
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
+    }
+
+    public function testAvailabilityWithUSD()
+    {
+        $gateway = new Oxxo($this->config);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::MEXICO
+        ));
+    }
+
+    public function testAvailabilityWithLocalCurrency()
+    {
+        $gateway = new Oxxo(new Config(array(
+            'baseCurrency' => Currency::MXN
+        )));
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::MEXICO
+        ));
+    }
+
+    public function testAvailabilityWithWrongLocalCurrency()
+    {
+        $gateway = new Oxxo(new Config(array(
+            'baseCurrency' => Currency::CLP
+        )));
+
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function getOxxoSuccessfulResponseJson()

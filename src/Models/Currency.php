@@ -10,4 +10,38 @@ class Currency extends BaseModel
     const CLP = 'CLP';
     const COP = 'COP';
     const PEN = 'PEN';
+
+    public static function all()
+    {
+        return array(
+            self::USD,
+            self::EUR,
+            self::BRL,
+            self::MXN,
+            self::CLP,
+            self::COP,
+            self::PEN
+        );
+    }
+
+    public static function globalCurrencies()
+    {
+        return array(
+            self::USD,
+            self::EUR
+        );
+    }
+
+    public static function localForCountry($country)
+    {
+        $relation = array(
+            Country::BRAZIL => self::BRL,
+            Country::MEXICO => self::MXN,
+            Country::CHILE => self::CLP,
+            Country::COLOMBIA => self::COP,
+            Country::PERU => self::PEN
+        );
+
+        return $relation[$country];
+    }
 }

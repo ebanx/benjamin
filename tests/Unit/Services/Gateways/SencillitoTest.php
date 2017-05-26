@@ -4,6 +4,8 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\Sencillito;
 use Ebanx\Benjamin\Services\Http\Client;
 
@@ -25,6 +27,35 @@ class SencillitoTest extends GatewayTestCase
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
+    }
+
+    public function testAvailabilityWithUSD()
+    {
+        $gateway = new Sencillito($this->config);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::CHILE
+        ));
+    }
+
+    public function testAvailabilityWithLocalCurrency()
+    {
+        $gateway = new Sencillito(new Config(array(
+            'baseCurrency' => Currency::CLP
+        )));
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::CHILE
+        ));
+    }
+
+    public function testAvailabilityWithWrongLocalCurrency()
+    {
+        $gateway = new Sencillito(new Config(array(
+            'baseCurrency' => Currency::BRL
+        )));
+
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function getSencillitoSuccessfulResponseJson()

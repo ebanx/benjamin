@@ -4,6 +4,8 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\Baloto;
 use Ebanx\Benjamin\Services\Http\Client;
 
@@ -25,6 +27,35 @@ class BalotoTest extends GatewayTestCase
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
+    }
+
+    public function testAvailabilityWithUSD()
+    {
+        $gateway = new Baloto($this->config);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::COLOMBIA
+        ));
+    }
+
+    public function testAvailabilityWithLocalCurrency()
+    {
+        $gateway = new Baloto(new Config(array(
+            'baseCurrency' => Currency::COP
+        )));
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::COLOMBIA
+        ));
+    }
+
+    public function testAvailabilityWithWrongLocalCurrency()
+    {
+        $gateway = new Baloto(new Config(array(
+            'baseCurrency' => Currency::MXN
+        )));
+
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function getBalotoSuccessfulResponseJson()

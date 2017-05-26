@@ -4,6 +4,8 @@ namespace Tests\Unit\Services\Gateways;
 use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\PagoEfectivo;
 use Ebanx\Benjamin\Services\Http\Client;
 
@@ -25,6 +27,35 @@ class PagoEfectivoTest extends GatewayTestCase
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
+    }
+
+    public function testAvailabilityWithUSD()
+    {
+        $gateway = new PagoEfectivo($this->config);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::PERU
+        ));
+    }
+
+    public function testAvailabilityWithLocalCurrency()
+    {
+        $gateway = new PagoEfectivo(new Config(array(
+            'baseCurrency' => Currency::PEN
+        )));
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::PERU
+        ));
+    }
+
+    public function testAvailabilityWithWrongLocalCurrency()
+    {
+        $gateway = new PagoEfectivo(new Config(array(
+            'baseCurrency' => Currency::BRL
+        )));
+
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function getPagoEfectivoSuccessfulResponseJson()
