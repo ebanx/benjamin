@@ -90,14 +90,14 @@ class Payment extends BaseModel
      */
     public $dueDate = null;
 
-#EFT
+#EFT TEF
     /**
      * Code for the customer’s bank.
      * Only applicable to EFT.
      *
      * @var string
      */
-    public $eftCode = null;
+    public $bankCode = null;
 
 #CREDIT CARD
     /**
