@@ -87,4 +87,12 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function tef()
+    {
+        $this->instance->type = 'tef';
+        $this->instance->currencyCode = Currency::BRL;
+
+        return $this;
+    }
 }
