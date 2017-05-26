@@ -38,16 +38,16 @@ class Config extends BaseModel implements AddableConfig
     public $baseCurrency = Currency::USD;
 
     /**
-     * IOF Brazilian tax.
-     *
-     * @var float
-     */
-    public $iof = self::IOF;
-
-    /**
      * The URL to send notifications to.
      *
      * @var string
      */
     public $notificationUrl = null;
+
+    /**
+     * Extra information for reports
+     *
+     * @var array
+     */
+    public $userValues = array();
 }

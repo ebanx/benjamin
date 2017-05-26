@@ -49,6 +49,42 @@ class RequestAdapterTest extends TestCase
         $this->assertEquals($liveKey, $adapter->getIntegrationKey());
     }
 
+    public function testUserValues()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
+
+        $expected = array(
+            1 => 'from_tests',
+            2 => 'DO NOT PAY',
+            5 => 'Benjamin'
+        );
+
+        $payment->userValues = array(
+            1 => 'Override me',
+            2 => 'DO NOT PAY'
+        );
+
+        $config = new Config([
+            'userValues' => array(
+                1 => 'from_tests'
+            )
+        ]);
+
+        $adapter = new FakeAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $resultValues = array_filter(array(
+            1 => isset($result->payment->user_value_1) ? $result->payment->user_value_1 : null,
+            2 => isset($result->payment->user_value_2) ? $result->payment->user_value_2 : null,
+            3 => isset($result->payment->user_value_3) ? $result->payment->user_value_3 : null,
+            4 => isset($result->payment->user_value_4) ? $result->payment->user_value_4 : null,
+            5 => isset($result->payment->user_value_5) ? $result->payment->user_value_5 : null
+        ));
+
+        $this->assertEquals($expected, $resultValues);
+    }
+
     protected function getJsonMessage(JsonSchema\Validator $validator)
     {
         $message = '';
