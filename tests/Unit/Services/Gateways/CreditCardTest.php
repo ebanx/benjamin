@@ -5,6 +5,8 @@ use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
 
 use Ebanx\Benjamin\Services\Gateways\CreditCard;
 use Ebanx\Benjamin\Services\Http\Client;
@@ -27,6 +29,68 @@ class CreditCardTest extends GatewayTestCase
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)
+    }
+
+    public function testAvailabilityWithUSDEUR()
+    {
+        $creditCardConfig = new CreditCardConfig();
+        $gateway = new CreditCard($this->config, $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::BRAZIL,
+            Country::MEXICO,
+            Country::COLOMBIA
+        ));
+
+        $gateway = new CreditCard(new Config(array(
+            'baseCurrency' => Currency::EUR
+        )), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::BRAZIL,
+            Country::MEXICO,
+            Country::COLOMBIA
+        ));
+    }
+
+    public function testAvailabilityWithLocalCurrency()
+    {
+        $creditCardConfig = new CreditCardConfig();
+
+        $gateway = new CreditCard(new Config(array(
+            'baseCurrency' => Currency::BRL
+        )), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::BRAZIL
+        ));
+
+        $gateway = new CreditCard(new Config(array(
+            'baseCurrency' => Currency::MXN
+        )), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::MEXICO
+        ));
+
+        $gateway = new CreditCard(new Config(array(
+            'baseCurrency' => Currency::COP
+        )), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, array(
+            Country::COLOMBIA
+        ));
+    }
+
+    public function testAvailabilityWithWrongLocalCurrency()
+    {
+        $creditCardConfig = new CreditCardConfig();
+
+        $gateway = new CreditCard(new Config(array(
+            'baseCurrency' => Currency::CLP
+        )), $creditCardConfig);
+
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     private function getCreditCardSuccessfulResponseJson()
