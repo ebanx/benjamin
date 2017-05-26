@@ -7,7 +7,7 @@
           "pattern": "^(personal)|(business)$"
         },
         "currency_code": {
-          "pattern": "^BRL$"
+          "pattern": "^(BRL)|(USD)|(EUR)$"
         },
         "document": {
           "type": "string",

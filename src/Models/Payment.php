@@ -18,14 +18,6 @@ class Payment extends BaseModel
     public $amountTotal;
 
     /**
-     * Three-letter code of the payment currency.
-     * Supported currencies: BRL, EUR, MXN, PEN, USD, CLP, COP
-     *
-     * @var string
-     */
-    public $currencyCode;
-
-    /**
      * Unique ID to identify the customer’s device.
      *
      * @var string
@@ -115,4 +107,11 @@ class Payment extends BaseModel
      * @var Card
      */
     public $card = null;
+
+    /**
+     * Extra information for reports
+     *
+     * @var array
+     */
+    public $userValues = array();
 }

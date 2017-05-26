@@ -39,10 +39,16 @@ abstract class RequestAdapter
 
     protected function transformPayment()
     {
-        return (object) array(
+        $userValues = array_replace(
+            $this->payment->userValues,
+            $this->config->userValues
+        );
+
+        $payload = array(
+            'currency_code' => $this->config->baseCurrency,
+            'notification_url' => $this->config->notificationUrl,
             'name' => $this->payment->person->name,
             'email' => $this->payment->person->email,
-            'currency_code' => $this->payment->currencyCode,
             'amount_total' => $this->payment->amountTotal,
             'merchant_payment_code' => $this->payment->merchantPaymentCode,
             'birth_date' => $this->payment->person->birthdate->format('d/m/Y'),
@@ -55,14 +61,22 @@ abstract class RequestAdapter
             'state' => $this->payment->address->state,
             'country' => $this->countryCode[strtolower($this->payment->address->country)],
             'phone_number' => $this->payment->person->phoneNumber,
-            // TODO: User Value 1-5
             'note' => $this->payment->note,
-            // TODO: Sub-account
             'items' => $this->transformItems(),
             'device_id' => $this->payment->deviceId,
-            'notification_url' => $this->config->notificationUrl,
-            'payment_type_code' => $this->payment->type
+            'payment_type_code' => $this->payment->type,
+            'user_value_5' => 'Benjamin'
         );
+
+        for ($i = 1; $i <= 4; $i++) {
+            if (!isset($userValues[$i])) {
+                continue;
+            }
+
+            $payload['user_value_'.$i] = $userValues[$i];
+        }
+
+        return (object) $payload;
     }
 
     protected function transformItems()
