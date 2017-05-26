@@ -2,6 +2,7 @@
 namespace Tests\Unit\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;
@@ -83,6 +84,35 @@ class RequestAdapterTest extends TestCase
         ));
 
         $this->assertEquals($expected, $resultValues);
+    }
+
+    public function testSiteCurrencyCOP()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
+
+        $config = new Config([
+            'baseCurrency' => Currency::COP
+        ]);
+
+        $adapter = new FakeAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertEquals(Currency::COP, $result->payment->currency_code);
+    }
+    public function testSiteCurrencyEUR()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
+
+        $config = new Config([
+            'baseCurrency' => Currency::EUR
+        ]);
+
+        $adapter = new FakeAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertEquals(Currency::EUR, $result->payment->currency_code);
     }
 
     protected function getJsonMessage(JsonSchema\Validator $validator)
