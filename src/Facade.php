@@ -7,7 +7,6 @@ use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Gateways;
-use Psr\Log\InvalidArgumentException;
 
 class Facade
 {
@@ -59,15 +58,15 @@ class Facade
     /**
      * @param Payment $payment
      * @return array
-     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function create(Payment $payment)
     {
         if ($payment->type === null) {
-            throw new InvalidArgumentException('Invalid payment type');
+            throw new \InvalidArgumentException('Invalid payment type');
         }
         if (!method_exists($this, $payment->type)) {
-            throw new InvalidArgumentException('Invalid payment type');
+            throw new \InvalidArgumentException('Invalid payment type');
         }
 
         $instance = call_user_func(array($this, $payment->type));
