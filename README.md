@@ -60,3 +60,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Notifications
 - [ ] Interest Rates
 - [ ] Taxes
+
+:dollar: = Cash payment   
+:credit_card: = Card payment   
+:arrows_clockwise: = Online payment
