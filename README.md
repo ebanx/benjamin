@@ -35,24 +35,24 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 
 - [ ] Payment
 	- [ ] Brasil
-		- [X] Boleto
-		- [X] Credit Card
-		- [ ] TEF
-		- [ ] EBANX Account
+		- [X] :dollar: Boleto
+		- [X] :credit_card: Credit Card
+		- [ ] :arrows_clockwise: TEF
+		- [ ] :arrows_clockwise: EBANX Account
 	- [ ] Mexico
-		- [ ] Credit Card
-		- [ ] Debit Card
-		- [X] OXXO
+		- [ ] :credit_card: Credit Card
+		- [ ] :credit_card: Debit Card
+		- [X] :dollar: OXXO
 	- [ ] Chile
-		- [X] Sencillito
-		- [ ] Servipag
+		- [X] :dollar: Sencillito
+		- [ ] :arrows_clockwise: Servipag
 	- [ ] Colombia
-		- [ ] PSE
-		- [X] Baloto
-		- [ ] Credit Card
+		- [ ] :arrows_clockwise: PSE
+		- [X] :dollar: Baloto
+		- [ ] :arrows_clockwise: Credit Card
 	- [ ] Peru
-		- [ ] SafetyPay
-		- [X] PagoEfectivo
+		- [ ] :dollar: :arrows_clockwise: SafetyPay
+		- [X] :dollar: PagoEfectivo
 - [ ] Refund
 - [ ] Payment Capture
 - [ ] Payment by link
