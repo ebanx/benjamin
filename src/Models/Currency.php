@@ -24,7 +24,7 @@ class Currency extends BaseModel
         );
     }
 
-    public static function global()
+    public static function globalCurrencies()
     {
         return array(
             self::USD,

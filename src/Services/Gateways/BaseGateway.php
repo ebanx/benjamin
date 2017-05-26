@@ -37,7 +37,7 @@ abstract class BaseGateway
     {
         $countries = $this->getEnabledCountries();
         $currencies = $this->getEnabledCurrencies();
-        $globalCurrencies = Currency::global();
+        $globalCurrencies = Currency::globalCurrencies();
         $localCurrency = Currency::localForCountry($country);
 
         if (!in_array($country, $countries)
