@@ -41,7 +41,6 @@ class PaymentBuilder extends BaseBuilder
     public function boleto()
     {
         $this->instance->type = 'boleto';
-        $this->instance->currencyCode = Currency::BRL;
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
 
         return $this;
@@ -50,7 +49,6 @@ class PaymentBuilder extends BaseBuilder
     public function creditCard($instalmentNumber = 1)
     {
         $this->instance->type = 'creditcard';
-        $this->instance->currencyCode = Currency::BRL;
         $this->instance->card = $this->faker->cardModel();
         $this->instance->instalments = $instalmentNumber;
 
@@ -60,7 +58,6 @@ class PaymentBuilder extends BaseBuilder
     public function oxxo()
     {
         $this->instance->type = 'oxxo';
-        $this->instance->currencyCode = Currency::USD;
 
         return $this;
     }
@@ -68,7 +65,6 @@ class PaymentBuilder extends BaseBuilder
     public function baloto()
     {
         $this->instance->type = 'baloto';
-        $this->instance->currencyCode = Currency::USD;
 
         return $this;
     }
@@ -76,7 +72,6 @@ class PaymentBuilder extends BaseBuilder
     public function pagoEfectivo()
     {
         $this->instance->type = 'pagoEfectivo';
-        $this->instance->currencyCode = Currency::USD;
 
         return $this;
     }
@@ -84,7 +79,6 @@ class PaymentBuilder extends BaseBuilder
     public function sencillito()
     {
         $this->instance->type = 'sencillito';
-        $this->instance->currencyCode = Currency::USD;
 
         return $this;
     }
@@ -92,7 +86,6 @@ class PaymentBuilder extends BaseBuilder
     public function tef()
     {
         $this->instance->type = 'tef';
-        $this->instance->currencyCode = Currency::BRL;
         $this->instance->bankCode = Bank::BANCO_DO_BRASIL;
 
         return $this;
