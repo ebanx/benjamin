@@ -40,7 +40,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :arrows_clockwise: TEF
 		- [X] :arrows_clockwise: EBANX Account
 	- [ ] Mexico
-		- [ ] :credit_card: Credit Card
+		- [X] :credit_card: Credit Card
 		- [ ] :credit_card: Debit Card
 		- [X] :dollar: OXXO
 	- [ ] Chile
@@ -49,7 +49,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 	- [ ] Colombia
 		- [ ] :arrows_clockwise: PSE
 		- [X] :dollar: Baloto
-		- [ ] :arrows_clockwise: Credit Card
+		- [X] :credit_card: Credit Card
 	- [ ] Peru
 		- [ ] :dollar: :arrows_clockwise: SafetyPay
 		- [X] :dollar: PagoEfectivo
@@ -61,6 +61,6 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Interest Rates
 - [ ] Taxes
 
-:dollar: = Cash payment   
-:credit_card: = Card payment   
+:dollar: = Cash payment
+:credit_card: = Card payment
 :arrows_clockwise: = Online payment
