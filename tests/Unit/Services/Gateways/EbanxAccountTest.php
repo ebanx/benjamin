@@ -11,7 +11,7 @@ use Ebanx\Benjamin\Services\Http\Client;
 
 class EbanxAccountTest extends GatewayTestCase
 {
-    public function testEbanxAccountPaymentWithNoBank()
+    public function testPayment()
     {
         $ebanxAccountSuccessfulResponse = $this->getEbanxAccountSuccessfulResponseJson();
         $client = $this->getMockedClient($ebanxAccountSuccessfulResponse);
