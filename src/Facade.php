@@ -127,4 +127,12 @@ class Facade
     {
         return new Gateways\PagoEfectivo($this->config);
     }
+
+    /**
+     * @return Gateways\Tef
+     */
+    public function tef()
+    {
+        return new Gateways\Tef($this->config);
+    }
 }
