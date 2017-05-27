@@ -3,7 +3,7 @@ namespace Tests\Helpers\Providers;
 
 use Ebanx\Benjamin\Models\Person as PersonModel;
 
-class Person extends BaseProvider
+abstract class Person extends BaseProvider
 {
     /**
      * @return \Ebanx\Benjamin\Models\Person

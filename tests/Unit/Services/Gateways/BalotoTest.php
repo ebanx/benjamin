@@ -20,8 +20,6 @@ class BalotoTest extends GatewayTestCase
         $payment = $factory->payment()->baloto()->build();
         $gateway = new BalotoForTests($this->config, $client);
 
-        $payment->person->email .= '.co';
-
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);

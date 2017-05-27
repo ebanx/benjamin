@@ -20,8 +20,6 @@ class BoletoTest extends GatewayTestCase
         $payment = $factory->payment()->boleto()->businessPerson()->build();
         $gateway = new BoletoForTests($this->config, $client);
 
-        $payment->person->email .= '.br';
-
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);

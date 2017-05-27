@@ -47,17 +47,22 @@ class BuilderFactory
     {
         if (!$this->faker || $this->fakerLang != $this->lang) {
             $this->fakerLang = $this->lang;
+
+            $localProviderDir = 'Tests\Helpers\Providers\\'.$this->lang;
+
             $this->faker = Faker\Factory::create(self::convertLangToFakerLang($this->lang));
             $this->faker->addProvider(new Providers\CurrencyCode($this->faker));
             $this->faker->addProvider(new Providers\Item($this->faker));
             $this->faker->addProvider(new Providers\Payment($this->faker));
-            $this->faker->addProvider(new Providers\Person($this->faker));
             $this->faker->addProvider(new Providers\Card($this->faker));
 
-            $documentProviderClass = 'Tests\Helpers\Providers\\'.$this->lang.'\Document';
+            $personProviderClass = $localProviderDir.'\Person';
+            $this->faker->addProvider(new $personProviderClass($this->faker));
+
+            $documentProviderClass = $localProviderDir.'\Document';
             $this->faker->addProvider(new $documentProviderClass($this->faker));
 
-            $addressProviderClass = 'Tests\Helpers\Providers\\'.$this->lang.'\Address';
+            $addressProviderClass = $localProviderDir.'\Address';
             $this->faker->addProvider(new $addressProviderClass($this->faker));
         }
         $this->faker->seed('ebanx');
