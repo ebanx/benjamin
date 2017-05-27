@@ -20,8 +20,6 @@ class PagoEfectivoTest extends GatewayTestCase
         $payment = $factory->payment()->pagoEfectivo()->build();
         $gateway = new PagoEfectivoForTests($this->config, $client);
 
-        $payment->person->email .= '.pe';
-
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);

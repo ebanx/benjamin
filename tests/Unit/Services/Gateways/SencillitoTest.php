@@ -20,8 +20,6 @@ class SencillitoTest extends GatewayTestCase
         $payment = $factory->payment()->sencillito()->build();
         $gateway = new SencillitoForTests($this->config, $client);
 
-        $payment->person->email .= '.cl';
-
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);

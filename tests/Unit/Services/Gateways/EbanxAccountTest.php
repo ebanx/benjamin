@@ -20,8 +20,6 @@ class EbanxAccountTest extends GatewayTestCase
         $payment = $factory->payment()->ebanxAccount()->build();
         $gateway = new EbanxAccountForTests($this->config, $client);
 
-        $payment->person->email .= '.br';
-
         $result = $gateway->create($payment);
 
         $this->assertArrayHasKey('payment', $result);
