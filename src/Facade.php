@@ -135,4 +135,12 @@ class Facade
     {
         return new Gateways\Tef($this->config);
     }
+
+    /**
+     * @return Gateways\EbanxAccount
+     */
+    public function ebanxAccount()
+    {
+        return new Gateways\EbanxAccount($this->config);
+    }
 }
