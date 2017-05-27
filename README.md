@@ -34,11 +34,11 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 ## Checklist for implementations needed
 
 - [ ] Payment
-	- [ ] Brasil
+	- [X] Brasil
 		- [X] :dollar: Boleto
 		- [X] :credit_card: Credit Card
-		- [ ] :arrows_clockwise: TEF
-		- [ ] :arrows_clockwise: EBANX Account
+		- [X] :arrows_clockwise: TEF
+		- [X] :arrows_clockwise: EBANX Account
 	- [ ] Mexico
 		- [ ] :credit_card: Credit Card
 		- [ ] :credit_card: Debit Card
