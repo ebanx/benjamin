@@ -32,18 +32,18 @@ class EftTest extends GatewayTestCase
         $gateway = new Eft($this->config);
 
         $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
+            Country::COLOMBIA
         ));
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
         $gateway = new Eft(new Config(array(
-            'baseCurrency' => Currency::BRL
+            'baseCurrency' => Currency::COP
         )));
 
         $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
+            Country::COLOMBIA
         ));
     }
 
