@@ -57,6 +57,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Payment Capture
 - [ ] Payment by link
 - [ ] Validator
+- [ ] Response Decorators
 - [ ] Notifications
 - [ ] Interest Rates
 - [ ] Taxes
