@@ -108,6 +108,7 @@ class PaymentBuilder extends BaseBuilder
     public function eft()
     {
         $this->instance->type = 'eft';
+        $this->instance->bankCode = 'banco_gnb_sudameris';
 
         return $this;
     }
