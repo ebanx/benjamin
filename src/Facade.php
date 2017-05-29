@@ -159,4 +159,12 @@ class Facade
     {
         return new Gateways\Servipag($this->config);
     }
+
+    /**
+     * @return Gateways\DebitCard
+     */
+    public function debitCard()
+    {
+        return new Gateways\DebitCard($this->config);
+    }
 }
