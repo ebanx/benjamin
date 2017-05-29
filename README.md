@@ -43,9 +43,9 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :credit_card: Credit Card
 		- [ ] :credit_card: Debit Card
 		- [X] :dollar: OXXO
-	- [ ] Chile
+	- [X] Chile
 		- [X] :dollar: Sencillito
-		- [ ] :arrows_clockwise: Servipag
+		- [X] :arrows_clockwise: Servipag
 	- [X] Colombia
 		- [X] :arrows_clockwise: PSE
 		- [X] :dollar: Baloto
