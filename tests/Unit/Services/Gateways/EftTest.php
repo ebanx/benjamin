@@ -16,7 +16,7 @@ class EftTest extends GatewayTestCase
         $eftSuccessfulResponse = $this->getEftSuccessfulResponseJson();
         $client = $this->getMockedClient($eftSuccessfulResponse);
 
-        $factory = new BuilderFactory('pt_BR');
+        $factory = new BuilderFactory('es_CO');
         $payment = $factory->payment()->eft()->build();
         $gateway = new EftForTests($this->config, $client);
 
