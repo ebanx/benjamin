@@ -32,18 +32,18 @@ class ServipagTest extends GatewayTestCase
         $gateway = new Servipag($this->config);
 
         $this->assertAvailableForCountries($gateway, array(
-            Country::COLOMBIA
+            Country::CHILE
         ));
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
         $gateway = new Servipag(new Config(array(
-            'baseCurrency' => Currency::COP
+            'baseCurrency' => Currency::CLP
         )));
 
         $this->assertAvailableForCountries($gateway, array(
-            Country::COLOMBIA
+            Country::CHILE
         ));
     }
 
@@ -58,7 +58,7 @@ class ServipagTest extends GatewayTestCase
 
     public function getServipagSuccessfulResponseJson()
     {
-        return '{"redirect_url":"https:\/\/sandbox.ebanx.com\/ws\/simulator\/confirm?hash=592c75608acb71e6f460627e5b8a3b0a9cbe98252139ecf6","payment":{"hash":"592c75608acb71e6f460627e5b8a3b0a9cbe98252139ecf6","pin":"697372181","merchant_payment_code":"897cb9bdc94c45c7ccf6198751b23d7e","order_number":null,"status":"PE","status_date":null,"open_date":"2017-05-29 16:24:16","confirm_date":null,"transfer_date":null,"amount_br":"152023.00","amount_ext":"64.55","amount_iof":"0.00","currency_rate":"2355.1200","currency_ext":"USD","due_date":"2017-06-01","instalments":"1","payment_type_code":"servipag","pre_approved":false,"capture_available":null,"user_value_5":"Benjamin","note":"Fake payment created by PHPUnit.","customer":{"document":"0","email":"alfaro.mara@loya.es.co","name":"LUNA GRANADOS","birth_date":"1966-05-24"}},"status":"SUCCESS"}';
+        return '{"redirect_url":"https:\/\/sandbox.ebanx.com\/ws\/directtefredirect\/?hash=592c83d8e658046969a23c1056da1a54276afff4f3cd2cb3","payment":{"hash":"592c83d8e658046969a23c1056da1a54276afff4f3cd2cb3","pin":"296386782","merchant_payment_code":"b784ee12a5230a3c9d070087267e6891","order_number":null,"status":"PE","status_date":null,"open_date":"2017-05-29 17:26:00","confirm_date":null,"transfer_date":null,"amount_br":"44933.00","amount_ext":"64.55","amount_iof":"0.00","currency_rate":"696.0900","currency_ext":"USD","due_date":"2017-06-01","instalments":"1","payment_type_code":"servipag","pre_approved":false,"capture_available":null,"user_value_5":"Benjamin","note":"Fake payment created by PHPUnit.","customer":{"document":"0","email":"alfaro.mara@loya.es.cl","name":"LUNA GRANADOS","birth_date":"1966-05-24"}},"status":"SUCCESS"}';
     }
 }
 
