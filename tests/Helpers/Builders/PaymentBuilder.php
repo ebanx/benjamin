@@ -104,4 +104,11 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function eft()
+    {
+        $this->instance->type = 'eft';
+
+        return $this;
+    }
 }
