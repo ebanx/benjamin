@@ -46,8 +46,8 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 	- [ ] Chile
 		- [X] :dollar: Sencillito
 		- [ ] :arrows_clockwise: Servipag
-	- [ ] Colombia
-		- [ ] :arrows_clockwise: PSE
+	- [XC] Colombia
+		- [X] :arrows_clockwise: PSE
 		- [X] :dollar: Baloto
 		- [X] :credit_card: Credit Card
 	- [ ] Peru
