@@ -55,6 +55,15 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function debitCard()
+    {
+        $this->instance->type = 'debitcard';
+        $this->instance->card = $this->faker->cardModel();
+        $this->instance->card->number = '4242424242424242';
+
+        return $this;
+    }
+
     public function oxxo()
     {
         $this->instance->type = 'oxxo';
