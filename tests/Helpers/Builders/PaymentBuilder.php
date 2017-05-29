@@ -112,4 +112,11 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function servipag()
+    {
+        $this->instance->type = 'servipag';
+
+        return $this;
+    }
 }

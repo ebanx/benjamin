@@ -151,4 +151,12 @@ class Facade
     {
         return new Gateways\Eft($this->config);
     }
+
+    /**
+     * @return Gateways\Servipag
+     */
+    public function servipag()
+    {
+        return new Gateways\Servipag($this->config);
+    }
 }
