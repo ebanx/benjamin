@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Integration;
 
+use Ebanx\Benjamin\Facade;
 use Tests\TestCase;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
@@ -16,7 +17,8 @@ class FacadeTest extends TestCase
     }
 
     /**
-     * @param mixed $ebanx
+     * @param Facade $ebanx
+     * @depends testMainObject
      */
     public function testGatewayAccessors($ebanx)
     {
