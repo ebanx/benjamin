@@ -17,7 +17,7 @@ class EbanxAccountTest extends GatewayTestCase
         $client = $this->getMockedClient($ebanxAccountSuccessfulResponse);
 
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->ebanxAccount()->build();
+        $payment = $factory->payment()->build();
         $gateway = new EbanxAccountForTests($this->config, $client);
 
         $result = $gateway->create($payment);

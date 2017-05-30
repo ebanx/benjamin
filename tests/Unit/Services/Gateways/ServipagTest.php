@@ -17,7 +17,7 @@ class ServipagTest extends GatewayTestCase
         $client = $this->getMockedClient($servipagSuccessfulResponse);
 
         $factory = new BuilderFactory('es_CL');
-        $payment = $factory->payment()->servipag()->build();
+        $payment = $factory->payment()->build();
         $gateway = new ServipagForTests($this->config, $client);
 
         $result = $gateway->create($payment);
