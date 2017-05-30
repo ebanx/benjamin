@@ -7,6 +7,7 @@ use Tests\Helpers\Mocks\Http\ClientForTests;
 use Tests\Helpers\Mocks\Http\EchoEngine;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Services\Http\Client;
 
 class GatewayTestCase extends TestCase
 {
@@ -21,6 +22,11 @@ class GatewayTestCase extends TestCase
         $this->config = new Config([
             'sandboxIntegrationKey' => $env->read('SANDBOX_INTEGRATION_KEY', 'default_integration_key')
         ]);
+    }
+
+    protected function getExchangeRateSuccessfulResponseJsonWithRate($rate)
+    {
+        return '{"currency_rate":{"code":"USD","base_code":"???","name":"US Dollar to Something","rate":"'.$rate.'"},"status":"SUCCESS"}';
     }
 
     protected function assertAvailableForCountries($gateway, $countries)
@@ -53,6 +59,6 @@ class GatewayTestCase extends TestCase
 
     protected function getMockedClient($response)
     {
-        return new ClientForTests(new EchoEngine($response));
+        return new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $response));
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Services;
+namespace Tests\Unit\Services\Http;
 
 use Tests\TestCase;
 use Tests\Helpers\Mocks\Http\ClientForTests;
@@ -40,7 +40,7 @@ class ClientTest extends TestCase
     {
         $text = '{"message":"This should be OK"}';
 
-        $subject = new ClientForTests(new EchoEngine($text));
+        $subject = new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $text));
 
         $response = $subject->post((object)array('empty'=>true));
         $this->assertEquals(json_decode($text, true), $response);

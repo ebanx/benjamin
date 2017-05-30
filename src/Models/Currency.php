@@ -34,6 +34,10 @@ class Currency extends BaseModel
 
     public static function localForCountry($country)
     {
+        if (!in_array($country, Country::all())) {
+            return null;
+        }
+
         $relation = array(
             Country::BRAZIL => self::BRL,
             Country::MEXICO => self::MXN,
@@ -43,5 +47,10 @@ class Currency extends BaseModel
         );
 
         return $relation[$country];
+    }
+
+    public static function isGlobal($currency)
+    {
+        return in_array($currency, self::globalCurrencies());
     }
 }

@@ -28,7 +28,7 @@ class Tef extends BaseGateway
         $adapter = new TefRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->client->post($request);
+        $body = $this->client->payment($request);
 
         return $body;
     }

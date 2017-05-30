@@ -4,10 +4,10 @@ namespace Ebanx\Benjamin\Services\Adapters;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
 
-abstract class RequestAdapter
+abstract class RequestAdapter extends BaseAdapter
 {
     protected $payment;
-    private $config;
+
     private $countryCode = array(
         'brasil' => 'br',
         'peru' => 'pe',
@@ -19,12 +19,7 @@ abstract class RequestAdapter
     public function __construct(Payment $payment, Config $config)
     {
         $this->payment = $payment;
-        $this->config = $config;
-    }
-
-    protected function getIntegrationKey()
-    {
-        return $this->config->isSandbox ? $this->config->sandboxIntegrationKey : $this->config->integrationKey;
+        parent::__construct($config);
     }
 
     public function transform()
