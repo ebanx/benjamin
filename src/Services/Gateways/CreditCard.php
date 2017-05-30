@@ -10,7 +10,6 @@ use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use Ebanx\Benjamin\Services\Exchange;
 
-
 class CreditCard extends BaseGateway
 {
     protected function getEnabledCountries()

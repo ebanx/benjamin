@@ -6,7 +6,6 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 
-
 class Boleto extends BaseGateway
 {
     protected function getEnabledCountries()
