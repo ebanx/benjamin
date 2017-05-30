@@ -5,7 +5,7 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
-use GuzzleHttp\Client;
+
 
 class Boleto extends BaseGateway
 {

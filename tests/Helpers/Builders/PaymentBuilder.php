@@ -2,7 +2,7 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Bank;
-use Ebanx\Benjamin\Models\Currency;
+
 use Faker;
 use Ebanx\Benjamin\Models\Payment;
 
