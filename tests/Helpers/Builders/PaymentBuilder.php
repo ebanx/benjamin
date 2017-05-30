@@ -104,4 +104,19 @@ class PaymentBuilder extends BaseBuilder
 
         return $this;
     }
+
+    public function eft()
+    {
+        $this->instance->type = 'eft';
+        $this->instance->bankCode = 'banco_gnb_sudameris';
+
+        return $this;
+    }
+
+    public function servipag()
+    {
+        $this->instance->type = 'servipag';
+
+        return $this;
+    }
 }

@@ -143,4 +143,20 @@ class Facade
     {
         return new Gateways\EbanxAccount($this->config);
     }
+
+    /**
+     * @return Gateways\Eft
+     */
+    public function eft()
+    {
+        return new Gateways\Eft($this->config);
+    }
+
+    /**
+     * @return Gateways\Servipag
+     */
+    public function servipag()
+    {
+        return new Gateways\Servipag($this->config);
+    }
 }
