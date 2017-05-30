@@ -16,7 +16,7 @@ class FacadeTest extends TestCase
     }
 
     /**
-     * @param $ebanx
+     * @param mixed $ebanx
      */
     public function testGatewayAccessors($ebanx)
     {
