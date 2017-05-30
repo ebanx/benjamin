@@ -94,7 +94,7 @@ class CreditCard extends BaseGateway
     {
         if (!$this->interestRates) {
             $this->interestRates = array();
-            foreach($this->creditCardConfig->interestRates as $item) {
+            foreach ($this->creditCardConfig->interestRates as $item) {
                 $this->interestRates[$item->instalmentNumber] = $item->interestRate;
             }
         }
