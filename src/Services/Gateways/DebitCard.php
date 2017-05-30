@@ -31,7 +31,7 @@ class DebitCard extends BaseGateway
         $adapter = new CardRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->client->post($request);
+        $body = $this->client->payment($request);
 
         return $body;
     }

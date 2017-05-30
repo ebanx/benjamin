@@ -29,7 +29,7 @@ class Eft extends BaseGateway
         $adapter = new EftRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
-        $body = $this->client->post($request);
+        $body = $this->client->payment($request);
 
         return $body;
     }

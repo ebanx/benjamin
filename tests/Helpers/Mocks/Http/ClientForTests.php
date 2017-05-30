@@ -13,4 +13,10 @@ class ClientForTests extends Client
             $this->engine = $engine;
         }
     }
+
+    public function withEngine($engine)
+    {
+        $this->engine = $engine;
+        return $this;
+    }
 }

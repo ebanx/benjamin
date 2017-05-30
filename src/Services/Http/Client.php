@@ -1,15 +1,18 @@
 <?php
 namespace Ebanx\Benjamin\Services\Http;
 
-use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp;
 
 class Client
 {
-    const SANDBOX_URL = 'https://sandbox.ebanx.com/ws/direct';
-    const LIVE_URL = 'https://api.ebanx.com/ws/direct';
+    const SANDBOX_URL = 'https://sandbox.ebanx.com/ws/';
+    const LIVE_URL = 'https://api.ebanx.com/ws/';
 
     const MODE_SANDBOX = 0;
     const MODE_LIVE = 1;
+
+    const SUCCESS = 'SUCCESS';
+    const ERROR = 'ERROR';
 
     /**
      * @var Guzzle
@@ -23,19 +26,51 @@ class Client
 
     public function __construct()
     {
-        $this->engine = new Guzzle();
+        $this->engine = new GuzzleHttp\Client();
     }
 
     /**
      * @param  object|array $data Any data you want to send
+     * @param  string       $endpoint The API endpoint you want to call
      * @return array
      */
-    public function post($data)
+    protected function post($data, $endpoint)
     {
         return $this->engine->post(
-            $this->getUrl(),
+            $this->getUrl() . $endpoint,
             array('json' => $data)
         )->json();
+    }
+
+    /**
+     * @param  object|array $data Any data you want to send
+     * @param  string       $endpoint The API endpoint you want to call
+     * @return array
+     */
+    protected function query($data, $endpoint)
+    {
+        return $this->engine->get(
+            $this->getUrl() . $endpoint,
+            array('query' => $data)
+        )->json();
+    }
+
+    /**
+     * @param  object|array $data Payment data payload
+     * @return array
+     */
+    public function payment($data)
+    {
+        return $this->post($data, 'direct');
+    }
+
+    /**
+     * @param  object|array $data Exchange data payload
+     * @return array
+     */
+    public function exchange($data)
+    {
+        return $this->query($data, 'exchange');
     }
 
     /**
