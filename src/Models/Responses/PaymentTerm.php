@@ -23,7 +23,7 @@ class PaymentTerm extends BaseModel
     /**
      * @var float
      */
-    public $taxes;
+    public $tax;
 
     /**
      * @var boolean

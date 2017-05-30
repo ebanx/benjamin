@@ -109,7 +109,7 @@ class CreditCard extends BaseGateway
             'instalmentNumber' => $instalment,
             'baseAmount' => ($siteValue / $instalment) * $interestRate,
             'localAmountWithTax' => ($localValue / $instalment) * $interestRate * (1 + $tax),
-            'taxes' => $tax * 100,
+            'tax' => $tax * 100,
             'hasInterests' => $interestRate > 1
         ]);
     }
