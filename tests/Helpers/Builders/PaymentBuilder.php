@@ -85,6 +85,13 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function safetyPayCash()
+    {
+        $this->instance->type = 'safetyPayCash';
+
+        return $this;
+    }
+
     public function sencillito()
     {
         $this->instance->type = 'sencillito';
