@@ -21,8 +21,7 @@ class Environment
     {
         $result = getenv($key) ?: $default;
         if ($result === self::ENV_VAR_NOT_SET) {
-            // TODO: Create an ArgumentException
-            throw new ArgumentException('No such env var '.$key.' found!');
+            throw new \InvalidArgumentException('No such env var '.$key.' found!');
         }
 
         return $result;

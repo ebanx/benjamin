@@ -1,9 +1,8 @@
 <?php
 namespace Tests\Helpers\Builders;
 
-use Ebanx\Benjamin\Models\Bank;
-
 use Faker;
+use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
 
 class PaymentBuilder extends BaseBuilder

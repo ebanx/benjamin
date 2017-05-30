@@ -16,7 +16,7 @@ class EchoEngine extends Guzzle
     private $responses = array();
 
     /**
-     * @param string  $baseUrl
+     * @param string $baseUrl
      * @param string $responses What to respond
      */
     public function __construct($baseUrl, $responses)
