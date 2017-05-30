@@ -10,11 +10,4 @@ class CashRequestAdapter extends BrazilRequestAdapter
 
         return $transformed;
     }
-
-    protected function transformPayment()
-    {
-        $transformed = parent::transformPayment();
-
-        return $transformed;
-    }
 }

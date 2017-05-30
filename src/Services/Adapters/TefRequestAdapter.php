@@ -3,13 +3,6 @@ namespace Ebanx\Benjamin\Services\Adapters;
 
 class TefRequestAdapter extends BrazilRequestAdapter
 {
-    public function transform()
-    {
-        $transformed = parent::transform();
-
-        return $transformed;
-    }
-
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
