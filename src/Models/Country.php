@@ -3,7 +3,7 @@ namespace Ebanx\Benjamin\Models;
 
 class Country extends BaseModel
 {
-    const BRAZIL = 'Brasil';
+    const BRAZIL = 'Brazil';
     const CHILE = 'Chile';
     const COLOMBIA = 'Colombia';
     const MEXICO = 'Mexico';

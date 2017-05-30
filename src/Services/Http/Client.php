@@ -49,7 +49,7 @@ class Client
      */
     protected function query($data, $endpoint)
     {
-        return $this->engine->post(
+        return $this->engine->get(
             $this->getUrl() . $endpoint,
             array('query' => $data)
         )->json();

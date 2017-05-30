@@ -2,6 +2,7 @@
 namespace Ebanx\Benjamin\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Payment;
 
 abstract class RequestAdapter extends BaseAdapter
@@ -9,11 +10,11 @@ abstract class RequestAdapter extends BaseAdapter
     protected $payment;
 
     private $countryCode = array(
-        'brasil' => 'br',
-        'peru' => 'pe',
-        'mexico' => 'mx',
-        'colombia' => 'co',
-        'chile' => 'cl'
+        Country::BRAZIL => 'br',
+        Country::PERU => 'pe',
+        Country::MEXICO => 'mx',
+        Country::COLOMBIA => 'co',
+        Country::CHILE => 'cl'
     );
 
     public function __construct(Payment $payment, Config $config)
@@ -54,7 +55,7 @@ abstract class RequestAdapter extends BaseAdapter
             'street_complement' => $this->payment->address->streetComplement,
             'city' => $this->payment->address->city,
             'state' => $this->payment->address->state,
-            'country' => $this->countryCode[strtolower($this->payment->address->country)],
+            'country' => $this->countryCode[$this->payment->address->country],
             'phone_number' => $this->payment->person->phoneNumber,
             'note' => $this->payment->note,
             'items' => $this->transformItems(),

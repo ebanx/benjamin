@@ -42,6 +42,16 @@ class EchoEngine extends Guzzle
         return $this->fakeResponse($url);
     }
 
+    /**
+     * @param  string $url     Url to request from
+     * @param  array  $options
+     * @return EchoEngineResponse
+     */
+    public function get($url = null, $options = array())
+    {
+        return $this->fakeResponse($url);
+    }
+
     private function fakeResponse($url)
     {
         if (!is_array($this->responses)) {

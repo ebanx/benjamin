@@ -24,14 +24,14 @@ class Exchange
         $this->client = $client;
     }
 
-    public function siteToLocal($localCurrency, $localValue = 1)
+    public function siteToLocal($localCurrency, $siteValue = 1)
     {
-        return $this->fetchRate($this->config->baseCurrency, $localCurrency) * $localValue;
+        return $this->fetchRate($this->config->baseCurrency, $localCurrency) * $siteValue;
     }
 
-    public function siteToLocalWithTaxes($localCurrency, $localValue = 1)
+    public function siteToLocalWithTaxes($localCurrency, $siteValue = 1)
     {
-        return $this->siteToLocal($localCurrency, $localValue) * Config::IOF;
+        return $this->siteToLocal($localCurrency, $siteValue) * Config::IOF;
     }
 
     public function localToSite($localCurrency, $localValue = 1)
