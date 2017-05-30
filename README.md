@@ -51,7 +51,8 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: Baloto
 		- [X] :credit_card: Credit Card
 	- [ ] Peru
-		- [ ] :dollar: :arrows_clockwise: SafetyPay
+		- [ ] :arrows_clockwise: SafetyPay
+		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 - [ ] Refund
 - [ ] Payment Capture

@@ -166,4 +166,12 @@ class Facade
     {
         return new Gateways\DebitCard($this->config);
     }
+
+    /**
+     * @return Gateways\SafetyPayCash
+     */
+    public function safetyPayCash()
+    {
+        return new Gateways\SafetyPayCash($this->config);
+    }
 }
