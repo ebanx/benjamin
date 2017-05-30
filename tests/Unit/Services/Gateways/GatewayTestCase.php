@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit\Services\Gateways;
 
+use Ebanx\Benjamin\Services\Gateways\BaseGateway;
 use Tests\TestCase;
 use Tests\Helpers\Environment;
 use Tests\Helpers\Mocks\Http\ClientForTests;
@@ -29,7 +30,7 @@ class GatewayTestCase extends TestCase
         return '{"currency_rate":{"code":"USD","base_code":"???","name":"US Dollar to Something","rate":"'.$rate.'"},"status":"SUCCESS"}';
     }
 
-    protected function assertAvailableForCountries($gateway, $countries)
+    protected function assertAvailableForCountries(BaseGateway $gateway, $countries)
     {
         $allCountries = array(
             Country::BRAZIL,
@@ -48,7 +49,7 @@ class GatewayTestCase extends TestCase
             $this->assertFalse($gateway->isAvailableForCountry($country));
         }
     }
-    protected function assertNotAvailableAnywhere($gateway)
+    protected function assertNotAvailableAnywhere(BaseGateway $gateway)
     {
         $this->assertFalse($gateway->isAvailableForCountry(Country::BRAZIL));
         $this->assertFalse($gateway->isAvailableForCountry(Country::CHILE));
