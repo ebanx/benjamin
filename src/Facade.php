@@ -1,7 +1,6 @@
 <?php
 namespace Ebanx\Benjamin;
 
-use Ebanx\Benjamin\Facades;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
