@@ -39,9 +39,9 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :credit_card: Credit Card
 		- [X] :arrows_clockwise: TEF
 		- [X] :arrows_clockwise: EBANX Account
-	- [ ] Mexico
+	- [X] Mexico
 		- [X] :credit_card: Credit Card
-		- [ ] :credit_card: Debit Card
+		- [X] :credit_card: Debit Card
 		- [X] :dollar: OXXO
 	- [X] Chile
 		- [X] :dollar: Sencillito
@@ -62,6 +62,6 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Interest Rates
 - [ ] Taxes
 
-:dollar: = Cash payment
-:credit_card: = Card payment
-:arrows_clockwise: = Online payment
+:dollar: = Cash payment  
+:credit_card: = Card payment  
+:arrows_clockwise: = Online payment  
