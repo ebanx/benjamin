@@ -144,7 +144,6 @@ class CreditCardTest extends GatewayTestCase
         $this->assertEquals(9, count($paymentTerms),
             'Wrong number of payment terms');
 
-        $interest = 0;
         for ($i = 0; $i < 3; $i++) {
             $this->assertFalse($paymentTerms[$i]->hasInterests, 'Marked term with interest when it shouldn\'t');
             $this->assertEquals(round($value), round($paymentTerms[$i]->instalmentNumber * $paymentTerms[$i]->baseAmount), 'Failed to add interest to term ' . $paymentTerms[$i]->instalmentNumber);
