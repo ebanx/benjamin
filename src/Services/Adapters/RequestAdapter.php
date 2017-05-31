@@ -7,6 +7,9 @@ use Ebanx\Benjamin\Models\Payment;
 
 abstract class RequestAdapter extends BaseAdapter
 {
+    /**
+     * @var Payment
+     */
     protected $payment;
 
     private $countryCode = array(
