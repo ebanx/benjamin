@@ -1,10 +1,10 @@
 <?php
 namespace Ebanx\Benjamin\Services\Gateways;
 
-class SafetyPayCash extends SafetyPay
+class SafetyPayOnline extends SafetyPay
 {
     protected function getPaymentType()
     {
-        return 'SafetyPayCash';
+        return 'SafetyPayOnline';
     }
 }

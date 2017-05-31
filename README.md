@@ -33,7 +33,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 
 ## Checklist for implementations needed
 
-- [ ] Payment
+- [X] Payment
 	- [X] Brasil
 		- [X] :dollar: Boleto
 		- [X] :credit_card: Credit Card
@@ -50,8 +50,8 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :arrows_clockwise: PSE
 		- [X] :dollar: Baloto
 		- [X] :credit_card: Credit Card
-	- [ ] Peru
-		- [ ] :arrows_clockwise: SafetyPay
+	- [X] Peru
+		- [X] :arrows_clockwise: SafetyPay
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 - [ ] Refund
