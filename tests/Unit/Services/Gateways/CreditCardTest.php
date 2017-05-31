@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit\Services\Gateways;
 
+use Ebanx\Benjamin\Models\Responses\PaymentTerm;
 use Tests\Helpers\Builders\BuilderFactory;
 
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
@@ -144,27 +145,48 @@ class CreditCardTest extends GatewayTestCase
         $this->assertEquals(9, count($paymentTerms),
             'Wrong number of payment terms');
 
+        $interest = 0;
         for ($i = 0; $i < 3; $i++) {
-            $this->assertFalse($paymentTerms[$i]->hasInterests, 'Marked term with interest when it shouldn\'t');
-            $this->assertEquals(round($value), round($paymentTerms[$i]->instalmentNumber * $paymentTerms[$i]->baseAmount), 'Failed to add interest to term ' . $paymentTerms[$i]->instalmentNumber);
+            $this->assertInterestInPaymentTerm($paymentTerms[$i], $value, $interest);
         }
 
         $interest = 0.05;
         for ($i = 3; $i < 6; $i++) {
-            $this->assertTrue($paymentTerms[$i]->hasInterests, 'Failed to mark term with interest');
-            $this->assertEquals(round($value), round($paymentTerms[$i]->instalmentNumber * $paymentTerms[$i]->baseAmount * (1 - $interest)), 'Failed to add interest to term ' . $paymentTerms[$i]->instalmentNumber);
+            $this->assertInterestInPaymentTerm($paymentTerms[$i], $value, $interest);
         }
 
         $interest = 0.1;
         for ($i = 6; $i < 9; $i++) {
-            $this->assertTrue($paymentTerms[$i]->hasInterests, 'Failed to mark term '.$i.' with interest');
-            $this->assertEquals(round($value), round($paymentTerms[$i]->instalmentNumber * $paymentTerms[$i]->baseAmount * (1 - $interest)), 'Failed to add interest to term ' . $paymentTerms[$i]->instalmentNumber);
+            $this->assertInterestInPaymentTerm($paymentTerms[$i], $value, $interest);
         }
     }
 
     private function getCreditCardSuccessfulResponseJson()
     {
         return '{"payment":{"hash":"591f7a1cae81aaaade3f76014310da4a7289ab651e6ec44e","pin":"440297024","merchant_payment_code":"c1ef11f4be81d3515d2879d486718508","order_number":null,"status":"CA","status_date":"2017-05-19 20:05:00","open_date":"2017-05-19 20:04:59","confirm_date":null,"transfer_date":null,"amount_br":"48.81","amount_ext":"48.63","amount_iof":"0.18","currency_rate":"1.0000","currency_ext":"BRL","due_date":"2017-05-22","instalments":"1","payment_type_code":"mastercard","transaction_status":{"acquirer":"EBANX","code":"NOK","description":"Sandbox - Not a test card, transaction declined"},"pre_approved":false,"capture_available":false,"note":"Fake payment created by PHPUnit.","customer":{"document":"60639321000162","email":"ksalgado@furtado.org","name":"DR FRANCO MASCARENHAS SOBRINHO","birth_date":"1971-01-07"}},"status":"SUCCESS"}';
+    }
+
+    /**
+     * @param PaymentTerm $paymentTerm
+     * @param float       $originalValue
+     * @param float       $interestRate
+     */
+    private function assertInterestInPaymentTerm(PaymentTerm $paymentTerm, $originalValue, $interestRate)
+    {
+        $interestAbsenceFailMessage = 'Marked term with interest when it shouldn\'t';
+        $interestPresenceFailMessage = 'Failed to mark term ' . $paymentTerm->instalmentNumber . ' with interest';
+        $interestCalcFailMessage = 'Failed to add interest to term ' . $paymentTerm->instalmentNumber;
+
+        $ratio = 1 + $interestRate;
+        $total = $paymentTerm->instalmentNumber * $paymentTerm->baseAmount;
+        $crossCheck = $total / $ratio;
+
+        if ($interestRate === 0) {
+            $this->assertFalse($paymentTerm->hasInterests, $interestAbsenceFailMessage);
+        } else {
+            $this->assertTrue($paymentTerm->hasInterests, $interestPresenceFailMessage);
+        }
+        $this->assertEquals($originalValue, $crossCheck, $interestCalcFailMessage);
     }
 }
 
