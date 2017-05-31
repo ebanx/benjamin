@@ -74,22 +74,20 @@ class CreditCard extends BaseGateway
 
         $localCurrency = Currency::localForCountry($country);
         $exchange = new Exchange($this->config, $this->client);
-        $localValue = $exchange->siteToLocal($localCurrency, $value);
+        $localValueWithTax = $exchange->siteToLocalWithTax($localCurrency, $value);
         $minInstalment = $this->getMinInstalmentValueForCountry($country);
-
-        $tax = (Country::BRAZIL == $country ? Config::IOF : 0.0);
 
         // HARD LIMIT
         $maxInstalments = min(CreditCardConfig::MAX_INSTALMENTS, $this->creditCardConfig->maxInstalments);
 
         for ($i = 1; $i <= $maxInstalments; $i++) {
-            $paymentTerms[] = $this->calculatePaymentTerm($i, $value, $localValue, $minInstalment, $tax);
+            $paymentTerms[] = $this->calculatePaymentTerm($i, $value, $localValueWithTax, $minInstalment);
         }
 
         return array_filter($paymentTerms);
     }
 
-    private function calculatePaymentTerm($instalment, $siteValue, $localValue, $minimum, $tax)
+    private function calculatePaymentTerm($instalment, $siteValue, $localValueWithTax, $minimum)
     {
         if (!$this->interestRates) {
             $this->interestRates = array();
@@ -98,18 +96,17 @@ class CreditCard extends BaseGateway
             }
         }
 
-        $interestRate = 1 + (isset($this->interestRates[$instalment]) ? $this->interestRates[$instalment] / 100 : 0);
+        $interestRatio = 1 + (isset($this->interestRates[$instalment]) ? $this->interestRates[$instalment] / 100 : 0);
 
-        if ($localValue / $instalment * $interestRate < $minimum) {
+        if ($localValueWithTax / $instalment * $interestRatio < $minimum) {
             return null;
         }
 
         return new PaymentTerm([
             'instalmentNumber' => $instalment,
-            'baseAmount' => ($siteValue / $instalment) * $interestRate,
-            'localAmountWithTax' => ($localValue / $instalment) * $interestRate * (1 + $tax),
-            'tax' => $tax * 100,
-            'hasInterests' => $interestRate > 1
+            'baseAmount' => ($siteValue / $instalment) * $interestRatio,
+            'localAmountWithTax' => ($localValueWithTax / $instalment) * $interestRatio,
+            'hasInterests' => $interestRatio > 1
         ]);
     }
 }

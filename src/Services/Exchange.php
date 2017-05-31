@@ -29,9 +29,11 @@ class Exchange
         return $this->fetchRate($this->config->baseCurrency, $localCurrency) * $siteValue;
     }
 
-    public function siteToLocalWithTaxes($localCurrency, $siteValue = 1)
+    public function siteToLocalWithTax($localCurrency, $siteValue = 1)
     {
-        return $this->siteToLocal($localCurrency, $siteValue) * Config::IOF;
+        $taxRatio = 1 + (Currency::BRL === $localCurrency ? Config::IOF : 0.0);
+
+        return $this->siteToLocal($localCurrency, $siteValue) * $taxRatio;
     }
 
     public function localToSite($localCurrency, $localValue = 1)

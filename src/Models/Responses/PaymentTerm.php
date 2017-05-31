@@ -21,11 +21,6 @@ class PaymentTerm extends BaseModel
     public $localAmountWithTax;
 
     /**
-     * @var float
-     */
-    public $tax;
-
-    /**
      * @var boolean
      */
     public $hasInterests;
