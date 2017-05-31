@@ -48,7 +48,8 @@ class FacadeTest extends TestCase
         $ignore = array(
             '.',
             '..',
-            'BaseGateway.php'
+            'BaseGateway.php',
+            'SafetyPay.php'
         );
 
         $dir = opendir('src/Services/Gateways');
