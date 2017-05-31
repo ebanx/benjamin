@@ -89,14 +89,9 @@ class CreditCard extends BaseGateway
 
     private function calculatePaymentTerm($instalment, $siteValue, $localValueWithTax, $minimum)
     {
-        if (!$this->interestRates) {
-            $this->interestRates = array();
-            foreach ($this->creditCardConfig->interestRates as $item) {
-                $this->interestRates[$item->instalmentNumber] = $item->interestRate;
-            }
-        }
+        $interestRates = $this->getInterestRates();
 
-        $interestRatio = 1 + (isset($this->interestRates[$instalment]) ? $this->interestRates[$instalment] / 100 : 0);
+        $interestRatio = 1 + (isset($interestRates[$instalment]) ? $interestRates[$instalment] / 100 : 0);
 
         if ($localValueWithTax / $instalment * $interestRatio < $minimum) {
             return null;
@@ -108,5 +103,17 @@ class CreditCard extends BaseGateway
             'localAmountWithTax' => ($localValueWithTax / $instalment) * $interestRatio,
             'hasInterests' => $interestRatio > 1
         ]);
+    }
+
+    private function getInterestRates()
+    {
+        if ($this->interestRates) {
+            return $this->interestRates;
+        }
+
+        $this->interestRates = array();
+        foreach ($this->creditCardConfig->interestRates as $item) {
+            $this->interestRates[$item->instalmentNumber] = $item->interestRate;
+        }
     }
 }
