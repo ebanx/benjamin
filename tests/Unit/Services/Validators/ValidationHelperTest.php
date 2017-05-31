@@ -4,7 +4,7 @@ namespace Tests\Unit\Services\Validators;
 use Tests\TestCase;
 use Ebanx\Benjamin\Services\Validators\ValidationHelper;
 
-class ValidationHelperTests extends TestCase
+class ValidationHelperTest extends TestCase
 {
     public function testRuleQueue()
     {

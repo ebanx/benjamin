@@ -10,7 +10,7 @@ class ValidationHelper
 
     public function min($minValue)
     {
-        $this->appliedRules[] = function($subjectName, $subjectValue) use ($minValue) {
+        $this->appliedRules[] = function ($subjectName, $subjectValue) use ($minValue) {
             if ($subjectValue >= $minValue) {
                 return null;
             }
@@ -25,7 +25,7 @@ class ValidationHelper
 
     public function max($maxValue)
     {
-        $this->appliedRules[] = function($subjectName, $subjectValue) use ($maxValue) {
+        $this->appliedRules[] = function ($subjectName, $subjectValue) use ($maxValue) {
             if ($subjectValue <= $maxValue) {
                 return null;
             }
@@ -42,7 +42,7 @@ class ValidationHelper
     {
         $errors = array();
 
-        while($rule = array_shift($this->appliedRules)) {
+        while ($rule = array_shift($this->appliedRules)) {
             $errors[] = call_user_func_array($rule, array($subjectName, $subjectValue));
         }
 
