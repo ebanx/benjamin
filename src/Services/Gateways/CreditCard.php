@@ -9,7 +9,6 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use Ebanx\Benjamin\Services\Exchange;
-use GuzzleHttp\Client;
 
 class CreditCard extends BaseGateway
 {

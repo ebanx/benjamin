@@ -17,7 +17,7 @@ class BalotoTest extends GatewayTestCase
         $client = $this->getMockedClient($balotoSuccessfulResponse);
 
         $factory = new BuilderFactory('es_CO');
-        $payment = $factory->payment()->baloto()->build();
+        $payment = $factory->payment()->build();
         $gateway = new BalotoForTests($this->config, $client);
 
         $result = $gateway->create($payment);

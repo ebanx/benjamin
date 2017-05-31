@@ -14,7 +14,7 @@ class SafetyPayRequestAdapterTest extends RequestAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->safetyPayCash()->build();
+        $payment = $factory->payment()->build();
 
         $adapter = new SafetyPayRequestAdapter($payment, $config);
         $result = $adapter->transform();

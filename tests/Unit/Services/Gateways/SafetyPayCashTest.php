@@ -17,7 +17,7 @@ class SafetyPayCashTest extends GatewayTestCase
         $client = $this->getMockedClient($safetyPayCashSuccessfulResponse);
 
         $factory = new BuilderFactory('es_PE');
-        $payment = $factory->payment()->safetyPayCash()->build();
+        $payment = $factory->payment()->build();
         $gateway = new SafetyPayCashForTests($this->config, $client);
 
         $result = $gateway->create($payment);

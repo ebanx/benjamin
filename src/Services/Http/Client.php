@@ -15,7 +15,7 @@ class Client
     const ERROR = 'ERROR';
 
     /**
-     * @var Guzzle
+     * @var GuzzleHttp\Client
      */
     protected $engine = null;
 

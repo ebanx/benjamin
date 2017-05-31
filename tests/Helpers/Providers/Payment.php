@@ -13,7 +13,6 @@ class Payment extends BaseProvider
         $payment = new PaymentModel();
         $payment->address = $this->faker->addressModel();
         $payment->person = $this->faker->personModel();
-        $payment->currencyCode = $this->faker->ebanxCurrencyCode();
         $payment->deviceId = $this->faker->sha256;
         $payment->merchantPaymentCode = md5(time());
         $payment->note = 'Fake payment created by PHPUnit.';
