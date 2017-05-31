@@ -173,19 +173,14 @@ class CreditCardTest extends GatewayTestCase
      */
     private function assertInterestInPaymentTerm(PaymentTerm $paymentTerm, $originalValue, $interestRate)
     {
-        $interestAbsenceFailMessage = 'Marked term with interest when it shouldn\'t';
-        $interestPresenceFailMessage = 'Failed to mark term ' . $paymentTerm->instalmentNumber . ' with interest';
+        $hasInterestFailMessage = 'Failed to mark term ' . $paymentTerm->instalmentNumber . ' with interest flag accordingly';
         $interestCalcFailMessage = 'Failed to add interest to term ' . $paymentTerm->instalmentNumber;
 
         $ratio = 1 + $interestRate;
         $total = $paymentTerm->instalmentNumber * $paymentTerm->baseAmount;
         $crossCheck = $total / $ratio;
 
-        if ($interestRate === 0) {
-            $this->assertFalse($paymentTerm->hasInterests, $interestAbsenceFailMessage);
-        } else {
-            $this->assertTrue($paymentTerm->hasInterests, $interestPresenceFailMessage);
-        }
+        $this->assertEquals($interestRate !== 0, $paymentTerm->hasInterests, $hasInterestFailMessage);
         $this->assertEquals($originalValue, $crossCheck, $interestCalcFailMessage);
     }
 }
