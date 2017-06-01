@@ -4,7 +4,6 @@ namespace Ebanx\Benjamin\Services\Adapters;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Models\Country;
 
 abstract class RequestAdapter extends BaseAdapter
 {

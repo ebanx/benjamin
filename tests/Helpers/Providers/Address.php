@@ -3,7 +3,6 @@ namespace Tests\Helpers\Providers;
 
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Address as AddressModel;
-use Ebanx\Benjamin\Models\Country;
 
 class Address extends BaseProvider
 {
