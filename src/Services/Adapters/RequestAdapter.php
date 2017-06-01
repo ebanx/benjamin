@@ -7,6 +7,9 @@ use Ebanx\Benjamin\Models\Payment;
 
 abstract class RequestAdapter extends BaseAdapter
 {
+    /**
+     * @var Payment
+     */
     protected $payment;
 
     private $countryCode = array(
@@ -43,6 +46,7 @@ abstract class RequestAdapter extends BaseAdapter
         $payload = array(
             'currency_code' => $this->config->baseCurrency,
             'notification_url' => $this->config->notificationUrl,
+            'redirect_url' => $this->config->redirectUrl,
             'name' => $this->payment->person->name,
             'email' => $this->payment->person->email,
             'amount_total' => $this->payment->amountTotal,
