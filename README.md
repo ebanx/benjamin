@@ -33,34 +33,36 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 
 ## Checklist for implementations needed
 
-- [ ] Payment
+- [X] Payment
 	- [X] Brasil
 		- [X] :dollar: Boleto
 		- [X] :credit_card: Credit Card
 		- [X] :arrows_clockwise: TEF
 		- [X] :arrows_clockwise: EBANX Account
-	- [ ] Mexico
+	- [X] Mexico
 		- [X] :credit_card: Credit Card
-		- [ ] :credit_card: Debit Card
+		- [X] :credit_card: Debit Card
 		- [X] :dollar: OXXO
-	- [ ] Chile
+	- [X] Chile
 		- [X] :dollar: Sencillito
-		- [ ] :arrows_clockwise: Servipag
-	- [ ] Colombia
-		- [ ] :arrows_clockwise: PSE
+		- [X] :arrows_clockwise: Servipag
+	- [X] Colombia
+		- [X] :arrows_clockwise: PSE
 		- [X] :dollar: Baloto
 		- [X] :credit_card: Credit Card
-	- [ ] Peru
-		- [ ] :dollar: :arrows_clockwise: SafetyPay
+	- [X] Peru
+		- [X] :arrows_clockwise: SafetyPay
+		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 - [ ] Refund
 - [ ] Payment Capture
 - [ ] Payment by link
 - [ ] Validator
+- [ ] Response Decorators
 - [ ] Notifications
 - [ ] Interest Rates
 - [ ] Taxes
 
-:dollar: = Cash payment
-:credit_card: = Card payment
-:arrows_clockwise: = Online payment
+:dollar: = Cash payment  
+:credit_card: = Card payment  
+:arrows_clockwise: = Online payment  

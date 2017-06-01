@@ -1,12 +1,12 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-class TefRequestAdapter extends BrazilRequestAdapter
+class EftRequestAdapter extends RequestAdapter
 {
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
-        $transformed->payment_type_code = $this->payment->bankCode;
+        $transformed->eft_code = $this->payment->bankCode;
 
         return $transformed;
     }

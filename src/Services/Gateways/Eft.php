@@ -4,18 +4,19 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\EftRequestAdapter;
 
-class Boleto extends BaseGateway
+class Eft extends BaseGateway
 {
     protected function getEnabledCountries()
     {
-        return array(Country::BRAZIL);
+        return array(Country::COLOMBIA);
     }
+
     protected function getEnabledCurrencies()
     {
         return array(
-            Currency::BRL,
+            Currency::COP,
             Currency::USD,
             Currency::EUR
         );
@@ -23,9 +24,9 @@ class Boleto extends BaseGateway
 
     public function create(Payment $payment)
     {
-        $payment->type = "boleto";
+        $payment->type = "eft";
 
-        $adapter = new CashRequestAdapter($payment, $this->config);
+        $adapter = new EftRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
         $body = $this->client->payment($request);

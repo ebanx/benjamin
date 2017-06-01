@@ -5,7 +5,7 @@ use Tests\Helpers\Providers\BaseProvider;
 
 class Document extends BaseProvider
 {
-    public function documentNumber($format = true)
+    public function documentNumber()
     {
         return null;
     }

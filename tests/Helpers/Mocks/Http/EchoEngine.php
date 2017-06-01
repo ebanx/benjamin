@@ -6,16 +6,31 @@ use GuzzleHttp\Client as Guzzle;
 class EchoEngine extends Guzzle
 {
     /**
-     * @var EchoEngineResponse
+     * @var string
      */
-    private $responseObj = null;
+    private $baseUrl;
 
     /**
-     * @param string $response What to respond
+     * @var EchoEngineResponse[]|EchoEngineResponse
      */
-    public function __construct($response)
+    private $responses = array();
+
+    /**
+     * @param string $baseUrl
+     * @param string $responses What to respond
+     */
+    public function __construct($baseUrl, $responses)
     {
-        $this->responseObj = new EchoEngineResponse($response);
+        $this->baseUrl = $baseUrl;
+
+        if (!is_array($responses)) {
+            $this->responses = new EchoEngineResponse($responses);
+            return;
+        }
+
+        foreach ($responses as $key => $value) {
+            $this->responses[$key] = new EchoEngineResponse($value);
+        }
     }
 
     /**
@@ -25,7 +40,27 @@ class EchoEngine extends Guzzle
      */
     public function post($url = null, array $options = array())
     {
-        return $this->responseObj;
+        return $this->fakeResponse($url);
+    }
+
+    /**
+     * @param  string $url     Url to request from
+     * @param  array  $options
+     * @return EchoEngineResponse
+     */
+    public function get($url = null, $options = array())
+    {
+        return $this->fakeResponse($url);
+    }
+
+    private function fakeResponse($url)
+    {
+        if (!is_array($this->responses)) {
+            return $this->responses;
+        }
+
+        $endpoint = str_replace($this->baseUrl, '', $url);
+        return $this->responses[$endpoint];
     }
 }
 

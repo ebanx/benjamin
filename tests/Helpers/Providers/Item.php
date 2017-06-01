@@ -23,7 +23,8 @@ class Item extends BaseProvider
     }
 
     /**
-     * @return \Ebanx\Benjamin\Models\Item[]
+     * @param integer $count
+     * @return ItemModel[]
      */
     public function itemModels($count)
     {

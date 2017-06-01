@@ -1,7 +1,6 @@
 <?php
 namespace Ebanx\Benjamin;
 
-use Ebanx\Benjamin\Facades;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
@@ -142,5 +141,60 @@ class Facade
     public function ebanxAccount()
     {
         return new Gateways\EbanxAccount($this->config);
+    }
+
+    /**
+     * @return Gateways\Eft
+     */
+    public function eft()
+    {
+        return new Gateways\Eft($this->config);
+    }
+
+    /**
+     * @return Gateways\Servipag
+     */
+    public function servipag()
+    {
+        return new Gateways\Servipag($this->config);
+    }
+
+    /**
+     * @return Gateways\DebitCard
+     */
+    public function debitCard()
+    {
+        return new Gateways\DebitCard($this->config);
+    }
+
+    /**
+     * @param string $safetyPayType It must be 'Cash' or 'Online'
+     * @return Gateways\SafetyPay
+     * @throws \InvalidArgumentException
+     */
+    public function safetyPay($safetyPayType)
+    {
+        $safetyPayMethod = 'safetyPay' . ucfirst(strtolower($safetyPayType));
+        if (!method_exists($this, $safetyPayMethod)) {
+            throw new \InvalidArgumentException('Invalid SafetyPay type');
+        }
+
+        return call_user_func(array($this, $safetyPayMethod));
+    }
+
+    /**
+     * @return Gateways\SafetyPayCash
+     */
+    public function safetyPayCash()
+    {
+        return new Gateways\SafetyPayCash($this->config);
+    }
+
+    /**
+     * @return Gateways\SafetyPayOnline
+     */
+    public function safetyPayOnline()
+    {
+        return new Gateways\SafetyPayOnline($this->config);
     }
 }

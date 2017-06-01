@@ -1,7 +1,6 @@
 <?php
 namespace Tests\Helpers\Builders;
 
-use Ebanx\Benjamin\Models\Payment;
 use Faker;
 use Ebanx\Benjamin\Models\BaseModel;
 

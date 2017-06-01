@@ -1,9 +1,8 @@
 <?php
 namespace Tests\Helpers\Builders;
 
-use Ebanx\Benjamin\Models\Bank;
-use Ebanx\Benjamin\Models\Currency;
 use Faker;
+use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
 
 class PaymentBuilder extends BaseBuilder
@@ -55,30 +54,11 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
-    public function oxxo()
+    public function debitCard()
     {
-        $this->instance->type = 'oxxo';
-
-        return $this;
-    }
-
-    public function baloto()
-    {
-        $this->instance->type = 'baloto';
-
-        return $this;
-    }
-
-    public function pagoEfectivo()
-    {
-        $this->instance->type = 'pagoEfectivo';
-
-        return $this;
-    }
-
-    public function sencillito()
-    {
-        $this->instance->type = 'sencillito';
+        $this->instance->type = 'debitcard';
+        $this->instance->card = $this->faker->cardModel();
+        $this->instance->card->number = '4242424242424242';
 
         return $this;
     }
@@ -91,16 +71,10 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
-    public function ebanxAccount()
+    public function eft()
     {
-        $this->instance->type = 'ebanxAccount';
-
-        return $this;
-    }
-
-    public function withBank($bank)
-    {
-        $this->instance->bankCode = $bank;
+        $this->instance->type = 'eft';
+        $this->instance->bankCode = 'banco_gnb_sudameris';
 
         return $this;
     }

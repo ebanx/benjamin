@@ -17,7 +17,7 @@ class PagoEfectivoTest extends GatewayTestCase
         $client = $this->getMockedClient($pagoEfectivoSuccessfulResponse);
 
         $factory = new BuilderFactory('es_PE');
-        $payment = $factory->payment()->pagoEfectivo()->build();
+        $payment = $factory->payment()->build();
         $gateway = new PagoEfectivoForTests($this->config, $client);
 
         $result = $gateway->create($payment);

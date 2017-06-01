@@ -1,12 +1,14 @@
 <?php
 namespace Tests\Unit\Services\Gateways;
 
+use Ebanx\Benjamin\Services\Gateways\BaseGateway;
 use Tests\TestCase;
 use Tests\Helpers\Environment;
 use Tests\Helpers\Mocks\Http\ClientForTests;
 use Tests\Helpers\Mocks\Http\EchoEngine;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Services\Http\Client;
 
 class GatewayTestCase extends TestCase
 {
@@ -23,7 +25,12 @@ class GatewayTestCase extends TestCase
         ]);
     }
 
-    protected function assertAvailableForCountries($gateway, $countries)
+    protected function getExchangeRateSuccessfulResponseJsonWithRate($rate)
+    {
+        return '{"currency_rate":{"code":"USD","base_code":"???","name":"US Dollar to Something","rate":"'.$rate.'"},"status":"SUCCESS"}';
+    }
+
+    protected function assertAvailableForCountries(BaseGateway $gateway, $countries)
     {
         $allCountries = array(
             Country::BRAZIL,
@@ -42,7 +49,7 @@ class GatewayTestCase extends TestCase
             $this->assertFalse($gateway->isAvailableForCountry($country));
         }
     }
-    protected function assertNotAvailableAnywhere($gateway)
+    protected function assertNotAvailableAnywhere(BaseGateway $gateway)
     {
         $this->assertFalse($gateway->isAvailableForCountry(Country::BRAZIL));
         $this->assertFalse($gateway->isAvailableForCountry(Country::CHILE));
@@ -53,6 +60,6 @@ class GatewayTestCase extends TestCase
 
     protected function getMockedClient($response)
     {
-        return new ClientForTests(new EchoEngine($response));
+        return new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $response));
     }
 }

@@ -4,18 +4,20 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 
-class Boleto extends BaseGateway
+class DebitCard extends BaseGateway
 {
     protected function getEnabledCountries()
     {
-        return array(Country::BRAZIL);
+        return array(
+            Country::MEXICO
+        );
     }
     protected function getEnabledCurrencies()
     {
         return array(
-            Currency::BRL,
+            Currency::MXN,
             Currency::USD,
             Currency::EUR
         );
@@ -23,9 +25,10 @@ class Boleto extends BaseGateway
 
     public function create(Payment $payment)
     {
-        $payment->type = "boleto";
+        $payment->type = "debitcard";
+        $payment->card->type = 'debitcard';
 
-        $adapter = new CashRequestAdapter($payment, $this->config);
+        $adapter = new CardRequestAdapter($payment, $this->config);
         $request = $adapter->transform();
 
         $body = $this->client->payment($request);

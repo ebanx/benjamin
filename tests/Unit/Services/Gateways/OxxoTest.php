@@ -17,7 +17,7 @@ class OxxoTest extends GatewayTestCase
         $client = $this->getMockedClient($oxxoSuccessfulResponse);
 
         $factory = new BuilderFactory('es_MX');
-        $payment = $factory->payment()->oxxo()->build();
+        $payment = $factory->payment()->build();
         $gateway = new OxxoForTests($this->config, $client);
 
         $result = $gateway->create($payment);

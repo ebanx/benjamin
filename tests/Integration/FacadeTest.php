@@ -2,6 +2,7 @@
 namespace Tests\Integration;
 
 use Tests\TestCase;
+use Ebanx\Benjamin\Facade;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 
@@ -16,6 +17,7 @@ class FacadeTest extends TestCase
     }
 
     /**
+     * @param Facade $ebanx
      * @depends testMainObject
      */
     public function testGatewayAccessors($ebanx)
@@ -23,6 +25,13 @@ class FacadeTest extends TestCase
         $gateways = $this->getExpectedGateways();
 
         foreach ($gateways as $gateway) {
+            $class = new \ReflectionClass('Ebanx\Benjamin\Services\Gateways\\'.ucfirst($gateway));
+
+            // skip abstract gateways
+            if ($class->isAbstract()) {
+                continue;
+            }
+
             $this->assertTrue(
                 method_exists($ebanx, $gateway),
                 "Facade has no accessor for gateway \"$gateway\"."
@@ -43,15 +52,12 @@ class FacadeTest extends TestCase
     private function getExpectedGateways()
     {
         $result = array();
-        $ignore = array(
-            '.',
-            '..',
-            'BaseGateway.php'
-        );
 
         $dir = opendir('src/Services/Gateways');
         while (($file = readdir($dir)) !== false) {
-            if (in_array($file, $ignore)) {
+
+            // skip non-php files
+            if ($file === basename($file, '.php')) {
                 continue;
             }
 
