@@ -48,20 +48,26 @@ abstract class BaseGateway
 
     public function isAvailableForCountry($country)
     {
-        $enabledCountries = $this->getEnabledCountries();
-        $enabledCurrencies = $this->getEnabledCurrencies();
         $siteCurrency = $this->config->baseCurrency;
         $globalCurrencies = Currency::globalCurrencies();
         $localCurrency = Currency::localForCountry($country);
 
-        $countryIsAccepted = in_array($country, $enabledCountries);
-        $siteCurrencyIsAccepted = in_array($siteCurrency, $enabledCurrencies);
+        $countryIsAccepted = $this->acceptsCountry($country);
         $siteCurrencyIsGlobal = in_array($siteCurrency, $globalCurrencies);
         $siteCurrencyMatchesCountry = $siteCurrency === $localCurrency;
 
         return $countryIsAccepted
-            && $siteCurrencyIsAccepted
             && ($siteCurrencyIsGlobal || $siteCurrencyMatchesCountry);
+    }
+
+    public function acceptsCurrency($currency)
+    {
+        return in_array($currency, $this->getEnabledCurrencies());
+    }
+
+    public function acceptsCountry($country)
+    {
+        return in_array($country, $this->getEnabledCountries());
     }
 
     protected function availableForCountryOrThrow($country)
