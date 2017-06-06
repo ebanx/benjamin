@@ -5,5 +5,4 @@ use Ebanx\Benjamin\Models\BaseModel;
 
 class PaymentResponse extends BaseModel
 {
-
 }
