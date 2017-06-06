@@ -5,9 +5,12 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Traits\Printable;
 
 class PagoEfectivo extends BaseGateway
 {
+    use Printable;
+
     protected function getEnabledCountries()
     {
         return array(Country::PERU);
@@ -34,20 +37,10 @@ class PagoEfectivo extends BaseGateway
     }
 
     /**
-     * @param string $hash
-     * @param boolean   $isSandbox
      * @return string
      */
-    public function getUrl($hash, $isSandbox = null)
+    protected function getUrlFormat()
     {
-        if ($isSandbox === null) {
-            $isSandbox =  $this->config->isSandbox;
-        }
-
-        $domain = 'print';
-        if ($isSandbox) {
-            $domain = 'sandbox';
-        }
-        return "https://$domain.ebanx.com/cip/?hash=$hash";
+        return "https://%s.ebanx.com/cip/?hash=%s";
     }
 }
