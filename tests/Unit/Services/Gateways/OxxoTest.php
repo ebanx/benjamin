@@ -56,7 +56,7 @@ class OxxoTest extends GatewayTestCase
         $this->assertNotAvailableAnywhere($gateway);
     }
 
-    public function testTicketUrl()
+    public function testSandboxTicketUrl()
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
