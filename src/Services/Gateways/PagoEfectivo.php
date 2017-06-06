@@ -5,9 +5,12 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Traits\Printable;
 
 class PagoEfectivo extends BaseGateway
 {
+    use Printable;
+
     protected function getEnabledCountries()
     {
         return array(Country::PERU);
@@ -31,5 +34,13 @@ class PagoEfectivo extends BaseGateway
         $body = $this->client->payment($request);
 
         return $body;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUrlFormat()
+    {
+        return "https://%s.ebanx.com/cip/?hash=%s";
     }
 }

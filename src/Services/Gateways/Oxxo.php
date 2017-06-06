@@ -5,9 +5,12 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Traits\Printable;
 
 class Oxxo extends BaseGateway
 {
+    use Printable;
+
     protected function getEnabledCountries()
     {
         return array(Country::MEXICO);
@@ -31,5 +34,13 @@ class Oxxo extends BaseGateway
         $body = $this->client->payment($request);
 
         return $body;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUrlFormat()
+    {
+        return "https://%s.ebanx.com/print/oxxo/?hash=%s";
     }
 }
