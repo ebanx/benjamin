@@ -35,10 +35,19 @@ class Baloto extends BaseGateway
 
     /**
      * @param string $hash
+     * @param boolean   $isSandbox
      * @return string
      */
-    public function getUrl($hash)
+    public function getUrl($hash, $isSandbox = null)
     {
-        return 'https://sandbox.ebanx.com/print/baloto/?hash=' . $hash;
+        if ($isSandbox === null) {
+            $isSandbox =  $this->config->isSandbox;
+        }
+
+        $domain = 'print';
+        if ($isSandbox) {
+            $domain = 'sandbox';
+        }
+        return "https://$domain.ebanx.com/print/baloto/?hash=$hash";
     }
 }

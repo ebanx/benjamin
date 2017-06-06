@@ -56,12 +56,21 @@ class BalotoTest extends GatewayTestCase
         $this->assertNotAvailableAnywhere($gateway);
     }
 
-    public function testTicketUrl()
+    public function testSandboxTicketUrl()
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
             'https://sandbox.ebanx.com/print/baloto/?hash=5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5',
             $gateway->getUrl('5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5')
+        );
+    }
+
+    public function testLiveTicketUrl()
+    {
+        $gateway = $this->getTestGateway();
+        $this->assertEquals(
+            'https://print.ebanx.com/print/baloto/?hash=5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5',
+            $gateway->getUrl('5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5', false)
         );
     }
 
