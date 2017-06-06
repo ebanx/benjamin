@@ -10,26 +10,20 @@ trait Printable
      */
     public function getUrl($hash, $isSandbox = null)
     {
-        $domain = $this->getDomain($isSandbox);
-        $urlFormat = $this->getUrlFormat();
-        return sprintf($urlFormat, $domain, $hash);
+        return sprintf($this->getUrlFormat(), $this->getDomain($isSandbox), $hash);
     }
 
     /**
-     * @param $isSandbox
+     * @param bool $isSandbox
      * @return string
      */
-    private function getDomain($isSandbox)
+    private function getDomain($isSandbox = null)
     {
         if ($isSandbox === null) {
             $isSandbox = $this->config->isSandbox;
         }
 
-        $domain = 'print';
-        if ($isSandbox) {
-            $domain = 'sandbox';
-        }
-        return $domain;
+        return $isSandbox ? 'sandbox' : 'print';
     }
 
     /**
