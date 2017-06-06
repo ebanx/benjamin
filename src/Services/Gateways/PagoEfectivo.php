@@ -8,11 +8,11 @@ use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 
 class PagoEfectivo extends BaseGateway
 {
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(Country::PERU);
     }
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::PEN,

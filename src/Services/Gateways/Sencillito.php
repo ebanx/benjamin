@@ -8,11 +8,11 @@ use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 
 class Sencillito extends BaseGateway
 {
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(Country::CHILE);
     }
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::CLP,

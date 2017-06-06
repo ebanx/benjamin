@@ -8,11 +8,11 @@ use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
 
 class Baloto extends BaseGateway
 {
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(Country::COLOMBIA);
     }
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::COP,

@@ -10,12 +10,12 @@ abstract class SafetyPay extends BaseGateway
 {
     abstract protected function getPaymentType();
 
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(Country::PERU);
     }
 
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::PEN,

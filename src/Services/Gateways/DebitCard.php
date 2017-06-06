@@ -8,13 +8,13 @@ use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 
 class DebitCard extends BaseGateway
 {
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(
             Country::MEXICO
         );
     }
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::MXN,
