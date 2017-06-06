@@ -32,4 +32,13 @@ class Boleto extends BaseGateway
 
         return $body;
     }
+
+    /**
+     * @param string $hash
+     * @return string
+     */
+    public function getUrl($hash)
+    {
+        return 'https://sandbox.ebanx.com/print/?hash=' . $hash;
+    }
 }
