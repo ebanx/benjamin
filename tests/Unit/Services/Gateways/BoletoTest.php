@@ -56,7 +56,7 @@ class BoletoTest extends GatewayTestCase
 
         $this->assertNotAvailableAnywhere($gateway);
     }
-    
+
     public function testTicketUrl()
     {
         $gateway = $this->getTestGateway();
