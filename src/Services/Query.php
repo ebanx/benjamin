@@ -44,4 +44,26 @@ class Query
         //TODO: decorate response
         return $response;
     }
+
+    /**
+     * @param string $merchantPaymentCode
+     * @param boolean   $isSandbox
+     * @return array
+     */
+    public function getPaymentInfoByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
+    {
+        $config = clone $this->config;
+        if ($isSandbox !== null) {
+            $config->isSandbox = $isSandbox;
+        }
+        $adapter = new QueryAdapter(
+            'merchant_payment_code',
+            $merchantPaymentCode,
+            $config
+        );
+
+        $response = $this->client->paymentInfo($adapter->transform());
+        //TODO: decorate response
+        return $response;
+    }
 }

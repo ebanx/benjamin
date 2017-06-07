@@ -32,6 +32,14 @@ class QueryTest extends TestCase
 
         $this->assertArrayHasKey('payment', $info);
     }
+
+    public function testPaymentInfoByMerchantPaymentCode()
+    {
+        $query = new QueryForTests($this->config, $this->client);
+        $info = $query->getPaymentInfoByMerchantPaymentCode('248b2672f000e293268be28d6048d600');
+
+        $this->assertArrayHasKey('payment', $info);
+    }
 }
 
 class QueryForTests extends Query
