@@ -24,7 +24,7 @@ abstract class BaseGateway
      */
     protected $exchange;
 
-    abstract public function create(Payment $payment);
+    abstract protected function getPaymentData(Payment $payment);
 
     abstract protected static function getEnabledCountries();
     abstract protected static function getEnabledCurrencies();
@@ -39,6 +39,20 @@ abstract class BaseGateway
         }
 
         $this->exchange = new Exchange($this->config, $this->client);
+    }
+
+    public function create(Payment $payment)
+    {
+        $body = $this->client->payment($this->getPaymentData($payment));
+
+        return $body;
+    }
+
+    public function request(Payment $payment)
+    {
+        $body = $this->client->request($this->getPaymentData($payment));
+
+        return $body;
     }
 
     public function exchange()

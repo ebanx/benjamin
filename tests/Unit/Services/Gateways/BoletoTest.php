@@ -22,7 +22,21 @@ class BoletoTest extends GatewayTestCase
         $gateway = $this->getTestGateway($client);
 
         $result = $gateway->create($payment);
+        $this->assertArrayHasKey('payment', $result);
 
+        // TODO: assert output (to be defined)
+    }
+
+    public function testBusinessPersonRequest()
+    {
+        $boletoSuccessfulResponse = $this->getBoletoSuccessfulResponseJson();
+        $client = $this->getMockedClient($boletoSuccessfulResponse);
+
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->boleto()->businessPerson()->build();
+        $gateway = $this->getTestGateway($client);
+
+        $result = $gateway->request($payment);
         $this->assertArrayHasKey('payment', $result);
 
         // TODO: assert output (to be defined)

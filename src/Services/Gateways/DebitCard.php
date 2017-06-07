@@ -23,16 +23,12 @@ class DebitCard extends BaseGateway
         );
     }
 
-    public function create(Payment $payment)
+    protected function getPaymentData(Payment $payment)
     {
         $payment->type = "debitcard";
         $payment->card->type = 'debitcard';
 
         $adapter = new CardRequestAdapter($payment, $this->config);
-        $request = $adapter->transform();
-
-        $body = $this->client->payment($request);
-
-        return $body;
+        return $adapter->transform();
     }
 }

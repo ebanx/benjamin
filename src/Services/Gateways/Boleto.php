@@ -25,23 +25,23 @@ class Boleto extends BaseGateway
         );
     }
 
-    public function create(Payment $payment)
-    {
-        $payment->type = "boleto";
-
-        $adapter = new CashRequestAdapter($payment, $this->config);
-        $request = $adapter->transform();
-
-        $body = $this->client->payment($request);
-
-        return $body;
-    }
-
     /**
      * @return string
      */
     protected function getUrlFormat()
     {
         return "https://%s.ebanx.com/print/?hash=%s";
+    }
+
+    /**
+     * @param Payment $payment
+     * @return object
+     */
+    protected function getPaymentData(Payment $payment)
+    {
+        $payment->type = "boleto";
+
+        $adapter = new CashRequestAdapter($payment, $this->config);
+        return $adapter->transform();
     }
 }
