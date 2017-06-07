@@ -73,6 +73,11 @@ class Client
         return $this->query($data, 'exchange');
     }
 
+    public function paymentInfo($data)
+    {
+        return $this->query($data, 'query');
+    }
+
     /**
      * Current endpoint url
      *

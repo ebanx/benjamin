@@ -2,6 +2,7 @@
 namespace Ebanx\Benjamin\Services;
 
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Services\Adapters\QueryAdapter;
 use Ebanx\Benjamin\Services\Http\Client;
 
 class Query
@@ -24,12 +25,23 @@ class Query
 
     /**
      * @param string $hash
-     * @return string
+     * @param boolean   $isSandbox
+     * @return array
      */
-    public function getPaymentInfoByHash($hash)
+    public function getPaymentInfoByHash($hash, $isSandbox = null)
     {
-        //call EBANX API
-        //return payment info
-        return $hash;
+        $config = clone $this->config;
+        if ($isSandbox !== null) {
+            $config->isSandbox = $isSandbox;
+        }
+        $adapter = new QueryAdapter(
+            'hash',
+            $hash,
+            $config
+        );
+
+        $response = $this->client->paymentInfo($adapter->transform());
+        //TODO: decorate response
+        return $response;
     }
 }
