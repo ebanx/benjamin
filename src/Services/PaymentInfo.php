@@ -2,10 +2,10 @@
 namespace Ebanx\Benjamin\Services;
 
 use Ebanx\Benjamin\Models\Configs\Config;
-use Ebanx\Benjamin\Services\Adapters\QueryAdapter;
+use Ebanx\Benjamin\Services\Adapters\PaymentInfoAdapter;
 use Ebanx\Benjamin\Services\Http\Client;
 
-class Query
+class PaymentInfo
 {
     /**
      * @var Config
@@ -60,11 +60,11 @@ class Query
      * @param string $type
      * @param $merchantPaymentCode
      * @param $config
-     * @return QueryAdapter
+     * @return PaymentInfoAdapter
      */
     private function getAdapter($type, $merchantPaymentCode, $config)
     {
-        $adapter = new QueryAdapter(
+        $adapter = new PaymentInfoAdapter(
             $type,
             $merchantPaymentCode,
             $config

@@ -7,9 +7,9 @@ use Tests\Helpers\Environment;
 use Tests\Helpers\Mocks\Http\ClientForTests;
 use Tests\Helpers\Mocks\Http\EchoEngine;
 use Tests\TestCase;
-use Ebanx\Benjamin\Services\Query;
+use Ebanx\Benjamin\Services\PaymentInfo;
 
-class QueryTest extends TestCase
+class PaymentInfoTest extends TestCase
 {
     private $config;
     private $client;
@@ -27,7 +27,7 @@ class QueryTest extends TestCase
 
     public function testPaymentInfoByHash()
     {
-        $query = new QueryForTests($this->config, $this->client);
+        $query = new PaymentInfoForTests($this->config, $this->client);
         $info = $query->getPaymentInfoByHash('5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5');
 
         $this->assertArrayHasKey('payment', $info);
@@ -35,14 +35,14 @@ class QueryTest extends TestCase
 
     public function testPaymentInfoByMerchantPaymentCode()
     {
-        $query = new QueryForTests($this->config, $this->client);
+        $query = new PaymentInfoForTests($this->config, $this->client);
         $info = $query->getPaymentInfoByMerchantPaymentCode('248b2672f000e293268be28d6048d600');
 
         $this->assertArrayHasKey('payment', $info);
     }
 }
 
-class QueryForTests extends Query
+class PaymentInfoForTests extends PaymentInfo
 {
     public function __construct(Config $config, Client $client)
     {

@@ -3,7 +3,7 @@ namespace Ebanx\Benjamin\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class QueryAdapter extends BaseAdapter
+class PaymentInfoAdapter extends BaseAdapter
 {
     /**
      * @var string
@@ -16,7 +16,7 @@ class QueryAdapter extends BaseAdapter
     private $code;
 
     /**
-     * QueryAdapter constructor.
+     * PaymentInfoAdapter constructor.
      *
      * @param string $type
      * @param string $code
