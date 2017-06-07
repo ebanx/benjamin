@@ -31,9 +31,7 @@ class Client
 
     protected function html($url)
     {
-        return $this->engine->get(
-            $url
-        )->getBody()->getContents();
+        return $this->engine->get($url)->getBody()->getContents();
     }
 
     /**
