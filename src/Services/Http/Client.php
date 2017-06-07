@@ -70,6 +70,15 @@ class Client
     }
 
     /**
+     * @param  object|array $data Payment data payload
+     * @return array
+     */
+    public function request($data)
+    {
+        return $this->post($data, 'request');
+    }
+
+    /**
      * @param  object|array $data Exchange data payload
      * @return array
      */
