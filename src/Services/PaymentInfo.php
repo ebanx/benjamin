@@ -28,7 +28,7 @@ class PaymentInfo
      * @param boolean   $isSandbox
      * @return array
      */
-    public function getPaymentInfoByHash($hash, $isSandbox = null)
+    public function findByHash($hash, $isSandbox = null)
     {
         return $this->getResponse('hash', $hash, $isSandbox);
     }
@@ -38,7 +38,7 @@ class PaymentInfo
      * @param boolean   $isSandbox
      * @return array
      */
-    public function getPaymentInfoByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
+    public function findByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
     {
         return $this->getResponse('merchant_payment_code', $merchantPaymentCode, $isSandbox);
     }

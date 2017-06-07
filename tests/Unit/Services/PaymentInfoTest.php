@@ -28,7 +28,7 @@ class PaymentInfoTest extends TestCase
     public function testPaymentInfoByHash()
     {
         $query = new PaymentInfoForTests($this->config, $this->client);
-        $info = $query->getPaymentInfoByHash('5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5');
+        $info = $query->findByHash('5925f3653b2c75e9ce7568d4f16c6d67648b8e92f7f05fa5');
 
         $this->assertArrayHasKey('payment', $info);
     }
@@ -36,7 +36,7 @@ class PaymentInfoTest extends TestCase
     public function testPaymentInfoByMerchantPaymentCode()
     {
         $query = new PaymentInfoForTests($this->config, $this->client);
-        $info = $query->getPaymentInfoByMerchantPaymentCode('248b2672f000e293268be28d6048d600');
+        $info = $query->findByMerchantPaymentCode('248b2672f000e293268be28d6048d600');
 
         $this->assertArrayHasKey('payment', $info);
     }
