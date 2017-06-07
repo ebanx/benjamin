@@ -6,10 +6,10 @@ use Ebanx\Benjamin\Models\Payment;
 
 class EbanxAccount extends Tef
 {
-    public function create(Payment $payment)
+    protected function getPaymentData(Payment $payment)
     {
         $payment->bankCode = Bank::EBANX_ACCOUNT;
 
-        return parent::create($payment);
+        return parent::getPaymentData($payment);
     }
 }

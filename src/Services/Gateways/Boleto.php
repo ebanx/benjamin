@@ -25,20 +25,6 @@ class Boleto extends BaseGateway
         );
     }
 
-    public function create(Payment $payment)
-    {
-        $body = $this->client->payment($this->getPaymentData($payment));
-
-        return $body;
-    }
-
-    public function request(Payment $payment)
-    {
-        $body = $this->client->request($this->getPaymentData($payment));
-
-        return $body;
-    }
-
     /**
      * @return string
      */
@@ -51,7 +37,7 @@ class Boleto extends BaseGateway
      * @param Payment $payment
      * @return object
      */
-    private function getPaymentData(Payment $payment)
+    protected function getPaymentData(Payment $payment)
     {
         $payment->type = "boleto";
 

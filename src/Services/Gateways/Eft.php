@@ -22,15 +22,11 @@ class Eft extends BaseGateway
         );
     }
 
-    public function create(Payment $payment)
+    protected function getPaymentData(Payment $payment)
     {
         $payment->type = "eft";
 
         $adapter = new EftRequestAdapter($payment, $this->config);
-        $request = $adapter->transform();
-
-        $body = $this->client->payment($request);
-
-        return $body;
+        return $adapter->transform();
     }
 }
