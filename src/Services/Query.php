@@ -30,19 +30,7 @@ class Query
      */
     public function getPaymentInfoByHash($hash, $isSandbox = null)
     {
-        $config = clone $this->config;
-        if ($isSandbox !== null) {
-            $config->isSandbox = $isSandbox;
-        }
-        $adapter = new QueryAdapter(
-            'hash',
-            $hash,
-            $config
-        );
-
-        $response = $this->client->paymentInfo($adapter->transform());
-        //TODO: decorate response
-        return $response;
+        return $this->getResponse('hash', $hash, $isSandbox);
     }
 
     /**
@@ -52,15 +40,48 @@ class Query
      */
     public function getPaymentInfoByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
     {
+        return $this->getResponse('merchant_payment_code', $merchantPaymentCode, $isSandbox);
+    }
+
+    /**
+     * @param $isSandbox
+     * @return Config
+     */
+    private function generateConfig($isSandbox)
+    {
         $config = clone $this->config;
         if ($isSandbox !== null) {
             $config->isSandbox = $isSandbox;
         }
+        return $config;
+    }
+
+    /**
+     * @param string $type
+     * @param $merchantPaymentCode
+     * @param $config
+     * @return QueryAdapter
+     */
+    private function getAdapter($type, $merchantPaymentCode, $config)
+    {
         $adapter = new QueryAdapter(
-            'merchant_payment_code',
+            $type,
             $merchantPaymentCode,
             $config
         );
+        return $adapter;
+    }
+
+    /**
+     * @param string $type
+     * @param $merchantPaymentCode
+     * @param $isSandbox
+     * @return array
+     */
+    private function getResponse($type, $merchantPaymentCode, $isSandbox)
+    {
+        $config = $this->generateConfig($isSandbox);
+        $adapter = $this->getAdapter($type, $merchantPaymentCode, $config);
 
         $response = $this->client->paymentInfo($adapter->transform());
         //TODO: decorate response
