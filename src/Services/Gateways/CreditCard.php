@@ -12,7 +12,7 @@ use Ebanx\Benjamin\Services\Exchange;
 
 class CreditCard extends BaseGateway
 {
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(
             Country::BRAZIL,
@@ -20,7 +20,7 @@ class CreditCard extends BaseGateway
             Country::COLOMBIA
         );
     }
-    protected function getEnabledCurrencies()
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::BRL,

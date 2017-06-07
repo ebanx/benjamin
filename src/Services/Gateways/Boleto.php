@@ -11,11 +11,12 @@ class Boleto extends BaseGateway
 {
     use Printable;
 
-    protected function getEnabledCountries()
+    protected static function getEnabledCountries()
     {
         return array(Country::BRAZIL);
     }
-    protected function getEnabledCurrencies()
+
+    protected static function getEnabledCurrencies()
     {
         return array(
             Currency::BRL,

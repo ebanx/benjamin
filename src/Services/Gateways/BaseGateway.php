@@ -26,8 +26,8 @@ abstract class BaseGateway
 
     abstract public function create(Payment $payment);
 
-    abstract protected function getEnabledCountries();
-    abstract protected function getEnabledCurrencies();
+    abstract protected static function getEnabledCountries();
+    abstract protected static function getEnabledCurrencies();
 
     public function __construct(Config $config)
     {
@@ -60,14 +60,14 @@ abstract class BaseGateway
             && ($siteCurrencyIsGlobal || $siteCurrencyMatchesCountry);
     }
 
-    public function acceptsCurrency($currency)
+    public static function acceptsCurrency($currency)
     {
-        return in_array($currency, $this->getEnabledCurrencies());
+        return in_array($currency, static::getEnabledCurrencies());
     }
 
-    public function acceptsCountry($country)
+    public static function acceptsCountry($country)
     {
-        return in_array($country, $this->getEnabledCountries());
+        return in_array($country, static::getEnabledCountries());
     }
 
     protected function availableForCountryOrThrow($country)
