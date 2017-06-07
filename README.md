@@ -56,7 +56,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: PagoEfectivo
 - [ ] Refund
 - [ ] Payment Capture
-- [ ] Payment by link
+- [X] Payment by link
 - [ ] Validator
 - [ ] Response Decorators
 - [ ] Notifications
