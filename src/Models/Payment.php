@@ -46,13 +46,6 @@ class Payment extends BaseModel
     public $person;
 
     /**
-     * The URL the customer should be redirected to.
-     *
-     * @var string
-     */
-    public $redirectUrl = null;
-
-    /**
      * An array of Item obejects.
      *
      * @var Item[]

@@ -45,7 +45,7 @@ class Config extends BaseModel implements AddableConfig
     public $notificationUrl = null;
 
     /**
-     * The URL to redirect customer after the payment is done.
+     * The URL the customer should be redirected to.
      *
      * @var string
      */
