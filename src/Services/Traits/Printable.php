@@ -13,6 +13,11 @@ trait Printable
         return sprintf($this->getUrlFormat(), $this->getDomain($isSandbox), $hash);
     }
 
+    public function getTicketHTml($hash, $isSandbox = null)
+    {
+        return $this->client->fetchContent($this->getUrl($hash, $isSandbox));
+    }
+
     /**
      * @param bool $isSandbox
      * @return string

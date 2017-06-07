@@ -86,4 +86,23 @@ class EchoEngineResponse
     {
         return json_decode($this->response, true);
     }
+
+    public function getBody()
+    {
+        return new EchoEngineResponseBody($this->response);
+    }
+}
+
+class EchoEngineResponseBody
+{
+    private $response;
+
+    public function __construct($response)
+    {
+        $this->response = $response;
+    }
+    public function getContents()
+    {
+        return $this->response;
+    }
 }
