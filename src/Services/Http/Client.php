@@ -29,6 +29,11 @@ class Client
         $this->engine = new GuzzleHttp\Client();
     }
 
+    protected function html($url)
+    {
+        return $this->engine->get($url)->getBody()->getContents();
+    }
+
     /**
      * @param  object|array $data Any data you want to send
      * @param  string       $endpoint The API endpoint you want to call
@@ -76,6 +81,11 @@ class Client
     public function paymentInfo($data)
     {
         return $this->query($data, 'query');
+    }
+
+    public function fetchContent($url)
+    {
+        return $this->html($url);
     }
 
     /**
