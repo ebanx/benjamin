@@ -6,6 +6,7 @@ use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Gateways;
+use Ebanx\Benjamin\Services\PaymentInfo;
 
 class Facade
 {
@@ -196,5 +197,10 @@ class Facade
     public function safetyPayOnline()
     {
         return new Gateways\SafetyPayOnline($this->config);
+    }
+
+    public function paymentInfo()
+    {
+        return new PaymentInfo($this->config);
     }
 }
