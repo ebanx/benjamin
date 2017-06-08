@@ -54,14 +54,14 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :arrows_clockwise: SafetyPay
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
-- [ ] Refund
+- [X] Refund
 - [ ] Payment Capture
 - [X] Payment by link
 - [ ] Validator
 - [ ] Response Decorators
 - [ ] Notifications
-- [ ] Interest Rates
-- [ ] Taxes
+- [X] Interest Rates
+- [X] Taxes
 
 :dollar: = Cash payment  
 :credit_card: = Card payment  
