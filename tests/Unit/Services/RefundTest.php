@@ -40,6 +40,14 @@ class RefundTest extends TestCase
 
         $this->assertArrayHasKey('payment', $result);
     }
+
+    public function testRefundCancel()
+    {
+        $refund = new RefundForTests($this->config, $this->client);
+        $result = $refund->cancel('21425');
+
+        $this->assertArrayHasKey('payment', $result);
+    }
 }
 
 class RefundForTests extends Refund

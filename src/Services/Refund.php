@@ -57,6 +57,14 @@ class Refund
         return $this->request($data);
     }
 
+    public function cancel($refundId)
+    {
+        $adapter = new RefundAdapter(array('refundId' => $refundId), $this->config);
+        $response = $this->client->refund($adapter->transformCancel());
+
+        return $response;
+    }
+
     /**
      * @param $data
      * @return array
