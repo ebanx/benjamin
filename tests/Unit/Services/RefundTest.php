@@ -25,10 +25,18 @@ class RefundTest extends TestCase
         $this->client = new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $text));
     }
 
-    public function testRefund()
+    public function testRefundByHash()
     {
         $refund = new RefundForTests($this->config, $this->client);
         $result = $refund->requestByHash('59386e0a5f258ffed3bee6fecc9150f916d1e19aa50ec68c', 10.23, 'description');
+
+        $this->assertArrayHasKey('payment', $result);
+    }
+
+    public function testRefundByMerchantPaymentCode()
+    {
+        $refund = new RefundForTests($this->config, $this->client);
+        $result = $refund->requestByMerchantPaymentCode('59386e0a5f258ffed3bee6fecc9150f916d1e19aa50ec68c', 10.23, 'description');
 
         $this->assertArrayHasKey('payment', $result);
     }
