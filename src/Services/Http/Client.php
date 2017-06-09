@@ -79,6 +79,15 @@ class Client
     }
 
     /**
+     * @param  object|array $data Payment data payload
+     * @return array
+     */
+    public function refund($data)
+    {
+        return $this->query($data, 'refund');
+    }
+
+    /**
      * @param  object|array $data Exchange data payload
      * @return array
      */
