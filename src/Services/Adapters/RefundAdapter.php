@@ -35,7 +35,7 @@ class RefundAdapter extends BaseAdapter
         }
 
         if (isset($this->data['merchantRefundCode'])) {
-            $transformed['merchantRefundCode'] = $this->data['merchant_refund_code'];
+            $transformed['merchant_refund_code'] = $this->data['merchantRefundCode'];
         }
 
         return $transformed;
