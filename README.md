@@ -62,6 +62,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 - [ ] Notifications
 - [X] Interest Rates
 - [X] Taxes
+- [ ] Card brand detector
 
 :dollar: = Cash payment  
 :credit_card: = Card payment  
