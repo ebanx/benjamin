@@ -104,6 +104,26 @@ class CreditCard extends BaseGateway
         return $response;
     }
 
+    /**
+     * @param string $merchantPaymentCode
+     * @param float  $amount
+     * @param string $merchantCaptureCode
+     * @return array
+     */
+    public function captureByMerchantPaymentCode($merchantPaymentCode, $amount = null, $merchantCaptureCode = null)
+    {
+        $data = array(
+            'merchantPaymentCode' => $merchantPaymentCode,
+            'amount' => $amount,
+            'merchantCaptureCode' => $merchantCaptureCode
+        );
+
+        $adapter = new CaptureAdapter($data, $this->config);
+        $response = $this->client->capture($adapter->transform());
+
+        return $response;
+    }
+
     private function calculatePaymentTerm($instalment, $siteValue, $localValueWithTax, $minimum)
     {
         $interestRates = $this->getInterestRates();
