@@ -55,7 +55,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 - [X] Refund
-- [ ] Payment Capture
+- [X] Payment Capture
 - [X] Payment by link
 - [ ] Validator
 - [ ] Response Decorators

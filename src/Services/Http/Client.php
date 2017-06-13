@@ -88,6 +88,15 @@ class Client
     }
 
     /**
+     * @param  object|array $data Payment data payload
+     * @return array
+     */
+    public function capture($data)
+    {
+        return $this->query($data, 'capture');
+    }
+
+    /**
      * @param  object|array $data Exchange data payload
      * @return array
      */
