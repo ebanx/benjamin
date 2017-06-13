@@ -7,6 +7,7 @@ use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Models\Responses\PaymentTerm;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
+use Ebanx\Benjamin\Services\Adapters\CaptureAdapter;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use Ebanx\Benjamin\Services\Exchange;
 
@@ -81,6 +82,46 @@ class CreditCard extends BaseGateway
         }
 
         return array_filter($paymentTerms);
+    }
+
+    /**
+     * @param string $hash
+     * @param float  $amount
+     * @param string $merchantCaptureCode
+     * @return array
+     */
+    public function captureByHash($hash, $amount = null, $merchantCaptureCode = null)
+    {
+        $data = array(
+            'hash' => $hash,
+            'amount' => $amount,
+            'merchantCaptureCode' => $merchantCaptureCode
+        );
+
+        $adapter = new CaptureAdapter($data, $this->config);
+        $response = $this->client->capture($adapter->transform());
+
+        return $response;
+    }
+
+    /**
+     * @param string $merchantPaymentCode
+     * @param float  $amount
+     * @param string $merchantCaptureCode
+     * @return array
+     */
+    public function captureByMerchantPaymentCode($merchantPaymentCode, $amount = null, $merchantCaptureCode = null)
+    {
+        $data = array(
+            'merchantPaymentCode' => $merchantPaymentCode,
+            'amount' => $amount,
+            'merchantCaptureCode' => $merchantCaptureCode
+        );
+
+        $adapter = new CaptureAdapter($data, $this->config);
+        $response = $this->client->capture($adapter->transform());
+
+        return $response;
     }
 
     private function calculatePaymentTerm($instalment, $siteValue, $localValueWithTax, $minimum)

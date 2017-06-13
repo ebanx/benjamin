@@ -32,6 +32,21 @@ class CreditCardTest extends GatewayTestCase
         // TODO: assert output (to be defined)
     }
 
+    public function testCapture()
+    {
+        $response = '{"payment":{"hash":"593edc391aca7d44c51928295946d95b24360f4afa61fb1d","pin":"887838438","merchant_payment_code":"43-b08597ff128f43a3335abf24ff3b5d08","order_number":"43","status":"CO","status_date":"2017-06-12 15:25:29","open_date":"2017-06-12 15:23:53","confirm_date":"2017-06-12 15:25:29","transfer_date":null,"amount_br":"301.14","amount_ext":"300.00","amount_iof":"1.14","currency_rate":"1.0000","currency_ext":"BRL","due_date":"2017-06-12","instalments":"1","payment_type_code":"visa","transaction_status":{"acquirer":"EBANX","code":"OK","description":"Sandbox - Test credit card, transaction captured"},"pre_approved":true,"capture_available":false,"user_value_1":"from_woocommerce","user_value_3":"version=1.13.0","customer":{"document":"35433160874","email":"guilherme.pressutto+br@ebanx.com","name":"GUILHERME PRESSUTTO","birth_date":"1995-12-13"}},"status":"SUCCESS"}';
+        $client = $this->getMockedClient($response);
+
+        $creditCardConfig = new CreditCardConfig();
+        $gateway = new CreditCardForTests($this->config, $creditCardConfig, $client);
+
+        $result = $gateway->captureByHash('593edc391aca7d44c51928295946d95b24360f4afa61fb1d');
+
+        $this->assertArrayHasKey('payment', $result);
+
+        // TODO: assert output (to be defined)
+    }
+
     public function testAvailabilityWithUSDEUR()
     {
         $creditCardConfig = new CreditCardConfig();
