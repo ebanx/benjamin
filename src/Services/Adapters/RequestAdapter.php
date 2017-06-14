@@ -57,7 +57,6 @@ abstract class RequestAdapter extends BaseAdapter
             'email' => $this->payment->person->email,
             'amount_total' => $this->payment->amountTotal,
             'merchant_payment_code' => $this->payment->merchantPaymentCode,
-            'birth_date' => $this->payment->person->birthdate->format('d/m/Y'),
             'customer_ip' => $this->payment->person->ip,
             'zipcode' => $this->payment->address->zipcode,
             'address' => $this->payment->address->address,
@@ -73,6 +72,9 @@ abstract class RequestAdapter extends BaseAdapter
             'payment_type_code' => $this->payment->type,
             'user_value_5' => 'Benjamin'
         );
+        if ($birthdate = $this->payment->person->birthdate) {
+            $payload['birth_date'] = $birthdate->format('d/m/Y');
+        }
 
         for ($i = 1; $i <= 4; $i++) {
             if (!isset($userValues[$i])) {
