@@ -3,6 +3,14 @@ namespace Ebanx\Benjamin\Services\Adapters;
 
 class CardRequestAdapter extends BrazilRequestAdapter
 {
+    public function transform()
+    {
+        $transformed = parent::transform();
+        $transformed->payment_type_code = $this->payment->card->type;
+
+        return $transformed;
+    }
+
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
@@ -11,6 +19,7 @@ class CardRequestAdapter extends BrazilRequestAdapter
         $transformed->token = $this->payment->card->token;
         $transformed->instalments = $this->payment->instalments;
         $transformed->creditcard = $this->transformCard();
+        //TODO: add fingerprint
 
         return $transformed;
     }

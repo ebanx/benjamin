@@ -46,7 +46,7 @@ class CreditCard extends BaseGateway
     {
         $this->availableForCountryOrThrow($payment->address->country);
 
-        $payment->type = "creditCard";
+        $payment->type = $payment->card->type;
 
         $adapter = new CardRequestAdapter($payment, $this->config);
         return $adapter->transform();
