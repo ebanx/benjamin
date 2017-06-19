@@ -19,7 +19,7 @@ class CardRequestAdapter extends BrazilRequestAdapter
         $transformed->token = $this->payment->card->token;
         $transformed->instalments = $this->payment->instalments;
         $transformed->creditcard = $this->transformCard();
-        //TODO: add fingerprint
+        $transformed->device_id = $this->payment->deviceId;
 
         return $transformed;
     }
