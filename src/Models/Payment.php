@@ -39,6 +39,14 @@ class Payment extends BaseModel
     public $note = null;
 
     /**
+     * The order number, optional identifier set by the merchant.
+     * You can have multiple payments with the same order number.
+     *
+     * @var string
+     */
+    public $orderNumber = null;
+
+    /**
      * A Person object.
      *
      * @var Person

@@ -57,6 +57,7 @@ abstract class RequestAdapter extends BaseAdapter
             'email' => $this->payment->person->email,
             'amount_total' => $this->payment->amountTotal,
             'merchant_payment_code' => $this->payment->merchantPaymentCode,
+            'order_number' => $this->payment->orderNumber,
             'customer_ip' => $this->payment->person->ip,
             'zipcode' => $this->payment->address->zipcode,
             'address' => $this->payment->address->address,
