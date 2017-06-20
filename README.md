@@ -1,11 +1,10 @@
 # Benjamin
-[![Stories in Ready](https://badge.waffle.io/ebanx/benjamin.svg?label=ready&title=Ready+issues)](http://waffle.io/ebanx/benjamin)
 [![Build Status](https://travis-ci.org/ebanx/benjamin.svg?branch=master)](https://travis-ci.org/ebanx/benjamin)
 [![StyleCI](https://styleci.io/repos/89406660/shield?branch=master)](https://styleci.io/repos/89406660)
-[![Latest Stable Version](https://poser.pugx.org/ebanx/benjamin/v/stable)](https://packagist.org/packages/ebanx/benjamin)
-[![Total Downloads](https://poser.pugx.org/ebanx/benjamin/downloads)](https://packagist.org/packages/ebanx/benjamin)
-[![Latest Unstable Version](https://poser.pugx.org/ebanx/benjamin/v/unstable)](https://packagist.org/packages/ebanx/benjamin)
-[![License](https://poser.pugx.org/ebanx/benjamin/license)](https://packagist.org/packages/ebanx/benjamin)
+[![Latest Stable Version](https://poser.pugx.org/ebanx/benjamin/v/stable?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
+[![Total Downloads](https://poser.pugx.org/ebanx/benjamin/downloads?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
+[![Latest Unstable Version](https://poser.pugx.org/ebanx/benjamin/v/unstable?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
+[![License](https://poser.pugx.org/ebanx/benjamin/license?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
 
 
 This is the repository for business rules as of implemented by merchant sites for use in e-commerce platform plugins.
