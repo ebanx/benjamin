@@ -152,5 +152,7 @@ class CreditCard extends BaseGateway
         foreach ($this->creditCardConfig->interestRates as $item) {
             $this->interestRates[$item->instalmentNumber] = $item->interestRate;
         }
+
+        return $this->interestRates;
     }
 }
