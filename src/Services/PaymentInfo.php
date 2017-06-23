@@ -40,6 +40,11 @@ class PaymentInfo extends HttpService
         try {
             $this->switchMode($isSandbox);
             $response = $this->client->paymentInfo($adapter->transform());
+
+        //PHP 5.4
+        } catch(Exception $e) {
+            throw $e;
+
         } finally {
             $this->switchMode(null);
         }
