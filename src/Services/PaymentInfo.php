@@ -25,64 +25,30 @@ class PaymentInfo
 
     /**
      * @param string $hash
-     * @param boolean   $isSandbox
      * @return array
      */
-    public function findByHash($hash, $isSandbox = null)
+    public function findByHash($hash)
     {
-        return $this->getResponse('hash', $hash, $isSandbox);
+        return $this->fetchInfoByType('hash', $hash);
     }
 
     /**
      * @param string $merchantPaymentCode
-     * @param boolean   $isSandbox
      * @return array
      */
-    public function findByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
+    public function findByMerchantPaymentCode($merchantPaymentCode)
     {
-        return $this->getResponse('merchant_payment_code', $merchantPaymentCode, $isSandbox);
+        return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode);
     }
 
     /**
-     * @param $isSandbox
-     * @return Config
-     */
-    private function generateConfig($isSandbox)
-    {
-        $config = clone $this->config;
-        if ($isSandbox !== null) {
-            $config->isSandbox = $isSandbox;
-        }
-        return $config;
-    }
-
-    /**
-     * @param string $type
-     * @param $merchantPaymentCode
-     * @param $config
-     * @return PaymentInfoAdapter
-     */
-    private function getAdapter($type, $merchantPaymentCode, $config)
-    {
-        $adapter = new PaymentInfoAdapter(
-            $type,
-            $merchantPaymentCode,
-            $config
-        );
-        return $adapter;
-    }
-
-    /**
-     * @param string $type
-     * @param $merchantPaymentCode
-     * @param $isSandbox
+     * @param string $type Search type
+     * @param string $query Search key
      * @return array
      */
-    private function getResponse($type, $merchantPaymentCode, $isSandbox)
+    private function fetchInfoByType($type, $query)
     {
-        $config = $this->generateConfig($isSandbox);
-        $adapter = $this->getAdapter($type, $merchantPaymentCode, $config);
-
+        $adapter = new PaymentInfoAdapter($type, $query, $this->config);
         $response = $this->client->paymentInfo($adapter->transform());
         //TODO: decorate response
         return $response;
