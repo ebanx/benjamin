@@ -3,26 +3,10 @@ namespace Ebanx\Benjamin\Services;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Services\Adapters\RefundAdapter;
-use Ebanx\Benjamin\Services\Http\Client;
+use Ebanx\Benjamin\Services\Http\HttpService;
 
-class Refund
+class Refund extends HttpService
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-        $this->client = $this->client ?: new Client();
-    }
-
     /**
      * @param string    $hash           The payment hash.
      * @param float     $amount         The amount to be refunded; expressed in the original payment currency.

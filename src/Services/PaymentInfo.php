@@ -3,87 +3,44 @@ namespace Ebanx\Benjamin\Services;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Services\Adapters\PaymentInfoAdapter;
-use Ebanx\Benjamin\Services\Http\Client;
+use Ebanx\Benjamin\Services\Http\HttpService;
 
-class PaymentInfo
+class PaymentInfo extends HttpService
 {
     /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-        $this->client = $this->client ?: new Client();
-    }
-
-    /**
-     * @param string $hash
-     * @param boolean   $isSandbox
+     * @param string    $hash
+     * @param bool|null $isSandbox
      * @return array
      */
     public function findByHash($hash, $isSandbox = null)
     {
-        return $this->getResponse('hash', $hash, $isSandbox);
+        return $this->fetchInfoByType('hash', $hash, $isSandbox);
     }
 
     /**
      * @param string $merchantPaymentCode
-     * @param boolean   $isSandbox
+     * @param bool|null $isSandbox
      * @return array
      */
     public function findByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
     {
-        return $this->getResponse('merchant_payment_code', $merchantPaymentCode, $isSandbox);
+        return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode, $isSandbox);
     }
 
     /**
-     * @param $isSandbox
-     * @return Config
-     */
-    private function generateConfig($isSandbox)
-    {
-        $config = clone $this->config;
-        if ($isSandbox !== null) {
-            $config->isSandbox = $isSandbox;
-        }
-        return $config;
-    }
-
-    /**
-     * @param string $type
-     * @param $merchantPaymentCode
-     * @param $config
-     * @return PaymentInfoAdapter
-     */
-    private function getAdapter($type, $merchantPaymentCode, $config)
-    {
-        $adapter = new PaymentInfoAdapter(
-            $type,
-            $merchantPaymentCode,
-            $config
-        );
-        return $adapter;
-    }
-
-    /**
-     * @param string $type
-     * @param $merchantPaymentCode
-     * @param $isSandbox
+     * @param string $type Search type
+     * @param string $query Search key
+     * @param bool|null $isSandbox
      * @return array
      */
-    private function getResponse($type, $merchantPaymentCode, $isSandbox)
+    private function fetchInfoByType($type, $query, $isSandbox)
     {
-        $config = $this->generateConfig($isSandbox);
-        $adapter = $this->getAdapter($type, $merchantPaymentCode, $config);
+        $adapter = new PaymentInfoAdapter($type, $query, $this->config);
 
+        $this->switchMode($isSandbox);
         $response = $this->client->paymentInfo($adapter->transform());
+        $this->switchMode(null);
+
         //TODO: decorate response
         return $response;
     }
