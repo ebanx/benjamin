@@ -42,9 +42,8 @@ class PaymentInfo extends HttpService
             $response = $this->client->paymentInfo($adapter->transform());
 
         //PHP 5.4
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw $e;
-
         } finally {
             $this->switchMode(null);
         }
