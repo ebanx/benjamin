@@ -4,26 +4,11 @@ namespace Ebanx\Benjamin\Services;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Http\Client;
+use Ebanx\Benjamin\Services\Http\HttpService;
 use Ebanx\Benjamin\Services\Adapters\ExchangeAdapter;
 
-class Exchange
+class Exchange extends HttpService
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function __construct(Config $config, Client $client)
-    {
-        $this->config = $config;
-        $this->client = $client;
-    }
-
     public function siteToLocal($localCurrency, $siteValue = 1)
     {
         return $this->fetchRate($this->config->baseCurrency, $localCurrency) * $siteValue;

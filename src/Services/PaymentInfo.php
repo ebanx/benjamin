@@ -3,27 +3,10 @@ namespace Ebanx\Benjamin\Services;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Services\Adapters\PaymentInfoAdapter;
-use Ebanx\Benjamin\Services\Http\Client;
+use Ebanx\Benjamin\Services\Http\HttpService;
 
-class PaymentInfo
+class PaymentInfo extends HttpService
 {
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
-    public function __construct(Config $config)
-    {
-        $this->config = $config;
-        $this->client = $this->client ?: new Client();
-        $this->switchMode(null);
-    }
-
     /**
      * @param string    $hash
      * @param bool|null $isSandbox
@@ -31,12 +14,7 @@ class PaymentInfo
      */
     public function findByHash($hash, $isSandbox = null)
     {
-        $this->switchMode($isSandbox);
-        try {
-            return $this->fetchInfoByType('hash', $hash);
-        } finally {
-            $this->switchMode(null);
-        }
+        return $this->fetchInfoByType('hash', $hash, $isSandbox);
     }
 
     /**
@@ -46,39 +24,26 @@ class PaymentInfo
      */
     public function findByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
     {
-        $this->switchMode($isSandbox);
-        try {
-            return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode);
-        } finally {
-            $this->switchMode(null);
-        }
-    }
-
-    /**
-     * @param  bool|null $toSandbox Switch to default(null) sandbox(true) or live(false) modes
-     * @return void
-     */
-    private function switchMode($toSandbox) {
-        if ($toSandbox === null) {
-            $toSandbox = $this->config->isSandbox;
-        }
-
-        if ($toSandbox) {
-            $this->client->inSandboxMode();
-            return;
-        }
-        $this->client->inLiveMode();
+        return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode, $isSandbox);
     }
 
     /**
      * @param string $type Search type
      * @param string $query Search key
+     * @param bool|null $isSandbox
      * @return array
      */
-    private function fetchInfoByType($type, $query)
+    private function fetchInfoByType($type, $query, $isSandbox)
     {
         $adapter = new PaymentInfoAdapter($type, $query, $this->config);
-        $response = $this->client->paymentInfo($adapter->transform());
+
+        try {
+            $this->switchMode($isSandbox);
+            $response = $this->client->paymentInfo($adapter->transform());
+        } finally {
+            $this->switchMode(null);
+        }
+
         //TODO: decorate response
         return $response;
     }
