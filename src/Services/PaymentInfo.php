@@ -21,24 +21,53 @@ class PaymentInfo
     {
         $this->config = $config;
         $this->client = $this->client ?: new Client();
+        $this->switchMode(null);
     }
 
     /**
-     * @param string $hash
+     * @param string    $hash
+     * @param bool|null $isSandbox
      * @return array
      */
-    public function findByHash($hash)
+    public function findByHash($hash, $isSandbox = null)
     {
-        return $this->fetchInfoByType('hash', $hash);
+        $this->switchMode($isSandbox);
+        try {
+            return $this->fetchInfoByType('hash', $hash);
+        } finally {
+            $this->switchMode(null);
+        }
     }
 
     /**
      * @param string $merchantPaymentCode
+     * @param bool|null $isSandbox
      * @return array
      */
-    public function findByMerchantPaymentCode($merchantPaymentCode)
+    public function findByMerchantPaymentCode($merchantPaymentCode, $isSandbox = null)
     {
-        return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode);
+        $this->switchMode($isSandbox);
+        try {
+            return $this->fetchInfoByType('merchant_payment_code', $merchantPaymentCode);
+        } finally {
+            $this->switchMode(null);
+        }
+    }
+
+    /**
+     * @param  bool|null $toSandbox Switch to default(null) sandbox(true) or live(false) modes
+     * @return void
+     */
+    private function switchMode($toSandbox) {
+        if ($toSandbox === null) {
+            $toSandbox = $this->config->isSandbox;
+        }
+
+        if ($toSandbox) {
+            $this->client->inSandboxMode();
+            return;
+        }
+        $this->client->inLiveMode();
     }
 
     /**
