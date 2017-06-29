@@ -26,8 +26,15 @@ abstract class BaseGateway
 
     abstract protected function getPaymentData(Payment $payment);
 
-    abstract protected static function getEnabledCountries();
-    abstract protected static function getEnabledCurrencies();
+    protected static function getEnabledCountries()
+    {
+        throw new \BadMethodCallException('You should override this method.');
+    }
+
+    protected static function getEnabledCurrencies()
+    {
+        throw new \BadMethodCallException('You should override this method.');
+    }
 
     public function __construct(Config $config)
     {
