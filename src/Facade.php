@@ -7,6 +7,7 @@ use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Services\PaymentInfo;
+use Ebanx\Benjamin\Services\Exchange;
 
 class Facade
 {
@@ -199,8 +200,19 @@ class Facade
         return new Gateways\SafetyPayOnline($this->config);
     }
 
+    /**
+     * @return PaymentInfo
+     */
     public function paymentInfo()
     {
         return new PaymentInfo($this->config);
+    }
+
+    /**
+     * @return Exchange
+     */
+    public function exchange()
+    {
+        return new Exchange($this->config);
     }
 }
