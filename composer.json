@@ -2,7 +2,7 @@
     "name": "ebanx/benjamin",
     "description": "Business rule provider lib for plugin implementations",
     "type": "library",
-    "license": "MIT",
+    "license": "Apache-2.0",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4",
