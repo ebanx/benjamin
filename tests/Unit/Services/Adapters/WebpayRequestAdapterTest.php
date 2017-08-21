@@ -20,7 +20,7 @@ class WebpayRequestAdapterTest extends RequestAdapterTest
         $result  = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, $this->getSchema([ 'flowRequestSchema' ]));
+        $validator->validate($result, $this->getSchema(['requestSchema', 'flowRequestSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }

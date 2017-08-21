@@ -8,11 +8,6 @@ use Ebanx\Benjamin\Services\Adapters\WebpayRequestAdapter;
 
 class Webpay extends BaseGateway
 {
-    protected function getPaymentType()
-    {
-        return 'SafetyPayOnline';
-    }
-
     protected static function getEnabledCountries()
     {
         return array(Country::CHILE);
