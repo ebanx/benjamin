@@ -122,6 +122,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Webpay
+     */
+    public function webpay()
+    {
+        return new Gateways\Webpay($this->config);
+    }
+
+    /**
      * @return Gateways\PagoEfectivo
      */
     public function pagoEfectivo()
