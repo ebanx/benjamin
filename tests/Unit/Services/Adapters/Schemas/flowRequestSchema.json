@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "payment": {
+      "properties": {
+        "flow_payment_method": {
+          "type": "string",
+          "maxLength": 9
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<?php
+namespace Tests\Unit\Services\Adapters;
+
+use Ebanx\Benjamin\Services\Adapters\WebpayRequestAdapter;
+use Tests\Helpers\Builders\BuilderFactory;
+use JsonSchema;
+use Ebanx\Benjamin\Models\Configs\Config;
+
+class WebpayRequestAdapterTest extends RequestAdapterTest
+{
+    public function testJsonSchema()
+    {
+        $config  = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('es_CL');
+        $payment = $factory->payment()->webpay()->build();
+
+        $adapter = new WebpayRequestAdapter($payment, $config);
+        $result  = $adapter->transform();
+
+        $validator = new JsonSchema\Validator;
+        $validator->validate($result, $this->getSchema(['requestSchema', 'flowRequestSchema']));
+
+        $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
+    }
+}

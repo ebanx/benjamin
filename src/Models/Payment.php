@@ -74,7 +74,7 @@ class Payment extends BaseModel
      */
     public $type;
 
-#EFT Boleto Baloto
+    #EFT Boleto Baloto
     /**
      * Expiry date of the payment.
      * Only applicable to Boleto, Baloto and EFT.
@@ -83,7 +83,7 @@ class Payment extends BaseModel
      */
     public $dueDate = null;
 
-#EFT TEF
+    #EFT TEF
     /**
      * Code for the customer’s bank.
      * Only applicable to EFT.
@@ -92,7 +92,7 @@ class Payment extends BaseModel
      */
     public $bankCode = null;
 
-#CREDIT CARD
+    #CREDIT CARD
     /**
      * Number of instalments.
      * Only applicable to Credit Card.
@@ -101,7 +101,7 @@ class Payment extends BaseModel
      */
     public $instalments = null;
 
-#CARD
+    #CARD
     /**
      * A Card object.
      *
