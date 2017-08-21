@@ -122,7 +122,7 @@ class Facade
     }
 
     /**
-     * @return Gateways\Webpay
+     * @return Gateways\Flow
      */
     public function webpay()
     {

@@ -18,7 +18,7 @@ class WebpayTest extends GatewayTestCase
 
         $factory = new BuilderFactory('es_CL');
         $payment = $factory->payment()->build();
-        $gateway = new WebpayForTests($this->config, $client);
+        $gateway = new WebpayTests($this->config, $client);
 
         $result = $gateway->create($payment);
 
@@ -62,7 +62,7 @@ class WebpayTest extends GatewayTestCase
     }
 }
 
-class WebpayForTests extends Webpay
+class WebpayTests extends Webpay
 {
     public function __construct(Config $config, Client $client)
     {

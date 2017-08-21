@@ -79,9 +79,10 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
-    public function webpay()
+    public function flow()
     {
         $this->instance->type = 'flowcl';
+        $this->instance->flow_payment_method = 'webpay';
 
         return $this;
     }

@@ -1,12 +1,12 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-class WebpayRequestAdapter extends RequestAdapter
+class FlowRequestAdapter extends RequestAdapter
 {
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
-        $transformed->flow_payment_method = 'webpay';
+        $transformed->flow_payment_method = $this->payment->flow_payment_method;
 
         return $transformed;
     }
