@@ -12,7 +12,7 @@ class WebpayRequestAdapterTest extends RequestAdapterTest
     {
         $config  = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
-        ] );
+        ]);
         $factory = new BuilderFactory('es_CL');
         $payment = $factory->payment()->webpay()->build();
 
