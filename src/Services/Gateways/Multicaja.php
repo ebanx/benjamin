@@ -3,7 +3,8 @@ namespace Ebanx\Benjamin\Services\Gateways;
 
 class Multicaja extends Flow
 {
-    protected function getFlowMethod(){
+    protected function getFlowMethod()
+    {
         return 'multicaja';
     }
 }
