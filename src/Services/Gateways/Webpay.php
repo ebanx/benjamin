@@ -3,7 +3,8 @@ namespace Ebanx\Benjamin\Services\Gateways;
 
 class Webpay extends Flow
 {
-    protected function getFlowMethod(){
+    protected function getFlowMethod()
+    {
         return 'webpay';
     }
 }
