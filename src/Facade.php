@@ -122,11 +122,19 @@ class Facade
     }
 
     /**
-     * @return Gateways\Flow
+     * @return Gateways\Webpay
      */
     public function webpay()
     {
         return new Gateways\Webpay($this->config);
+    }
+
+    /**
+     * @return Gateways\Multicaja
+     */
+    public function multicaja()
+    {
+        return new Gateways\Multicaja($this->config);
     }
 
     /**
