@@ -135,7 +135,6 @@ class Facade
     public function multicaja()
     {
         return new Gateways\Multicaja($this->config);
-
     }
 
     /**
