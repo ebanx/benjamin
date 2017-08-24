@@ -18,7 +18,7 @@ class MulticajaTest extends GatewayTestCase
 
         $factory = new BuilderFactory('es_CL');
         $payment = $factory->payment()->build();
-        $gateway = new MulticajaTests($this->config, $client);
+        $gateway = new MulticajaForTests($this->config, $client);
 
         $result = $gateway->create($payment);
 
@@ -62,7 +62,7 @@ class MulticajaTest extends GatewayTestCase
     }
 }
 
-class MulticajaTests extends Multicaja
+class MulticajaForTests extends Multicaja
 {
     public function __construct(Config $config, Client $client)
     {
