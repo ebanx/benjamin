@@ -1,10 +1,10 @@
 <?php
 namespace Ebanx\Benjamin\Services\Gateways;
 
-class Webpay extends Flow
+class Multicaja extends Flow
 {
     protected function getFlowMethod()
     {
-        return 'webpay';
+        return 'multicaja';
     }
 }

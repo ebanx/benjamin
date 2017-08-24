@@ -130,6 +130,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Multicaja
+     */
+    public function multicaja()
+    {
+        return new Gateways\Multicaja($this->config);
+    }
+
+    /**
      * @return Gateways\PagoEfectivo
      */
     public function pagoEfectivo()
