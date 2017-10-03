@@ -78,7 +78,8 @@ abstract class BaseGateway
         $siteCurrencyMatchesCountry = $siteCurrency === $localCurrency;
 
         return $countryIsAccepted
-            && ($siteCurrencyIsGlobal || $siteCurrencyMatchesCountry);
+            && ($siteCurrencyIsGlobal || $siteCurrencyMatchesCountry)
+            && self::acceptsCurrency($siteCurrency);
     }
 
     public static function acceptsCurrency($currency)

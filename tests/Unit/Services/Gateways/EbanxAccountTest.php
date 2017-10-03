@@ -53,7 +53,7 @@ class EbanxAccountTest extends GatewayTestCase
             'baseCurrency' => Currency::EUR
         )));
 
-        $this->assertCurrencyNotAccepted($gateway, Currency::EUR);
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()

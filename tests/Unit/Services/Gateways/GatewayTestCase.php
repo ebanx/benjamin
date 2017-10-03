@@ -49,6 +49,7 @@ class GatewayTestCase extends TestCase
             $this->assertFalse($gateway->isAvailableForCountry($country));
         }
     }
+
     protected function assertNotAvailableAnywhere(BaseGateway $gateway)
     {
         $this->assertFalse($gateway->isAvailableForCountry(Country::BRAZIL));
@@ -56,11 +57,6 @@ class GatewayTestCase extends TestCase
         $this->assertFalse($gateway->isAvailableForCountry(Country::MEXICO));
         $this->assertFalse($gateway->isAvailableForCountry(Country::PERU));
         $this->assertFalse($gateway->isAvailableForCountry(Country::COLOMBIA));
-    }
-
-    protected function assertCurrencyNotAccepted(BaseGateway $gateway, $currency)
-    {
-        $this->assertFalse($gateway->acceptsCurrency($currency));
     }
 
     protected function getMockedClient($response)
