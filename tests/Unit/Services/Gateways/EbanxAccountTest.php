@@ -47,6 +47,15 @@ class EbanxAccountTest extends GatewayTestCase
         ));
     }
 
+    public function testAvailabilityWithEUR()
+    {
+        $gateway = new EbanxAccount(new Config(array(
+            'baseCurrency' => Currency::EUR
+        )));
+
+        $this->assertNotAvailableAnywhere($gateway);
+    }
+
     public function testAvailabilityWithWrongLocalCurrency()
     {
         $gateway = new EbanxAccount(new Config(array(

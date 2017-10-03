@@ -49,6 +49,7 @@ class GatewayTestCase extends TestCase
             $this->assertFalse($gateway->isAvailableForCountry($country));
         }
     }
+
     protected function assertNotAvailableAnywhere(BaseGateway $gateway)
     {
         $this->assertFalse($gateway->isAvailableForCountry(Country::BRAZIL));
