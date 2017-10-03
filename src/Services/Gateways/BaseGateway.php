@@ -73,10 +73,10 @@ abstract class BaseGateway
         $globalCurrencies = Currency::globalCurrencies();
         $localCurrency = Currency::localForCountry($country);
 
-        $countryIsAccepted = $this->acceptsCountry($country);
+        $countryIsAccepted = static::acceptsCountry($country);
+        $currencyIsAccepted = static::acceptsCurrency($siteCurrency);
         $siteCurrencyIsGlobal = in_array($siteCurrency, $globalCurrencies);
         $siteCurrencyMatchesCountry = $siteCurrency === $localCurrency;
-        $currencyIsAccepted = self::acceptsCurrency($siteCurrency);
 
         return $countryIsAccepted
             && $currencyIsAccepted
