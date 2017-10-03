@@ -58,6 +58,11 @@ class GatewayTestCase extends TestCase
         $this->assertFalse($gateway->isAvailableForCountry(Country::COLOMBIA));
     }
 
+    protected function assertCurrencyNotAccepted(BaseGateway $gateway, $currency)
+    {
+        $this->assertFalse($gateway->acceptsCurrency($currency));
+    }
+
     protected function getMockedClient($response)
     {
         return new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $response));
