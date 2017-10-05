@@ -45,6 +45,14 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function baloto()
+    {
+        $this->instance->type = 'baloto';
+        $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
+
+        return $this;
+    }
+
     public function creditCard($instalmentNumber = 1)
     {
         $this->instance->type = 'creditcard';
