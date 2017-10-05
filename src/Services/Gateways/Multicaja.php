@@ -1,10 +1,31 @@
 <?php
 namespace Ebanx\Benjamin\Services\Gateways;
 
-class Multicaja extends Flow
+use Ebanx\Benjamin\Models\Payment;
+use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Currency;
+use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
+
+class Multicaja extends BaseGateway
 {
-    protected function getFlowMethod()
+    protected static function getEnabledCountries()
     {
-        return 'multicaja';
+        return array(Country::CHILE);
+    }
+    protected static function getEnabledCurrencies()
+    {
+        return array(
+            Currency::CLP,
+            Currency::USD,
+            Currency::EUR
+        );
+    }
+
+    protected function getPaymentData(Payment $payment)
+    {
+        $payment->type = "multicaja";
+
+        $adapter = new RequestAdapter($payment, $this->config);
+        return $adapter->transform();
     }
 }
