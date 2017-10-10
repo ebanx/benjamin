@@ -233,6 +233,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\OtrosCupones()
+     */
+    public function otrosCupones()
+    {
+        return new Gateways\OtrosCupones($this->config);
+    }
+
+    /**
      * @return PaymentInfo
      */
     public function paymentInfo()
