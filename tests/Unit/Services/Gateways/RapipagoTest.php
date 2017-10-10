@@ -13,8 +13,8 @@ class RapipagoTest extends GatewayTestCase
 {
     public function testPayment()
     {
-        $balotoSuccessfulResponse = $this->getRapipagoSuccessfulResponseJson();
-        $client = $this->getMockedClient($balotoSuccessfulResponse);
+        $rapipagoSuccessfulResponse = $this->getRapipagoSuccessfulResponseJson();
+        $client = $this->getMockedClient($rapipagoSuccessfulResponse);
 
         $factory = new BuilderFactory('es_AR');
         $payment = $factory->payment()->build();
