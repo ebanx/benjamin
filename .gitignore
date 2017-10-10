@@ -1,3 +1,5 @@
 /vendor/
+/report/
 /.env
+/clover.xml
 .php_cs.cache
