@@ -233,6 +233,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Pagofacil
+     */
+    public function pagofacil()
+    {
+        return new Gateways\Pagofacil($this->config);
+    }
+
+    /**
      * @return Gateways\OtrosCupones()
      */
     public function otrosCupones()
