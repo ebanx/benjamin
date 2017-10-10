@@ -225,6 +225,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Rapipago
+     */
+    public function rapipago()
+    {
+        return new Gateways\Rapipago($this->config);
+    }
+
+    /**
      * @return PaymentInfo
      */
     public function paymentInfo()
