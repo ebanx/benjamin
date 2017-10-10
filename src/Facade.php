@@ -114,6 +114,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Spei
+     */
+    public function spei()
+    {
+        return new Gateways\Spei($this->config);
+    }
+
+    /**
      * @return Gateways\Sencillito
      */
     public function sencillito()
