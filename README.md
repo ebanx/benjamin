@@ -61,10 +61,10 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :arrows_clockwise: SafetyPay
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
-	- [ ] Argentina
-		- [ ] :dollar: Rapipago
-		- [ ] :dollar: PagoFacil
-		- [ ] :dollar: Otros Cupones
+	- [X] Argentina
+		- [X] :dollar: Rapipago
+		- [X] :dollar: PagoFacil
+		- [X] :dollar: Otros Cupones
 - [X] Refund
 - [X] Payment Capture
 - [X] Payment by link
