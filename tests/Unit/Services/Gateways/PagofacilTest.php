@@ -105,6 +105,6 @@ class PagofacilForTests extends Pagofacil
     public function __construct(Config $config, Client $client = null)
     {
         parent::__construct($config);
-//        $this->client = $client;
+        $this->client = $client;
     }
 }
