@@ -1,5 +1,6 @@
 # Benjamin
 [![Build Status](https://travis-ci.org/ebanx/benjamin.svg?branch=master)](https://travis-ci.org/ebanx/benjamin)
+[![codecov](https://codecov.io/gh/ebanx/benjamin/branch/master/graph/badge.svg)](https://codecov.io/gh/ebanx/benjamin)
 [![StyleCI](https://styleci.io/repos/89406660/shield?branch=master)](https://styleci.io/repos/89406660)
 [![Latest Stable Version](https://poser.pugx.org/ebanx/benjamin/v/stable?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
 [![Total Downloads](https://poser.pugx.org/ebanx/benjamin/downloads?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
