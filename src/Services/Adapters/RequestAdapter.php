@@ -13,6 +13,7 @@ class RequestAdapter extends BaseAdapter
     protected $payment;
 
     private $countryCode = array(
+        Country::ARGENTINA => 'ar',
         Country::BRAZIL => 'br',
         Country::PERU => 'pe',
         Country::MEXICO => 'mx',

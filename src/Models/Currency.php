@@ -7,6 +7,7 @@ class Currency extends BaseModel
     const EUR = 'EUR';
     const BRL = 'BRL';
     const MXN = 'MXN';
+    const ARS = 'ARS';
     const CLP = 'CLP';
     const COP = 'COP';
     const PEN = 'PEN';
