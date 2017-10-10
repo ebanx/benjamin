@@ -9,6 +9,7 @@ install:
   - composer dump-autoload
   - cp .env.example .env
 script: composer test-all
+after_script: bash <(curl -s https://codecov.io/bash)
 cache:
   apt: true
   directories:
