@@ -1,6 +1,8 @@
 <?php
 namespace Ebanx\Benjamin\Services\Validators;
 
+use Ebanx\Benjamin\Models\Configs\Config;
+
 abstract class BaseValidator
 {
     protected $config;
@@ -29,7 +31,7 @@ abstract class BaseValidator
         $this->errors = array_merge($this->errors, $errors);
     }
 
-    private function addError($message)
+    protected function addError($message)
     {
         $this->errors[] = $message;
     }
