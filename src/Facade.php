@@ -194,21 +194,6 @@ class Facade
     }
 
     /**
-     * @param string $safetyPayType It must be 'Cash' or 'Online'
-     * @return Gateways\SafetyPay
-     * @throws \InvalidArgumentException
-     */
-    public function safetyPay($safetyPayType)
-    {
-        $safetyPayMethod = 'safetyPay' . ucfirst(strtolower($safetyPayType));
-        if (!method_exists($this, $safetyPayMethod)) {
-            throw new \InvalidArgumentException('Invalid SafetyPay type');
-        }
-
-        return call_user_func(array($this, $safetyPayMethod));
-    }
-
-    /**
      * @return Gateways\SafetyPayCash
      */
     public function safetyPayCash()
