@@ -62,11 +62,6 @@ abstract class BaseGateway
         return $body;
     }
 
-    public function exchange()
-    {
-        return $this->exchange;
-    }
-
     public function isAvailableForCountry($country)
     {
         $siteCurrency = $this->config->baseCurrency;
