@@ -38,13 +38,4 @@ class CaptureAdapter extends BaseAdapter
 
         return $transformed;
     }
-
-    public function transformCancel()
-    {
-        return array(
-            'integration_key' => $this->getIntegrationKey(),
-            'operation' => 'cancel',
-            'refund_id' => $this->data['refundId']
-        );
-    }
 }

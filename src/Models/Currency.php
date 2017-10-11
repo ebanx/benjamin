@@ -12,19 +12,6 @@ class Currency extends BaseModel
     const COP = 'COP';
     const PEN = 'PEN';
 
-    public static function all()
-    {
-        return array(
-            self::USD,
-            self::EUR,
-            self::BRL,
-            self::MXN,
-            self::CLP,
-            self::COP,
-            self::PEN
-        );
-    }
-
     public static function globalCurrencies()
     {
         return array(

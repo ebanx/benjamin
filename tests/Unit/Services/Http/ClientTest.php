@@ -36,6 +36,19 @@ class ClientTest extends TestCase
         $this->assertEquals($sandboxUrl, $defaultUrl);
     }
 
+    public function testLiveUrl()
+    {
+        $subject = new Client();
+
+        $sandboxUrl = $subject->inSandboxMode()->getUrl();
+        $this->assertTrue($subject->isSandbox());
+
+        $liveUrl = $subject->inLiveMode()->getUrl();
+        $this->assertFalse($subject->isSandbox());
+
+        $this->assertNotEquals($sandboxUrl, $liveUrl);
+    }
+
     public function testFakeRequest()
     {
         $text = '{"message":"This should be OK"}';
