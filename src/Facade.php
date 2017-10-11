@@ -8,6 +8,7 @@ use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Services\PaymentInfo;
 use Ebanx\Benjamin\Services\Exchange;
+use Ebanx\Benjamin\Services\Refund;
 
 class Facade
 {
@@ -247,5 +248,13 @@ class Facade
     public function exchange()
     {
         return new Exchange($this->config);
+    }
+
+    /**
+     * @return Refund
+     */
+    public function refund()
+    {
+        return new Refund($this->config);
     }
 }
