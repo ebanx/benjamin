@@ -52,6 +52,17 @@ class Config extends BaseModel implements AddableConfig
     public $redirectUrl = null;
 
     /**
+     * Defines if taxes are on merchant (true) or customer (false)
+     * respectively and adds it to price for latter case.
+     *
+     * DO NOT SET IT TO TRUE BEFORE TALKING TO YOUR EBANX REPRESENTATIVE
+     * OTHERWISE YOU WILL LOSE MONEY
+     *
+     * @var bool
+     */
+    public $taxesOnMerchant = false;
+
+    /**
      * Extra information for reports
      *
      * @var array
