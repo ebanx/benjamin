@@ -67,13 +67,11 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: Otros Cupones
 - [X] Refund
 - [X] Payment Capture
-- [X] Payment by link
+- [ ] Payment by link
 - [ ] Validator
 - [ ] Response Decorators
-- [ ] Notifications
 - [X] Interest Rates
 - [X] Taxes
-- [ ] Card brand detector
 
 :dollar: = Cash payment  
 :credit_card: = Card payment  
