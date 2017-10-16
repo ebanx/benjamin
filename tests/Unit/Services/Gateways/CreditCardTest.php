@@ -149,8 +149,6 @@ class CreditCardTest extends GatewayTestCase
     public function testPaymentTermsForCountryAndValue()
     {
         $usdToBrlRate = 3.4743;
-        $client = $this->getMockedClient($this->getExchangeRateSuccessfulResponseJsonWithRate($usdToBrlRate));
-
         $config = new Config([
             'baseCurrency' => Currency::USD
         ]);
@@ -163,7 +161,7 @@ class CreditCardTest extends GatewayTestCase
             $creditCardConfig->addInterest($i, 10);
         }
 
-        $gateway = new CreditCardForTests($config, $creditCardConfig, $client);
+        $gateway = $this->setupGateway($usdToBrlRate, $config, $creditCardConfig);
         $country = Country::BRAZIL;
 
         $value = 50.0;
@@ -189,6 +187,51 @@ class CreditCardTest extends GatewayTestCase
         for ($i = 6; $i < 9; $i++) {
             $this->assertInterestInPaymentTerm($paymentTerms[$i], $value, $interest);
         }
+    }
+
+    public function testPaymentTermsMerchantTaxFlagOn()
+    {
+        $usdToBrlRate = 3.4743;
+        $config = new Config([
+            'baseCurrency' => Currency::USD,
+            'taxesOnMerchant' => true
+        ]);
+
+        $gateway = $this->setupGateway($usdToBrlRate, $config);
+        $country = Country::BRAZIL;
+
+        $value = rand(100, 9999) / 100;
+        $localAmountWithoutTax = $value * $usdToBrlRate;
+
+        $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
+        $this->assertEquals($localAmountWithoutTax, $paymentTerms[0]->localAmountWithTax,
+            'Local amount should have no taxes');
+    }
+
+    public function testPaymentTermsMerchantTaxFlagOff()
+    {
+        $usdToBrlRate = 3.4743;
+        $config = new Config([
+            'baseCurrency' => Currency::USD,
+            'taxesOnMerchant' => false
+        ]);
+
+        $gateway = $this->setupGateway($usdToBrlRate, $config);
+        $country = Country::BRAZIL;
+
+        $value = 50.0;
+        $localAmountWithTax = $value * $usdToBrlRate * (1 + Config::IOF);
+
+        $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
+        $this->assertEquals($localAmountWithTax, $paymentTerms[0]->localAmountWithTax,
+            'Local amount should have taxes');
+    }
+
+    private function setupGateway($usdToBrlRate, $config, $creditCardConfig = null)
+    {
+        $client = $this->getMockedClient($this->getExchangeRateSuccessfulResponseJsonWithRate($usdToBrlRate));
+
+        return new CreditCardForTests($config, $creditCardConfig, $client);
     }
 
     private function getCreditCardSuccessfulResponseJson()
@@ -217,9 +260,14 @@ class CreditCardTest extends GatewayTestCase
 
 class CreditCardForTests extends CreditCard
 {
-    public function __construct(Config $config, CreditCardConfig $creditCardConfig, Client $client)
+    public function __construct(Config $config, CreditCardConfig $creditCardConfig = null, Client $client = null)
     {
         $this->client = $client;
+
+        if (empty($creditCardConfig)) {
+            $creditCardConfig = new CreditCardConfig();
+        }
+
         parent::__construct($config, $creditCardConfig);
     }
 }
