@@ -12,11 +12,9 @@ class BaseGatewayTest extends TestCase
     public function testGatewayOnLiveMode()
     {
         $config = new Config(['isSandbox' => false]);
-        $client = new Client();
+        $gateway = new TestGateway($config);
 
-        new TestGateway($config, $client);
-
-        $this->assertEquals(Client::MODE_LIVE, $client->getMode());
+        $this->assertEquals(Client::MODE_LIVE, $gateway->getClient()->getMode());
     }
 
     /**
@@ -55,10 +53,9 @@ class NoCountryNoCurrencyGateway extends BaseGateway
 
 class TestGateway extends BaseGateway
 {
-    public function __construct(Config $config, Client $client = null)
+    public function getClient()
     {
-        $this->client = $client;
-        parent::__construct($config);
+        return $this->client;
     }
 
     public function countryNotAvailable()
