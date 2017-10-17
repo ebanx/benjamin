@@ -2,14 +2,15 @@
 namespace Ebanx\Benjamin\Services\Gateways;
 
 use Ebanx\Benjamin\Models\Country;
+use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Models\Responses\PaymentTerm;
-use Ebanx\Benjamin\Models\Configs\Config;
-use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Adapters\CaptureAdapter;
 use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
 use Ebanx\Benjamin\Services\Exchange;
+use Ebanx\Benjamin\Services\Http\Client;
 
 class CreditCard extends BaseGateway
 {
@@ -36,10 +37,10 @@ class CreditCard extends BaseGateway
 
     private $interestRates;
 
-    public function __construct(Config $config, CreditCardConfig $creditCardConfig)
+    public function __construct(Config $config, CreditCardConfig $creditCardConfig, Client $client = null)
     {
-        parent::__construct($config);
         $this->creditCardConfig = $creditCardConfig;
+        parent::__construct($config, $client);
     }
 
     protected function getPaymentData(Payment $payment)

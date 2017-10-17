@@ -5,20 +5,11 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Http\Client;
+use Ebanx\Benjamin\Services\Http\HttpService;
 use Ebanx\Benjamin\Services\Exchange;
 
-abstract class BaseGateway
+abstract class BaseGateway extends HttpService
 {
-    /**
-     * @var Config
-     */
-    protected $config;
-
-    /**
-     * @var Client
-     */
-    protected $client;
-
     /**
      * @var Exchange
      */
@@ -36,15 +27,9 @@ abstract class BaseGateway
         throw new \BadMethodCallException('You should override this method.');
     }
 
-    public function __construct(Config $config)
+    public function __construct(Config $config, Client $client = null)
     {
-        $this->config = $config;
-        $this->client = $this->client ?: new Client();
-
-        if (!$this->config->isSandbox) {
-            $this->client->inLiveMode();
-        }
-
+        parent::__construct($config, $client);
         $this->exchange = new Exchange($this->config, $this->client);
     }
 

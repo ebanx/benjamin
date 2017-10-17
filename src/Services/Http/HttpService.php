@@ -1,12 +1,14 @@
 <?php
 namespace Ebanx\Benjamin\Services\Http;
 
+use Ebanx\Benjamin\Models\Configs\Config;
+
 abstract class HttpService
 {
     protected $config;
     protected $client;
 
-    public function __construct($config, $client = null)
+    public function __construct(Config $config, Client $client = null)
     {
         $this->config = $config;
         $this->client = $this->client ?: $client;
@@ -31,6 +33,7 @@ abstract class HttpService
             $this->client->inSandboxMode();
             return;
         }
+
         $this->client->inLiveMode();
     }
 }
