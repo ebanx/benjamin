@@ -39,8 +39,8 @@ class CreditCard extends BaseGateway
 
     public function __construct(Config $config, CreditCardConfig $creditCardConfig, Client $client = null)
     {
-        parent::__construct($config, $client);
         $this->creditCardConfig = $creditCardConfig;
+        parent::__construct($config, $client);
     }
 
     protected function getPaymentData(Payment $payment)
