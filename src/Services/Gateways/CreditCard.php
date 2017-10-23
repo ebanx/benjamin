@@ -71,8 +71,7 @@ class CreditCard extends BaseGateway
         $paymentTerms = array();
 
         $localCurrency = Currency::localForCountry($country);
-        $exchange = new Exchange($this->config, $this->client);
-        $localValueWithTax = $exchange->siteToLocalWithTax($localCurrency, $value);
+        $localValueWithTax = $this->exchange->siteToLocalWithTax($localCurrency, $value);
         $minInstalment = $this->getMinInstalmentValueForCountry($country);
 
         // HARD LIMIT
