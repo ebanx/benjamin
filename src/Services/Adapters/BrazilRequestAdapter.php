@@ -18,10 +18,14 @@ abstract class BrazilRequestAdapter extends RequestAdapter
 
     private function getResponsible()
     {
+        $birthdate = '';
+        if (isset($this->payment->responsible->birthdate)) {
+            $birthdate = $this->payment->responsible->birthdate->format('d/m/Y');
+        }
         return (object) array(
             'name' => $this->payment->responsible->name,
             'document' => $this->payment->responsible->document,
-            'birth_date' => $this->payment->responsible->birthdate->format('d/m/Y')
+            'birth_date' => $birthdate,
         );
     }
 }
