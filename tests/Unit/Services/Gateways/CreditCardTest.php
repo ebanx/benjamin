@@ -208,6 +208,17 @@ class CreditCardTest extends GatewayTestCase
             'Local amount should have no taxes');
     }
 
+    public function testPaymentTermsBelowMinimumAmount()
+    {
+        $country = Country::BRAZIL;
+        $value = CreditCardConfig::acquirerMinInstalmentValueForCurrency(Currency::localForCountry($country)) - 1;
+        $gateway = $this->setupGateway(1, new Config());
+
+        $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
+        $this->assertNotNull($paymentTerms[0],
+            'On spot payment should be allowed');
+    }
+
     public function testPaymentTermsMerchantTaxFlagOff()
     {
         $usdToBrlRate = 3.4743;

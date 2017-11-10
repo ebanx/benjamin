@@ -130,7 +130,8 @@ class CreditCard extends BaseGateway
 
         $interestRatio = 1 + (isset($interestRates[$instalment]) ? $interestRates[$instalment] / 100 : 0);
 
-        if ($localValueWithTax / $instalment * $interestRatio < $minimum) {
+        if ($instalment !== 1
+            && $localValueWithTax / $instalment * $interestRatio < $minimum) {
             return null;
         }
 
