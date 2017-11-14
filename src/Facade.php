@@ -9,9 +9,17 @@ use Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Services\PaymentInfo;
 use Ebanx\Benjamin\Services\Exchange;
 use Ebanx\Benjamin\Services\Refund;
+use Ebanx\Benjamin\Services\Http\Client as HttpClient;
 
 class Facade
 {
+    /**
+     * Mock this in your tests extending and using ClientForTests
+     * and any Engine you like (we provide EchoEngine)
+     * @var HttpClient
+     */
+    protected $httpClient;
+
     /**
      * @var Config
      */
@@ -82,7 +90,7 @@ class Facade
      */
     public function baloto()
     {
-        return new Gateways\Baloto($this->config);
+        return new Gateways\Baloto($this->config, $this->getHttpClient());
     }
 
     /**
@@ -90,7 +98,7 @@ class Facade
      */
     public function boleto()
     {
-        return new Gateways\Boleto($this->config);
+        return new Gateways\Boleto($this->config, $this->getHttpClient());
     }
 
     /**
@@ -103,7 +111,7 @@ class Facade
             $creditCardConfig = $this->creditCardConfig;
         }
 
-        return new Gateways\CreditCard($this->config, $creditCardConfig);
+        return new Gateways\CreditCard($this->config, $creditCardConfig, $this->getHttpClient());
     }
 
     /**
@@ -111,7 +119,7 @@ class Facade
      */
     public function oxxo()
     {
-        return new Gateways\Oxxo($this->config);
+        return new Gateways\Oxxo($this->config, $this->getHttpClient());
     }
 
     /**
@@ -119,7 +127,7 @@ class Facade
      */
     public function spei()
     {
-        return new Gateways\Spei($this->config);
+        return new Gateways\Spei($this->config, $this->getHttpClient());
     }
 
     /**
@@ -127,7 +135,7 @@ class Facade
      */
     public function sencillito()
     {
-        return new Gateways\Sencillito($this->config);
+        return new Gateways\Sencillito($this->config, $this->getHttpClient());
     }
 
     /**
@@ -135,7 +143,7 @@ class Facade
      */
     public function webpay()
     {
-        return new Gateways\Webpay($this->config);
+        return new Gateways\Webpay($this->config, $this->getHttpClient());
     }
 
     /**
@@ -143,7 +151,7 @@ class Facade
      */
     public function multicaja()
     {
-        return new Gateways\Multicaja($this->config);
+        return new Gateways\Multicaja($this->config, $this->getHttpClient());
     }
 
     /**
@@ -151,7 +159,7 @@ class Facade
      */
     public function pagoEfectivo()
     {
-        return new Gateways\PagoEfectivo($this->config);
+        return new Gateways\PagoEfectivo($this->config, $this->getHttpClient());
     }
 
     /**
@@ -159,7 +167,7 @@ class Facade
      */
     public function tef()
     {
-        return new Gateways\Tef($this->config);
+        return new Gateways\Tef($this->config, $this->getHttpClient());
     }
 
     /**
@@ -167,7 +175,7 @@ class Facade
      */
     public function ebanxAccount()
     {
-        return new Gateways\EbanxAccount($this->config);
+        return new Gateways\EbanxAccount($this->config, $this->getHttpClient());
     }
 
     /**
@@ -175,7 +183,7 @@ class Facade
      */
     public function eft()
     {
-        return new Gateways\Eft($this->config);
+        return new Gateways\Eft($this->config, $this->getHttpClient());
     }
 
     /**
@@ -183,7 +191,7 @@ class Facade
      */
     public function servipag()
     {
-        return new Gateways\Servipag($this->config);
+        return new Gateways\Servipag($this->config, $this->getHttpClient());
     }
 
     /**
@@ -191,7 +199,7 @@ class Facade
      */
     public function debitCard()
     {
-        return new Gateways\DebitCard($this->config);
+        return new Gateways\DebitCard($this->config, $this->getHttpClient());
     }
 
     /**
@@ -199,7 +207,7 @@ class Facade
      */
     public function safetyPayCash()
     {
-        return new Gateways\SafetyPayCash($this->config);
+        return new Gateways\SafetyPayCash($this->config, $this->getHttpClient());
     }
 
     /**
@@ -207,7 +215,7 @@ class Facade
      */
     public function safetyPayOnline()
     {
-        return new Gateways\SafetyPayOnline($this->config);
+        return new Gateways\SafetyPayOnline($this->config, $this->getHttpClient());
     }
 
     /**
@@ -215,7 +223,7 @@ class Facade
      */
     public function rapipago()
     {
-        return new Gateways\Rapipago($this->config);
+        return new Gateways\Rapipago($this->config, $this->getHttpClient());
     }
 
     /**
@@ -223,7 +231,7 @@ class Facade
      */
     public function pagofacil()
     {
-        return new Gateways\Pagofacil($this->config);
+        return new Gateways\Pagofacil($this->config, $this->getHttpClient());
     }
 
     /**
@@ -231,7 +239,7 @@ class Facade
      */
     public function otrosCupones()
     {
-        return new Gateways\OtrosCupones($this->config);
+        return new Gateways\OtrosCupones($this->config, $this->getHttpClient());
     }
 
     /**
@@ -239,7 +247,7 @@ class Facade
      */
     public function paymentInfo()
     {
-        return new PaymentInfo($this->config);
+        return new PaymentInfo($this->config, $this->getHttpClient());
     }
 
     /**
@@ -247,7 +255,7 @@ class Facade
      */
     public function exchange()
     {
-        return new Exchange($this->config);
+        return new Exchange($this->config, $this->getHttpClient());
     }
 
     /**
@@ -255,6 +263,14 @@ class Facade
      */
     public function refund()
     {
-        return new Refund($this->config);
+        return new Refund($this->config, $this->getHttpClient());
+    }
+
+    private function getHttpClient()
+    {
+        if (is_null($this->httpClient)) {
+            $this->httpClient = new HttpClient();
+        }
+        return $this->httpClient;
     }
 }
