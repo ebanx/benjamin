@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 
 class DebitCard extends BaseGateway
 {
@@ -28,7 +28,7 @@ class DebitCard extends BaseGateway
         $payment->type = "debitcard";
         $payment->card->type = 'debitcard';
 
-        $adapter = new CardRequestAdapter($payment, $this->config);
+        $adapter = new CardPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }

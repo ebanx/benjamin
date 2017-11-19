@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
 use Ebanx\Benjamin\Services\Traits\Printable;
 
 class PagoEfectivo extends BaseGateway
@@ -29,7 +29,7 @@ class PagoEfectivo extends BaseGateway
     {
         $payment->type = "pagoEfectivo";
 
-        $adapter = new CashRequestAdapter($payment, $this->config);
+        $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 

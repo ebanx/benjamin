@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-class TefRequestAdapter extends BrazilRequestAdapter
+class TefPaymentAdapter extends BrazilPaymentAdapter
 {
     protected function transformPayment()
     {

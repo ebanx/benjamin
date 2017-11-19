@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\TefRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\TefPaymentAdapter;
 
 class Tef extends BaseGateway
 {
@@ -25,7 +25,7 @@ class Tef extends BaseGateway
     {
         $payment->type = "tef";
 
-        $adapter = new TefRequestAdapter($payment, $this->config);
+        $adapter = new TefPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }

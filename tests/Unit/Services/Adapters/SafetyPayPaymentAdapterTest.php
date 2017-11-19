@@ -1,12 +1,12 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
-use Ebanx\Benjamin\Services\Adapters\SafetyPayRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\SafetyPayPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class SafetyPayRequestAdapterTest extends RequestAdapterTest
+class SafetyPayPaymentAdapterTest extends PaymentAdapterTest
 {
     public function testJsonSchema()
     {
@@ -16,11 +16,11 @@ class SafetyPayRequestAdapterTest extends RequestAdapterTest
         $factory = new BuilderFactory('pt_BR');
         $payment = $factory->payment()->build();
 
-        $adapter = new SafetyPayRequestAdapter($payment, $config);
+        $adapter = new SafetyPayPaymentAdapter($payment, $config);
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, $this->getSchema(['requestSchema']));
+        $validator->validate($result, $this->getSchema(['paymentSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
@@ -34,7 +34,7 @@ class SafetyPayRequestAdapterTest extends RequestAdapterTest
         $payment = $factory->payment()->build();
         $payment->type = 'SafetyPayCash';
 
-        $adapter = new SafetyPayRequestAdapter($payment, $config);
+        $adapter = new SafetyPayPaymentAdapter($payment, $config);
         $result = $adapter->transform();
 
         $this->assertEquals('safetypay-cash', strtolower($result->payment->payment_type_code));
@@ -49,7 +49,7 @@ class SafetyPayRequestAdapterTest extends RequestAdapterTest
         $payment = $factory->payment()->build();
         $payment->type = 'SafetyPayOnline';
 
-        $adapter = new SafetyPayRequestAdapter($payment, $config);
+        $adapter = new SafetyPayPaymentAdapter($payment, $config);
         $result = $adapter->transform();
 
         $this->assertEquals('safetypay-online', strtolower($result->payment->payment_type_code));

@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-class CashRequestAdapter extends RequestAdapter
+class CashPaymentAdapter extends PaymentAdapter
 {
     public function transform()
     {

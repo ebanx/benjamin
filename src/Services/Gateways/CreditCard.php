@@ -8,7 +8,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Models\Responses\PaymentTerm;
 use Ebanx\Benjamin\Services\Adapters\CaptureAdapter;
-use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 use Ebanx\Benjamin\Services\Exchange;
 use Ebanx\Benjamin\Services\Http\Client;
 
@@ -49,7 +49,7 @@ class CreditCard extends BaseGateway
 
         $payment->type = $payment->card->type;
 
-        $adapter = new CardRequestAdapter($payment, $this->config);
+        $adapter = new CardPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 

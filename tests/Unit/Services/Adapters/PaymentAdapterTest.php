@@ -3,12 +3,12 @@ namespace Tests\Unit\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Currency;
-use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;
 use JsonSchema;
 
-class RequestAdapterTest extends TestCase
+class PaymentAdapterTest extends TestCase
 {
     public function testJsonSchema()
     {
@@ -22,7 +22,7 @@ class RequestAdapterTest extends TestCase
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, $this->getSchema('requestSchema'));
+        $validator->validate($result, $this->getSchema('paymentSchema'));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
@@ -140,7 +140,7 @@ class RequestAdapterTest extends TestCase
     }
 }
 
-class FakeAdapter extends RequestAdapter
+class FakeAdapter extends PaymentAdapter
 {
     public function getIntegrationKey()
     {

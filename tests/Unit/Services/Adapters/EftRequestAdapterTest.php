@@ -1,12 +1,12 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
-use Ebanx\Benjamin\Services\Adapters\EftRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\EftPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class EftRequestAdapterTest extends RequestAdapterTest
+class EftPaymentAdapterTest extends PaymentAdapterTest
 {
     public function testJsonSchema()
     {
@@ -16,11 +16,11 @@ class EftRequestAdapterTest extends RequestAdapterTest
         $factory = new BuilderFactory('es_CO');
         $payment = $factory->payment()->eft()->build();
 
-        $adapter = new EftRequestAdapter($payment, $config);
+        $adapter = new EftPaymentAdapter($payment, $config);
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, $this->getSchema(['requestSchema']));
+        $validator->validate($result, $this->getSchema(['paymentSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }

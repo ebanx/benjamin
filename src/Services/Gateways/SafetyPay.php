@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\SafetyPayRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\SafetyPayPaymentAdapter;
 
 abstract class SafetyPay extends BaseGateway
 {
@@ -28,7 +28,7 @@ abstract class SafetyPay extends BaseGateway
     {
         $payment->type = $this->getPaymentType();
 
-        $adapter = new SafetyPayRequestAdapter($payment, $this->config);
+        $adapter = new SafetyPayPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }
