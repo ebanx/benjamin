@@ -12,7 +12,7 @@ use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 use Ebanx\Benjamin\Services\Exchange;
 use Ebanx\Benjamin\Services\Http\Client;
 
-class CreditCard extends BaseGateway
+class CreditCard extends DirectGateway
 {
     protected static function getEnabledCountries()
     {

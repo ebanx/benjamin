@@ -7,7 +7,7 @@ use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
 use Ebanx\Benjamin\Services\Traits\Printable;
 
-class Pagofacil extends BaseGateway
+class Pagofacil extends DirectGateway
 {
     use Printable;
 

@@ -7,7 +7,7 @@ use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\BoletoPaymentAdapter;
 use Ebanx\Benjamin\Services\Traits\Printable;
 
-class Boleto extends BaseGateway
+class Boleto extends DirectGateway
 {
     use Printable;
 

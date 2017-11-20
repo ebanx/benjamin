@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\TefPaymentAdapter;
 
-class Tef extends BaseGateway
+class Tef extends DirectGateway
 {
     protected static function getEnabledCountries()
     {
