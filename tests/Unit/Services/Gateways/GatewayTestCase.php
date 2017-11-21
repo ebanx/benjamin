@@ -33,6 +33,7 @@ class GatewayTestCase extends TestCase
     protected function assertAvailableForCountries(BaseGateway $gateway, $countries)
     {
         $allCountries = array(
+            Country::ARGENTINA,
             Country::BRAZIL,
             Country::CHILE,
             Country::MEXICO,

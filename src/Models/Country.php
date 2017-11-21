@@ -13,6 +13,7 @@ class Country extends BaseModel
     public static function all()
     {
         return array(
+            self::ARGENTINA,
             self::BRAZIL,
             self::CHILE,
             self::COLOMBIA,
