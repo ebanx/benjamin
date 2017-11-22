@@ -50,7 +50,7 @@ class Exchange extends HttpService
      * @param string $fromCurrency
      * @param string $toCurrency
      *
-     * @return int
+     * @return float
      */
     public function fetchRate($fromCurrency, $toCurrency)
     {
