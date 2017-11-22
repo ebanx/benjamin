@@ -1,12 +1,12 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-class EftRequestAdapter extends RequestAdapter
+class SafetyPayPaymentAdapter extends PaymentAdapter
 {
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();
-        $transformed->eft_code = $this->payment->bankCode;
+        $transformed->payment_type_code = substr_replace($this->payment->type, '-', 9, 0);
 
         return $transformed;
     }

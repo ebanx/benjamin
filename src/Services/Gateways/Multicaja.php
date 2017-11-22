@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
-use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 
 class Multicaja extends BaseGateway
 {
@@ -25,7 +25,7 @@ class Multicaja extends BaseGateway
     {
         $payment->type = "multicaja";
 
-        $adapter = new RequestAdapter($payment, $this->config);
+        $adapter = new PaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }

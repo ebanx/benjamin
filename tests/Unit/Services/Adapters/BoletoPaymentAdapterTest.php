@@ -1,12 +1,12 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
-use Ebanx\Benjamin\Services\Adapters\CardRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\BoletoPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
 use Ebanx\Benjamin\Models\Configs\Config;
 
-class CardRequestAdapterTest extends RequestAdapterTest
+class BoletoPaymentAdapterTest extends PaymentAdapterTest
 {
     public function testJsonSchema()
     {
@@ -14,13 +14,13 @@ class CardRequestAdapterTest extends RequestAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->creditCard()->businessPerson()->build();
+        $payment = $factory->payment()->boleto()->businessPerson()->build();
 
-        $adapter = new CardRequestAdapter($payment, $config);
+        $adapter = new BoletoPaymentAdapter($payment, $config);
         $result = $adapter->transform();
 
         $validator = new JsonSchema\Validator;
-        $validator->validate($result, $this->getSchema(['requestSchema', 'brazilRequestSchema', 'cardRequestSchema']));
+        $validator->validate($result, $this->getSchema(['paymentSchema', 'brazilPaymentSchema', 'cashPaymentSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }

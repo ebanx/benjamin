@@ -5,7 +5,7 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Payment;
 
-class RequestAdapter extends BaseAdapter
+class PaymentAdapter extends BaseAdapter
 {
     /**
      * @var Payment

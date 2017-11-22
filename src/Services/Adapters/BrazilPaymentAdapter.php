@@ -1,7 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
-abstract class BrazilRequestAdapter extends RequestAdapter
+abstract class BrazilPaymentAdapter extends PaymentAdapter
 {
     protected function transformPayment()
     {

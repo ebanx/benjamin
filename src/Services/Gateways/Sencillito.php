@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CashRequestAdapter;
+use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
 
 class Sencillito extends BaseGateway
 {
@@ -25,7 +25,7 @@ class Sencillito extends BaseGateway
     {
         $payment->type = "sencillito";
 
-        $adapter = new CashRequestAdapter($payment, $this->config);
+        $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }
