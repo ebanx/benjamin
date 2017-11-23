@@ -26,10 +26,30 @@ class Request extends BaseModel
     /**
      * @var string
      */
-    public $orderNumber;
+    public $name = "";
+
+    /**
+     * @var string
+     */
+    public $orderNumber = "";
 
     /**
      * @var array
      */
     public $userValues = array();
+
+    /**
+     * @var string
+     */
+    public $type = "_all";
+
+    /**
+     * @var int
+     */
+    public $maxInstalments = 12;
+
+    /**
+     * @var int
+     */
+    public $minInstalments = 1;
 }

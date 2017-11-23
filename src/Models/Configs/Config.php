@@ -31,7 +31,7 @@ class Config extends BaseModel implements AddableConfig
 
     /**
      * Sets the site default currency ISO code.
-     * (BRL, USD, EUR, COP, MXN, CLP, PEN)
+     * @see models/Currency.php
      *
      * @var string
      */

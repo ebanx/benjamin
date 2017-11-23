@@ -29,6 +29,11 @@ class BuilderFactory
         return new PaymentBuilder($this->setupFaker(), $instance);
     }
 
+    public function request(Request $instance = null)
+    {
+        return new RequestBuilder($this->setupFaker(), $instance);
+    }
+
     /**
      * @param string $lang
      *
@@ -55,6 +60,7 @@ class BuilderFactory
             $this->faker->addProvider(new Providers\Item($this->faker));
             $this->faker->addProvider(new Providers\Payment($this->faker));
             $this->faker->addProvider(new Providers\Card($this->faker));
+            $this->faker->addProvider(new Providers\Request($this->faker));
 
             $personProviderClass = $localProviderDir.'\Person';
             $this->faker->addProvider(new $personProviderClass($this->faker));

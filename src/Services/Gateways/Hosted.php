@@ -27,6 +27,6 @@ class Hosted extends BaseGateway
 
     public function create(Request $request)
     {
-        $this->client->request($this->getPaymentData($payment));
+        return $this->client->request($this->getPaymentData($request));
     }
 }

@@ -12,15 +12,6 @@ class PaymentAdapter extends BaseAdapter
      */
     protected $payment;
 
-    private $countryCode = array(
-        Country::ARGENTINA => 'ar',
-        Country::BRAZIL => 'br',
-        Country::PERU => 'pe',
-        Country::MEXICO => 'mx',
-        Country::COLOMBIA => 'co',
-        Country::CHILE => 'cl'
-    );
-
     public function __construct(Payment $payment, Config $config)
     {
         $this->payment = $payment;

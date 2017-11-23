@@ -1,0 +1,89 @@
+{
+  "type": "object",
+  "properties": {
+    "integration_key": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "country": {
+      "type": "string",
+      "length": 2,
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "phone_number": {
+      "type": "string",
+      "maxLength": 15,
+      "required": true
+    },
+    "sub_acc_name": {
+      "type": "string",
+      "maxLength": 32
+    },
+    "sub_acc_image_url": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "email": {
+      "type": "string",
+      "maxLength": 100,
+      "required": true
+    },
+    "currency_code": {
+      "type": "string",
+      "length": 3,
+      "required": true
+    },
+    "amount": {
+      "type": "number",
+      "required": true
+    },
+    "merchant_payment_code": {
+      "type": "string",
+      "maxLength": 40,
+      "required": true
+    },
+    "order_number": {
+      "type": "string",
+      "maxLength": 40
+    },
+    "payment_type_code": {
+      "type": "string",
+      "maxLength": 32,
+      "required": true
+    },
+    "instalments": {
+      "type": "string",
+      "maxLength": 5
+    },
+    "notification_url": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "user_value_1": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "user_value_2": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "user_value_3": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "user_value_4": {
+      "type": "string",
+      "maxLength": 20
+    },
+    "user_value_5": {
+      "type": "string",
+      "maxLength": 20
+    }
+  }
+}
