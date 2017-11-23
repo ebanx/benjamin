@@ -110,16 +110,7 @@ class BoletoTest extends GatewayTestCase
      */
     private function getTestGateway(Client $client = null)
     {
-        $gateway = new BoletoForTests($this->config, $client);
+        $gateway = new Boleto($this->config, $client);
         return $gateway;
-    }
-}
-
-class BoletoForTests extends Boleto
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }

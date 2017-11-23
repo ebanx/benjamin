@@ -95,16 +95,7 @@ class RapipagoTest extends GatewayTestCase
      */
     private function getTestGateway($client = null)
     {
-        $gateway = new RapipagoForTests($this->config, $client);
+        $gateway = new Rapipago($this->config, $client);
         return $gateway;
-    }
-}
-
-class RapipagoForTests extends Rapipago
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }

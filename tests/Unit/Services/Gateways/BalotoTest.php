@@ -95,16 +95,7 @@ class BalotoTest extends GatewayTestCase
      */
     private function getTestGateway($client = null)
     {
-        $gateway = new BalotoForTests($this->config, $client);
+        $gateway = new Baloto($this->config, $client);
         return $gateway;
-    }
-}
-
-class BalotoForTests extends Baloto
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }
