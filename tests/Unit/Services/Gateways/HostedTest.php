@@ -46,6 +46,6 @@ class HostedTest extends GatewayTestCase
 
     public function getHostedSuccessfulResponseJson()
     {
-        return '{"payment":{"hash":"'.md5(rand(1,999)).'"},"status":"SUCCESS"}';
+        return '{"payment":{"hash":"'.md5(rand(1, 999)).'"},"status":"SUCCESS"}';
     }
 }

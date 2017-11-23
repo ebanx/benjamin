@@ -37,5 +37,5 @@ abstract class BaseAdapter
     /**
      * @return object
      */
-    public abstract function transform();
+    abstract public function transform();
 }
