@@ -46,7 +46,13 @@ class Exchange extends HttpService
         return $this->fetchRate($localCurrency, $this->config->baseCurrency) * $localValue;
     }
 
-    private function fetchRate($fromCurrency, $toCurrency)
+    /**
+     * @param string $fromCurrency
+     * @param string $toCurrency
+     *
+     * @return float
+     */
+    public function fetchRate($fromCurrency, $toCurrency)
     {
         if ($fromCurrency === $toCurrency) {
             return 1;
