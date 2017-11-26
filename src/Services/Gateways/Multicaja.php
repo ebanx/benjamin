@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 
-class Multicaja extends BaseGateway
+class Multicaja extends DirectGateway
 {
     protected static function getEnabledCountries()
     {

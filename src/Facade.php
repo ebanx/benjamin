@@ -235,11 +235,19 @@ class Facade
     }
 
     /**
-     * @return Gateways\OtrosCupones()
+     * @return Gateways\OtrosCupones
      */
     public function otrosCupones()
     {
         return new Gateways\OtrosCupones($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Hosted
+     */
+    public function hosted()
+    {
+        return new Gateways\Hosted($this->config, $this->getHttpClient());
     }
 
     /**

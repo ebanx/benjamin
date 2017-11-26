@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 
-class DebitCard extends BaseGateway
+class DebitCard extends DirectGateway
 {
     protected static function getEnabledCountries()
     {

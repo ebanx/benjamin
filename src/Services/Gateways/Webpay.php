@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 
-class Webpay extends BaseGateway
+class Webpay extends DirectGateway
 {
     protected static function getEnabledCountries()
     {
