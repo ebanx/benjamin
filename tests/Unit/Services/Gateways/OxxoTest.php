@@ -95,16 +95,7 @@ class OxxoTest extends GatewayTestCase
      */
     private function getTestGateway(Client $client = null)
     {
-        $gateway = new OxxoForTests($this->config, $client);
+        $gateway = new Oxxo($this->config, $client);
         return $gateway;
-    }
-}
-
-class OxxoForTests extends Oxxo
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }

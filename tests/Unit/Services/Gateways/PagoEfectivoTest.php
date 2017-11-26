@@ -95,16 +95,7 @@ class PagoEfectivoTest extends GatewayTestCase
      */
     private function getTestGateway(Client $client = null)
     {
-        $gateway = new PagoEfectivoForTests($this->config, $client);
+        $gateway = new PagoEfectivo($this->config, $client);
         return $gateway;
-    }
-}
-
-class PagoEfectivoForTests extends PagoEfectivo
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }
