@@ -55,33 +55,33 @@ class RequestAdapterTest extends PaymentAdapterTest
         $factory = new BuilderFactory('pt_BR');
         $request = $factory->request()->build();
 
-        $expected = array(
+        $expected = [
             1 => 'from_tests',
             2 => 'DO NOT PAY',
-            5 => 'Benjamin'
-        );
+            5 => 'Benjamin',
+        ];
 
-        $request->userValues = array(
+        $request->userValues = [
             1 => 'Override me',
-            2 => 'DO NOT PAY'
-        );
+            2 => 'DO NOT PAY',
+        ];
 
         $config = new Config([
-            'userValues' => array(
-                1 => 'from_tests'
-            )
+            'userValues' => [
+                1 => 'from_tests',
+            ],
         ]);
 
         $adapter = new FakeRequestAdapter($request, $config);
         $result = $adapter->transform();
 
-        $resultValues = array_filter(array(
+        $resultValues = array_filter([
             1 => isset($result->user_value_1) ? $result->user_value_1 : null,
             2 => isset($result->user_value_2) ? $result->user_value_2 : null,
             3 => isset($result->user_value_3) ? $result->user_value_3 : null,
             4 => isset($result->user_value_4) ? $result->user_value_4 : null,
-            5 => isset($result->user_value_5) ? $result->user_value_5 : null
-        ));
+            5 => isset($result->user_value_5) ? $result->user_value_5 : null,
+        ]);
 
         $this->assertEquals($expected, $resultValues);
     }

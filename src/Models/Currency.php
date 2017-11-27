@@ -14,7 +14,7 @@ class Currency extends BaseModel
 
     public static function all()
     {
-        return array(
+        return [
             self::USD,
             self::EUR,
             self::BRL,
@@ -22,8 +22,8 @@ class Currency extends BaseModel
             self::ARS,
             self::CLP,
             self::COP,
-            self::PEN
-        );
+            self::PEN,
+        ];
     }
 
     public static function globalCurrencies()

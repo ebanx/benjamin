@@ -17,11 +17,14 @@ class RequestAdapter extends BaseAdapter
         parent::__construct($config);
     }
 
+    /**
+     * @return object
+     */
     public function transform()
     {
         $none = "-";
 
-        $result = array(
+        $result = [
             "integration_key" => $this->getIntegrationKey(),
             "name" => $this->request->name,
             "country" => $this->countryCode[$this->request->country],
@@ -32,14 +35,14 @@ class RequestAdapter extends BaseAdapter
             "merchant_payment_code" => $this->request->merchantPaymentCode,
             "order_number" => $this->request->orderNumber,
             "payment_type_code" => $this->request->type,
-            "instalments" => implode('-', array(
+            "instalments" => implode('-', [
                 $this->request->minInstalments,
-                $this->request->maxInstalments
-            )),
+                $this->request->maxInstalments,
+            ]),
             "notification_url" => $this->config->notificationUrl
                 ? $this->config->notificationUrl
-                : ""
-        );
+                : "",
+        ];
 
         $result = $this->transformUserValues($result);
 
@@ -51,7 +54,7 @@ class RequestAdapter extends BaseAdapter
         $userValues = array_replace(
             $this->request->userValues,
             $this->config->userValues,
-            array(5 => 'Benjamin')
+            [5 => 'Benjamin'],
         );
 
         for ($i = 1; $i <= 5; $i++) {
@@ -59,7 +62,7 @@ class RequestAdapter extends BaseAdapter
                 continue;
             }
 
-            $result['user_value_'.$i] = $userValues[$i];
+            $result['user_value_' . $i] = $userValues[$i];
         }
 
         return $result;

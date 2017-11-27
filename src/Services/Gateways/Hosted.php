@@ -9,6 +9,15 @@ use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
 
 class Hosted extends BaseGateway
 {
+    /**
+     * @param  Request $request
+     * @return array
+     */
+    public function create(Request $request)
+    {
+        return $this->client->request($this->getPaymentData($request));
+    }
+
     protected static function getEnabledCountries()
     {
         return Country::all();
@@ -23,10 +32,5 @@ class Hosted extends BaseGateway
     {
         $adapter = new RequestAdapter($request, $this->config);
         return $adapter->transform();
-    }
-
-    public function create(Request $request)
-    {
-        return $this->client->request($this->getPaymentData($request));
     }
 }

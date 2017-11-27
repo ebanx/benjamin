@@ -36,7 +36,7 @@ class Request extends BaseModel
     /**
      * @var array
      */
-    public $userValues = array();
+    public $userValues = [];
 
     /**
      * @var string
