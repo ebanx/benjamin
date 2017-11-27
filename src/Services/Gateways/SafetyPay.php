@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\SafetyPayPaymentAdapter;
 
-abstract class SafetyPay extends BaseGateway
+abstract class SafetyPay extends DirectGateway
 {
     abstract protected function getPaymentType();
 

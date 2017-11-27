@@ -21,7 +21,7 @@ class PaymentAdapterTest extends TestCase
         $adapter = new FakeAdapter($payment, $config);
         $result = $adapter->transform();
 
-        $validator = new JsonSchema\Validator;
+        $validator = new JsonSchema\Validator();
         $validator->validate($result, $this->getSchema('paymentSchema'));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));

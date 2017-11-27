@@ -15,8 +15,6 @@ abstract class BaseGateway extends HttpService
      */
     protected $exchange;
 
-    abstract protected function getPaymentData(Payment $payment);
-
     protected static function getEnabledCountries()
     {
         throw new \BadMethodCallException('You should override this method.');
@@ -33,20 +31,10 @@ abstract class BaseGateway extends HttpService
         $this->exchange = new Exchange($this->config, $this->client);
     }
 
-    public function create(Payment $payment)
-    {
-        $body = $this->client->payment($this->getPaymentData($payment));
-
-        return $body;
-    }
-
-    public function request(Payment $payment)
-    {
-        $body = $this->client->request($this->getPaymentData($payment));
-
-        return $body;
-    }
-
+    /**
+     * @param  $country string Country
+     * @return boolean
+     */
     public function isAvailableForCountry($country)
     {
         $siteCurrency = $this->config->baseCurrency;
@@ -63,11 +51,19 @@ abstract class BaseGateway extends HttpService
             && ($siteCurrencyIsGlobal || $siteCurrencyMatchesCountry);
     }
 
+    /**
+     * @param  $currency string Currency
+     * @return bool
+     */
     public static function acceptsCurrency($currency)
     {
         return in_array($currency, static::getEnabledCurrencies());
     }
 
+    /**
+     * @param  $country string Country
+     * @return bool
+     */
     public static function acceptsCountry($country)
     {
         return in_array($country, static::getEnabledCountries());

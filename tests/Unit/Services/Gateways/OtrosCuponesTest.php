@@ -95,16 +95,7 @@ class OtrosCuponesTest extends GatewayTestCase
      */
     private function getTestGateway($client = null)
     {
-        $gateway = new OtrosCuponesForTests($this->config, $client);
+        $gateway = new OtrosCupones($this->config, $client);
         return $gateway;
-    }
-}
-
-class OtrosCuponesForTests extends OtrosCupones
-{
-    public function __construct(Config $config, Client $client = null)
-    {
-        parent::__construct($config);
-        $this->client = $client;
     }
 }

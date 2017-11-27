@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
 
-class Sencillito extends BaseGateway
+class Sencillito extends DirectGateway
 {
     protected static function getEnabledCountries()
     {

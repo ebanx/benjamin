@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\EftPaymentAdapter;
 
-class Spei extends BaseGateway
+class Spei extends DirectGateway
 {
     protected static function getEnabledCountries()
     {

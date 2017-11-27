@@ -23,7 +23,7 @@ class CreditCardTest extends GatewayTestCase
 
         $factory = new BuilderFactory('pt_BR');
         $payment = $factory->payment()->creditCard()->businessPerson()->build();
-        $gateway = new CreditCardForTests($this->config, $creditCardConfig, $client);
+        $gateway = new CreditCard($this->config, $creditCardConfig, $client);
 
         $result = $gateway->create($payment);
 
@@ -38,7 +38,7 @@ class CreditCardTest extends GatewayTestCase
         $client = $this->getMockedClient($response);
 
         $creditCardConfig = new CreditCardConfig();
-        $gateway = new CreditCardForTests($this->config, $creditCardConfig, $client);
+        $gateway = new CreditCard($this->config, $creditCardConfig, $client);
 
         $result = $gateway->captureByHash('593edc391aca7d44c51928295946d95b24360f4afa61fb1d');
 
@@ -53,7 +53,7 @@ class CreditCardTest extends GatewayTestCase
         $client = $this->getMockedClient($response);
 
         $creditCardConfig = new CreditCardConfig();
-        $gateway = new CreditCardForTests($this->config, $creditCardConfig, $client);
+        $gateway = new CreditCard($this->config, $creditCardConfig, $client);
 
         $result = $gateway->captureByMerchantPaymentCode('43-b08597ff128f43a3335abf24ff3b5d08');
 
@@ -129,7 +129,7 @@ class CreditCardTest extends GatewayTestCase
         $usdToBrlRate = 3.4743;
         $client = $this->getMockedClient($this->getExchangeRateSuccessfulResponseJsonWithRate($usdToBrlRate));
 
-        $gateway = new CreditCardForTests($this->config, new CreditCardConfig(), $client);
+        $gateway = new CreditCard($this->config, new CreditCardConfig(), $client);
 
         $defaultMinInstalment = CreditCardConfig::acquirerMinInstalmentValueForCurrency(Currency::MXN);
         $country = Country::MEXICO;
@@ -137,7 +137,7 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertEquals($defaultMinInstalment, $minInstalment);
 
-        $gateway = new CreditCardForTests($this->config, new CreditCardConfig([
+        $gateway = new CreditCard($this->config, new CreditCardConfig([
             'minInstalmentAmount' => $defaultMinInstalment * 1.2
         ]), $client);
 
@@ -242,7 +242,10 @@ class CreditCardTest extends GatewayTestCase
     {
         $client = $this->getMockedClient($this->getExchangeRateSuccessfulResponseJsonWithRate($usdToBrlRate));
 
-        return new CreditCardForTests($config, $creditCardConfig, $client);
+        if (!$creditCardConfig) {
+            $creditCardConfig = new CreditCardConfig();
+        }
+        return new CreditCard($config, $creditCardConfig, $client);
     }
 
     private function getCreditCardSuccessfulResponseJson()
@@ -266,19 +269,5 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertEquals($interestRate !== 0, $paymentTerm->hasInterests, $hasInterestFailMessage);
         $this->assertEquals($originalValue, $crossCheck, $interestCalcFailMessage);
-    }
-}
-
-class CreditCardForTests extends CreditCard
-{
-    public function __construct(Config $config, CreditCardConfig $creditCardConfig = null, Client $client = null)
-    {
-        $this->client = $client;
-
-        if (empty($creditCardConfig)) {
-            $creditCardConfig = new CreditCardConfig();
-        }
-
-        parent::__construct($config, $creditCardConfig);
     }
 }

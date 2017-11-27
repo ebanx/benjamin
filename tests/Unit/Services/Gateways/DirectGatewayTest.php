@@ -3,11 +3,11 @@ namespace Tests\Unit\Services\Gateways;
 
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Gateways\BaseGateway;
+use Ebanx\Benjamin\Services\Gateways\DirectGateway;
 use Ebanx\Benjamin\Services\Http\Client;
 use Tests\TestCase;
 
-class BaseGatewayTest extends TestCase
+class DirectGatewayTest extends TestCase
 {
     public function testGatewayOnLiveMode()
     {
@@ -43,7 +43,7 @@ class BaseGatewayTest extends TestCase
     }
 }
 
-class NoCountryNoCurrencyGateway extends BaseGateway
+class NoCountryNoCurrencyGateway extends DirectGateway
 {
     protected function getPaymentData(Payment $payment)
     {
@@ -51,7 +51,7 @@ class NoCountryNoCurrencyGateway extends BaseGateway
     }
 }
 
-class TestGateway extends BaseGateway
+class TestGateway extends DirectGateway
 {
     public function getClient()
     {
