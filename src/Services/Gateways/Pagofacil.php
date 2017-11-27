@@ -38,6 +38,6 @@ class Pagofacil extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/print/voucher/?hash=%s";
+        return 'https://%s.ebanx.com/print/voucher/?hash=%s';
     }
 }

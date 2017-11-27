@@ -23,7 +23,7 @@ class Tef extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "tef";
+        $payment->type = 'tef';
 
         $adapter = new TefPaymentAdapter($payment, $this->config);
         return $adapter->transform();

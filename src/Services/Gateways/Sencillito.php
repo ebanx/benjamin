@@ -23,7 +23,7 @@ class Sencillito extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "sencillito";
+        $payment->type = 'sencillito';
 
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();

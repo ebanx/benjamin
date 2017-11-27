@@ -24,7 +24,7 @@ class Eft extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "eft";
+        $payment->type = 'eft';
 
         $adapter = new EftPaymentAdapter($payment, $this->config);
         return $adapter->transform();

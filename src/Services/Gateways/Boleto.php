@@ -30,7 +30,7 @@ class Boleto extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/print/?hash=%s";
+        return 'https://%s.ebanx.com/print/?hash=%s';
     }
 
     /**
@@ -39,7 +39,7 @@ class Boleto extends DirectGateway
      */
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "boleto";
+        $payment->type = 'boleto';
 
         $adapter = new BoletoPaymentAdapter($payment, $this->config);
         return $adapter->transform();

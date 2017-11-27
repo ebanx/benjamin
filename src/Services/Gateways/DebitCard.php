@@ -25,7 +25,7 @@ class DebitCard extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "debitcard";
+        $payment->type = 'debitcard';
         $payment->card->type = 'debitcard';
 
         $adapter = new CardPaymentAdapter($payment, $this->config);

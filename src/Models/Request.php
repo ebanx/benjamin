@@ -26,12 +26,12 @@ class Request extends BaseModel
     /**
      * @var string
      */
-    public $name = "";
+    public $name = '';
 
     /**
      * @var string
      */
-    public $orderNumber = "";
+    public $orderNumber = '';
 
     /**
      * @var array
@@ -41,7 +41,7 @@ class Request extends BaseModel
     /**
      * @var string
      */
-    public $type = "_all";
+    public $type = '_all';
 
     /**
      * @var int

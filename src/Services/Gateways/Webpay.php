@@ -23,7 +23,7 @@ class Webpay extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "webpay";
+        $payment->type = 'webpay';
 
         $adapter = new PaymentAdapter($payment, $this->config);
         return $adapter->transform();

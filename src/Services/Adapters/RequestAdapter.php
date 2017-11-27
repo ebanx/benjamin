@@ -22,26 +22,26 @@ class RequestAdapter extends BaseAdapter
      */
     public function transform()
     {
-        $none = "-";
+        $none = '-';
 
         $result = [
-            "integration_key" => $this->getIntegrationKey(),
-            "name" => $this->request->name,
-            "country" => $this->countryCode[$this->request->country],
-            "phone_number" => $none,
-            "email" => $this->request->email,
-            "currency_code" => $this->config->baseCurrency,
-            "amount" => $this->request->amount,
-            "merchant_payment_code" => $this->request->merchantPaymentCode,
-            "order_number" => $this->request->orderNumber,
-            "payment_type_code" => $this->request->type,
-            "instalments" => implode('-', [
+            'integration_key' => $this->getIntegrationKey(),
+            'name' => $this->request->name,
+            'country' => $this->countryCode[$this->request->country],
+            'phone_number' => $none,
+            'email' => $this->request->email,
+            'currency_code' => $this->config->baseCurrency,
+            'amount' => $this->request->amount,
+            'merchant_payment_code' => $this->request->merchantPaymentCode,
+            'order_number' => $this->request->orderNumber,
+            'payment_type_code' => $this->request->type,
+            'instalments' => implode('-', [
                 $this->request->minInstalments,
                 $this->request->maxInstalments,
             ]),
-            "notification_url" => $this->config->notificationUrl
+            'notification_url' => $this->config->notificationUrl
                 ? $this->config->notificationUrl
-                : "",
+                : '',
         ];
 
         $result = $this->transformUserValues($result);

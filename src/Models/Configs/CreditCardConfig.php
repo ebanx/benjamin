@@ -51,8 +51,8 @@ class CreditCardConfig extends BaseModel implements AddableConfig
     public function addInterest($instalmentNumber, $rate)
     {
         $this->interestRates[] = new CreditCardInterestRateConfig([
-            "instalmentNumber" => $instalmentNumber,
-            "interestRate" => $rate,
+            'instalmentNumber' => $instalmentNumber,
+            'interestRate' => $rate,
         ]);
 
         return $this;

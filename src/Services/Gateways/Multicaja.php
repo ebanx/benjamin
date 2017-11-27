@@ -23,7 +23,7 @@ class Multicaja extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "multicaja";
+        $payment->type = 'multicaja';
 
         $adapter = new PaymentAdapter($payment, $this->config);
         return $adapter->transform();

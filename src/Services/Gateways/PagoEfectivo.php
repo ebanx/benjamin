@@ -27,7 +27,7 @@ class PagoEfectivo extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "pagoEfectivo";
+        $payment->type = 'pagoEfectivo';
 
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
@@ -38,6 +38,6 @@ class PagoEfectivo extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/cip/?hash=%s";
+        return 'https://%s.ebanx.com/cip/?hash=%s';
     }
 }

@@ -24,7 +24,7 @@ class Servipag extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "servipag";
+        $payment->type = 'servipag';
 
         $adapter = new EftPaymentAdapter($payment, $this->config);
         return $adapter->transform();

@@ -27,7 +27,7 @@ class Baloto extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "baloto";
+        $payment->type = 'baloto';
 
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
@@ -38,6 +38,6 @@ class Baloto extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/print/baloto/?hash=%s";
+        return 'https://%s.ebanx.com/print/baloto/?hash=%s';
     }
 }

@@ -20,17 +20,17 @@ class ExchangeTest extends TestCase
     public function setup()
     {
         $text = json_encode([
-            "currency_rate" => [
-                "code" => "USD",
-                "base_code" => "???",
-                "name" => "US Dollar to Something",
-                "rate" => self::TEST_RATE
+            'currency_rate' => [
+                'code' => 'USD',
+                'base_code' => '???',
+                'name' => 'US Dollar to Something',
+                'rate' => self::TEST_RATE,
             ],
-            "status" => "SUCCESS"
+            'status' => 'SUCCESS',
         ]);
 
         $this->config = new Config([
-            'baseCurrency' => Currency::USD
+            'baseCurrency' => Currency::USD,
         ]);
         $this->client = new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $text));
     }
