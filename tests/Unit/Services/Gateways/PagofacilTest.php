@@ -31,27 +31,27 @@ class PagofacilTest extends GatewayTestCase
     {
         $gateway = new Pagofacil($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Pagofacil(new Config(array(
-            'baseCurrency' => Currency::ARS
-        )));
+        $gateway = new Pagofacil(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Pagofacil(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Pagofacil(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

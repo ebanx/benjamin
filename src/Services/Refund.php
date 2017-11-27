@@ -15,11 +15,11 @@ class Refund extends HttpService
      */
     public function requestByHash($hash, $amount, $description)
     {
-        $data = array(
+        $data = [
             'hash' => $hash,
             'amount' => $amount,
-            'description' => $description
-        );
+            'description' => $description,
+        ];
 
         return $this->request($data);
     }
@@ -32,18 +32,18 @@ class Refund extends HttpService
      */
     public function requestByMerchantPaymentCode($merchantPaymentCode, $amount, $description)
     {
-        $data = array(
+        $data = [
             'merchantPaymentCode' => $merchantPaymentCode,
             'amount' => $amount,
-            'description' => $description
-        );
+            'description' => $description,
+        ];
 
         return $this->request($data);
     }
 
     public function cancel($refundId)
     {
-        $adapter = new RefundAdapter(array('refundId' => $refundId), $this->config);
+        $adapter = new RefundAdapter(['refundId' => $refundId], $this->config);
         $response = $this->client->refund($adapter->transformCancel());
 
         return $response;

@@ -31,27 +31,27 @@ class PagoEfectivoTest extends GatewayTestCase
     {
         $gateway = new PagoEfectivo($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::PERU
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::PERU,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new PagoEfectivo(new Config(array(
-            'baseCurrency' => Currency::PEN
-        )));
+        $gateway = new PagoEfectivo(new Config([
+            'baseCurrency' => Currency::PEN,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::PERU
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::PERU,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new PagoEfectivo(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new PagoEfectivo(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

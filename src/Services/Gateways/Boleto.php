@@ -13,16 +13,16 @@ class Boleto extends BaseGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::BRAZIL);
+        return [Country::BRAZIL];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::BRL,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     /**

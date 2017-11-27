@@ -39,7 +39,7 @@ class Facade
         $args = func_get_args();
         foreach ($args as $config) {
             $class = $config->getShortClassName();
-            call_user_func(array($this, 'with'.$class), $config);
+            call_user_func([$this, 'with'.$class], $config);
         }
 
         return $this;
@@ -79,7 +79,7 @@ class Facade
             throw new \InvalidArgumentException('Invalid payment type');
         }
 
-        $instance = call_user_func(array($this, $payment->type));
+        $instance = call_user_func([$this, $payment->type]);
         return $instance->create($payment);
     }
 

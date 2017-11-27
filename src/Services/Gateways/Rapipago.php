@@ -13,16 +13,16 @@ class Rapipago extends BaseGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::ARGENTINA);
+        return [Country::ARGENTINA];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::ARS,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)

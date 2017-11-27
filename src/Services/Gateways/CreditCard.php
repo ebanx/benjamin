@@ -16,21 +16,21 @@ class CreditCard extends BaseGateway
 {
     protected static function getEnabledCountries()
     {
-        return array(
+        return [
             Country::BRAZIL,
             Country::MEXICO,
-            Country::COLOMBIA
-        );
+            Country::COLOMBIA,
+        ];
     }
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::BRL,
             Currency::MXN,
             Currency::COP,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     private $creditCardConfig;
@@ -68,7 +68,7 @@ class CreditCard extends BaseGateway
     {
         $this->availableForCountryOrThrow($country);
 
-        $paymentTerms = array();
+        $paymentTerms = [];
 
         $localCurrency = Currency::localForCountry($country);
         $localValueWithTax = $this->exchange->siteToLocalWithTax($localCurrency, $value);
@@ -92,11 +92,11 @@ class CreditCard extends BaseGateway
      */
     public function captureByHash($hash, $amount = null, $merchantCaptureCode = null)
     {
-        $data = array(
+        $data = [
             'hash' => $hash,
             'amount' => $amount,
-            'merchantCaptureCode' => $merchantCaptureCode
-        );
+            'merchantCaptureCode' => $merchantCaptureCode,
+        ];
 
         $adapter = new CaptureAdapter($data, $this->config);
         $response = $this->client->capture($adapter->transform());
@@ -112,11 +112,11 @@ class CreditCard extends BaseGateway
      */
     public function captureByMerchantPaymentCode($merchantPaymentCode, $amount = null, $merchantCaptureCode = null)
     {
-        $data = array(
+        $data = [
             'merchantPaymentCode' => $merchantPaymentCode,
             'amount' => $amount,
-            'merchantCaptureCode' => $merchantCaptureCode
-        );
+            'merchantCaptureCode' => $merchantCaptureCode,
+        ];
 
         $adapter = new CaptureAdapter($data, $this->config);
         $response = $this->client->capture($adapter->transform());
@@ -149,7 +149,7 @@ class CreditCard extends BaseGateway
             return $this->interestRates;
         }
 
-        $this->interestRates = array();
+        $this->interestRates = [];
         foreach ($this->creditCardConfig->interestRates as $item) {
             $this->interestRates[$item->instalmentNumber] = $item->interestRate;
         }

@@ -43,7 +43,7 @@ class Client
     {
         return $this->engine->post(
             $this->getUrl() . $endpoint,
-            array('json' => $data)
+            ['json' => $data]
         )->json();
     }
 
@@ -56,7 +56,7 @@ class Client
     {
         return $this->engine->get(
             $this->getUrl() . $endpoint,
-            array('query' => $data)
+            ['query' => $data]
         )->json();
     }
 

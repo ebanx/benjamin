@@ -8,7 +8,7 @@ abstract class BaseModel
      *
      * @param $attributes array
      */
-    public function __construct($attributes = array())
+    public function __construct($attributes = [])
     {
         foreach ($attributes as $key => $value) {
             if (!property_exists($this, $key)) {

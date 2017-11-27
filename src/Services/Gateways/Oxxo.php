@@ -13,16 +13,16 @@ class Oxxo extends BaseGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::MEXICO);
+        return [Country::MEXICO];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::MXN,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)

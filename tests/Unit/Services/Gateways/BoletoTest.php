@@ -46,27 +46,27 @@ class BoletoTest extends GatewayTestCase
     {
         $gateway = new Boleto($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Boleto(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new Boleto(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Boleto(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Boleto(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

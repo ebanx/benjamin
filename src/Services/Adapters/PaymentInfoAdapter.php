@@ -31,9 +31,9 @@ class PaymentInfoAdapter extends BaseAdapter
 
     public function transform()
     {
-        return array(
+        return [
             'integration_key' => $this->getIntegrationKey(),
-            $this->type => $this->code
-        );
+            $this->type => $this->code,
+        ];
     }
 }

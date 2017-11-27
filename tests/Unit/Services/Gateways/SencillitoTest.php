@@ -31,27 +31,27 @@ class SencillitoTest extends GatewayTestCase
     {
         $gateway = new Sencillito($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Sencillito(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )));
+        $gateway = new Sencillito(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Sencillito(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new Sencillito(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

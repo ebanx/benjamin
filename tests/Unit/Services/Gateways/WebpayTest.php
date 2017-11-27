@@ -31,27 +31,27 @@ class WebpayTest extends GatewayTestCase
     {
         $gateway = new Webpay($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Webpay(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )));
+        $gateway = new Webpay(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Webpay(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new Webpay(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

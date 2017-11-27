@@ -31,27 +31,27 @@ class TefTest extends GatewayTestCase
     {
         $gateway = new Tef($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Tef(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new Tef(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Tef(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Tef(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

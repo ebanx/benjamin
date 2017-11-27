@@ -67,59 +67,59 @@ class CreditCardTest extends GatewayTestCase
         $creditCardConfig = new CreditCardConfig();
         $gateway = new CreditCard($this->config, $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, array(
+        $this->assertAvailableForCountries($gateway, [
             Country::BRAZIL,
             Country::MEXICO,
-            Country::COLOMBIA
-        ));
+            Country::COLOMBIA,
+        ]);
 
-        $gateway = new CreditCard(new Config(array(
-            'baseCurrency' => Currency::EUR
-        )), $creditCardConfig);
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::EUR,
+        ]), $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, array(
+        $this->assertAvailableForCountries($gateway, [
             Country::BRAZIL,
             Country::MEXICO,
-            Country::COLOMBIA
-        ));
+            Country::COLOMBIA,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
         $creditCardConfig = new CreditCardConfig();
 
-        $gateway = new CreditCard(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )), $creditCardConfig);
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]), $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
 
-        $gateway = new CreditCard(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )), $creditCardConfig);
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]), $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
 
-        $gateway = new CreditCard(new Config(array(
-            'baseCurrency' => Currency::COP
-        )), $creditCardConfig);
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::COP,
+        ]), $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::COLOMBIA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::COLOMBIA,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
         $creditCardConfig = new CreditCardConfig();
 
-        $gateway = new CreditCard(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )), $creditCardConfig);
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]), $creditCardConfig);
 
         $this->assertNotAvailableAnywhere($gateway);
     }
@@ -150,7 +150,7 @@ class CreditCardTest extends GatewayTestCase
     {
         $usdToBrlRate = 3.4743;
         $config = new Config([
-            'baseCurrency' => Currency::USD
+            'baseCurrency' => Currency::USD,
         ]);
 
         $creditCardConfig = new CreditCardConfig();
@@ -194,7 +194,7 @@ class CreditCardTest extends GatewayTestCase
         $usdToBrlRate = 3.4743;
         $config = new Config([
             'baseCurrency' => Currency::USD,
-            'taxesOnMerchant' => true
+            'taxesOnMerchant' => true,
         ]);
 
         $gateway = $this->setupGateway($usdToBrlRate, $config);
@@ -224,7 +224,7 @@ class CreditCardTest extends GatewayTestCase
         $usdToBrlRate = 3.4743;
         $config = new Config([
             'baseCurrency' => Currency::USD,
-            'taxesOnMerchant' => false
+            'taxesOnMerchant' => false,
         ]);
 
         $gateway = $this->setupGateway($usdToBrlRate, $config);

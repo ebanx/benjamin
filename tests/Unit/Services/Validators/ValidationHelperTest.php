@@ -10,7 +10,7 @@ class ValidationHelperTest extends TestCase
     {
         $subject = new ValidationHelper();
 
-        $errors = array();
+        $errors = [];
 
         $errors = array_merge($errors,
             $subject->min(10)

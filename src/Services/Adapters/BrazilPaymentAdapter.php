@@ -18,10 +18,10 @@ abstract class BrazilPaymentAdapter extends PaymentAdapter
 
     private function getResponsible()
     {
-        $payload = array(
+        $payload = [
             'name'       => $this->payment->responsible->name,
             'document'   => $this->payment->responsible->document,
-        );
+        ];
 
         if (isset($this->payment->responsible->birthdate)) {
             $payload['birth_date'] = $this->payment->responsible->birthdate->format('d/m/Y');

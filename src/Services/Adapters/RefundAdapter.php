@@ -24,12 +24,12 @@ class RefundAdapter extends BaseAdapter
 
     public function transform()
     {
-        $transformed = array(
+        $transformed = [
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'request',
             'amount' => $this->data['amount'],
             'description' => $this->data['description'],
-        );
+        ];
         if (isset($this->data['hash'])) {
             $transformed['hash'] = $this->data['hash'];
         }
@@ -43,10 +43,10 @@ class RefundAdapter extends BaseAdapter
 
     public function transformCancel()
     {
-        return array(
+        return [
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'cancel',
-            'refund_id' => $this->data['refundId']
-        );
+            'refund_id' => $this->data['refundId'],
+        ];
     }
 }

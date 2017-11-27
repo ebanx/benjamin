@@ -6,7 +6,7 @@ class ValidationHelper
     /**
      * @var Callable[]
      */
-    private $appliedRules = array();
+    private $appliedRules = [];
 
     public function min($minValue)
     {
@@ -40,10 +40,10 @@ class ValidationHelper
 
     public function test($subjectName, $subjectValue)
     {
-        $errors = array();
+        $errors = [];
 
         while ($rule = array_shift($this->appliedRules)) {
-            $errors[] = call_user_func_array($rule, array($subjectName, $subjectValue));
+            $errors[] = call_user_func_array($rule, [$subjectName, $subjectValue]);
         }
 
         return array_values(array_filter($errors));

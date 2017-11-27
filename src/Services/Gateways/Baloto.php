@@ -13,16 +13,16 @@ class Baloto extends BaseGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::COLOMBIA);
+        return [Country::COLOMBIA];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::COP,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)

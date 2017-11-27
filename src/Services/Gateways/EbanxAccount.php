@@ -16,9 +16,9 @@ class EbanxAccount extends Tef
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::BRL,
-            Currency::USD
-        );
+            Currency::USD,
+        ];
     }
 }

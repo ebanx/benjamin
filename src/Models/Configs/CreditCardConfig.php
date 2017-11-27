@@ -28,15 +28,15 @@ class CreditCardConfig extends BaseModel implements AddableConfig
      *
      * @var array
      */
-    public $interestRates = array();
+    public $interestRates = [];
 
     public static function acquirerMinInstalmentValueForCurrency($currency)
     {
-        $relation = array(
+        $relation = [
             Currency::BRL => 20,
             Currency::MXN => 100,
-            Currency::COP => 100
-        );
+            Currency::COP => 100,
+        ];
 
         return $relation[$currency];
     }
@@ -50,10 +50,10 @@ class CreditCardConfig extends BaseModel implements AddableConfig
      */
     public function addInterest($instalmentNumber, $rate)
     {
-        $this->interestRates[] = new CreditCardInterestRateConfig(array(
+        $this->interestRates[] = new CreditCardInterestRateConfig([
             "instalmentNumber" => $instalmentNumber,
-            "interestRate" => $rate
-        ));
+            "interestRate" => $rate,
+        ]);
 
         return $this;
     }

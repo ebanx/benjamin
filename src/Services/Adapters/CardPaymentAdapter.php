@@ -26,13 +26,13 @@ class CardPaymentAdapter extends BrazilPaymentAdapter
 
     private function transformCard()
     {
-        return (object) array(
+        return (object) [
             'card_number' => $this->payment->card->number,
             'card_name' => $this->payment->card->name,
             'card_due_date' => $this->payment->card->dueDate->format('m/Y'),
             'card_cvv' => $this->payment->card->cvv,
             'auto_capture' => $this->payment->card->autoCapture,
             'token' => $this->payment->card->token
-        );
+        ];
     }
 }

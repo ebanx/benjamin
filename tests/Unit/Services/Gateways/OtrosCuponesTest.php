@@ -31,27 +31,27 @@ class OtrosCuponesTest extends GatewayTestCase
     {
         $gateway = new OtrosCupones($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new OtrosCupones(new Config(array(
-            'baseCurrency' => Currency::ARS
-        )));
+        $gateway = new OtrosCupones(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new OtrosCupones(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new OtrosCupones(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

@@ -14,14 +14,14 @@ class GatewayTestCase extends TestCase
 {
     protected $config;
 
-    public function __construct($name = null, array $data = array(), $dataName = '')
+    public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
 
         $env = new Environment();
 
         $this->config = new Config([
-            'sandboxIntegrationKey' => $env->read('SANDBOX_INTEGRATION_KEY', 'default_integration_key')
+            'sandboxIntegrationKey' => $env->read('SANDBOX_INTEGRATION_KEY', 'default_integration_key'),
         ]);
     }
 
@@ -32,14 +32,14 @@ class GatewayTestCase extends TestCase
 
     protected function assertAvailableForCountries(BaseGateway $gateway, $countries)
     {
-        $allCountries = array(
+        $allCountries = [
             Country::ARGENTINA,
             Country::BRAZIL,
             Country::CHILE,
             Country::MEXICO,
             Country::PERU,
-            Country::COLOMBIA
-        );
+            Country::COLOMBIA,
+        ];
 
         foreach ($allCountries as $country) {
             if (in_array($country, $countries)) {

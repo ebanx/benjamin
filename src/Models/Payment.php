@@ -58,7 +58,7 @@ class Payment extends BaseModel
      *
      * @var Item[]
      */
-    public $items = array();
+    public $items = [];
 
     /**
      * Object containing the company’s responsible person information.
@@ -114,5 +114,5 @@ class Payment extends BaseModel
      *
      * @var array
      */
-    public $userValues = array();
+    public $userValues = [];
 }

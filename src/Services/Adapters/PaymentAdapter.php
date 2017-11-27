@@ -12,14 +12,14 @@ class PaymentAdapter extends BaseAdapter
      */
     protected $payment;
 
-    private $countryCode = array(
+    private $countryCode = [
         Country::ARGENTINA => 'ar',
         Country::BRAZIL => 'br',
         Country::PERU => 'pe',
         Country::MEXICO => 'mx',
         Country::COLOMBIA => 'co',
-        Country::CHILE => 'cl'
-    );
+        Country::CHILE => 'cl',
+    ];
 
     public function __construct(Payment $payment, Config $config)
     {
@@ -29,7 +29,7 @@ class PaymentAdapter extends BaseAdapter
 
     public function transform()
     {
-        return (object) array(
+        return (object) [
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'request',
             'mode' => 'full',
@@ -40,7 +40,7 @@ class PaymentAdapter extends BaseAdapter
             'amount' => $this->payment->amountTotal,
             'merchant_payment_code' => $this->payment->merchantPaymentCode,
             'payment_type_code' => $this->payment->type,
-        );
+        ];
     }
 
     protected function transformPayment()
@@ -50,7 +50,7 @@ class PaymentAdapter extends BaseAdapter
             $this->config->userValues
         );
 
-        $payload = array(
+        $payload = [
             'currency_code' => $this->config->baseCurrency,
             'notification_url' => $this->config->notificationUrl,
             'redirect_url' => $this->config->redirectUrl,
@@ -72,8 +72,8 @@ class PaymentAdapter extends BaseAdapter
             'items' => $this->transformItems(),
             'device_id' => $this->payment->deviceId,
             'payment_type_code' => $this->payment->type,
-            'user_value_5' => 'Benjamin'
-        );
+            'user_value_5' => 'Benjamin',
+        ];
         if ($birthdate = $this->payment->person->birthdate) {
             $payload['birth_date'] = $birthdate->format('d/m/Y');
         }
@@ -83,7 +83,7 @@ class PaymentAdapter extends BaseAdapter
                 continue;
             }
 
-            $payload['user_value_'.$i] = $userValues[$i];
+            $payload['user_value_' . $i] = $userValues[$i];
         }
 
         return (object) $payload;
@@ -91,16 +91,16 @@ class PaymentAdapter extends BaseAdapter
 
     protected function transformItems()
     {
-        $itemArray = array();
+        $itemArray = [];
 
         foreach ($this->payment->items as $item) {
-            $itemArray[] = (object) array(
+            $itemArray[] = (object) [
                 'name' => $item->name,
                 'description' => $item->description,
                 'unit_price' => $item->unitPrice,
                 'quantity' => $item->quantity,
-                'type' => $item->type
-            );
+                'type' => $item->type,
+            ];
         }
 
         return (object) $itemArray;

@@ -10,16 +10,16 @@ class Servipag extends BaseGateway
 {
     protected static function getEnabledCountries()
     {
-        return array(Country::CHILE);
+        return [Country::CHILE];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::CLP,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)

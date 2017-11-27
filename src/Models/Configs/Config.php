@@ -67,5 +67,5 @@ class Config extends BaseModel implements AddableConfig
      *
      * @var array
      */
-    public $userValues = array();
+    public $userValues = [];
 }

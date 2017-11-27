@@ -31,27 +31,27 @@ class ServipagTest extends GatewayTestCase
     {
         $gateway = new Servipag($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Servipag(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )));
+        $gateway = new Servipag(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Servipag(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Servipag(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }
