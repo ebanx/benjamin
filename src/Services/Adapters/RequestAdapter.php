@@ -39,14 +39,21 @@ class RequestAdapter extends BaseAdapter
                 $this->request->minInstalments,
                 $this->request->maxInstalments,
             ]),
-            'notification_url' => $this->config->notificationUrl
-                ? $this->config->notificationUrl
-                : '',
+            'notification_url' => $this->transformNotificationUrl(),
         ];
 
         $result = $this->transformUserValues($result);
 
         return (object) $result;
+    }
+
+    protected function transformNotificationUrl()
+    {
+        if (!isset($this->config->notificationUrl)) {
+            return '';
+        }
+
+        return $this->config->notificationUrl;
     }
 
     protected function transformUserValues($result)

@@ -15,8 +15,11 @@ class RequestAdapterTest extends PaymentAdapterTest
         $config = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
+
         $factory = new BuilderFactory('pt_BR');
-        $request = $factory->request()->build();
+        $request = $factory
+            ->request()
+            ->build();
 
         $adapter = new FakeRequestAdapter($request, $config);
         $result = $adapter->transform();
@@ -25,6 +28,34 @@ class RequestAdapterTest extends PaymentAdapterTest
         $validator->validate($result, $this->getSchema('requestSchema'));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
+    }
+
+    public function testTransformNotificationUrl()
+    {
+        $expected = md5(rand(1, 999));
+
+        $nullConfig = new Config();
+        $goodConfig = new Config(['notificationUrl' => $expected]);
+
+        $factory = new BuilderFactory('pt_BR');
+        $request = $factory->request()->build();
+
+        $adapter = new FakeRequestAdapter($request, $nullConfig);
+        $result1 = $adapter->transform();
+
+        $adapter = new FakeRequestAdapter($request, $goodConfig);
+        $result2 = $adapter->transform();
+
+        $this->assertEmpty(
+            $result1->notification_url,
+            'Request adapter injected a notification url when it shouldn\'t'
+        );
+
+        $this->assertEquals(
+            $expected,
+            $result2->notification_url,
+            'Request adapter failed to inject a notification url'
+        );
     }
 
     public function testIntegrationKey()
