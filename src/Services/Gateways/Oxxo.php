@@ -13,21 +13,21 @@ class Oxxo extends DirectGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::MEXICO);
+        return [Country::MEXICO];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::MXN,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "oxxo";
+        $payment->type = 'oxxo';
 
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
@@ -38,6 +38,6 @@ class Oxxo extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/print/oxxo/?hash=%s";
+        return 'https://%s.ebanx.com/print/oxxo/?hash=%s';
     }
 }

@@ -31,36 +31,36 @@ class EbanxAccountTest extends GatewayTestCase
     {
         $gateway = new EbanxAccount($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new EbanxAccount(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new EbanxAccount(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::BRAZIL
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::BRAZIL,
+        ]);
     }
 
     public function testAvailabilityWithEUR()
     {
-        $gateway = new EbanxAccount(new Config(array(
-            'baseCurrency' => Currency::EUR
-        )));
+        $gateway = new EbanxAccount(new Config([
+            'baseCurrency' => Currency::EUR,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new EbanxAccount(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new EbanxAccount(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

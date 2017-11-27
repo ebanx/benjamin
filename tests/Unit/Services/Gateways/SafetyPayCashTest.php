@@ -31,27 +31,27 @@ class SafetyPayCashTest extends GatewayTestCase
     {
         $gateway = new SafetyPayCash($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::PERU
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::PERU,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new SafetyPayCash(new Config(array(
-            'baseCurrency' => Currency::PEN
-        )));
+        $gateway = new SafetyPayCash(new Config([
+            'baseCurrency' => Currency::PEN,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::PERU
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::PERU,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new SafetyPayCash(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new SafetyPayCash(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

@@ -27,7 +27,7 @@ class FacadeTest extends TestCase
         $services = $this->getExpectedServices();
 
         foreach ($gateways as $gateway) {
-            $class = new \ReflectionClass('Ebanx\Benjamin\Services\Gateways\\'.ucfirst($gateway));
+            $class = new \ReflectionClass('Ebanx\Benjamin\Services\Gateways\\' . ucfirst($gateway));
 
             // skip abstract gateways
             if ($class->isAbstract()) {
@@ -46,7 +46,7 @@ class FacadeTest extends TestCase
         }
 
         foreach ($services as $service) {
-            $class = new \ReflectionClass('Ebanx\Benjamin\Services\\'.ucfirst($service));
+            $class = new \ReflectionClass('Ebanx\Benjamin\Services\\' . ucfirst($service));
 
             // skip abstract gateways
             if ($class->isAbstract()) {
@@ -99,12 +99,12 @@ class FacadeTest extends TestCase
 
     private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)
     {
-        return call_user_func(array($facade, $accessor));
+        return call_user_func([$facade, $accessor]);
     }
 
     private function getExpectedGateways()
     {
-        $result = array();
+        $result = [];
 
         $dir = opendir('src/Services/Gateways');
         while (($file = readdir($dir)) !== false) {
@@ -123,7 +123,7 @@ class FacadeTest extends TestCase
 
     private function getExpectedServices()
     {
-        $result = array();
+        $result = [];
 
         $dir = opendir('src/Services');
         while (($file = readdir($dir)) !== false) {

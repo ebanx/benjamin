@@ -29,6 +29,10 @@ class BuilderFactory
         return new PaymentBuilder($this->setupFaker(), $instance);
     }
 
+    /**
+     * @param  Request $instance Optionl pre-built instance
+     * @return RequestBuilder
+     */
     public function request(Request $instance = null)
     {
         return new RequestBuilder($this->setupFaker(), $instance);

@@ -55,33 +55,33 @@ class PaymentAdapterTest extends TestCase
         $factory = new BuilderFactory('pt_BR');
         $payment = $factory->payment()->build();
 
-        $expected = array(
+        $expected = [
             1 => 'from_tests',
             2 => 'DO NOT PAY',
-            5 => 'Benjamin'
-        );
+            5 => 'Benjamin',
+        ];
 
-        $payment->userValues = array(
+        $payment->userValues = [
             1 => 'Override me',
-            2 => 'DO NOT PAY'
-        );
+            2 => 'DO NOT PAY',
+        ];
 
         $config = new Config([
-            'userValues' => array(
-                1 => 'from_tests'
-            )
+            'userValues' => [
+                1 => 'from_tests',
+            ],
         ]);
 
         $adapter = new FakeAdapter($payment, $config);
         $result = $adapter->transform();
 
-        $resultValues = array_filter(array(
+        $resultValues = array_filter([
             1 => isset($result->payment->user_value_1) ? $result->payment->user_value_1 : null,
             2 => isset($result->payment->user_value_2) ? $result->payment->user_value_2 : null,
             3 => isset($result->payment->user_value_3) ? $result->payment->user_value_3 : null,
             4 => isset($result->payment->user_value_4) ? $result->payment->user_value_4 : null,
-            5 => isset($result->payment->user_value_5) ? $result->payment->user_value_5 : null
-        ));
+            5 => isset($result->payment->user_value_5) ? $result->payment->user_value_5 : null,
+        ]);
 
         $this->assertEquals($expected, $resultValues);
     }
@@ -128,12 +128,12 @@ class PaymentAdapterTest extends TestCase
     protected function getSchema($schemas)
     {
         if (!is_array($schemas)) {
-            $schemas = array($schemas);
+            $schemas = [$schemas];
         }
 
-        $object = array();
+        $object = [];
         foreach ($schemas as $schema) {
-            $object = array_merge_recursive($object, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/'.$schema.'.json'), true));
+            $object = array_merge_recursive($object, json_decode(file_get_contents(dirname(__DIR__) . '/Adapters/Schemas/' . $schema . '.json'), true));
         }
 
         return json_decode(json_encode($object));

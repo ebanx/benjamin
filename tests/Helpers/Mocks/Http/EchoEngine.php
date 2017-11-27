@@ -13,7 +13,7 @@ class EchoEngine extends Guzzle
     /**
      * @var EchoEngineResponse[]|EchoEngineResponse
      */
-    private $responses = array();
+    private $responses = [];
 
     /**
      * @param string $baseUrl
@@ -38,7 +38,7 @@ class EchoEngine extends Guzzle
      * @param  array  $options
      * @return EchoEngineResponse
      */
-    public function post($url = null, array $options = array())
+    public function post($url = null, array $options = [])
     {
         return $this->fakeResponse($url);
     }
@@ -48,7 +48,7 @@ class EchoEngine extends Guzzle
      * @param  array  $options
      * @return EchoEngineResponse
      */
-    public function get($url = null, $options = array())
+    public function get($url = null, $options = [])
     {
         return $this->fakeResponse($url);
     }

@@ -31,27 +31,27 @@ class EftTest extends GatewayTestCase
     {
         $gateway = new Eft($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::COLOMBIA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::COLOMBIA,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Eft(new Config(array(
-            'baseCurrency' => Currency::COP
-        )));
+        $gateway = new Eft(new Config([
+            'baseCurrency' => Currency::COP,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::COLOMBIA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::COLOMBIA,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Eft(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Eft(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

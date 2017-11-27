@@ -31,27 +31,27 @@ class MulticajaTest extends GatewayTestCase
     {
         $gateway = new Multicaja($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Multicaja(new Config(array(
+        $gateway = new Multicaja(new Config([
             'baseCurrency' => Currency::CLP
-        )));
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::CHILE
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Multicaja(new Config(array(
-            'baseCurrency' => Currency::BRL
-        )));
+        $gateway = new Multicaja(new Config([
+            'baseCurrency' => Currency::BRL,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

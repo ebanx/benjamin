@@ -13,21 +13,21 @@ class Baloto extends DirectGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::COLOMBIA);
+        return [Country::COLOMBIA];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::COP,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "baloto";
+        $payment->type = 'baloto';
 
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
@@ -38,6 +38,6 @@ class Baloto extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return "https://%s.ebanx.com/print/baloto/?hash=%s";
+        return 'https://%s.ebanx.com/print/baloto/?hash=%s';
     }
 }

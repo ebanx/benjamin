@@ -12,16 +12,16 @@ abstract class SafetyPay extends DirectGateway
 
     protected static function getEnabledCountries()
     {
-        return array(Country::PERU);
+        return [Country::PERU];
     }
 
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::PEN,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)

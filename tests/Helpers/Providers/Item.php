@@ -28,7 +28,7 @@ class Item extends BaseProvider
      */
     public function itemModels($count)
     {
-        $result = array();
+        $result = [];
 
         for ($i = 0; $i < $count; $i++) {
             $result[] = $this->itemModel();

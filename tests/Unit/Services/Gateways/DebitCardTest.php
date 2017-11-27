@@ -32,35 +32,35 @@ class DebitCardTest extends GatewayTestCase
     {
         $gateway = new DebitCard($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
 
-        $gateway = new DebitCard(new Config(array(
-            'baseCurrency' => Currency::EUR
-        )));
+        $gateway = new DebitCard(new Config([
+            'baseCurrency' => Currency::EUR,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new DebitCard(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new DebitCard(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new DebitCard(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )));
+        $gateway = new DebitCard(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

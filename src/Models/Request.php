@@ -14,7 +14,7 @@ class Request extends BaseModel
     public $email;
 
     /**
-     * @var double
+     * @var float
      */
     public $amount;
 
@@ -26,22 +26,22 @@ class Request extends BaseModel
     /**
      * @var string
      */
-    public $name = "";
+    public $name = '';
 
     /**
      * @var string
      */
-    public $orderNumber = "";
+    public $orderNumber = '';
 
     /**
      * @var array
      */
-    public $userValues = array();
+    public $userValues = [];
 
     /**
      * @var string
      */
-    public $type = "_all";
+    public $type = '_all';
 
     /**
      * @var int

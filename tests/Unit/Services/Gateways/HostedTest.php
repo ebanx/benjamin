@@ -35,13 +35,13 @@ class HostedTest extends GatewayTestCase
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Hosted(new Config(array(
-            'baseCurrency' => Currency::ARS
-        )));
+        $gateway = new Hosted(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function getHostedSuccessfulResponseJson()

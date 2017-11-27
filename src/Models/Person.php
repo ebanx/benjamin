@@ -3,8 +3,8 @@ namespace Ebanx\Benjamin\Models;
 
 class Person extends BaseModel
 {
-    const TYPE_PERSONAL = "personal";
-    const TYPE_BUSINESS = "business";
+    const TYPE_PERSONAL = 'personal';
+    const TYPE_BUSINESS = 'business';
 
     /**
      * The type of customer.

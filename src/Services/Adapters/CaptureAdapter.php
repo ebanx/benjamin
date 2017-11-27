@@ -24,11 +24,11 @@ class CaptureAdapter extends BaseAdapter
 
     public function transform()
     {
-        $transformed = array(
+        $transformed = [
             'integration_key' => $this->getIntegrationKey(),
             'merchant_capture_code' => $this->data['merchantCaptureCode'],
             'amount' => $this->data['amount'],
-        );
+        ];
         if (isset($this->data['hash'])) {
             $transformed['hash'] = $this->data['hash'];
         }

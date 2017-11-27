@@ -31,27 +31,27 @@ class SpeiTest extends GatewayTestCase
     {
         $gateway = new Spei($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Spei(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Spei(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Spei(new Config(array(
-            'baseCurrency' => Currency::COP
-        )));
+        $gateway = new Spei(new Config([
+            'baseCurrency' => Currency::COP,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

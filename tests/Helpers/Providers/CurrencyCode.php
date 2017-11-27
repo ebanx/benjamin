@@ -12,15 +12,15 @@ class CurrencyCode extends BaseProvider
      */
     public function ebanxCurrencyCode()
     {
-        return $this->faker->randomElement(array(
+        return $this->faker->randomElement([
             CurrencyModel::USD,
             CurrencyModel::EUR,
             CurrencyModel::BRL,
             CurrencyModel::MXN,
             CurrencyModel::PEN,
             CurrencyModel::COP,
-            CurrencyModel::CLP
-        ));
+            CurrencyModel::CLP,
+        ]);
     }
 
     /**

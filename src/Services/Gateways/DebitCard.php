@@ -10,22 +10,22 @@ class DebitCard extends DirectGateway
 {
     protected static function getEnabledCountries()
     {
-        return array(
-            Country::MEXICO
-        );
+        return [
+            Country::MEXICO,
+        ];
     }
     protected static function getEnabledCurrencies()
     {
-        return array(
+        return [
             Currency::MXN,
             Currency::USD,
-            Currency::EUR
-        );
+            Currency::EUR,
+        ];
     }
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = "debitcard";
+        $payment->type = 'debitcard';
         $payment->card->type = 'debitcard';
 
         $adapter = new CardPaymentAdapter($payment, $this->config);

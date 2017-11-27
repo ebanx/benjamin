@@ -24,10 +24,10 @@ class ExchangeAdapter extends BaseAdapter
 
     public function transform()
     {
-        return array(
+        return [
             'integration_key' => $this->getIntegrationKey(),
             'currency_code' => $this->fromCurrency,
-            'currency_base_code' => $this->toCurrency
-        );
+            'currency_base_code' => $this->toCurrency,
+        ];
     }
 }

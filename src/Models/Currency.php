@@ -14,7 +14,7 @@ class Currency extends BaseModel
 
     public static function all()
     {
-        return array(
+        return [
             self::USD,
             self::EUR,
             self::BRL,
@@ -22,16 +22,16 @@ class Currency extends BaseModel
             self::ARS,
             self::CLP,
             self::COP,
-            self::PEN
-        );
+            self::PEN,
+        ];
     }
 
     public static function globalCurrencies()
     {
-        return array(
+        return [
             self::USD,
-            self::EUR
-        );
+            self::EUR,
+        ];
     }
 
     public static function localForCountry($country)
@@ -40,14 +40,14 @@ class Currency extends BaseModel
             return null;
         }
 
-        $relation = array(
+        $relation = [
             Country::ARGENTINA => self::ARS,
             Country::BRAZIL => self::BRL,
             Country::MEXICO => self::MXN,
             Country::CHILE => self::CLP,
             Country::COLOMBIA => self::COP,
-            Country::PERU => self::PEN
-        );
+            Country::PERU => self::PEN,
+        ];
 
         return $relation[$country];
     }

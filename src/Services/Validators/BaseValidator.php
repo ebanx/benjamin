@@ -7,7 +7,7 @@ abstract class BaseValidator
 {
     protected $config;
 
-    private $errors = array();
+    private $errors = [];
 
     abstract public function validate();
 
@@ -26,7 +26,7 @@ abstract class BaseValidator
         return count($this->errors) > 0;
     }
 
-    protected function addAllErrors($errors = array())
+    protected function addAllErrors($errors = [])
     {
         $this->errors = array_merge($this->errors, $errors);
     }

@@ -31,27 +31,27 @@ class OxxoTest extends GatewayTestCase
     {
         $gateway = new Oxxo($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Oxxo(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Oxxo(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::MEXICO
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::MEXICO,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Oxxo(new Config(array(
-            'baseCurrency' => Currency::CLP
-        )));
+        $gateway = new Oxxo(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

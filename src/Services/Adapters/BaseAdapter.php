@@ -15,18 +15,20 @@ abstract class BaseAdapter
      * Needed for all endpoints
      * @var array
      */
-    protected $countryCode = array(
+    protected $countryCode = [
         Country::ARGENTINA => 'ar',
         Country::BRAZIL => 'br',
         Country::PERU => 'pe',
         Country::MEXICO => 'mx',
         Country::COLOMBIA => 'co',
-        Country::CHILE => 'cl'
-    );
+        Country::CHILE => 'cl',
+    ];
 
     protected function getIntegrationKey()
     {
-        return $this->config->isSandbox ? $this->config->sandboxIntegrationKey : $this->config->integrationKey;
+        return $this->config->isSandbox
+            ? $this->config->sandboxIntegrationKey
+            : $this->config->integrationKey;
     }
 
     public function __construct(Config $config)

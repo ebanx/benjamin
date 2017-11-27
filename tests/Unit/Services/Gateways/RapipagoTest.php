@@ -31,27 +31,27 @@ class RapipagoTest extends GatewayTestCase
     {
         $gateway = new Rapipago($this->config);
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new Rapipago(new Config(array(
-            'baseCurrency' => Currency::ARS
-        )));
+        $gateway = new Rapipago(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]));
 
-        $this->assertAvailableForCountries($gateway, array(
-            Country::ARGENTINA
-        ));
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new Rapipago(new Config(array(
-            'baseCurrency' => Currency::MXN
-        )));
+        $gateway = new Rapipago(new Config([
+            'baseCurrency' => Currency::MXN,
+        ]));
 
         $this->assertNotAvailableAnywhere($gateway);
     }

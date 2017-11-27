@@ -55,7 +55,7 @@ class ClientTest extends TestCase
 
         $subject = new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $text));
 
-        $response = $subject->payment((object)array('empty'=>true));
+        $response = $subject->payment((object)['empty' => true]);
         $this->assertEquals(json_decode($text, true), $response);
     }
 }
