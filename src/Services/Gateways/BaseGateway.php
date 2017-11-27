@@ -32,7 +32,7 @@ abstract class BaseGateway extends HttpService
     }
 
     /**
-     * @param  $country string
+     * @param  string $country
      * @return boolean
      */
     public function isAvailableForCountry($country)
@@ -52,7 +52,7 @@ abstract class BaseGateway extends HttpService
     }
 
     /**
-     * @param  $currency string
+     * @param  string $currency
      * @return bool
      */
     public static function acceptsCurrency($currency)
@@ -61,7 +61,7 @@ abstract class BaseGateway extends HttpService
     }
 
     /**
-     * @param  $country string
+     * @param  string $country
      * @return bool
      */
     public static function acceptsCountry($country)

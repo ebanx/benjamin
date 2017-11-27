@@ -8,7 +8,7 @@ abstract class DirectGateway extends BaseGateway
     abstract protected function getPaymentData(Payment $payment);
 
     /**
-     * @param  $payment Payment
+     * @param  Payment $payment
      * @return array
      */
     public function create(Payment $payment)
@@ -20,7 +20,7 @@ abstract class DirectGateway extends BaseGateway
 
     /**
      * @deprecated 1.3.0 Payment requests should be made using Hosted gateway's create method
-     * @param  $payment Payment
+     * @param  Payment $payment
      * @return array
      */
     public function request(Payment $payment)

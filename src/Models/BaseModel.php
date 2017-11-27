@@ -6,7 +6,7 @@ abstract class BaseModel
     /**
      * Fill the object with the provided $attributes array
      *
-     * @param $attributes array
+     * @param array $attributes
      */
     public function __construct($attributes = [])
     {
