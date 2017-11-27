@@ -76,12 +76,12 @@ class PaymentAdapterTest extends TestCase
         $result = $adapter->transform();
 
         $resultValues = array_filter([
-            1 => isset($result->payment->user_value_1] ? $result->payment->user_value_1 : null,
+            1 => isset($result->payment->user_value_1) ? $result->payment->user_value_1 : null,
             2 => isset($result->payment->user_value_2) ? $result->payment->user_value_2 : null,
             3 => isset($result->payment->user_value_3) ? $result->payment->user_value_3 : null,
             4 => isset($result->payment->user_value_4) ? $result->payment->user_value_4 : null,
             5 => isset($result->payment->user_value_5) ? $result->payment->user_value_5 : null,
-        ));
+        ]);
 
         $this->assertEquals($expected, $resultValues);
     }

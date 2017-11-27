@@ -54,7 +54,7 @@ class RequestAdapter extends BaseAdapter
         $userValues = array_replace(
             $this->request->userValues,
             $this->config->userValues,
-            [5 => 'Benjamin'],
+            [5 => 'Benjamin']
         );
 
         for ($i = 1; $i <= 5; $i++) {

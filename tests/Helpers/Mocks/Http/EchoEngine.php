@@ -38,7 +38,7 @@ class EchoEngine extends Guzzle
      * @param  array  $options
      * @return EchoEngineResponse
      */
-    public function post($url = null, $options = [])
+    public function post($url = null, array $options = [])
     {
         return $this->fakeResponse($url);
     }
