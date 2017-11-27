@@ -14,7 +14,7 @@ class Request extends BaseModel
     public $email;
 
     /**
-     * @var double
+     * @var float
      */
     public $amount;
 
