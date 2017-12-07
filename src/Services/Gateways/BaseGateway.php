@@ -75,7 +75,8 @@ abstract class BaseGateway extends HttpService
             return;
         }
 
-        throw new \InvalidArgumentException(sprintf('Gateway not available for %s%s',
+        throw new \InvalidArgumentException(sprintf(
+            'Gateway not available for %s%s',
             $country,
             Currency::isGlobal($this->config->baseCurrency)
                 ? ''

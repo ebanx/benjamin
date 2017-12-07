@@ -15,9 +15,11 @@ class ValidationHelper
                 return null;
             }
 
-            return sprintf('%s is below minimum of %d',
+            return sprintf(
+                '%s is below minimum of %d',
                 $subjectName,
-                $minValue);
+                $minValue
+            );
         };
 
         return $this;
@@ -30,9 +32,11 @@ class ValidationHelper
                 return null;
             }
 
-            return sprintf('%s is above maximum of %d',
+            return sprintf(
+                '%s is above maximum of %d',
                 $subjectName,
-                $maxValue);
+                $maxValue
+            );
         };
 
         return $this;
