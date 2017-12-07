@@ -10,6 +10,9 @@ class Country extends BaseModel
     const MEXICO = 'Mexico';
     const PERU = 'Peru';
 
+    /**
+     * @return array
+     */
     public static function all()
     {
         return [
@@ -20,5 +23,21 @@ class Country extends BaseModel
             self::MEXICO,
             self::PERU,
         ];
+    }
+
+    /**
+     * Two letter ISO-3166
+     * @see
+     */
+    public static function fromIso($code)
+    {
+        return [
+            'AR' => self::ARGENTINA,
+            'BR' => self::BRAZIL,
+            'CL' => self::CHILE,
+            'CO' => self::COLOMBIA,
+            'MX' => self::MEXICO,
+            'PE' => self::PERU
+        ][strtoupper($code)];
     }
 }
