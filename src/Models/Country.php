@@ -31,13 +31,14 @@ class Country extends BaseModel
      */
     public static function fromIso($code)
     {
-        return [
+        $table = [
             'AR' => self::ARGENTINA,
             'BR' => self::BRAZIL,
             'CL' => self::CHILE,
             'CO' => self::COLOMBIA,
             'MX' => self::MEXICO,
             'PE' => self::PERU
-        ][strtoupper($code)];
+        ];
+        return $table[strtoupper($code)];
     }
 }
