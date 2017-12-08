@@ -21,13 +21,4 @@ class Card extends BaseProvider
 
         return $card;
     }
-
-    public function cardWithOnlyTokenModel()
-    {
-        $card = new CardModel();
-        $card->autoCapture = true;
-        $card->token = 'th1s1sat0k3n';
-
-        return $card;
-    }
 }

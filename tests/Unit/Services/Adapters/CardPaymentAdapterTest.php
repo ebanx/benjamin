@@ -25,13 +25,13 @@ class CardPaymentAdapterTest extends PaymentAdapterTest
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
 
-    public function testAdaptWithOnlyToken()
+    public function testAdaptEmptyCard()
     {
         $config = new Config([
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->creditCardWithOnlyToken()->businessPerson()->build();
+        $payment = $factory->payment()->emptyCreditCard()->businessPerson()->build();
 
         $adapter = new CardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
