@@ -1,7 +1,6 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
-use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
