@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
@@ -23,5 +24,19 @@ class CardPaymentAdapterTest extends PaymentAdapterTest
         $validator->validate($result, $this->getSchema(['paymentSchema', 'brazilPaymentSchema', 'cardPaymentSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
+    }
+
+    public function testAdaptWithOnlyToken()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->creditCardWithOnlyToken()->businessPerson()->build();
+
+        $adapter = new CardPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('payment', $result);
     }
 }
