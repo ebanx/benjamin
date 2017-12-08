@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Helpers\Builders;
 
+use Ebanx\Benjamin\Models\Card;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
@@ -57,6 +58,15 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'creditcard';
         $this->instance->card = $this->faker->cardModel();
+        $this->instance->instalments = $instalmentNumber;
+
+        return $this;
+    }
+
+    public function emptyCreditCard($instalmentNumber = 1)
+    {
+        $this->instance->type = 'creditcard';
+        $this->instance->card = new Card();
         $this->instance->instalments = $instalmentNumber;
 
         return $this;
