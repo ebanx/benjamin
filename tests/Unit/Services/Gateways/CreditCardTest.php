@@ -170,8 +170,11 @@ class CreditCardTest extends GatewayTestCase
         $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
 
         $this->assertTrue(is_array($paymentTerms), 'Failed to return array of payment terms');
-        $this->assertEquals(9, count($paymentTerms),
-            'Wrong number of payment terms');
+        $this->assertEquals(
+            9,
+            count($paymentTerms),
+            'Wrong number of payment terms'
+        );
 
         $interest = 0;
         for ($i = 0; $i < 3; $i++) {
@@ -204,8 +207,11 @@ class CreditCardTest extends GatewayTestCase
         $localAmountWithoutTax = $value * $usdToBrlRate;
 
         $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
-        $this->assertEquals($localAmountWithoutTax, $paymentTerms[0]->localAmountWithTax,
-            'Local amount should have no taxes');
+        $this->assertEquals(
+            $localAmountWithoutTax,
+            $paymentTerms[0]->localAmountWithTax,
+            'Local amount should have no taxes'
+        );
     }
 
     public function testPaymentTermsBelowMinimumAmount()
@@ -215,8 +221,10 @@ class CreditCardTest extends GatewayTestCase
         $gateway = $this->setupGateway(1, new Config());
 
         $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
-        $this->assertNotNull($paymentTerms[0],
-            'On spot payment should be allowed');
+        $this->assertNotNull(
+            $paymentTerms[0],
+            'On spot payment should be allowed'
+        );
     }
 
     public function testPaymentTermsMerchantTaxFlagOff()
@@ -234,8 +242,11 @@ class CreditCardTest extends GatewayTestCase
         $localAmountWithTax = $value * $usdToBrlRate * (1 + Config::IOF);
 
         $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
-        $this->assertEquals($localAmountWithTax, $paymentTerms[0]->localAmountWithTax,
-            'Local amount should have taxes');
+        $this->assertEquals(
+            $localAmountWithTax,
+            $paymentTerms[0]->localAmountWithTax,
+            'Local amount should have taxes'
+        );
     }
 
     private function setupGateway($usdToBrlRate, $config, $creditCardConfig = null)

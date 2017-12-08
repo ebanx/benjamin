@@ -12,13 +12,15 @@ class ValidationHelperTest extends TestCase
 
         $errors = [];
 
-        $errors = array_merge($errors,
+        $errors = array_merge(
+            $errors,
             $subject->min(10)
                 ->max(11)
                 ->test('Low value', 9)
         );
 
-        $errors = array_merge($errors,
+        $errors = array_merge(
+            $errors,
             $subject->min(10)
                 ->max(11)
                 ->test('High value', 12)
