@@ -62,6 +62,15 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function creditCardWithOnlyToken($instalmentNumber = 1)
+    {
+        $this->instance->type = 'creditcard';
+        $this->instance->card = $this->faker->cardWithOnlyTokenModel();
+        $this->instance->instalments = $instalmentNumber;
+
+        return $this;
+    }
+
     public function debitCard()
     {
         $this->instance->type = 'debitcard';
