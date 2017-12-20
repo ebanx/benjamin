@@ -164,8 +164,8 @@ class CreditCardTest extends GatewayTestCase
         $gateway = $this->setupGateway($usdToBrlRate, $config, $creditCardConfig);
         $country = Country::BRAZIL;
 
-        $value = 50.0;
-        // 50.0 (USD) * 3.4743 (Exchange Rate) / 20 (BRL minimum instalment value) * 10% (max interest rate) = 9 instalments
+        $value = 12.75;
+        // 12.75 (USD) * 3.4743 (Exchange Rate) / 5 (BRL minimum instalment value) * 10% (max interest rate) = 9 instalments
 
         $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
 

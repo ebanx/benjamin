@@ -33,7 +33,7 @@ class CreditCardConfig extends BaseModel implements AddableConfig
     public static function acquirerMinInstalmentValueForCurrency($currency)
     {
         $relation = [
-            Currency::BRL => 20,
+            Currency::BRL => 5,
             Currency::MXN => 100,
             Currency::COP => 100,
         ];
