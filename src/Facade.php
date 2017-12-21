@@ -278,6 +278,7 @@ class Facade
     {
         if (is_null($this->httpClient)) {
             $this->httpClient = new HttpClient();
+            $this->httpClient->switchMode($this->config->isSandbox);
         }
         return $this->httpClient;
     }

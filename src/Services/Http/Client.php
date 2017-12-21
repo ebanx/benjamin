@@ -152,6 +152,19 @@ class Client
     }
 
     /**
+     * @param  bool $toSandbox Switch to sandbox(true) or live(false) modes
+     * @return void
+     */
+    public function switchMode($toSandbox)
+    {
+        if ($toSandbox) {
+            return $this->inSandboxMode();
+        }
+
+        return $this->inLiveMode();
+    }
+
+    /**
      * @return integer
      */
     public function getMode()

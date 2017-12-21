@@ -90,6 +90,8 @@ class FacadeTest extends TestCase
     public function testCreatePaymentByFacade()
     {
         $ebanx = new FacadeForTests();
+        $ebanx->addConfig(new Config());
+
         $result = $ebanx->create(new Payment([
             'type' => 'test',
         ]));

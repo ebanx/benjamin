@@ -29,11 +29,6 @@ abstract class HttpService
             $toSandbox = $this->config->isSandbox;
         }
 
-        if ($toSandbox) {
-            $this->client->inSandboxMode();
-            return;
-        }
-
-        $this->client->inLiveMode();
+        $this->client->switchMode($toSandbox);
     }
 }
