@@ -23,12 +23,12 @@ class Facade
     /**
      * @var Config
      */
-    private $config;
+    protected $config;
 
     /**
      * @var CreditCardConfig
      */
-    private $creditCardConfig;
+    protected $creditCardConfig;
 
     /**
      * @param AddableConfig $config,... Configuration objects
@@ -274,7 +274,7 @@ class Facade
         return new Refund($this->config, $this->getHttpClient());
     }
 
-    private function getHttpClient()
+    protected function getHttpClient()
     {
         if (is_null($this->httpClient)) {
             $this->httpClient = new HttpClient();
