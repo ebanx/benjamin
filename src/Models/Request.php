@@ -52,4 +52,11 @@ class Request extends BaseModel
      * @var int
      */
     public $minInstalments = 1;
+
+    /**
+     * An Address object.
+     *
+     * @var Address
+     */
+    public $address = null;
 }

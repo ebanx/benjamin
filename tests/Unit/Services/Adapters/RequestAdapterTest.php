@@ -1,7 +1,9 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Address;
 use Ebanx\Benjamin\Models\Configs\Config;
+use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Adapters\RequestAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
@@ -115,6 +117,23 @@ class RequestAdapterTest extends PaymentAdapterTest
         ]);
 
         $this->assertEquals($expected, $resultValues);
+    }
+
+    public function testAddress()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $request = $factory->request()->build();
+
+        $expected = 'Rua Marechal Deodoro';
+        $request->address = new Address([
+            'address' => $expected,
+            'country' => Country::BRAZIL
+        ]);
+
+        $adapter = new FakeRequestAdapter($request, new Config());
+        $result = $adapter->transform();
+
+        $this->assertEquals($expected, $result->address);
     }
 }
 
