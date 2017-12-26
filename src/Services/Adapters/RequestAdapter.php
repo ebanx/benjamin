@@ -77,7 +77,7 @@ class RequestAdapter extends BaseAdapter
         return $result;
     }
 
-    protected function transformAddress($result, Address $address = null)
+    protected function transformAddress(array $result, Address $address = null)
     {
         if (!$address) {
             return $result;
