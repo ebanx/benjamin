@@ -1,6 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Address;
 use Ebanx\Benjamin\Models\Request;
 use Ebanx\Benjamin\Models\Configs\Config;
 
@@ -42,6 +43,7 @@ class RequestAdapter extends BaseAdapter
             'notification_url' => $this->transformNotificationUrl(),
         ];
 
+        $result = $this->transformAddress($result, $this->request->address);
         $result = $this->transformUserValues($result);
 
         return (object) $result;
@@ -73,5 +75,22 @@ class RequestAdapter extends BaseAdapter
         }
 
         return $result;
+    }
+
+    protected function transformAddress($result, Address $address = null)
+    {
+        if (!$address) {
+            return $result;
+        }
+
+        return array_replace($result, [
+            'zipcode' => $address->zipcode,
+            'address' => $address->address,
+            'street_number' => $address->streetNumber,
+            'street_complement' => $address->streetComplement,
+            'city' => $address->city,
+            'state' => $address->state,
+            'country' => $this->countryCode[$address->country]
+        ]);
     }
 }
