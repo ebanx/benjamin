@@ -61,6 +61,7 @@ class BuilderFactory
 
             $this->faker = Faker\Factory::create(self::convertLangToFakerLang($this->lang));
             $this->faker->addProvider(new Providers\CurrencyCode($this->faker));
+            $this->faker->addProvider(new Providers\SubAccount($this->faker));
             $this->faker->addProvider(new Providers\Item($this->faker));
             $this->faker->addProvider(new Providers\Payment($this->faker));
             $this->faker->addProvider(new Providers\Card($this->faker));

@@ -43,7 +43,7 @@ class PaymentAdapter extends BaseAdapter
 
         $payload = [
             'currency_code' => $this->config->baseCurrency,
-            'notification_url' => $this->config->notificationUrl,
+            'notification_url' => $this->getNotificationUrl(),
             'redirect_url' => $this->config->redirectUrl,
             'name' => $this->payment->person->name,
             'email' => $this->payment->person->email,

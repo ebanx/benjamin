@@ -31,7 +31,7 @@ class Config extends BaseModel implements AddableConfig
 
     /**
      * Sets the site default currency ISO code.
-     * @see Currency::all()
+     * @see Ebanx\Benjamin\Models\Currency
      *
      * @var string
      */
