@@ -2,6 +2,8 @@
 namespace Ebanx\Benjamin\Services\Adapters;
 
 use Ebanx\Benjamin\Models\Address;
+use Ebanx\Benjamin\Models\Person;
+use Ebanx\Benjamin\Models\SubAccount;
 use Ebanx\Benjamin\Models\Request;
 use Ebanx\Benjamin\Models\Configs\Config;
 
@@ -23,48 +25,78 @@ class RequestAdapter extends BaseAdapter
      */
     public function transform()
     {
-        $none = '-';
-
         $result = [
             'integration_key' => $this->getIntegrationKey(),
-            'name' => $this->request->name,
-            'country' => $this->countryCode[$this->request->country],
-            'phone_number' => $none,
-            'email' => $this->request->email,
             'currency_code' => $this->config->baseCurrency,
             'amount' => $this->request->amount,
             'merchant_payment_code' => $this->request->merchantPaymentCode,
             'order_number' => $this->request->orderNumber,
             'payment_type_code' => $this->request->type,
+            'bypass_boleto_screen' => $this->request->skipThankyouPage,
+            'due_date' => $this->transformDate($this->request->dueDate),
+            'notification_url' => $this->getNotificationUrl(),
             'instalments' => implode('-', [
                 $this->request->minInstalments,
                 $this->request->maxInstalments,
             ]),
-            'notification_url' => $this->transformNotificationUrl(),
         ];
 
-        $result = $this->transformAddress($result, $this->request->address);
-        $result = $this->transformUserValues($result);
+        $result = array_replace($result, $this->transformPerson($this->request->person));
+        $result = array_replace($result, $this->transformAddress($this->request->address));
+        $result = array_replace($result, $this->transformUserValues($this->request->userValues));
+        $result = array_replace($result, $this->transformSubAccount($this->request->subAccount));
 
         return (object) $result;
     }
 
-    protected function transformNotificationUrl()
-    {
-        if (!isset($this->config->notificationUrl)) {
-            return '';
-        }
-
-        return $this->config->notificationUrl;
+    protected function transformDate(\DateTime $date = null) {
+        return isset($date)
+            ? $date->format('d/m/Y')
+            : null;
     }
 
-    protected function transformUserValues($result)
+    protected function transformPerson(Person $person = null)
+    {
+        if (!$person) {
+            return [];
+        }
+
+        return [
+            'person_type' => $person->type,
+            'name' => $person->name,
+            'birth_date' => $person->birthdate,
+            'email' => $person->email,
+            'phone_number' => $person->phoneNumber,
+        ];
+
+    }
+
+    protected function transformAddress(Address $address = null)
+    {
+        if (!$address) {
+            return [];
+        }
+
+        return [
+            'zipcode' => $address->zipcode,
+            'address' => $address->address,
+            'street_number' => $address->streetNumber,
+            'street_complement' => $address->streetComplement,
+            'city' => $address->city,
+            'state' => $address->state,
+            'country' => $this->countryCode[$address->country],
+        ];
+    }
+
+    protected function transformUserValues(array $userValues = null)
     {
         $userValues = array_replace(
-            $this->request->userValues,
+            $userValues,
             $this->config->userValues,
             [5 => 'Benjamin']
         );
+
+        $result = [];
 
         for ($i = 1; $i <= 5; $i++) {
             if (!isset($userValues[$i])) {
@@ -77,20 +109,15 @@ class RequestAdapter extends BaseAdapter
         return $result;
     }
 
-    protected function transformAddress(array $result, Address $address = null)
+    protected function transformSubAccount(SubAccount $subAccount = null)
     {
-        if (!$address) {
-            return $result;
+        if (!$subAccount) {
+            return [];
         }
 
-        return array_replace($result, [
-            'zipcode' => $address->zipcode,
-            'address' => $address->address,
-            'street_number' => $address->streetNumber,
-            'street_complement' => $address->streetComplement,
-            'city' => $address->city,
-            'state' => $address->state,
-            'country' => $this->countryCode[$address->country]
-        ]);
+        return [
+            'sub_acc_name' => $this->request->subAccount->name,
+            'sub_acc_image_url' => $this->request->subAccount->imageUrl,
+        ];
     }
 }

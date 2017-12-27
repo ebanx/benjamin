@@ -11,8 +11,9 @@ class Request extends BaseProvider
     public function requestModel()
     {
         $request = new RequestModel();
-        $request->country = $this->faker->addressModel()->country;
-        $request->email = $this->faker->email;
+        $request->address = $this->faker->addressModel();
+        $request->person = $this->faker->personModel();
+        $request->subAccount = $this->faker->subAccountModel();
         $request->amount = $this->faker->randomFloat(2, 1, 10);
         $request->merchantPaymentCode = md5(time());
 

@@ -11,7 +11,8 @@ class Payment extends BaseModel
     public $address;
 
     /**
-     * The amount in the specified currency.
+     * Amount to charge in site's currency.
+     * @see Ebanx\Benjamin\Models\Configs\Config::$baseCurrency
      *
      * @var float
      */
@@ -68,7 +69,7 @@ class Payment extends BaseModel
     public $responsible;
 
     /**
-     * The payment method type
+     * The payment method type.
      *
      * @var string
      */
@@ -110,7 +111,7 @@ class Payment extends BaseModel
     public $card = null;
 
     /**
-     * Extra information for reports
+     * Extra information for reports.
      *
      * @var array
      */

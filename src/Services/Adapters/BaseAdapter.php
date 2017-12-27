@@ -31,6 +31,13 @@ abstract class BaseAdapter
             : $this->config->integrationKey;
     }
 
+    protected function getNotificationUrl()
+    {
+        return isset($this->config->notificationUrl)
+            ? $this->config->notificationUrl
+            : '';
+    }
+
     public function __construct(Config $config)
     {
         $this->config = $config;
