@@ -99,7 +99,8 @@ class FacadeTest extends TestCase
         $this->assertArrayHasKey('payment', $result);
     }
 
-    public function testDefaultClientMode() {
+    public function testDefaultClientMode()
+    {
         $ebanx = new FacadeForTests();
         $ebanx->addConfig(
             new Config([
@@ -110,8 +111,10 @@ class FacadeTest extends TestCase
 
         $ebanx->test(); // Force lazy loader
 
-        $this->assertFalse($ebanx->getHttpClient()->isSandbox(),
-            'Client connection mode is ignoring config');
+        $this->assertFalse(
+            $ebanx->getHttpClient()->isSandbox(),
+            'Client connection mode is ignoring config'
+        );
     }
 
     private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)

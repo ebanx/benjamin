@@ -49,7 +49,8 @@ class RequestAdapter extends BaseAdapter
         return (object) $result;
     }
 
-    protected function transformDate(\DateTime $date = null) {
+    protected function transformDate(\DateTime $date = null)
+    {
         return isset($date)
             ? $date->format('d/m/Y')
             : null;
@@ -68,7 +69,6 @@ class RequestAdapter extends BaseAdapter
             'email' => $person->email,
             'phone_number' => $person->phoneNumber,
         ];
-
     }
 
     protected function transformAddress(Address $address = null)
