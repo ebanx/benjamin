@@ -66,7 +66,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: Otros Cupones
 - [X] Refund
 - [X] Payment Capture
-- [ ] Payment by link
+- [X] Payment by link (Hosted page gateway)
 - [ ] Validator
 - [ ] Response Decorators
 - [X] Interest Rates
