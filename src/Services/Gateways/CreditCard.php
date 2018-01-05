@@ -20,6 +20,7 @@ class CreditCard extends DirectGateway
             Country::BRAZIL,
             Country::MEXICO,
             Country::COLOMBIA,
+            Country::ARGENTINA,
         ];
     }
     protected static function getEnabledCurrencies()
@@ -28,6 +29,7 @@ class CreditCard extends DirectGateway
             Currency::BRL,
             Currency::MXN,
             Currency::COP,
+            Currency::ARS,
             Currency::USD,
             Currency::EUR,
         ];

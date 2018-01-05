@@ -71,6 +71,7 @@ class CreditCardTest extends GatewayTestCase
             Country::BRAZIL,
             Country::MEXICO,
             Country::COLOMBIA,
+            Country::ARGENTINA,
         ]);
 
         $gateway = new CreditCard(new Config([
@@ -81,6 +82,7 @@ class CreditCardTest extends GatewayTestCase
             Country::BRAZIL,
             Country::MEXICO,
             Country::COLOMBIA,
+            Country::ARGENTINA,
         ]);
     }
 
@@ -110,6 +112,14 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertAvailableForCountries($gateway, [
             Country::COLOMBIA,
+        ]);
+
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
         ]);
     }
 
