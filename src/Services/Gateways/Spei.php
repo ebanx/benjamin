@@ -4,10 +4,13 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\EftPaymentAdapter;
+use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
+use Ebanx\Benjamin\Services\Traits\Printable;
 
 class Spei extends DirectGateway
 {
+    use Printable;
+
     protected static function getEnabledCountries()
     {
         return [Country::MEXICO];
@@ -26,7 +29,15 @@ class Spei extends DirectGateway
     {
         $payment->type = 'spei';
 
-        $adapter = new EftPaymentAdapter($payment, $this->config);
+        $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUrlFormat()
+    {
+        return 'https://%s.ebanx.com/print/spei/execute?hash=%s';
     }
 }
