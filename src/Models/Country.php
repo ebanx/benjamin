@@ -33,6 +33,7 @@ class Country extends BaseModel
      */
     public static function fromIso($code)
     {
+        $countryCode = strtoupper($code);
         $table = [
             'AR' => self::ARGENTINA,
             'BR' => self::BRAZIL,
@@ -42,6 +43,11 @@ class Country extends BaseModel
             'MX' => self::MEXICO,
             'PE' => self::PERU
         ];
-        return $table[strtoupper($code)];
+
+        if (!array_key_exists($countryCode, $table)) {
+            return null;
+        }
+
+        return $table[$countryCode];
     }
 }
