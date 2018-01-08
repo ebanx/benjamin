@@ -35,6 +35,7 @@ class RequestAdapter extends BaseAdapter
             'bypass_boleto_screen' => $this->request->skipThankyouPage,
             'due_date' => $this->transformDate($this->request->dueDate),
             'notification_url' => $this->getNotificationUrl(),
+            'redirect_url' => $this->request->redirectUrl,
             'instalments' => implode('-', [
                 $this->request->minInstalments,
                 $this->request->maxInstalments,

@@ -60,6 +60,24 @@ class RequestAdapterTest extends PaymentAdapterTest
         );
     }
 
+    public function testTransformRedirectUrl()
+    {
+        $expected = 'SAMPLE_URL';
+
+        $factory = new BuilderFactory('pt_BR');
+        $request = $factory->request()->build();
+        $request->redirectUrl = $expected;
+
+        $adapter = new FakeRequestAdapter($request, new Config());
+        $result = $adapter->transform();
+
+        $this->assertEquals(
+            $expected,
+            $result->redirect_url,
+            'Request adapter failed to send redirect_url'
+        );
+    }
+
     public function testIntegrationKey()
     {
         $factory = new BuilderFactory('pt_BR');
