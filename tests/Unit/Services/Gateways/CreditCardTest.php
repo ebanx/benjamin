@@ -66,22 +66,20 @@ class CreditCardTest extends GatewayTestCase
     {
         $creditCardConfig = new CreditCardConfig();
         $gateway = new CreditCard($this->config, $creditCardConfig);
-
-        $this->assertAvailableForCountries($gateway, [
+        $expectedCountries = [
             Country::BRAZIL,
             Country::MEXICO,
             Country::COLOMBIA,
-        ]);
+            Country::ARGENTINA,
+        ];
+
+        $this->assertAvailableForCountries($gateway, $expectedCountries);
 
         $gateway = new CreditCard(new Config([
             'baseCurrency' => Currency::EUR,
         ]), $creditCardConfig);
 
-        $this->assertAvailableForCountries($gateway, [
-            Country::BRAZIL,
-            Country::MEXICO,
-            Country::COLOMBIA,
-        ]);
+        $this->assertAvailableForCountries($gateway, $expectedCountries);
     }
 
     public function testAvailabilityWithLocalCurrency()
@@ -110,6 +108,14 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertAvailableForCountries($gateway, [
             Country::COLOMBIA,
+        ]);
+
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::ARS,
+        ]), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, [
+            Country::ARGENTINA,
         ]);
     }
 
