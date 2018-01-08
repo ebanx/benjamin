@@ -32,6 +32,7 @@ class SafetyPayOnlineTest extends GatewayTestCase
         $gateway = new SafetyPayOnline($this->config);
 
         $this->assertAvailableForCountries($gateway, [
+            Country::ECUADOR,
             Country::PERU,
         ]);
     }
@@ -45,6 +46,12 @@ class SafetyPayOnlineTest extends GatewayTestCase
         $this->assertAvailableForCountries($gateway, [
             Country::PERU,
         ]);
+
+        $gateway = new SafetyPayOnline(new Config([
+            'baseCurrency' => Currency::USD,
+        ]));
+
+        $this->assertTrue($gateway->isAvailableForCountry(Country::ECUADOR));
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
