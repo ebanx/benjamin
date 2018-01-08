@@ -90,4 +90,10 @@ class Request extends BaseModel
      * @var SubAccount
      */
     public $subAccount = null;
+
+    /**
+     * Redirect URL after checkout page
+     * @var string
+     */
+    public $redirectUrl = null;
 }
