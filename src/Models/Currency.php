@@ -43,9 +43,10 @@ class Currency extends BaseModel
         $relation = [
             Country::ARGENTINA => self::ARS,
             Country::BRAZIL => self::BRL,
-            Country::MEXICO => self::MXN,
             Country::CHILE => self::CLP,
             Country::COLOMBIA => self::COP,
+            Country::ECUADOR => self::USD,
+            Country::MEXICO => self::MXN,
             Country::PERU => self::PEN,
         ];
 
