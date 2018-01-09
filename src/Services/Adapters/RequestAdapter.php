@@ -1,6 +1,7 @@
 <?php
 namespace Ebanx\Benjamin\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Address;
 use Ebanx\Benjamin\Models\Person;
 use Ebanx\Benjamin\Models\SubAccount;
@@ -85,7 +86,7 @@ class RequestAdapter extends BaseAdapter
             'street_complement' => $address->streetComplement,
             'city' => $address->city,
             'state' => $address->state,
-            'country' => $this->countryCode[$address->country],
+            'country' => Country::toIso($address->country),
         ];
     }
 

@@ -57,7 +57,7 @@ class PaymentAdapter extends BaseAdapter
             'street_complement' => $this->payment->address->streetComplement,
             'city' => $this->payment->address->city,
             'state' => $this->payment->address->state,
-            'country' => $this->countryCode[$this->payment->address->country],
+            'country' => Country::toIso($this->payment->address->country),
             'phone_number' => $this->payment->person->phoneNumber,
             'note' => $this->payment->note,
             'items' => $this->transformItems(),

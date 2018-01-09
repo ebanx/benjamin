@@ -11,20 +11,6 @@ abstract class BaseAdapter
      */
     protected $config;
 
-    /**
-     * Needed for all endpoints
-     * @var array
-     */
-    protected $countryCode = [
-        Country::ARGENTINA => 'ar',
-        Country::BRAZIL => 'br',
-        Country::PERU => 'pe',
-        Country::MEXICO => 'mx',
-        Country::COLOMBIA => 'co',
-        Country::CHILE => 'cl',
-        Country::ECUADOR => 'ec',
-    ];
-
     protected function getIntegrationKey()
     {
         return $this->config->isSandbox
