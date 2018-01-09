@@ -22,6 +22,7 @@ abstract class BaseAdapter
         Country::MEXICO => 'mx',
         Country::COLOMBIA => 'co',
         Country::CHILE => 'cl',
+        Country::ECUADOR => 'ec',
     ];
 
     protected function getIntegrationKey()

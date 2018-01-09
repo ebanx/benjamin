@@ -54,4 +54,19 @@ class SafetyPayPaymentAdapterTest extends PaymentAdapterTest
 
         $this->assertEquals('safetypay-online', strtolower($result->payment->payment_type_code));
     }
+
+    public function testOnEcuador()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('es_EC');
+        $payment = $factory->payment()->build();
+        $payment->type = 'SafetyPayOnline';
+
+        $adapter = new SafetyPayPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertEquals('ec', strtolower($result->payment->country));
+    }
 }
