@@ -46,7 +46,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :credit_card: Credit Card
 		- [X] :credit_card: Debit Card
 		- [X] :dollar: OXXO
-		- [X] :arrows_clockwise: Spei
+		- [X] :dollar: Spei
 	- [X] Chile
 		- [X] :dollar: Sencillito
 		- [X] :arrows_clockwise: Servipag
@@ -61,9 +61,13 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 	- [X] Argentina
+		- [X] :credit_card: Credit Card
 		- [X] :dollar: Rapipago
 		- [X] :dollar: PagoFacil
 		- [X] :dollar: Otros Cupones
+	- [X] Ecuador
+		- [X] :arrows_clockwise: SafetyPay
+		- [X] :dollar: SafetyPay
 - [X] Refund
 - [X] Payment Capture
 - [X] Payment by link (Hosted page gateway)
