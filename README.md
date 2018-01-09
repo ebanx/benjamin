@@ -61,6 +61,7 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: SafetyPay
 		- [X] :dollar: PagoEfectivo
 	- [X] Argentina
+		- [X] :credit_card: Credit Card
 		- [X] :dollar: Rapipago
 		- [X] :dollar: PagoFacil
 		- [X] :dollar: Otros Cupones
