@@ -65,6 +65,9 @@ Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 		- [X] :dollar: Rapipago
 		- [X] :dollar: PagoFacil
 		- [X] :dollar: Otros Cupones
+	- [X] Ecuador
+		- [X] :arrows_clockwise: SafetyPay
+		- [X] :dollar: SafetyPay
 - [X] Refund
 - [X] Payment Capture
 - [X] Payment by link (Hosted page gateway)
