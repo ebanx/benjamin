@@ -29,12 +29,39 @@ class Country extends BaseModel
 
     /**
      * Two letter ISO-3166
-     * @see
      */
     public static function fromIso($code)
     {
         $countryCode = strtoupper($code);
-        $table = [
+        $table = self::isoCodes();
+
+        if (!array_key_exists($countryCode, $table)) {
+            return null;
+        }
+
+        return $table[$countryCode];
+    }
+
+    /**
+     * Two letter ISO-3166
+     */
+    public static function toIso($country)
+    {
+        $table = array_flip(self::isoCodes());
+
+        if (!array_key_exists($country, $table)) {
+            return null;
+        }
+
+        return $table[$country];
+    }
+
+    /**
+     * @return array
+     */
+    private static function isoCodes()
+    {
+        return [
             'AR' => self::ARGENTINA,
             'BR' => self::BRAZIL,
             'CL' => self::CHILE,
@@ -43,11 +70,5 @@ class Country extends BaseModel
             'MX' => self::MEXICO,
             'PE' => self::PERU
         ];
-
-        if (!array_key_exists($countryCode, $table)) {
-            return null;
-        }
-
-        return $table[$countryCode];
     }
 }
