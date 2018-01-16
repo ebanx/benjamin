@@ -3,7 +3,7 @@ dist: trusty
 sudo: false
 php:
   - '5.4'
-  - '7.1'
+  - '7.2'
 install:
   - composer update
   - composer dump-autoload
