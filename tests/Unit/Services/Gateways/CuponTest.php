@@ -9,11 +9,11 @@ use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\OtrosCupones;
 use Ebanx\Benjamin\Services\Http\Client;
 
-class OtrosCuponesTest extends GatewayTestCase
+class CuponTest extends GatewayTestCase
 {
     public function testPayment()
     {
-        $cuponSuccessfulResponse = $this->getOtrosCuponesSuccessfulResponseJson();
+        $cuponSuccessfulResponse = $this->getCuponSuccessfulResponseJson();
         $client = $this->getMockedClient($cuponSuccessfulResponse);
 
         $factory = new BuilderFactory('es_AR');
@@ -84,14 +84,15 @@ class OtrosCuponesTest extends GatewayTestCase
         );
     }
 
-    public function getOtrosCuponesSuccessfulResponseJson()
+    public function getCuponSuccessfulResponseJson()
     {
         return '{"redirect_url":null,"payment":{"hash":"59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8","pin":"235141564","merchant_payment_code":"1733c732892e95a806002a4147f3f1ee","order_number":null,"status":"PE","status_date":null,"open_date":"2017-10-10 22:29:57","confirm_date":null,"transfer_date":null,"amount_br":"196.99","amount_ext":"52.39","amount_iof":"0.00","currency_rate":"3.7600","currency_ext":"USD","due_date":"2017-10-13","instalments":"1","payment_type_code":"cupon","voucher_url":"https:\/\/sandbox.ebanx.com\/print\/voucher\/execute?hash=59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8","pre_approved":false,"capture_available":null,"user_value_5":"Benjamin","note":"Fake payment created by PHPUnit.","customer":{"document":"0","email":"alfaro.mara@loya.es.ar","name":"LUNA GRANADOS","birth_date":"1966-10-05"}},"status":"SUCCESS"}';
     }
 
     /**
      * @param Client $client
-     * @return OtrosCuponesForTests
+     * @return OtrosCupones
+     *
      */
     private function getTestGateway($client = null)
     {
