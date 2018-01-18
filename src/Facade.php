@@ -237,9 +237,17 @@ class Facade
     /**
      * @return Gateways\Cupon
      */
-    public function otrosCupones()
+    public function cupon()
     {
         return new Gateways\Cupon($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Cupon
+     */
+    public function otrosCupones()
+    {
+        return $this->cupon();
     }
 
     /**
