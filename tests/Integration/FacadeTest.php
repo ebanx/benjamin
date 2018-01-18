@@ -24,7 +24,6 @@ class FacadeTest extends TestCase
     public function testGatewayAccessors($ebanx)
     {
         $gateways = $this->getExpectedGateways();
-        $services = $this->getExpectedServices();
 
         foreach ($gateways as $gateway) {
             $class = new \ReflectionClass('Ebanx\Benjamin\Services\Gateways\\' . ucfirst($gateway));
@@ -34,16 +33,17 @@ class FacadeTest extends TestCase
                 continue;
             }
 
-            $this->assertTrue(
-                method_exists($ebanx, $gateway),
-                "Facade has no accessor for gateway \"$gateway\"."
-            );
-
-            $this->assertNotNull(
-                $this->tryBuildGatewayUsingFacadeAccessor($ebanx, $gateway),
-                "Accessor failed to build instance of gateway \"$gateway\"."
-            );
+            $this->assertAccessor($ebanx, $gateway);
         }
+    }
+
+    /**
+     * @param $ebanx
+     * @depends testMainObject
+     */
+    public function testOtherServicesAccessors($ebanx)
+    {
+        $services = $this->getExpectedServices();
 
         foreach ($services as $service) {
             $class = new \ReflectionClass('Ebanx\Benjamin\Services\\' . ucfirst($service));
@@ -53,15 +53,7 @@ class FacadeTest extends TestCase
                 continue;
             }
 
-            $this->assertTrue(
-                method_exists($ebanx, $service),
-                "Facade has no accessor for gateway \"$service\"."
-            );
-
-            $this->assertNotNull(
-                $this->tryBuildGatewayUsingFacadeAccessor($ebanx, $service),
-                "Accessor failed to build instance of gateway \"$service\"."
-            );
+            $this->assertAccessor($ebanx, $service);
         }
     }
 
@@ -117,11 +109,6 @@ class FacadeTest extends TestCase
         );
     }
 
-    private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)
-    {
-        return call_user_func([$facade, $accessor]);
-    }
-
     private function getExpectedGateways()
     {
         $result = [];
@@ -158,6 +145,19 @@ class FacadeTest extends TestCase
         closedir($dir);
 
         return $result;
+    }
+
+    private function assertAccessor($facade, $name)
+    {
+        $this->assertTrue(
+            method_exists($facade, $name),
+            'Accessor method not defined'
+        );
+
+        $this->assertNotNull(
+            $facade->{$name}(),
+            'Accessor returned null service'
+        );
     }
 }
 
