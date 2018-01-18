@@ -235,11 +235,11 @@ class Facade
     }
 
     /**
-     * @return Gateways\OtrosCupones
+     * @return Gateways\Cupon
      */
     public function otrosCupones()
     {
-        return new Gateways\OtrosCupones($this->config, $this->getHttpClient());
+        return new Gateways\Cupon($this->config, $this->getHttpClient());
     }
 
     /**

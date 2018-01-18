@@ -6,7 +6,7 @@ use Tests\Helpers\Builders\BuilderFactory;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
-use Ebanx\Benjamin\Services\Gateways\OtrosCupones;
+use Ebanx\Benjamin\Services\Gateways\Cupon;
 use Ebanx\Benjamin\Services\Http\Client;
 
 class CuponTest extends GatewayTestCase
@@ -29,7 +29,7 @@ class CuponTest extends GatewayTestCase
 
     public function testAvailabilityWithUSD()
     {
-        $gateway = new OtrosCupones($this->config);
+        $gateway = new Cupon($this->config);
 
         $this->assertAvailableForCountries($gateway, [
             Country::ARGENTINA,
@@ -38,7 +38,7 @@ class CuponTest extends GatewayTestCase
 
     public function testAvailabilityWithLocalCurrency()
     {
-        $gateway = new OtrosCupones(new Config([
+        $gateway = new Cupon(new Config([
             'baseCurrency' => Currency::ARS,
         ]));
 
@@ -49,7 +49,7 @@ class CuponTest extends GatewayTestCase
 
     public function testAvailabilityWithWrongLocalCurrency()
     {
-        $gateway = new OtrosCupones(new Config([
+        $gateway = new Cupon(new Config([
             'baseCurrency' => Currency::MXN,
         ]));
 
@@ -91,12 +91,12 @@ class CuponTest extends GatewayTestCase
 
     /**
      * @param Client $client
-     * @return OtrosCupones
+     * @return Cupon
      *
      */
     private function getTestGateway($client = null)
     {
-        $gateway = new OtrosCupones($this->config, $client);
+        $gateway = new Cupon($this->config, $client);
         return $gateway;
     }
 }
