@@ -117,6 +117,17 @@ class FacadeTest extends TestCase
         );
     }
 
+    public function testDeprecatedGatewayAccessors()
+    {
+        $ebanx = new FacadeForTests();
+        $ebanx->addConfig(new Config());
+
+        $this->assertNotNull(
+            $ebanx->otrosCupones(),
+            'Deprecated accessor stopped working'
+        );
+    }
+
     private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)
     {
         return call_user_func([$facade, $accessor]);
