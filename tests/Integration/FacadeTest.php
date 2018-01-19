@@ -8,6 +8,7 @@ use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Services\Http\Client as HttpClient;
 use Ebanx\Benjamin\Services\Traits\Printable;
+use Ebanx\Benjamin\Services\Gateways\BaseGateway;
 
 class FacadeTest extends TestCase
 {
@@ -119,7 +120,7 @@ class FacadeTest extends TestCase
     {
         $hash = md5(rand());
         $expected = "<html>$hash</html>";
-        $infoUrl = "query/?hash=$hash";
+        $infoUrl = 'ws/query';
         $printUrl = "print/?hash=$hash";
 
         $ebanx = $this->buildMockedFacade([
@@ -185,7 +186,7 @@ class FacadeTest extends TestCase
 
     private function buildPaymentInfoMock($hash)
     {
-        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"test"}},"status":"SUCCESS"}';
+        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"test"},"status":"SUCCESS"}';
     }
 
     private function assertAccessor($facade, $name)
@@ -202,9 +203,11 @@ class FacadeTest extends TestCase
     }
 }
 
-class GatewayForTests
+class GatewayForTests extends BaseGateway
 {
     use Printable;
+
+    const API_TYPE = 'test';
 
     public function create()
     {
