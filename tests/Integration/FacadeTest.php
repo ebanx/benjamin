@@ -6,6 +6,8 @@ use Tests\TestCase;
 use Ebanx\Benjamin\Facade;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
+use Ebanx\Benjamin\Services\Http\Client as HttpClient;
+use Ebanx\Benjamin\Services\Traits\Printable;
 
 class FacadeTest extends TestCase
 {
@@ -79,7 +81,11 @@ class FacadeTest extends TestCase
         ]));
     }
 
-    public function testCreatePaymentByFacade()
+    /**
+     * @param Facade $ebanx
+     * @depends testMainObject
+     */
+    public function testCreatePaymentByFacade($ebanx)
     {
         $ebanx = new FacadeForTests();
         $ebanx->addConfig(new Config());
@@ -107,6 +113,23 @@ class FacadeTest extends TestCase
             $ebanx->getHttpClient()->isSandbox(),
             'Client connection mode is ignoring config'
         );
+    }
+
+    public function testGetTicketHtml()
+    {
+        $hash = md5(rand());
+        $expected = "<html>$hash</html>";
+        $infoUrl = "query/?hash=$hash";
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash),
+            $printUrl => $expected,
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertEquals($expected, $subject);
     }
 
     private function getExpectedGateways()
@@ -147,6 +170,24 @@ class FacadeTest extends TestCase
         return $result;
     }
 
+    private function buildMockedFacade($responseMock = null)
+    {
+        $ebanx = new FacadeForTests();
+        $ebanx->addConfig(new Config());
+        $ebanx->addConfig(new CreditCardConfig());
+
+        if ($responseMock) {
+            $ebanx->setHttpClient($this->getMockedClient($responseMock));
+        }
+
+        return $ebanx;
+    }
+
+    private function buildPaymentInfoMock($hash)
+    {
+        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"test"}},"status":"SUCCESS"}';
+    }
+
     private function assertAccessor($facade, $name)
     {
         $this->assertTrue(
@@ -163,9 +204,16 @@ class FacadeTest extends TestCase
 
 class GatewayForTests
 {
+    use Printable;
+
     public function create()
     {
         return ['payment' => []];
+    }
+
+    protected function getUrlFormat()
+    {
+        return 'https://%s.ebanx.com/print/?hash=%s';
     }
 }
 
@@ -179,5 +227,10 @@ class FacadeForTests extends Facade
     public function getHttpClient()
     {
         return parent::getHttpClient();
+    }
+
+    public function setHttpClient(HttpClient $client)
+    {
+        $this->httpClient = $client;
     }
 }
