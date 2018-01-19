@@ -60,7 +60,7 @@ class PaymentAdapter extends BaseAdapter
             'country' => Country::toIso($this->payment->address->country),
             'phone_number' => $this->payment->person->phoneNumber,
             'note' => $this->payment->note,
-            'items' => $this->transformItems(),
+            'items' => $this->payment->items,
             'device_id' => $this->payment->deviceId,
             'payment_type_code' => $this->payment->type,
             'user_value_5' => 'Benjamin',
@@ -78,22 +78,5 @@ class PaymentAdapter extends BaseAdapter
         }
 
         return (object) $payload;
-    }
-
-    protected function transformItems()
-    {
-        $itemArray = [];
-
-        foreach ($this->payment->items as $item) {
-            $itemArray[] = (object) [
-                'name' => $item->name,
-                'description' => $item->description,
-                'unit_price' => $item->unitPrice,
-                'quantity' => $item->quantity,
-                'type' => $item->type,
-            ];
-        }
-
-        return (object) $itemArray;
     }
 }
