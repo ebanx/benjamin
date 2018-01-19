@@ -11,6 +11,8 @@ class Spei extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'spei';
+
     protected static function getEnabledCountries()
     {
         return [Country::MEXICO];
@@ -27,8 +29,6 @@ class Spei extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'spei';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

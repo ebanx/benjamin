@@ -11,6 +11,8 @@ class PagoEfectivo extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'pagoEfectivo';
+
     protected static function getEnabledCountries()
     {
         return [Country::PERU];
@@ -27,8 +29,6 @@ class PagoEfectivo extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'pagoEfectivo';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

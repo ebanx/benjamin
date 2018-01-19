@@ -5,6 +5,9 @@ use Ebanx\Benjamin\Models\Payment;
 
 abstract class DirectGateway extends BaseGateway
 {
+    // Please override me
+    const API_TYPE = 'Invalid';
+
     abstract protected function getPaymentData(Payment $payment);
 
     /**
@@ -25,6 +28,7 @@ abstract class DirectGateway extends BaseGateway
      */
     public function request(Payment $payment)
     {
+        $payment->type = static::API_TYPE;
         $body = $this->client->request($this->getPaymentData($payment));
 
         return $body;

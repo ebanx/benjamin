@@ -8,8 +8,6 @@ use Ebanx\Benjamin\Services\Adapters\SafetyPayPaymentAdapter;
 
 abstract class SafetyPay extends DirectGateway
 {
-    abstract protected function getPaymentType();
-
     protected static function getEnabledCountries()
     {
         return [
@@ -29,8 +27,6 @@ abstract class SafetyPay extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = $this->getPaymentType();
-
         $adapter = new SafetyPayPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

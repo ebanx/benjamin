@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 
 class Webpay extends DirectGateway
 {
+    const API_TYPE = 'webpay';
+
     protected static function getEnabledCountries()
     {
         return [Country::CHILE];
@@ -23,8 +25,6 @@ class Webpay extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'webpay';
-
         $adapter = new PaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

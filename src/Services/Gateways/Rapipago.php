@@ -11,6 +11,8 @@ class Rapipago extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'rapipago';
+
     protected static function getEnabledCountries()
     {
         return [Country::ARGENTINA];
@@ -27,8 +29,6 @@ class Rapipago extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'rapipago';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

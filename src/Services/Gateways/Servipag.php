@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\EftPaymentAdapter;
 
 class Servipag extends DirectGateway
 {
+    const API_TYPE = 'servipag';
+
     protected static function getEnabledCountries()
     {
         return [Country::CHILE];
@@ -24,8 +26,6 @@ class Servipag extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'servipag';
-
         $adapter = new EftPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

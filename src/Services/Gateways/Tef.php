@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\TefPaymentAdapter;
 
 class Tef extends DirectGateway
 {
+    const API_TYPE = 'tef';
+
     protected static function getEnabledCountries()
     {
         return [Country::BRAZIL];
@@ -23,8 +25,6 @@ class Tef extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'tef';
-
         $adapter = new TefPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

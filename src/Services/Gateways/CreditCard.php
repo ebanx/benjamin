@@ -14,6 +14,8 @@ use Ebanx\Benjamin\Services\Http\Client;
 
 class CreditCard extends DirectGateway
 {
+    const API_TYPE = 'creditcard';
+
     protected static function getEnabledCountries()
     {
         return [

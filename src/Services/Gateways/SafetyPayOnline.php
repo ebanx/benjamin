@@ -3,8 +3,5 @@ namespace Ebanx\Benjamin\Services\Gateways;
 
 class SafetyPayOnline extends SafetyPay
 {
-    protected function getPaymentType()
-    {
-        return 'SafetyPayOnline';
-    }
+    const API_TYPE = 'safetyPayOnline';
 }

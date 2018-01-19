@@ -11,6 +11,8 @@ class Oxxo extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'oxxo';
+
     protected static function getEnabledCountries()
     {
         return [Country::MEXICO];
@@ -27,8 +29,6 @@ class Oxxo extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'oxxo';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
