@@ -13,7 +13,6 @@ class Request extends BaseProvider
         $request = new RequestModel();
         $request->address = $this->faker->addressModel();
         $request->person = $this->faker->personModel();
-        $request->subAccount = $this->faker->subAccountModel();
         $request->amount = $this->faker->randomFloat(2, 1, 10);
         $request->merchantPaymentCode = md5(time());
 

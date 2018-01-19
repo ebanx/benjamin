@@ -19,6 +19,12 @@ class RequestBuilder extends BaseBuilder
         parent::__construct($faker, $instance);
     }
 
+    public function withSubAccount()
+    {
+        $this->instance->subAccount = $this->faker->subAccountModel();
+        return $this;
+    }
+
     /**
      * @return Request
      */
