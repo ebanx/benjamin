@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
 
 class DebitCard extends DirectGateway
 {
+    const API_TYPE = 'debitcard';
+
     protected static function getEnabledCountries()
     {
         return [
@@ -25,8 +27,7 @@ class DebitCard extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'debitcard';
-        $payment->card->type = 'debitcard';
+        $payment->card->type = self::API_TYPE;
 
         $adapter = new CardPaymentAdapter($payment, $this->config);
         return $adapter->transform();

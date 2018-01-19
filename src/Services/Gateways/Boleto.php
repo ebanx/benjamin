@@ -11,6 +11,8 @@ class Boleto extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'boleto';
+
     protected static function getEnabledCountries()
     {
         return [Country::BRAZIL];
@@ -39,8 +41,6 @@ class Boleto extends DirectGateway
      */
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'boleto';
-
         $adapter = new BoletoPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

@@ -6,6 +6,9 @@ use Tests\TestCase;
 use Ebanx\Benjamin\Facade;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
+use Ebanx\Benjamin\Services\Http\Client as HttpClient;
+use Ebanx\Benjamin\Services\Traits\Printable;
+use Ebanx\Benjamin\Services\Gateways\BaseGateway;
 
 class FacadeTest extends TestCase
 {
@@ -24,7 +27,6 @@ class FacadeTest extends TestCase
     public function testGatewayAccessors($ebanx)
     {
         $gateways = $this->getExpectedGateways();
-        $services = $this->getExpectedServices();
 
         foreach ($gateways as $gateway) {
             $class = new \ReflectionClass('Ebanx\Benjamin\Services\Gateways\\' . ucfirst($gateway));
@@ -34,16 +36,17 @@ class FacadeTest extends TestCase
                 continue;
             }
 
-            $this->assertTrue(
-                method_exists($ebanx, $gateway),
-                "Facade has no accessor for gateway \"$gateway\"."
-            );
-
-            $this->assertNotNull(
-                $this->tryBuildGatewayUsingFacadeAccessor($ebanx, $gateway),
-                "Accessor failed to build instance of gateway \"$gateway\"."
-            );
+            $this->assertAccessor($ebanx, $gateway);
         }
+    }
+
+    /**
+     * @param $ebanx
+     * @depends testMainObject
+     */
+    public function testOtherServicesAccessors($ebanx)
+    {
+        $services = $this->getExpectedServices();
 
         foreach ($services as $service) {
             $class = new \ReflectionClass('Ebanx\Benjamin\Services\\' . ucfirst($service));
@@ -53,15 +56,7 @@ class FacadeTest extends TestCase
                 continue;
             }
 
-            $this->assertTrue(
-                method_exists($ebanx, $service),
-                "Facade has no accessor for gateway \"$service\"."
-            );
-
-            $this->assertNotNull(
-                $this->tryBuildGatewayUsingFacadeAccessor($ebanx, $service),
-                "Accessor failed to build instance of gateway \"$service\"."
-            );
+            $this->assertAccessor($ebanx, $service);
         }
     }
 
@@ -87,7 +82,11 @@ class FacadeTest extends TestCase
         ]));
     }
 
-    public function testCreatePaymentByFacade()
+    /**
+     * @param Facade $ebanx
+     * @depends testMainObject
+     */
+    public function testCreatePaymentByFacade($ebanx)
     {
         $ebanx = new FacadeForTests();
         $ebanx->addConfig(new Config());
@@ -109,17 +108,59 @@ class FacadeTest extends TestCase
             new CreditCardConfig()
         );
 
-        $ebanx->test(); // Force lazy loader
-
         $this->assertFalse(
             $ebanx->getHttpClient()->isSandbox(),
             'Client connection mode is ignoring config'
         );
     }
 
-    private function tryBuildGatewayUsingFacadeAccessor($facade, $accessor)
+    public function testGetTicketHtml()
     {
-        return call_user_func([$facade, $accessor]);
+        $hash = md5(rand());
+        $expected = "<html>$hash</html>";
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash),
+            $printUrl => $expected,
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertEquals($expected, $subject);
+    }
+
+    public function testGetTicketHtmlWithBadPaymentType()
+    {
+        $hash = md5(rand());
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash, 'none'),
+            $printUrl => "<html>$hash</html>",
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertNull($subject);
+    }
+
+    public function testGetTicketHtmlWithNonPrintableGateway()
+    {
+        $hash = md5(rand());
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash, 'tef'),
+            $printUrl => "<html>$hash</html>",
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertNull($subject);
     }
 
     private function getExpectedGateways()
@@ -159,13 +200,53 @@ class FacadeTest extends TestCase
 
         return $result;
     }
+
+    private function buildMockedFacade($responseMock = null)
+    {
+        $ebanx = new FacadeForTests();
+        $ebanx->addConfig(new Config());
+        $ebanx->addConfig(new CreditCardConfig());
+
+        if ($responseMock) {
+            $ebanx->setHttpClient($this->getMockedClient($responseMock));
+        }
+
+        return $ebanx;
+    }
+
+    private function buildPaymentInfoMock($hash, $type = 'test')
+    {
+        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"'.$type.'"},"status":"SUCCESS"}';
+    }
+
+    private function assertAccessor($facade, $name)
+    {
+        $this->assertTrue(
+            method_exists($facade, $name),
+            'Accessor method not defined'
+        );
+
+        $this->assertNotNull(
+            $facade->{$name}(),
+            'Accessor returned null service'
+        );
+    }
 }
 
-class GatewayForTests
+class GatewayForTests extends BaseGateway
 {
+    use Printable;
+
+    const API_TYPE = 'test';
+
     public function create()
     {
         return ['payment' => []];
+    }
+
+    protected function getUrlFormat()
+    {
+        return 'https://%s.ebanx.com/print/?hash=%s';
     }
 }
 
@@ -179,5 +260,10 @@ class FacadeForTests extends Facade
     public function getHttpClient()
     {
         return parent::getHttpClient();
+    }
+
+    public function setHttpClient(HttpClient $client)
+    {
+        $this->httpClient = $client;
     }
 }

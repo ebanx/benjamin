@@ -11,6 +11,8 @@ class OtrosCupones extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'cupon';
+
     protected static function getEnabledCountries()
     {
         return [Country::ARGENTINA];
@@ -27,8 +29,6 @@ class OtrosCupones extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'cupon';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

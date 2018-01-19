@@ -11,6 +11,8 @@ class Pagofacil extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'pagofacil';
+
     protected static function getEnabledCountries()
     {
         return [Country::ARGENTINA];
@@ -27,8 +29,6 @@ class Pagofacil extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'pagofacil';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

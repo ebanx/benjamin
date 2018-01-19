@@ -4,11 +4,8 @@ namespace Tests\Unit\Services\Gateways;
 use Ebanx\Benjamin\Services\Gateways\BaseGateway;
 use Tests\TestCase;
 use Tests\Helpers\Environment;
-use Tests\Helpers\Mocks\Http\ClientForTests;
-use Tests\Helpers\Mocks\Http\EchoEngine;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
-use Ebanx\Benjamin\Services\Http\Client;
 
 class GatewayTestCase extends TestCase
 {
@@ -51,10 +48,5 @@ class GatewayTestCase extends TestCase
         $this->assertFalse($gateway->isAvailableForCountry(Country::MEXICO));
         $this->assertFalse($gateway->isAvailableForCountry(Country::PERU));
         $this->assertFalse($gateway->isAvailableForCountry(Country::COLOMBIA));
-    }
-
-    protected function getMockedClient($response)
-    {
-        return new ClientForTests(new EchoEngine(Client::SANDBOX_URL, $response));
     }
 }

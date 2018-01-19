@@ -75,12 +75,34 @@ class Facade
         if ($payment->type === null) {
             throw new \InvalidArgumentException('Invalid payment type');
         }
+
         if (!method_exists($this, $payment->type)) {
             throw new \InvalidArgumentException('Invalid payment type');
         }
 
         $instance = call_user_func([$this, $payment->type]);
         return $instance->create($payment);
+    }
+
+    /**
+     * @param string $hash
+     * @return string
+     */
+    public function getTicketHtml($hash)
+    {
+        $info = $this->paymentInfo()->findByHash($hash);
+
+        $gatewayName = $this->getGatewayNameFromType($info['payment']['payment_type_code']);
+        if (!$gatewayName) {
+            return null;
+        }
+
+        $gateway = $this->{$gatewayName}();
+        if (!method_exists($gateway, 'getTicketHtml')) {
+            return null;
+        }
+
+        return $gateway->getTicketHtml($hash);
     }
 
     # Gateways
@@ -281,5 +303,43 @@ class Facade
             $this->httpClient->switchMode($this->config->isSandbox);
         }
         return $this->httpClient;
+    }
+
+    protected function getGatewayNameFromType($apiType)
+    {
+        foreach ($this->getAllPublicServices() as $method => $service) {
+            $class = get_class($service);
+
+            if (!defined($class.'::API_TYPE')) {
+                continue;
+            }
+
+            if ($class::API_TYPE !== $apiType) {
+                continue;
+            }
+
+            return $method;
+        }
+
+        return null;
+    }
+
+    protected function getAllPublicServices()
+    {
+        $methods = get_class_methods(get_class($this));
+        $services = [];
+
+        foreach ($methods as $method) {
+            $reflection = new \ReflectionMethod($this, $method);
+
+            if (!$reflection->isPublic()
+                || $reflection->getNumberOfRequiredParameters() > 0) {
+                continue;
+            }
+
+            $services[$method] = $this->{$method}();
+        }
+
+        return $services;
     }
 }

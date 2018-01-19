@@ -11,6 +11,8 @@ class Baloto extends DirectGateway
 {
     use Printable;
 
+    const API_TYPE = 'baloto';
+
     protected static function getEnabledCountries()
     {
         return [Country::COLOMBIA];
@@ -27,8 +29,6 @@ class Baloto extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'baloto';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

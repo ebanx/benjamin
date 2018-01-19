@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 
 class Multicaja extends DirectGateway
 {
+    const API_TYPE = 'multicaja';
+
     protected static function getEnabledCountries()
     {
         return [Country::CHILE];
@@ -23,8 +25,6 @@ class Multicaja extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'multicaja';
-
         $adapter = new PaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

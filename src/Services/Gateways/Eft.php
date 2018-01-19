@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\EftPaymentAdapter;
 
 class Eft extends DirectGateway
 {
+    const API_TYPE = 'eft';
+
     protected static function getEnabledCountries()
     {
         return [Country::COLOMBIA];
@@ -24,8 +26,6 @@ class Eft extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'eft';
-
         $adapter = new EftPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }

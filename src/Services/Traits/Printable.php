@@ -5,7 +5,7 @@ trait Printable
 {
     /**
      * @param string $hash
-     * @param boolean   $isSandbox
+     * @param boolean $isSandbox
      * @return string
      */
     public function getUrl($hash, $isSandbox = null)

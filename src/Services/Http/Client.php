@@ -5,8 +5,8 @@ use GuzzleHttp;
 
 class Client
 {
-    const SANDBOX_URL = 'https://sandbox.ebanx.com/ws/';
-    const LIVE_URL = 'https://api.ebanx.com/ws/';
+    const SANDBOX_URL = 'https://sandbox.ebanx.com/';
+    const LIVE_URL = 'https://api.ebanx.com/';
 
     const MODE_SANDBOX = 0;
     const MODE_LIVE = 1;
@@ -66,7 +66,7 @@ class Client
      */
     public function payment($data)
     {
-        return $this->post($data, 'direct');
+        return $this->post($data, 'ws/direct');
     }
 
     /**
@@ -75,7 +75,7 @@ class Client
      */
     public function request($data)
     {
-        return $this->post($data, 'request');
+        return $this->post($data, 'ws/request');
     }
 
     /**
@@ -84,7 +84,7 @@ class Client
      */
     public function refund($data)
     {
-        return $this->query($data, 'refund');
+        return $this->query($data, 'ws/refund');
     }
 
     /**
@@ -93,7 +93,7 @@ class Client
      */
     public function capture($data)
     {
-        return $this->query($data, 'capture');
+        return $this->query($data, 'ws/capture');
     }
 
     /**
@@ -102,12 +102,12 @@ class Client
      */
     public function exchange($data)
     {
-        return $this->query($data, 'exchange');
+        return $this->query($data, 'ws/exchange');
     }
 
     public function paymentInfo($data)
     {
-        return $this->query($data, 'query');
+        return $this->query($data, 'ws/query');
     }
 
     public function fetchContent($url)

@@ -8,6 +8,8 @@ use Ebanx\Benjamin\Services\Adapters\CashPaymentAdapter;
 
 class Sencillito extends DirectGateway
 {
+    const API_TYPE = 'sencillito';
+
     protected static function getEnabledCountries()
     {
         return [Country::CHILE];
@@ -23,8 +25,6 @@ class Sencillito extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->type = 'sencillito';
-
         $adapter = new CashPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
