@@ -147,6 +147,22 @@ class FacadeTest extends TestCase
         $this->assertNull($subject);
     }
 
+    public function testGetTicketHtmlWithNonPrintableGateway()
+    {
+        $hash = md5(rand());
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash, 'tef'),
+            $printUrl => "<html>$hash</html>",
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertNull($subject);
+    }
+
     private function getExpectedGateways()
     {
         $result = [];
