@@ -60,33 +60,25 @@ class RequestAdapter extends BaseAdapter
 
     protected function transformPerson(Person $person = null)
     {
-        if (!$person) {
-            return [];
-        }
-
         return [
-            'person_type' => $person->type,
             'name' => $person->name,
-            'birth_date' => $person->birthdate,
             'email' => $person->email,
             'phone_number' => $person->phoneNumber,
+            'person_type' => $person->type,
+            'birth_date' => $person->birthdate,
         ];
     }
 
     protected function transformAddress(Address $address = null)
     {
-        if (!$address) {
-            return [];
-        }
-
         return [
+            'country' => Country::toIso($address->country),
             'zipcode' => $address->zipcode,
             'address' => $address->address,
             'street_number' => $address->streetNumber,
             'street_complement' => $address->streetComplement,
             'city' => $address->city,
             'state' => $address->state,
-            'country' => Country::toIso($address->country),
         ];
     }
 
