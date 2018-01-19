@@ -307,7 +307,7 @@ class Facade
 
     protected function getGatewayNameFromType($apiType)
     {
-        foreach($this->getAllPublicServices() as $method => $service) {
+        foreach ($this->getAllPublicServices() as $method => $service) {
             $class = get_class($service);
 
             if (!defined($class.'::API_TYPE')) {
@@ -324,11 +324,12 @@ class Facade
         return null;
     }
 
-    protected function getAllPublicServices() {
+    protected function getAllPublicServices()
+    {
         $methods = get_class_methods(get_class($this));
         $services = [];
 
-        foreach($methods as $method) {
+        foreach ($methods as $method) {
             $reflection = new \ReflectionMethod($this, $method);
 
             if (!$reflection->isPublic()
