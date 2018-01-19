@@ -108,8 +108,6 @@ class FacadeTest extends TestCase
             new CreditCardConfig()
         );
 
-        $ebanx->test(); // Force lazy loader
-
         $this->assertFalse(
             $ebanx->getHttpClient()->isSandbox(),
             'Client connection mode is ignoring config'
@@ -131,6 +129,22 @@ class FacadeTest extends TestCase
         $subject = $ebanx->getTicketHtml($hash);
 
         $this->assertEquals($expected, $subject);
+    }
+
+    public function testGetTicketHtmlWithBadPaymentType()
+    {
+        $hash = md5(rand());
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash, 'none'),
+            $printUrl => "<html>$hash</html>",
+        ]);
+
+        $subject = $ebanx->getTicketHtml($hash);
+
+        $this->assertNull($subject);
     }
 
     private function getExpectedGateways()
@@ -184,9 +198,9 @@ class FacadeTest extends TestCase
         return $ebanx;
     }
 
-    private function buildPaymentInfoMock($hash)
+    private function buildPaymentInfoMock($hash, $type = 'test')
     {
-        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"test"},"status":"SUCCESS"}';
+        return '{"payment":{"hash":"'.$hash.'","payment_type_code":"'.$type.'"},"status":"SUCCESS"}';
     }
 
     private function assertAccessor($facade, $name)
