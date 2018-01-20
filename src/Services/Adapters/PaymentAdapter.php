@@ -60,7 +60,7 @@ class PaymentAdapter extends BaseAdapter
             'country' => Country::toIso($this->payment->address->country),
             'phone_number' => $this->payment->person->phoneNumber,
             'note' => $this->payment->note,
-            'items' => $this->payment->items,
+            'items' => $this->transformItems(),
             'device_id' => $this->payment->deviceId,
             'payment_type_code' => $this->payment->type,
             'user_value_5' => 'Benjamin',
