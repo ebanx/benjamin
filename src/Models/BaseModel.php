@@ -29,7 +29,7 @@ abstract class BaseModel
         $ref = new \ReflectionClass($this);
         $props = $ref->getProperties(\ReflectionProperty::IS_PUBLIC);
 
-        $obj = new stdClass();
+        $obj = new \stdClass();
 
         foreach ($props as $prop) {
             $obj->{$this->toSnakeCase($prop->getName())} = $prop->getValue($this);
