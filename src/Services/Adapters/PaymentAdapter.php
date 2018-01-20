@@ -79,4 +79,15 @@ class PaymentAdapter extends BaseAdapter
 
         return (object) $payload;
     }
+
+    protected function transformItems()
+    {
+        $itemArray = [];
+
+        foreach ($this->payment->items as $item) {
+            $itemArray[] = $item->fetchValues();
+        }
+
+        return (object) $itemArray;
+    }
 }
