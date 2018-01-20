@@ -85,13 +85,15 @@ class PaymentAdapter extends BaseAdapter
         $itemArray = [];
 
         foreach ($this->payment->items as $item) {
-            $itemArray[] = (object) [
+            $properties = [
                 'name' => $item->name,
                 'description' => $item->description,
                 'unit_price' => $item->unitPrice,
                 'quantity' => $item->quantity,
                 'type' => $item->type,
             ];
+
+            $itemArray[] = (object) $properties;
         }
 
         return (object) $itemArray;
