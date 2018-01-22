@@ -16,6 +16,7 @@ abstract class DirectGateway extends BaseGateway
      */
     public function create(Payment $payment)
     {
+        $payment->type = static::API_TYPE;
         $body = $this->client->payment($this->getPaymentData($payment));
 
         return $body;
