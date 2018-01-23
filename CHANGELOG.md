@@ -1,4 +1,8 @@
-## 1.6.1
+## 1.8.0
+* Feature - Added getTicketHtml method to main façade to work with printable gateway payments [#114](https://github.com/ebanx/benjamin/pull/114)
+
+## 1.7.0
+* Feature - Create method to translate country names into pay's required form [#111](https://github.com/ebanx/benjamin/pull/111)
 * Fix - Missing Ecuador country code translation for API [#110](https://github.com/ebanx/benjamin/pull/110)
 
 ## 1.6.0
