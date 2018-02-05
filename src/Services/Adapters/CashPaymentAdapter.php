@@ -3,9 +3,9 @@ namespace Ebanx\Benjamin\Services\Adapters;
 
 class CashPaymentAdapter extends PaymentAdapter
 {
-    public function transform()
+    public function transformPayment()
     {
-        $transformed = parent::transform();
+        $transformed = parent::transformPayment();
         $transformed->bypass_boleto_screen = true;
 
         if (isset($this->payment->dueDate)) {

@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Payment;
 use Ebanx\Benjamin\Services\Adapters\BoletoPaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use JsonSchema;
@@ -23,5 +24,15 @@ class BoletoPaymentAdapterTest extends PaymentAdapterTest
         $validator->validate($result, $this->getSchema(['paymentSchema', 'brazilPaymentSchema', 'cashPaymentSchema']));
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
+    }
+
+    public function testDueDateIsInsidePayment()
+    {
+        $payment = new Payment(['dueDate' => new \DateTime()]);
+
+        $adapter = new BoletoPaymentAdapter($payment, new Config());
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('due_date', $result->payment);
     }
 }
