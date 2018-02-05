@@ -38,4 +38,23 @@ class CardPaymentAdapterTest extends PaymentAdapterTest
 
         $this->assertObjectHasAttribute('payment', $result);
     }
+
+    public function testRequestAttributeNumber()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->emptyCreditCard()->businessPerson()->build();
+
+        $adapter = new CardPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $numberOfKeys = count((array) $result);
+        $this->assertEquals(4, $numberOfKeys);
+        $this->assertObjectHasAttribute('integration_key' , $result);
+        $this->assertObjectHasAttribute('operation' , $result);
+        $this->assertObjectHasAttribute('mode' , $result);
+        $this->assertObjectHasAttribute('payment' , $result);
+    }
 }

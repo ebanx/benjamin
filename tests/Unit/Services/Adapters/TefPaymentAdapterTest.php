@@ -24,4 +24,23 @@ class TefPaymentAdapterTest extends PaymentAdapterTest
 
         $this->assertTrue($validator->isValid(), $this->getJsonMessage($validator));
     }
+
+    public function testRequestAttributeNumber()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->tef()->businessPerson()->build();
+
+        $adapter = new TefPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $numberOfKeys = count((array) $result);
+        $this->assertEquals(4, $numberOfKeys);
+        $this->assertObjectHasAttribute('integration_key' , $result);
+        $this->assertObjectHasAttribute('operation' , $result);
+        $this->assertObjectHasAttribute('mode' , $result);
+        $this->assertObjectHasAttribute('payment' , $result);
+    }
 }
