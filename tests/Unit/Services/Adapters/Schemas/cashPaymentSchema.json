@@ -1,8 +1,5 @@
 {
   "properties": {
-    "bypass_boleto_screen": {
-      "type": "boolean"
-    },
     "payment": {
       "properties": {
         "due_date": {
