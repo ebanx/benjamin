@@ -52,9 +52,9 @@ class CardPaymentAdapterTest extends PaymentAdapterTest
 
         $numberOfKeys = count((array) $result);
         $this->assertEquals(4, $numberOfKeys);
-        $this->assertObjectHasAttribute('integration_key' , $result);
-        $this->assertObjectHasAttribute('operation' , $result);
-        $this->assertObjectHasAttribute('mode' , $result);
-        $this->assertObjectHasAttribute('payment' , $result);
+        $this->assertObjectHasAttribute('integration_key', $result);
+        $this->assertObjectHasAttribute('operation', $result);
+        $this->assertObjectHasAttribute('mode', $result);
+        $this->assertObjectHasAttribute('payment', $result);
     }
 }
