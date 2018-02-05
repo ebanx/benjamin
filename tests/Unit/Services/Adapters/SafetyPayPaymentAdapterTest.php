@@ -69,4 +69,24 @@ class SafetyPayPaymentAdapterTest extends PaymentAdapterTest
 
         $this->assertEquals('ec', strtolower($result->payment->country));
     }
+
+    public function testRequestAttributeNumber()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->build();
+        $payment->type = 'SafetyPayCash';
+
+        $adapter = new SafetyPayPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $numberOfKeys = count((array) $result);
+        $this->assertEquals(4, $numberOfKeys);
+        $this->assertObjectHasAttribute('integration_key' , $result);
+        $this->assertObjectHasAttribute('operation' , $result);
+        $this->assertObjectHasAttribute('mode' , $result);
+        $this->assertObjectHasAttribute('payment' , $result);
+    }
 }

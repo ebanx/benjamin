@@ -3,14 +3,6 @@ namespace Ebanx\Benjamin\Services\Adapters;
 
 class CardPaymentAdapter extends BrazilPaymentAdapter
 {
-    public function transform()
-    {
-        $transformed = parent::transform();
-        $transformed->payment_type_code = $this->payment->card->type;
-
-        return $transformed;
-    }
-
     protected function transformPayment()
     {
         $transformed = parent::transformPayment();

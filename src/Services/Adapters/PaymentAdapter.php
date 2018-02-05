@@ -25,12 +25,6 @@ class PaymentAdapter extends BaseAdapter
             'operation' => 'request',
             'mode' => 'full',
             'payment' => $this->transformPayment(),
-            'currency_code' => $this->config->baseCurrency,
-            'name' => $this->payment->person->name,
-            'email' => $this->payment->person->email,
-            'amount' => $this->payment->amountTotal,
-            'merchant_payment_code' => $this->payment->merchantPaymentCode,
-            'payment_type_code' => $this->payment->type,
         ];
     }
 
