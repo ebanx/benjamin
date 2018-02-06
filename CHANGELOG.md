@@ -1,3 +1,6 @@
+## 1.8.1
+* Fix - Put due date inside payment key on request payload [#119](https://github.com/ebanx/benjamin/pull/119)
+
 ## 1.8.0
 * Feature - Added getTicketHtml method to main façade to work with printable gateway payments [#114](https://github.com/ebanx/benjamin/pull/114)
 
