@@ -1,3 +1,6 @@
+## 1.8.2
+* Fix - Send document also on LATAM countries requests [#123](https://github.com/ebanx/benjamin/pull/123)
+
 ## 1.8.1
 * Fix - Put due date inside payment key on request payload [#119](https://github.com/ebanx/benjamin/pull/119)
 
