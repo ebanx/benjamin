@@ -34,52 +34,6 @@ If you want more information you can check the [Wiki](https://github.com/ebanx/b
 
 Check the [Wiki](https://github.com/ebanx/benjamin/wiki/Contributing).
 
-## Checklist for implementations needed
-
-- [X] Payment
-	- [X] Brasil
-		- [X] :dollar: Boleto
-		- [X] :credit_card: Credit Card
-		- [X] :arrows_clockwise: TEF
-		- [X] :arrows_clockwise: EBANX Account
-	- [X] Mexico
-		- [X] :credit_card: Credit Card
-		- [X] :credit_card: Debit Card
-		- [X] :dollar: OXXO
-		- [X] :dollar: Spei
-	- [X] Chile
-		- [X] :dollar: Sencillito
-		- [X] :arrows_clockwise: Servipag
-		- [X] :arrows_clockwise: Webpay
-		- [X] :arrows_clockwise: Multicaja
-	- [X] Colombia
-		- [X] :arrows_clockwise: PSE
-		- [X] :dollar: Baloto
-		- [X] :credit_card: Credit Card
-	- [X] Peru
-		- [X] :arrows_clockwise: SafetyPay
-		- [X] :dollar: SafetyPay
-		- [X] :dollar: PagoEfectivo
-	- [X] Argentina
-		- [X] :credit_card: Credit Card
-		- [X] :dollar: Rapipago
-		- [X] :dollar: PagoFacil
-		- [X] :dollar: Otros Cupones
-	- [X] Ecuador
-		- [X] :arrows_clockwise: SafetyPay
-		- [X] :dollar: SafetyPay
-- [X] Refund
-- [X] Payment Capture
-- [X] Payment by link (Hosted page gateway)
-- [ ] Validator
-- [ ] Response Decorators
-- [X] Interest Rates
-- [X] Taxes
-
-:dollar: = Cash payment  
-:credit_card: = Card payment  
-:arrows_clockwise: = Online payment  
-
 ## License
 
 Copyright 2017 EBANX Payments
