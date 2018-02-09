@@ -118,10 +118,22 @@ class PaymentAdapterTest extends TestCase
         $this->assertEquals(Currency::EUR, $result->payment->currency_code);
     }
 
-    public function testAllRequestHaveDocument()
+    public function testTransformDocument()
+    {
+        $document = '123456789';
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(['document' => $document]),
+            'address' => new Address()
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertEquals($document, $result->payment->document);
+    }
+
+    public function testTransformWithoutDocument()
     {
         $adapter = new FakeAdapter(new Payment([
-            'person' => new Person(['document' => '123456789']),
+            'person' => new Person(),
             'address' => new Address()
         ]), new Config());
         $result = $adapter->transform();
