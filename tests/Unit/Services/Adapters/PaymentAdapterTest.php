@@ -1,8 +1,11 @@
 <?php
 namespace Tests\Unit\Services\Adapters;
 
+use Ebanx\Benjamin\Models\Address;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Currency;
+use Ebanx\Benjamin\Models\Payment;
+use Ebanx\Benjamin\Models\Person;
 use Ebanx\Benjamin\Services\Adapters\PaymentAdapter;
 use Tests\Helpers\Builders\BuilderFactory;
 use Tests\TestCase;
@@ -113,6 +116,17 @@ class PaymentAdapterTest extends TestCase
         $result = $adapter->transform();
 
         $this->assertEquals(Currency::EUR, $result->payment->currency_code);
+    }
+
+    public function testAllRequestHaveDocument()
+    {
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(['document' => '123456789']),
+            'address' => new Address()
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('document', $result->payment);
     }
 
     protected function getJsonMessage(JsonSchema\Validator $validator)
