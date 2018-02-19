@@ -46,6 +46,7 @@ class PaymentAdapter extends BaseAdapter
             'order_number' => $this->payment->orderNumber,
             'customer_ip' => $this->payment->person->ip,
             'document' => $this->payment->person->document,
+            'document_type' => $this->payment->person->documentType,
             'zipcode' => $this->payment->address->zipcode,
             'address' => $this->payment->address->address,
             'street_number' => $this->payment->address->streetNumber,

@@ -141,6 +141,29 @@ class PaymentAdapterTest extends TestCase
         $this->assertObjectHasAttribute('document', $result->payment);
     }
 
+    public function testTransformDocumentType()
+    {
+        $documentType = 'ARG_CDI';
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(['documentType' => $documentType]),
+            'address' => new Address()
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertEquals($documentType, $result->payment->document_type);
+    }
+
+    public function testTransformWithoutDocumentType()
+    {
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(),
+            'address' => new Address()
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('document_type', $result->payment);
+    }
+
     protected function getJsonMessage(JsonSchema\Validator $validator)
     {
         $message = '';

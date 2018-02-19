@@ -29,6 +29,13 @@ class Person extends BaseModel
     public $document;
 
     /**
+     * Customer document type.
+     *
+     * @var string
+     */
+    public $documentType;
+
+    /**
      * Customers email.
      *
      * @var string
