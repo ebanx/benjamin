@@ -1,10 +1,9 @@
 # Benjamin
-[![Build Status](https://travis-ci.org/ebanx/benjamin.svg?branch=master)](https://travis-ci.org/ebanx/benjamin)
-[![codecov](https://codecov.io/gh/ebanx/benjamin/branch/master/graph/badge.svg)](https://codecov.io/gh/ebanx/benjamin)
-[![Latest Stable Version](https://poser.pugx.org/ebanx/benjamin/v/stable?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
-[![Total Downloads](https://poser.pugx.org/ebanx/benjamin/downloads?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
-[![Latest Unstable Version](https://poser.pugx.org/ebanx/benjamin/v/unstable?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
-[![License](https://poser.pugx.org/ebanx/benjamin/license?format=flat-square)](https://packagist.org/packages/ebanx/benjamin)
+[![Build Status](https://img.shields.io/travis/ebanx/benjamin/master.svg?style=for-the-badge)](https://travis-ci.org/ebanx/benjamin)
+[![codecov](https://img.shields.io/codecov/c/github/ebanx/benjamin/master.svg?style=for-the-badge)](https://codecov.io/gh/ebanx/benjamin)
+[![Latest Stable Version](https://img.shields.io/packagist/v/ebanx/benjamin.svg?style=for-the-badge)](https://packagist.org/packages/ebanx/benjamin)
+[![Total Downloads](https://img.shields.io/packagist/dt/ebanx/benjamin.svg?style=for-the-badge)](https://packagist.org/packages/ebanx/benjamin)
+[![License](https://img.shields.io/packagist/l/ebanx/benjamin.svg?style=for-the-badge)](https://packagist.org/packages/ebanx/benjamin)
 
 
 This is the repository for business rules as of implemented by merchant sites for use in e-commerce platform plugins.
