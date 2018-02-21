@@ -143,7 +143,7 @@ class PaymentAdapterTest extends TestCase
 
     public function testTransformDocumentType()
     {
-        $documentType = 'ARG_CDI';
+        $documentType = Person::DOCUMENT_TYPE_ARG_CDI;
         $adapter = new FakeAdapter(new Payment([
             'person' => new Person(['documentType' => $documentType]),
             'address' => new Address()
