@@ -6,11 +6,11 @@ class Person extends BaseModel
     const TYPE_PERSONAL = 'personal';
     const TYPE_BUSINESS = 'business';
 
-    const DOCUMENT_TYPE_ARG_CUIT = 'ARG_CUIT';
-    const DOCUMENT_TYPE_ARG_CUIL = 'ARG_CUIL';
-    const DOCUMENT_TYPE_ARG_CDI = 'ARG_CDI';
-    const DOCUMENT_TYPE_COL_CC = 'COL_CC';
-    const DOCUMENT_TYPE_COL_NIT = 'COL_NIT';
+    const DOCUMENT_TYPES_ARGENTINA_CUIT = 'ARG_CUIT';
+    const DOCUMENT_TYPE_ARGENTINA_CUIL = 'ARG_CUIL';
+    const DOCUMENT_TYPE_ARGENTINA_CDI = 'ARG_CDI';
+    const DOCUMENT_TYPE_COLOMBIA_CC = 'COL_CC';
+    const DOCUMENT_TYPE_COLOMBIA_NIT = 'COL_NIT';
 
     /**
      * The type of customer.
