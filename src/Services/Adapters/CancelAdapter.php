@@ -26,7 +26,6 @@ class CancelAdapter extends BaseAdapter
     {
         return [
             'integration_key' => $this->getIntegrationKey(),
-            'operation' => 'request',
             'hash' => $this->hash,
         ];
     }

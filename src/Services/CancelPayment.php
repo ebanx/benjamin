@@ -14,7 +14,7 @@ class CancelPayment extends HttpService
     public function request($hash)
     {
         $adapter = new CancelAdapter($hash, $this->config);
-        $response = $this->client->refund($adapter->transform());
+        $response = $this->client->cancel($adapter->transform());
 
         return $response;
     }

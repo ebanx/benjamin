@@ -91,6 +91,15 @@ class Client
      * @param  object|array $data Payment data payload
      * @return array
      */
+    public function cancel($data)
+    {
+        return $this->query($data, 'ws/cancel');
+    }
+
+    /**
+     * @param  object|array $data Payment data payload
+     * @return array
+     */
     public function capture($data)
     {
         return $this->query($data, 'ws/capture');
