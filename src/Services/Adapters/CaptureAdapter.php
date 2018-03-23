@@ -13,12 +13,12 @@ class CaptureAdapter extends BaseAdapter
     /**
      * RefundAdapter constructor.
      *
-     * @param array $data
+     * @param array $hash
      * @param Config $config
      */
-    public function __construct($data, Config $config)
+    public function __construct($hash, Config $config)
     {
-        $this->data = $data;
+        $this->data = $hash;
         parent::__construct($config);
     }
 
