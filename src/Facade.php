@@ -106,6 +106,42 @@ class Facade
         return $gateway->getTicketHtml($hash);
     }
 
+    /**
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function isValidPrivateKey($key)
+    {
+        $data = ['integration_key' => $key];
+        $response = $this->getHttpClient()->validatePrivateKey($data);
+
+        return $response['status'] === 'SUCCESS';
+    }
+
+    /**
+     * @param string $key
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function isValidPublicKey($key)
+    {
+        $data = ['public_integration_key' => $key];
+        try{
+            $response = $this->getHttpClient()->validatePublicKey($data);
+
+            return $response['status'] === 'SUCCESS';
+        } catch (\Exception $e) {
+            if ( $e->getCode() === 409 ) {
+                return false;
+            }
+
+            throw $e;
+        }
+
+    }
+
     # Gateways
 
     /**
