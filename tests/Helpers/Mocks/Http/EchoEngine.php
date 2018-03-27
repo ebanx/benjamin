@@ -2,6 +2,7 @@
 namespace Tests\Helpers\Mocks\Http;
 
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Exception\ClientException;
 
 class EchoEngine extends Guzzle
 {
@@ -60,6 +61,10 @@ class EchoEngine extends Guzzle
         }
 
         $endpoint = str_replace($this->baseUrl, '', $url);
+        if (json_decode($this->responses[$endpoint])['status'] === 'CONFLICT'
+            || json_decode($this->responses[$endpoint])['status'] === 'NOT FOUND') {
+            throw new ClientException('worked', \GuzzleHttp\Message\RequestInterface);
+        }
         return $this->responses[$endpoint];
     }
 }

@@ -49,14 +49,19 @@ class Client
 
     /**
      * @param  object|array $data Any data you want to send
-     * @param  string       $endpoint The API endpoint you want to call
+     * @param  string $endpoint The API endpoint you want to call
+     * @param bool $errors
+     *
      * @return array
      */
-    protected function query($data, $endpoint)
+    protected function query($data, $endpoint, $errors = true)
     {
         return $this->engine->get(
             $this->getUrl() . $endpoint,
-            ['query' => $data]
+            [
+                'query' => $data,
+                'http_errors' => $errors
+            ]
         )->json();
     }
 
@@ -141,7 +146,14 @@ class Client
      */
     public function validatePublicKey($data)
     {
-        return $this->query($data, 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey');
+        return $this->engine->request(
+            $this->getUrl() . 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey',
+            [
+                'query' => $data,
+                'http_errors' => false
+            ]
+        )->json()
+        return $this->query($data, 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey', false);
     }
 
     /**
