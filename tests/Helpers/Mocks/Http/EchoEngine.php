@@ -2,6 +2,9 @@
 namespace Tests\Helpers\Mocks\Http;
 
 use GuzzleHttp\Client as Guzzle;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Message\Response;
+use Tests\Helpers\Providers\Request;
 
 class EchoEngine extends Guzzle
 {
@@ -60,6 +63,12 @@ class EchoEngine extends Guzzle
         }
 
         $endpoint = str_replace($this->baseUrl, '', $url);
+        if ($this->responses[$endpoint]->json()['status'] === 'CONFLICT') {
+            throw new ClientException('Conflict: invalid key', new \GuzzleHttp\Message\Request('GET', $endpoint), new Response(409));
+        }
+        if ($this->responses[$endpoint]->json()['status'] === 'NOT FOUND') {
+            throw new ClientException('Any other http status returned', new \GuzzleHttp\Message\Request('GET', $endpoint), new Response(404));
+        }
         return $this->responses[$endpoint];
     }
 }

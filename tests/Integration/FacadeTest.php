@@ -22,6 +22,8 @@ class FacadeTest extends TestCase
 
     /**
      * @param Facade $ebanx
+     *
+     * @throws \ReflectionException
      * @depends testMainObject
      */
     public function testGatewayAccessors($ebanx)
@@ -42,6 +44,8 @@ class FacadeTest extends TestCase
 
     /**
      * @param $ebanx
+     *
+     * @throws \ReflectionException
      * @depends testMainObject
      */
     public function testOtherServicesAccessors($ebanx)
@@ -112,6 +116,83 @@ class FacadeTest extends TestCase
             $ebanx->getHttpClient()->isSandbox(),
             'Client connection mode is ignoring config'
         );
+    }
+
+    public function testCheckValidPrivateKey()
+    {
+        $integrationKey = 'testing';
+        $privateKeyUrl = 'ws/merchantIntegrationProperties/get';
+
+        $ebanx = $this->buildMockedFacade([
+            $privateKeyUrl => $this->buildPrivateKeyValidationMock($integrationKey),
+        ]);
+
+        $subject = $ebanx->isValidPrivateKey($integrationKey);
+
+        $this->assertTrue($subject);
+    }
+
+    public function testCheckInvalidPrivateKey()
+    {
+        $integrationKey = 'invalid';
+        $privateKeyUrl = 'ws/merchantIntegrationProperties/get';
+
+        $ebanx = $this->buildMockedFacade([
+            $privateKeyUrl => $this->buildPrivateKeyValidationMock($integrationKey),
+        ]);
+
+        $subject = $ebanx->isValidPrivateKey($integrationKey);
+
+        $this->assertFalse($subject);
+    }
+
+    /**
+     * @throws \Exception Won't be thrown in this test
+     */
+    public function testCheckValidPublicKey()
+    {
+        $integrationKey = 'testing';
+        $privateKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
+
+        $ebanx = $this->buildMockedFacade([
+            $privateKeyUrl => $this->buildPublicKeyValidationMock($integrationKey),
+        ]);
+
+        $subject = $ebanx->isValidPublicKey($integrationKey);
+
+        $this->assertTrue($subject);
+    }
+
+    /**
+     * @throws \Exception Won't be thrown in this test
+     */
+    public function testCheckInvalidPublicKey()
+    {
+        $integrationKey = 'invalidKey';
+        $privateKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
+
+        $ebanx = $this->buildMockedFacade([
+            $privateKeyUrl => $this->buildPublicKeyValidationMock($integrationKey),
+        ]);
+
+        $subject = $ebanx->isValidPublicKey($integrationKey);
+
+        $this->assertFalse($subject);
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testCheckPublicKeyWithOtherWrongResponse()
+    {
+        $integrationKey = 'invalidKey';
+        $publicKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
+
+        $ebanx = $this->buildMockedFacade([
+            $publicKeyUrl => '{"status": "NOT FOUND"}',
+        ]);
+
+        $ebanx->isValidPublicKey($integrationKey);
     }
 
     public function testGetTicketHtml()
@@ -217,6 +298,51 @@ class FacadeTest extends TestCase
     private function buildPaymentInfoMock($hash, $type = 'test')
     {
         return '{"payment":{"hash":"'.$hash.'","payment_type_code":"'.$type.'"},"status":"SUCCESS"}';
+    }
+
+    private function buildPrivateKeyValidationMock($key)
+    {
+        if ($key === 'testing') {
+            return '{
+                "status": "SUCCESS",
+                "success": true,
+                "resource": "merchantIntegrationProperties",
+                "operation": "get",
+                "body": {
+                    "image": "",
+                    "url_response": "www.ebanx.com",
+                    "receipt_email": null,
+                    "url_status_change_notification": "www.ebanx.com"
+                }
+            }';
+        }
+        return '{
+            "status": "ERROR",
+            "status_code": "BP-SA-2",
+            "status_message": "Invalid integration key"
+        }';
+    }
+
+    private function buildPublicKeyValidationMock($key)
+    {
+        if ($key === 'testing') {
+            return '{
+                "status": "SUCCESS",
+                "success": true,
+                "resource": "merchantIntegrationProperties",
+                "operation": "isValidPublicIntegrationKey",
+                "body": []
+            }';
+        }
+        return '{
+            "status": "CONFLICT",
+            "success": false,
+            "resource": "merchantIntegrationProperties",
+            "operation": "isValidPublicIntegrationKey",
+            "body": {
+                "error": "Invalid public_integration_key"
+            }
+        }';
     }
 
     private function assertAccessor($facade, $name)

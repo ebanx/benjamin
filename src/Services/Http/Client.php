@@ -125,6 +125,26 @@ class Client
     }
 
     /**
+     * @param object|array $data
+     *
+     * @return array
+     */
+    public function validatePrivateKey($data)
+    {
+        return $this->query($data, 'ws/merchantIntegrationProperties/get');
+    }
+
+    /**
+     * @param object|array $data
+     *
+     * @return array
+     */
+    public function validatePublicKey($data)
+    {
+        return $this->query($data, 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey');
+    }
+
+    /**
      * Current endpoint url
      *
      * @return string
