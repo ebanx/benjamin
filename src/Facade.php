@@ -128,11 +128,17 @@ class Facade
     public function isValidPublicKey($key)
     {
         $data = ['public_integration_key' => $key];
-        $response = $this->getHttpClient()->validatePublicKey($data);
+        try {
+            $response = $this->getHttpClient()->validatePublicKey($data);
 
-        var_dump($response);exit;
+            return $response['status'] === 'SUCCESS';
+        } catch (\Exception $e) {
+            if ($e->getCode() === 409) {
+                return false;
+            }
 
-        return $response['status'] === 'SUCCESS';
+            throw $e;
+        }
     }
 
     # Gateways
