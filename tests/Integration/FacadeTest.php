@@ -22,6 +22,8 @@ class FacadeTest extends TestCase
 
     /**
      * @param Facade $ebanx
+     *
+     * @throws \ReflectionException
      * @depends testMainObject
      */
     public function testGatewayAccessors($ebanx)
@@ -42,6 +44,8 @@ class FacadeTest extends TestCase
 
     /**
      * @param $ebanx
+     *
+     * @throws \ReflectionException
      * @depends testMainObject
      */
     public function testOtherServicesAccessors($ebanx)
@@ -157,6 +161,38 @@ class FacadeTest extends TestCase
         $subject = $ebanx->isValidPublicKey($integrationKey);
 
         $this->assertTrue($subject);
+    }
+
+    /**
+     * @throws \Exception Won't be thrown in this test
+     */
+    public function testCheckInvalidPublicKey()
+    {
+        $integrationKey = 'invalidKey';
+        $privateKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
+
+        $ebanx = $this->buildMockedFacade([
+            $privateKeyUrl => $this->buildPublicKeyValidationMock($integrationKey),
+        ]);
+
+        $subject = $ebanx->isValidPublicKey($integrationKey);
+
+        $this->assertFalse($subject);
+    }
+
+    /**
+     * @expectedException \Exception
+     */
+    public function testCheckPublicKeyWithOtherWrongResponse()
+    {
+        $integrationKey = 'invalidKey';
+        $publicKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
+
+        $ebanx = $this->buildMockedFacade([
+            $publicKeyUrl => '{"status": "NOT FOUND"}',
+        ]);
+
+        $ebanx->isValidPublicKey($integrationKey);
     }
 
     public function testGetTicketHtml()
@@ -299,9 +335,13 @@ class FacadeTest extends TestCase
             }';
         }
         return '{
-            "status": "ERROR",
-            "status_code": "BP-SA-2",
-            "status_message": "Invalid integration key"
+            "status": "CONFLICT",
+            "success": false,
+            "resource": "merchantIntegrationProperties",
+            "operation": "isValidPublicIntegrationKey",
+            "body": {
+                "error": "Invalid public_integration_key"
+            }
         }';
     }
 
