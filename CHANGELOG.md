@@ -1,3 +1,8 @@
+## 1.9.0
+* Feature - Support for document type [#126](https://github.com/ebanx/benjamin/pull/126)
+* Feature - Add method for canceling open payments [#128](https://github.com/ebanx/benjamin/pull/128)
+* Feature - Add methods for validating if passed keys are valid [#129](https://github.com/ebanx/benjamin/pull/129)
+
 ## 1.8.2
 * Fix - Send document also on LATAM countries requests [#123](https://github.com/ebanx/benjamin/pull/123)
 
