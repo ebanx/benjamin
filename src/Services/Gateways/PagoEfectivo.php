@@ -11,7 +11,7 @@ class PagoEfectivo extends DirectGateway
 {
     use Printable;
 
-    const API_TYPE = 'pagoEfectivo';
+    const API_TYPE = 'pagoefectivo';
 
     protected static function getEnabledCountries()
     {
