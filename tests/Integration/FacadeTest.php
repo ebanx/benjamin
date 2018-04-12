@@ -208,18 +208,19 @@ class FacadeTest extends TestCase
         $gateways = [];
 
         foreach ($this->getExpectedGateways() as $gateway) {
-            if(method_exists($ebanx, $gateway))
+            if (method_exists($ebanx, $gateway)) {
                 $gateways[] = $ebanx->{$gateway}();
+            }
         }
         foreach ($gateways as $gateway) {
             $class = get_class($gateway);
 
-            if(!defined($class.'::API_TYPE')
+            if (!defined($class.'::API_TYPE')
                 || !in_array('Ebanx\Benjamin\Services\Traits\Printable', class_uses($class))) {
                 continue;
             }
 
-            $url = str_replace('https://sandbox.ebanx.com/', '',  $gateway->getUrl($hash));
+            $url = str_replace('https://sandbox.ebanx.com/', '', $gateway->getUrl($hash));
 
             $facade = $this->buildMockedFacade([
                 $infoUrl => $this->buildPaymentInfoMock($hash, $class::API_TYPE),
