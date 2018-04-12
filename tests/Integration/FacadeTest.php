@@ -195,22 +195,44 @@ class FacadeTest extends TestCase
         $ebanx->isValidPublicKey($integrationKey);
     }
 
-    public function testGetTicketHtml()
+    /**
+     * @param Facade $ebanx
+     *
+     * @depends testMainObject
+     */
+    public function testGetTicketHtmlForAllAPIs($ebanx)
     {
         $hash = md5(rand());
         $expected = "<html>$hash</html>";
         $infoUrl = 'ws/query';
-        $printUrl = "print/?hash=$hash";
+        $gateways = [];
 
-        $ebanx = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash),
-            $printUrl => $expected,
-        ]);
+        foreach ($this->getExpectedGateways() as $gateway) {
+            if (method_exists($ebanx, $gateway)) {
+                $gateways[] = $ebanx->{$gateway}();
+            }
+        }
+        foreach ($gateways as $gateway) {
+            $class = get_class($gateway);
 
-        $subject = $ebanx->getTicketHtml($hash);
+            if (!defined($class.'::API_TYPE')
+                || !in_array('Ebanx\Benjamin\Services\Traits\Printable', class_uses($class))) {
+                continue;
+            }
 
-        $this->assertEquals($expected, $subject);
+            $url = str_replace('https://sandbox.ebanx.com/', '', $gateway->getUrl($hash));
+
+            $facade = $this->buildMockedFacade([
+                $infoUrl => $this->buildPaymentInfoMock($hash, $class::API_TYPE),
+                $url => $expected . $class,
+            ]);
+
+            $response = $facade->getTicketHtml($hash);
+
+            $this->assertEquals($expected . $class, $response);
+        }
     }
+
 
     public function testGetTicketHtmlWithBadPaymentType()
     {
