@@ -195,16 +195,43 @@ class FacadeTest extends TestCase
         $ebanx->isValidPublicKey($integrationKey);
     }
 
-    public function testGetTicketHtmlForAllApis()
+    /**
+     * @param Facade $ebanx
+     *
+     * @depends testMainObject
+     */
+    public function testGetTicketHtmlForAllAPIs($ebanx)
     {
         $hash = md5(rand());
         $expected = "<html>$hash</html>";
         $infoUrl = 'ws/query';
+        $gateways = [];
 
-        $facades = $this->buildMockedFacadesForAllCashApis($hash, $expected, $infoUrl);
+        foreach ($this->getExpectedGateways() as $gateway) {
+            if(method_exists($ebanx, $gateway))
+                $gateways[] = $ebanx->{$gateway}();
+        }
+        foreach ($gateways as $gateway) {
+            $class = get_class($gateway);
 
-        $this->assertsExpectedTicketHtmlForAllCashApis($facades, $hash, $expected);
+            if(!defined($class.'::API_TYPE')
+                || !in_array('Ebanx\Benjamin\Services\Traits\Printable', class_uses($class))) {
+                continue;
+            }
+
+            $url = str_replace('https://sandbox.ebanx.com/', '',  $gateway->getUrl($hash));
+
+            $facade = $this->buildMockedFacade([
+                $infoUrl => $this->buildPaymentInfoMock($hash, $class::API_TYPE),
+                $url => $expected . $class,
+            ]);
+
+            $response = $facade->getTicketHtml($hash);
+
+            $this->assertEquals($expected . $class, $response);
+        }
     }
+
 
     public function testGetTicketHtmlWithBadPaymentType()
     {
@@ -220,55 +247,6 @@ class FacadeTest extends TestCase
         $subject = $ebanx->getTicketHtml($hash);
 
         $this->assertNull($subject);
-    }
-
-    private function buildMockedFacadesForAllCashApis($hash, $expected, $infoUrl)
-    {
-        $facade['boleto']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'boleto'),
-            "print/?hash=$hash" => $expected,
-        ]);
-        $facade['baloto']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'baloto'),
-            "print/baloto/?hash=$hash" => $expected,
-        ]);
-        $facade['cupon']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'cupon'),
-            "print/voucher/?hash=$hash" => $expected,
-        ]);
-        $facade['oxxo']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'oxxo'),
-            "print/oxxo/?hash=$hash" => $expected,
-        ]);
-        $facade['pagoefectivo']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'pagoefectivo'),
-            "cip/?hash=$hash" => $expected,
-        ]);
-        $facade['pagofacil'] = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'pagofacil'),
-            "print/voucher/?hash=$hash" => $expected,
-        ]);
-        $facade['rapipago']  = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'rapipago'),
-            "print/voucher/?hash=$hash" => $expected,
-        ]);
-        $facade['spei'] = $this->buildMockedFacade([
-            $infoUrl => $this->buildPaymentInfoMock($hash, 'spei'),
-            "print/spei/execute?hash=$hash" => $expected,
-        ]);
-        return $facade;
-    }
-
-    private function assertsExpectedTicketHtmlForAllCashApis($facades, $hash, $expected)
-    {
-        $this->assertEquals($expected, $facades['boleto']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['baloto']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['cupon']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['oxxo']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['pagoefectivo']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['pagofacil']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['rapipago']->getTicketHtml($hash));
-        $this->assertEquals($expected, $facades['spei']->getTicketHtml($hash));
     }
 
     public function testGetTicketHtmlWithNonPrintableGateway()
