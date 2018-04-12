@@ -1,3 +1,6 @@
+## 1.9.1
+* Fix - Get Pago Efectivo voucher now worls as intented [#130](https://github.com/ebanx/benjamin/pull/126)
+
 ## 1.9.0
 * Feature - Support for document type [#126](https://github.com/ebanx/benjamin/pull/126)
 * Feature - Add method for canceling open payments [#128](https://github.com/ebanx/benjamin/pull/128)
