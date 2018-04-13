@@ -1,5 +1,8 @@
+## 1.10.0
+* Feature - Send a profile id for risk analysis model [#131](https://github.com/ebanx/benjamin/pull/131)
+
 ## 1.9.1
-* Fix - Get Pago Efectivo voucher now worls as intented [#130](https://github.com/ebanx/benjamin/pull/126)
+* Fix - Getting Pago Efectivo voucher now works as intented [#130](https://github.com/ebanx/benjamin/pull/130)
 
 ## 1.9.0
 * Feature - Support for document type [#126](https://github.com/ebanx/benjamin/pull/126)
