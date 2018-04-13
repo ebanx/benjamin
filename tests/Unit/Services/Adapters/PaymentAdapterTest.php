@@ -164,6 +164,30 @@ class PaymentAdapterTest extends TestCase
         $this->assertObjectHasAttribute('document_type', $result->payment);
     }
 
+    public function testTransformProfileId()
+    {
+        $riskProfileId = 'Bx1x0x0';
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(),
+            'address' => new Address(),
+            'riskProfileId' => $riskProfileId,
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertEquals($riskProfileId, $result->metadata->risk->profile_id);
+    }
+
+    public function testTransformWithoutProfileId()
+    {
+        $adapter = new FakeAdapter(new Payment([
+            'person' => new Person(),
+            'address' => new Address(),
+        ]), new Config());
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('profile_id', $result->metadata->risk);
+    }
+
     protected function getJsonMessage(JsonSchema\Validator $validator)
     {
         $message = '';
