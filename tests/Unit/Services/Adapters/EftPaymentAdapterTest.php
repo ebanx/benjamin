@@ -37,10 +37,11 @@ class EftPaymentAdapterTest extends PaymentAdapterTest
         $result = $adapter->transform();
 
         $numberOfKeys = count((array) $result);
-        $this->assertEquals(4, $numberOfKeys);
+        $this->assertEquals(5, $numberOfKeys);
         $this->assertObjectHasAttribute('integration_key', $result);
         $this->assertObjectHasAttribute('operation', $result);
         $this->assertObjectHasAttribute('mode', $result);
+        $this->assertObjectHasAttribute('metadata', $result);
         $this->assertObjectHasAttribute('payment', $result);
     }
 }

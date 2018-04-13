@@ -116,4 +116,11 @@ class Payment extends BaseModel
      * @var array
      */
     public $userValues = [];
+
+    /**
+     * Profile id for risk analysis model
+     *
+     * @var string
+     */
+    public $riskProfileId = null;
 }

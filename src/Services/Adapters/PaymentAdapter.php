@@ -24,6 +24,7 @@ class PaymentAdapter extends BaseAdapter
             'integration_key' => $this->getIntegrationKey(),
             'operation' => 'request',
             'mode' => 'full',
+            'metadata' => $this->transformMetadata(),
             'payment' => $this->transformPayment(),
         ];
     }
@@ -93,5 +94,16 @@ class PaymentAdapter extends BaseAdapter
         }
 
         return (object) $itemArray;
+    }
+
+    private function transformMetadata()
+    {
+        $metadata = [
+            'risk' => (object) [
+                'profile_id' => $this->payment->riskProfileId
+            ]
+        ];
+
+        return (object) $metadata;
     }
 }
