@@ -1,3 +1,6 @@
+## 1.10.1
+* Fix - EBANX Account should not accept BRL [#132](https://github.com/ebanx/benjamin/pull/132)
+
 ## 1.10.0
 * Feature - Send a profile id for risk analysis model [#131](https://github.com/ebanx/benjamin/pull/131)
 
