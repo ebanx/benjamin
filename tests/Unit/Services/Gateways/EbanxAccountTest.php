@@ -42,9 +42,7 @@ class EbanxAccountTest extends GatewayTestCase
             'baseCurrency' => Currency::BRL,
         ]));
 
-        $this->assertAvailableForCountries($gateway, [
-            Country::BRAZIL,
-        ]);
+        $this->assertNotAvailableAnywhere($gateway);
     }
 
     public function testAvailabilityWithEUR()
