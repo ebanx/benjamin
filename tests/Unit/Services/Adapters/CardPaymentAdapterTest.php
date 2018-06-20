@@ -39,6 +39,38 @@ class CardPaymentAdapterTest extends PaymentAdapterTest
         $this->assertObjectHasAttribute('payment', $result);
     }
 
+    public function testWithManualReview()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->creditCard()->businessPerson()->manualReview(true)->build();
+
+        $adapter = new CardPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('payment', $result);
+        $this->assertObjectHasAttribute('manual_review', $result->payment);
+        $this->assertEquals(true, $result->payment->manual_review);
+    }
+
+    public function testWithoutManualReview()
+    {
+        $config = new Config([
+            'sandboxIntegrationKey' => 'testIntegrationKey'
+        ]);
+        $factory = new BuilderFactory('pt_BR');
+        $payment = $factory->payment()->creditCard()->businessPerson()->build();
+
+        $adapter = new CardPaymentAdapter($payment, $config);
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('payment', $result);
+        $this->assertObjectHasAttribute('manual_review', $result->payment);
+        $this->assertEquals(null, $result->payment->manual_review);
+    }
+
     public function testRequestAttributeNumber()
     {
         $config = new Config([

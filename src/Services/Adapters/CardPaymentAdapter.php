@@ -13,6 +13,8 @@ class CardPaymentAdapter extends BrazilPaymentAdapter
         $transformed->creditcard = $this->transformCard();
         $transformed->device_id = $this->payment->deviceId;
 
+        $transformed->manual_review = $this->payment->manualReview;
+
         return $transformed;
     }
 

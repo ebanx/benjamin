@@ -123,4 +123,10 @@ class Payment extends BaseModel
      * @var string
      */
     public $riskProfileId = null;
+
+    #CARD
+    /**
+     *  Flag to use `Under Review` risk analysis tool.
+     */
+    public $manualReview = null;
 }

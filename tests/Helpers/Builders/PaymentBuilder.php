@@ -54,6 +54,13 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function manualReview($shoulReview = false)
+    {
+        $this->instance->manualReview = $shoulReview;
+
+        return $this;
+    }
+
     public function creditCard($instalmentNumber = 1)
     {
         $this->instance->type = 'creditcard';
