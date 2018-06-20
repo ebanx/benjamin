@@ -54,7 +54,7 @@ class Card extends BaseModel
     public $token;
 
     /**
-     * Card flag.
+     * Card brand.
      *
      * @var string
      */

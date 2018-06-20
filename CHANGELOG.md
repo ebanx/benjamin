@@ -1,3 +1,6 @@
+## 1.11.0
+* Feature - Send manual review flag to EBANX [#133](https://github.com/ebanx/benjamin/pull/133)
+
 ## 1.10.1
 * Fix - EBANX Account should not accept BRL [#132](https://github.com/ebanx/benjamin/pull/132)
 
