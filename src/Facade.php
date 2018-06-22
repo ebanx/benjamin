@@ -1,6 +1,7 @@
 <?php
 namespace Ebanx\Benjamin;
 
+use GuzzleHttp\Exception\ClientException;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
 use Ebanx\Benjamin\Models\Configs\AddableConfig;
@@ -132,7 +133,7 @@ class Facade
             $response = $this->getHttpClient()->validatePublicKey($data);
 
             return $response['status'] === 'SUCCESS';
-        } catch (\Exception $e) {
+        } catch (ClientException $e) {
             if ($e->getCode() === 409) {
                 return false;
             }
