@@ -26,12 +26,12 @@ class Client
 
     public function __construct()
     {
-        $this->engine = new GuzzleHttp\Client();
+        $this->engine = new Engine();
     }
 
     protected function html($url)
     {
-        return $this->engine->get($url)->getBody()->getContents();
+        return $this->engine->get($url)->getContents();
     }
 
     /**
@@ -43,7 +43,7 @@ class Client
     {
         return $this->engine->post(
             $this->getUrl() . $endpoint,
-            ['json' => $data]
+            $data
         )->json();
     }
 
@@ -56,7 +56,7 @@ class Client
     {
         return $this->engine->get(
             $this->getUrl() . $endpoint,
-            ['query' => $data]
+            $data
         )->json();
     }
 
@@ -182,7 +182,8 @@ class Client
 
     /**
      * @param  bool $toSandbox Switch to sandbox(true) or live(false) modes
-     * @return void
+     *
+     * @return Client
      */
     public function switchMode($toSandbox)
     {
