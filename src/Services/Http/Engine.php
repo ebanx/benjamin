@@ -40,7 +40,7 @@ class Engine
         $httpCode = curl_getinfo($curlHandler)['http_code'];
 
         if ($httpCode >= 400) {
-            throw new \Exception($this->response['status'], $httpCode);
+            throw new \Exception($this->json()['status'], $httpCode);
         }
 
         curl_close($curlHandler);
