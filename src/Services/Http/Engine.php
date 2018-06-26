@@ -9,14 +9,19 @@ class Engine
     private $response = '';
 
     /**
+     * @var array
+     */
+    private $curlInfo;
+
+    /**
      * @param String $method
      * @param String $url
-     * @param array|object $data
+     * @param array|object|boolean $data
      *
      * @return $this
      * @throws \Exception
      */
-    private function sendRequest($method, $url, $data)
+    private function sendRequest($method, $url, $data = false)
     {
         $curlHandler = curl_init();
 
@@ -37,6 +42,7 @@ class Engine
 
         $this->response = curl_exec($curlHandler);
 
+        $this->curlInfo = curl_getinfo($curlHandler);
         $httpCode = curl_getinfo($curlHandler)['http_code'];
 
         if ($httpCode >= 400) {
@@ -86,5 +92,10 @@ class Engine
     public function getContents()
     {
         return $this->response;
+    }
+
+    public function getInfo()
+    {
+        return $this->curlInfo;
     }
 }
