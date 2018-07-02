@@ -1,3 +1,6 @@
+## 1.12.0
+* Feature - Removed guzzle dependency [#135](https://github.com/ebanx/benjamin/pull/135)
+
 ## 1.11.0
 * Feature - Send manual review flag to EBANX [#133](https://github.com/ebanx/benjamin/pull/133)
 
