@@ -91,7 +91,8 @@ class BalotoTest extends GatewayTestCase
 
     /**
      * @param Client $client
-     * @return BalotoForTests
+     *
+     * @return Baloto
      */
     private function getTestGateway($client = null)
     {
