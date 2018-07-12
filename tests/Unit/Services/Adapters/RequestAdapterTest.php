@@ -79,6 +79,18 @@ class RequestAdapterTest extends PaymentAdapterTest
         );
     }
 
+    public function testWithManualReview()
+    {
+        $factory = new BuilderFactory('pt_BR');
+        $request = $factory->request()->withManualReview()->build();
+
+        $adapter = new FakeRequestAdapter($request, new Config());
+        $result = $adapter->transform();
+
+        $this->assertObjectHasAttribute('manual_review', $result);
+        $this->assertTrue($result->manual_review);
+    }
+
     public function testIntegrationKey()
     {
         $factory = new BuilderFactory('pt_BR');

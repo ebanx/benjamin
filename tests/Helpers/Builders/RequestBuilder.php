@@ -25,6 +25,13 @@ class RequestBuilder extends BaseBuilder
         return $this;
     }
 
+    public function withManualReview()
+    {
+        $this->instance->manualReview = true;
+
+        return $this;
+    }
+
     /**
      * @return Request
      */
