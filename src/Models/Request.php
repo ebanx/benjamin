@@ -96,4 +96,11 @@ class Request extends BaseModel
      * @var string
      */
     public $redirectUrl = null;
+
+    /**
+     * Whether or not a payment will be submitted to manual review
+     *
+     * @var bool
+     */
+    public $manualReview = false;
 }

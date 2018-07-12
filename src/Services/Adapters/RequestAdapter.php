@@ -37,6 +37,7 @@ class RequestAdapter extends BaseAdapter
             'due_date' => $this->transformDate($this->request->dueDate),
             'notification_url' => $this->getNotificationUrl(),
             'redirect_url' => $this->request->redirectUrl,
+            'manual_review' => $this->request->manualReview,
             'instalments' => implode('-', [
                 $this->request->minInstalments,
                 $this->request->maxInstalments,
