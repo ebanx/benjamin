@@ -1,3 +1,6 @@
+## 1.13.0
+* Feature - Add manual review flag to Request model [#136](https://github.com/ebanx/benjamin/pull/136)
+
 ## 1.12.0
 * Feature - Removed guzzle dependency [#135](https://github.com/ebanx/benjamin/pull/135)
 
