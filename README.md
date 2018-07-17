@@ -1,5 +1,5 @@
 # Benjamin
-[![Build Status](https://img.shields.io/travis/ebanx/benjamin/master.svg?style=for-the-badge)](https://travis-ci.org/ebanx/benjamin)
+[![Build Status](https://img.shields.io/travis/ebanx/benjamin/master.svg?style=for-the-badge)](https://travis-ci.com/ebanx/benjamin)
 [![codecov](https://img.shields.io/codecov/c/github/ebanx/benjamin/master.svg?style=for-the-badge)](https://codecov.io/gh/ebanx/benjamin)
 [![Latest Stable Version](https://img.shields.io/packagist/v/ebanx/benjamin.svg?style=for-the-badge)](https://packagist.org/packages/ebanx/benjamin)
 [![Total Downloads](https://img.shields.io/packagist/dt/ebanx/benjamin.svg?style=for-the-badge)](https://packagist.org/packages/ebanx/benjamin)
