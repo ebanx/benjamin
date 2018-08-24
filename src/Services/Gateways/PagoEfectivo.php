@@ -38,6 +38,6 @@ class PagoEfectivo extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return 'https://%s.ebanx.com/cip/?hash=%s';
+        return 'https://%s.ebanxpay.com/cip/?hash=%s';
     }
 }

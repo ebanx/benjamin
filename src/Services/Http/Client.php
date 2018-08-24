@@ -5,8 +5,8 @@ use GuzzleHttp;
 
 class Client
 {
-    const SANDBOX_URL = 'https://sandbox.ebanx.com/';
-    const LIVE_URL = 'https://api.ebanx.com/';
+    const SANDBOX_URL = 'https://sandbox.ebanxpay.com/';
+    const LIVE_URL = 'https://api.ebanxpay.com/';
 
     const MODE_SANDBOX = 0;
     const MODE_LIVE = 1;

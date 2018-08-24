@@ -220,7 +220,7 @@ class FacadeTest extends TestCase
                 continue;
             }
 
-            $url = str_replace('https://sandbox.ebanx.com/', '', $gateway->getUrl($hash));
+            $url = str_replace('https://sandbox.ebanxpay.com/', '', $gateway->getUrl($hash));
 
             $facade = $this->buildMockedFacade([
                 $infoUrl => $this->buildPaymentInfoMock($hash, $class::API_TYPE),
@@ -394,7 +394,7 @@ class GatewayForTests extends BaseGateway
 
     protected function getUrlFormat()
     {
-        return 'https://%s.ebanx.com/print/?hash=%s';
+        return 'https://%s.ebanxpay.com/print/?hash=%s';
     }
 }
 

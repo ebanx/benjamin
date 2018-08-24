@@ -60,7 +60,7 @@ class SpeiTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/print/spei/execute?hash=5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc',
+            'https://sandbox.ebanxpay.com/print/spei/execute?hash=5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc',
             $gateway->getUrl('5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc')
         );
     }
@@ -69,7 +69,7 @@ class SpeiTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/print/spei/execute?hash=5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc',
+            'https://print.ebanxpay.com/print/spei/execute?hash=5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc',
             $gateway->getUrl('5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc', false)
         );
     }
