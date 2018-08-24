@@ -75,7 +75,7 @@ class BoletoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/print/?hash=591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4',
+            'https://sandbox.ebanxpay.com/print/?hash=591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4',
             $gateway->getUrl('591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4')
         );
     }
@@ -84,7 +84,7 @@ class BoletoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/print/?hash=591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4',
+            'https://print.ebanxpay.com/print/?hash=591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4',
             $gateway->getUrl('591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4', false)
         );
     }

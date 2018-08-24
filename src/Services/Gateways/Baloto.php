@@ -38,6 +38,6 @@ class Baloto extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return 'https://%s.ebanx.com/print/baloto/?hash=%s';
+        return 'https://%s.ebanxpay.com/print/baloto/?hash=%s';
     }
 }

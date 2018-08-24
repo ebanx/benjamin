@@ -60,7 +60,7 @@ class OxxoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/print/oxxo/?hash=5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e',
+            'https://sandbox.ebanxpay.com/print/oxxo/?hash=5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e',
             $gateway->getUrl('5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e')
         );
     }
@@ -69,7 +69,7 @@ class OxxoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/print/oxxo/?hash=5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e',
+            'https://print.ebanxpay.com/print/oxxo/?hash=5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e',
             $gateway->getUrl('5924c698895ed4cf3764c681fe9496f8fe0a986b070a594e', false)
         );
     }

@@ -32,7 +32,7 @@ class Boleto extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return 'https://%s.ebanx.com/print/?hash=%s';
+        return 'https://%s.ebanxpay.com/print/?hash=%s';
     }
 
     /**

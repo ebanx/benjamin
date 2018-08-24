@@ -60,7 +60,7 @@ class RapipagoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/print/voucher/?hash=59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e',
+            'https://sandbox.ebanxpay.com/print/voucher/?hash=59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e',
             $gateway->getUrl('59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e')
         );
     }
@@ -69,7 +69,7 @@ class RapipagoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/print/voucher/?hash=59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e',
+            'https://print.ebanxpay.com/print/voucher/?hash=59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e',
             $gateway->getUrl('59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e', false)
         );
     }

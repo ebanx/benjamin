@@ -60,7 +60,7 @@ class PagoEfectivoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/cip/?hash=59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3',
+            'https://sandbox.ebanxpay.com/cip/?hash=59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3',
             $gateway->getUrl('59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3')
         );
     }
@@ -69,7 +69,7 @@ class PagoEfectivoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/cip/?hash=59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3',
+            'https://print.ebanxpay.com/cip/?hash=59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3',
             $gateway->getUrl('59260f14654c5e69344fec4cd0e22fe1d9177a5898e3a3d3', false)
         );
     }

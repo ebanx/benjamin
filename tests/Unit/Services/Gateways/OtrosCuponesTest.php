@@ -60,7 +60,7 @@ class OtrosCuponesTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://sandbox.ebanx.com/print/voucher/?hash=59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8',
+            'https://sandbox.ebanxpay.com/print/voucher/?hash=59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8',
             $gateway->getUrl('59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8')
         );
     }
@@ -69,7 +69,7 @@ class OtrosCuponesTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway();
         $this->assertEquals(
-            'https://print.ebanx.com/print/voucher/?hash=59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8',
+            'https://print.ebanxpay.com/print/voucher/?hash=59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8',
             $gateway->getUrl('59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8', false)
         );
     }

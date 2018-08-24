@@ -38,6 +38,6 @@ class Spei extends DirectGateway
      */
     protected function getUrlFormat()
     {
-        return 'https://%s.ebanx.com/print/spei/execute?hash=%s';
+        return 'https://%s.ebanxpay.com/print/spei/execute?hash=%s';
     }
 }
