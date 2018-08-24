@@ -1,3 +1,6 @@
+## 1.14.0
+* Feature - Change APIs URL to increase performance [138](https://github.com/ebanx/benjamin/pull/138)
+
 ## 1.13.0
 * Feature - Add manual review flag to Request model [#136](https://github.com/ebanx/benjamin/pull/136)
 
