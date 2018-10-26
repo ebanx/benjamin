@@ -25,6 +25,7 @@ class CreditCard extends DirectGateway
             Country::ARGENTINA,
         ];
     }
+
     protected static function getEnabledCurrencies()
     {
         return [
@@ -36,6 +37,20 @@ class CreditCard extends DirectGateway
             Currency::EUR,
         ];
     }
+
+    public static $instalmentIncrementCountry = [
+        Country::BRAZIL => 1,
+        Country::COLOMBIA => 1,
+        Country::MEXICO => 3,
+        Country::ARGENTINA => 3,
+    ];
+
+    public static $maxInstalmentCountry = [
+        Country::BRAZIL   => 12,
+        Country::COLOMBIA => 36,
+        Country::MEXICO   => 12,
+        Country::ARGENTINA => 12,
+    ];
 
     private $creditCardConfig;
 
@@ -79,10 +94,10 @@ class CreditCard extends DirectGateway
         $minInstalment = $this->getMinInstalmentValueForCountry($country);
 
         // HARD LIMIT
-        $maxInstalments = min(CreditCardConfig::MAX_INSTALMENTS, $this->creditCardConfig->maxInstalments);
+        $instalmentsByCountry = self::getInstalmentsByCountry($country);
 
-        for ($i = 1; $i <= $maxInstalments; $i++) {
-            $paymentTerms[] = $this->calculatePaymentTerm($i, $value, $localValueWithTax, $minInstalment);
+        foreach ($instalmentsByCountry as $instalment) {
+            $paymentTerms[] = $this->calculatePaymentTerm($instalment, $value, $localValueWithTax, $minInstalment);
         }
 
         return array_filter($paymentTerms);
@@ -159,5 +174,28 @@ class CreditCard extends DirectGateway
         }
 
         return $this->interestRates;
+    }
+
+    /**
+     * @param $country
+     * @return array
+     */
+    public static function getInstalmentsByCountry($country)
+    {
+        $instalments = [];
+
+        switch ($country) {
+            case Country::MEXICO:
+                $instalments = array(1 => 1);
+                break;
+            default:
+                $instalments = array(1 => 1, 2 => 2);
+        }
+
+        for ($i = 3; $i <= self::$maxInstalmentCountry[$country]; $i += self::$instalmentIncrementCountry[$country]) {
+            $instalments[$i] = $i;
+        }
+
+        return $instalments;
     }
 }
