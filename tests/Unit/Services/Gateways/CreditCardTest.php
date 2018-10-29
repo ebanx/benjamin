@@ -255,6 +255,93 @@ class CreditCardTest extends GatewayTestCase
         );
     }
 
+    public function testMinInstalmentsArgentina()
+    {
+        $country = Country::ARGENTINA;
+        $gateway = $this->setupGateway(1, new Config());
+        $value = CreditCardConfig::acquirerMinInstalmentValueForCurrency(Currency::localForCountry($country));
+
+        $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
+        $this->assertEquals(
+            1,
+            count($paymentTerms)
+        );
+    }
+
+    public function testMinInstalmentsColombia()
+    {
+        $country = Country::COLOMBIA;
+        $gateway = $this->setupGateway(1, new Config());
+        $value = CreditCardConfig::acquirerMinInstalmentValueForCurrency(Currency::localForCountry($country));
+
+        $paymentTerms = $gateway->getPaymentTermsForCountryAndValue($country, $value);
+        $this->assertEquals(
+            1,
+            count($paymentTerms)
+        );
+    }
+
+    public function testInstalmentsArgentina()
+    {
+        $country = Country::ARGENTINA;
+        $totalInstalments = 6;
+        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = array(
+            '1' => '1',
+            '2' => '2',
+            '3' => '3',
+            '6' => '6',
+            '9' => '9',
+            '12' => '12');
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsBrazil()
+    {
+        $country = Country::BRAZIL;
+        $totalInstalments = 12;
+        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $expectedInstalmentsArray[$i] = $i;
+        }
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsMexico()
+    {
+        $country = Country::MEXICO;
+        $totalInstalments = 5;
+        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = array(
+            '1' => '1',
+            '3' => '3',
+            '6' => '6',
+            '9' => '9',
+            '12' => '12');
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsColombia()
+    {
+        $country = Country::COLOMBIA;
+        $totalInstalments = 36;
+        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = [];
+        for ($i = 1; $i <= 36; $i++) {
+            $expectedInstalmentsArray[$i] = $i;
+        }
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
     private function setupGateway($usdToBrlRate, $config, $creditCardConfig = null)
     {
         $client = $this->getMockedClient($this->getExchangeRateSuccessfulResponseJsonWithRate($usdToBrlRate));
