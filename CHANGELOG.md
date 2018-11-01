@@ -1,3 +1,6 @@
+## 1.15.1
+* Fix - Use customer config to get instalments [#140](https://github.com/ebanx/benjamin/pull/140)
+
 ## 1.15.0
 * Feature - Add function that return instalments by country [#139](https://github.com/ebanx/benjamin/pull/139)
 
