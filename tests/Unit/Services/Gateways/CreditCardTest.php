@@ -284,8 +284,10 @@ class CreditCardTest extends GatewayTestCase
     public function testInstalmentsArgentina()
     {
         $country = Country::ARGENTINA;
+        $usdToBrlRate = 1;
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config());
         $totalInstalments = 6;
-        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = array(
             '1' => '1',
             '2' => '2',
@@ -302,7 +304,9 @@ class CreditCardTest extends GatewayTestCase
     {
         $country = Country::BRAZIL;
         $totalInstalments = 12;
-        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $usdToBrlRate = 1;
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
         for ($i = 1; $i <= 12; $i++) {
             $expectedInstalmentsArray[$i] = $i;
@@ -316,7 +320,9 @@ class CreditCardTest extends GatewayTestCase
     {
         $country = Country::MEXICO;
         $totalInstalments = 5;
-        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $usdToBrlRate = 1;
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = array(
             '1' => '1',
             '3' => '3',
@@ -332,7 +338,9 @@ class CreditCardTest extends GatewayTestCase
     {
         $country = Country::COLOMBIA;
         $totalInstalments = 36;
-        $instalmentsArray = CreditCard::getInstalmentsByCountry($country);
+        $usdToBrlRate = 1;
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
         for ($i = 1; $i <= 36; $i++) {
             $expectedInstalmentsArray[$i] = $i;
@@ -340,6 +348,42 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertEquals($totalInstalments, count($instalmentsArray));
         $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testConfigMaxInstalments()
+    {
+        $country = Country::BRAZIL;
+        $usdToBrlRate = 1;
+        $creditCardConfig = new CreditCardConfig(['maxInstalments' => 1]);
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config(), $creditCardConfig);
+        $instalmentsByCountry = $creditCard->getInstalmentsByCountry($country);
+        $maxInstalmentsExpected = 1;
+
+        $this->assertEquals($maxInstalmentsExpected, count($instalmentsByCountry));
+    }
+
+    public function testMaxInstalmentsWhenIsZero()
+    {
+        $country = Country::BRAZIL;
+        $usdToBrlRate = 1;
+        $creditCardConfig = new CreditCardConfig(['maxInstalments' => 0]);
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config(), $creditCardConfig);
+        $instalmentsByCountry = $creditCard->getInstalmentsByCountry($country);
+        $maxInstalmentsExpected = 1;
+
+        $this->assertEquals($maxInstalmentsExpected, count($instalmentsByCountry));
+    }
+
+    public function testMaxInstalmentBiggerThanDefault()
+    {
+        $country = Country::BRAZIL;
+        $usdToBrlRate = 1;
+        $creditCardConfig = new CreditCardConfig(['maxInstalments' => 36]);
+        $creditCard = $this->setupGateway($usdToBrlRate, new Config(), $creditCardConfig);
+        $instalmentsByCountry = $creditCard->getInstalmentsByCountry($country);
+        $maxInstalmentsExpected = 12;
+
+        $this->assertEquals($maxInstalmentsExpected, count($instalmentsByCountry));
     }
 
     private function setupGateway($usdToBrlRate, $config, $creditCardConfig = null)

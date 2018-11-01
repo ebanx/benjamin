@@ -94,7 +94,7 @@ class CreditCard extends DirectGateway
         $minInstalment = $this->getMinInstalmentValueForCountry($country);
 
         // HARD LIMIT
-        $instalmentsByCountry = self::getInstalmentsByCountry($country);
+        $instalmentsByCountry = $this->getInstalmentsByCountry($country);
 
         foreach ($instalmentsByCountry as $instalment) {
             $paymentTerms[] = $this->calculatePaymentTerm($instalment, $value, $localValueWithTax, $minInstalment);
@@ -180,19 +180,20 @@ class CreditCard extends DirectGateway
      * @param $country
      * @return array
      */
-    public static function getInstalmentsByCountry($country)
+    public function getInstalmentsByCountry($country)
     {
-        $instalments = [];
+        $instalments = [1 => 1];
+        $maxInstalments = min(self::$maxInstalmentCountry[$country], $this->creditCardConfig->maxInstalments);
 
-        switch ($country) {
-            case Country::MEXICO:
-                $instalments = array(1 => 1);
-                break;
-            default:
-                $instalments = array(1 => 1, 2 => 2);
+        if ($maxInstalments <= 1) {
+            return $instalments;
         }
 
-        for ($i = 3; $i <= self::$maxInstalmentCountry[$country]; $i += self::$instalmentIncrementCountry[$country]) {
+        if ($country !== Country::MEXICO) {
+            $instalments[2] = 2;
+        }
+
+        for ($i = 3; $i <= $maxInstalments; $i += self::$instalmentIncrementCountry[$country]) {
             $instalments[$i] = $i;
         }
 
