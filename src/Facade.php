@@ -144,6 +144,14 @@ class Facade
     # Gateways
 
     /**
+     * @return Gateways\BankTransfer
+     */
+    public function banktransfer()
+    {
+        return new Gateways\BankTransfer($this->config, $this->getHttpClient());
+    }
+
+    /**
      * @return Gateways\Baloto
      */
     public function baloto()

@@ -38,6 +38,14 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function banktransfer()
+    {
+        $this->instance->type = 'banktransfer';
+        $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
+
+        return $this;
+    }
+
     public function boleto()
     {
         $this->instance->type = 'boleto';
