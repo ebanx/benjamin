@@ -1,3 +1,6 @@
+## 1.16.0
+* Feature - Add BankTransfer as a payment method [#141](https://github.com/ebanx/benjamin/pull/141)
+
 ## 1.15.1
 * Fix - Use customer config to get instalments [#140](https://github.com/ebanx/benjamin/pull/140)
 
