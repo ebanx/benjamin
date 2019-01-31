@@ -1,3 +1,6 @@
+## 1.17.0
+* Feature - Add User Agent Data with version data to every HTTP request [#143](https://github.com/ebanx/benjamin/pull/143)
+
 ## 1.16.0
 * Feature - Add BankTransfer as a payment method [#141](https://github.com/ebanx/benjamin/pull/141)
 
