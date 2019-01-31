@@ -14,7 +14,7 @@ use Ebanx\Benjamin\Services\Http\Client as HttpClient;
 
 class Facade
 {
-    const VERSION="1.3.0";
+    const VERSION="1.17.0";
     /**
      * Mock this in your tests extending and using ClientForTests
      * and any Engine you like (we provide EchoEngine)
@@ -347,6 +347,11 @@ class Facade
     public function cancelPayment()
     {
         return new CancelPayment($this->config, $this->getHttpClient());
+    }
+
+    public function addUserAgentInfo($userData)
+    {
+        $this->getHttpClient()->addUserAgentInfo($userData);
     }
 
     protected function getHttpClient()
