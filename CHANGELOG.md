@@ -1,3 +1,6 @@
+## 1.17.1
+* Fix - Add Facade method to submit Source/Version data [#145](https://github.com/ebanx/benjamin/pull/145)
+
 ## 1.17.0
 * Feature - Add User Agent Data with version data to every HTTP request [#143](https://github.com/ebanx/benjamin/pull/143)
 
