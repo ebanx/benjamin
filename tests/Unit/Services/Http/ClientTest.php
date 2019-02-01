@@ -68,6 +68,6 @@ class ClientTest extends TestCase
         $this->assertEquals(
             '["test_user_data"]',
             json_encode($subject->getUserAgentInfo())
-            );
+        );
     }
 }

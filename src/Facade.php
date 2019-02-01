@@ -349,9 +349,9 @@ class Facade
         return new CancelPayment($this->config, $this->getHttpClient());
     }
 
-    public function addUserAgentInfo($userData)
+    public function setSource($service, $version)
     {
-        $this->getHttpClient()->addUserAgentInfo($userData);
+        $this->getHttpClient()->addUserAgentInfo($service . '/' . $version);
     }
 
     protected function getHttpClient()

@@ -277,13 +277,14 @@ class FacadeTest extends TestCase
             $printUrl => "<html>$hash</html>",
         ]);
 
-        $userData = 'test_user_data';
-        $ebanx->addUserAgentInfo($userData);
+        $source = 'test_user_data';
+        $version = 'version';
+        $ebanx->setSource($source, $version);
 
         $this->assertEquals(
             json_encode($ebanx->getHttpClient()->getUserAgentInfo()),
-            '["test_user_data"]'
-            );
+            '["test_user_data\/version"]'
+        );
     }
 
     private function getExpectedGateways()
