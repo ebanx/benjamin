@@ -58,4 +58,16 @@ class ClientTest extends TestCase
         $response = $subject->payment((object)['empty' => true]);
         $this->assertEquals(json_decode($text, true), $response);
     }
+
+    public function testUserAgentData()
+    {
+        $subject = new Client();
+        $userData = 'test_user_data';
+        $subject->addUserAgentInfo($userData);
+
+        $this->assertEquals(
+            '["test_user_data"]',
+            json_encode($subject->getUserAgentInfo())
+        );
+    }
 }

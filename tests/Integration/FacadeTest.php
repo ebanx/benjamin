@@ -266,6 +266,27 @@ class FacadeTest extends TestCase
         $this->assertNull($subject);
     }
 
+    public function testAddUserAgentInfo()
+    {
+        $hash = md5(rand());
+        $infoUrl = 'ws/query';
+        $printUrl = "print/?hash=$hash";
+
+        $ebanx = $this->buildMockedFacade([
+            $infoUrl => $this->buildPaymentInfoMock($hash, 'tef'),
+            $printUrl => "<html>$hash</html>",
+        ]);
+
+        $source = 'test_user_data';
+        $version = 'version';
+        $ebanx->setSource($source, $version);
+
+        $this->assertEquals(
+            json_encode($ebanx->getHttpClient()->getUserAgentInfo()),
+            '["test_user_data\/version"]'
+        );
+    }
+
     private function getExpectedGateways()
     {
         $result = [];
