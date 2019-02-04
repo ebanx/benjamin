@@ -1,3 +1,6 @@
+## 1.17.2
+* Fix - Fix array format passed to Curl as Header [#147](https://github.com/ebanx/benjamin/pull/147)
+
 ## 1.17.1
 * Fix - Add Facade method to submit Source/Version data [#145](https://github.com/ebanx/benjamin/pull/145)
 
