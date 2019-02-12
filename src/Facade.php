@@ -14,7 +14,7 @@ use Ebanx\Benjamin\Services\Http\Client as HttpClient;
 
 class Facade
 {
-    const VERSION="1.17.2";
+    const VERSION="1.17.3";
     /**
      * Mock this in your tests extending and using ClientForTests
      * and any Engine you like (we provide EchoEngine)

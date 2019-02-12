@@ -1,3 +1,6 @@
+## 1.17.3
+* Fix - Fix User Agent source tag [#149](https://github.com/ebanx/benjamin/pull/149)
+
 ## 1.17.2
 * Fix - Fix array format passed to Curl as Header [#147](https://github.com/ebanx/benjamin/pull/147)
 
