@@ -119,7 +119,7 @@ class Engine
 
     private function formatUserAgentInfo()
     {
-        $formattedUserAgentInfo = ['X-Ebanx-Client-User-Agent: EBANX-PHP/' . Facade::VERSION . ' ' . join(' ', $this->userAgentInfo)];
+        $formattedUserAgentInfo = ['X-Ebanx-Client-User-Agent: SDK-PHP/' . Facade::VERSION . ' ' . join(' ', $this->userAgentInfo)];
         $this->userAgentInfo = $formattedUserAgentInfo;
         return $formattedUserAgentInfo;
     }
