@@ -1,3 +1,6 @@
+## 1.18.0
+* Feature - Add util to validate a API notification about update and refund [#151](https://github.com/ebanx/benjamin/pull/151)
+
 ## 1.17.3
 * Fix - Fix User Agent source tag [#149](https://github.com/ebanx/benjamin/pull/149)
 
