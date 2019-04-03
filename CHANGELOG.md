@@ -1,3 +1,6 @@
+## 1.18.1
+* Fix - Add Chargeback action to Http Processing [#153](https://github.com/ebanx/benjamin/pull/153)
+
 ## 1.18.0
 * Feature - Add util to validate a API notification about update and refund [#151](https://github.com/ebanx/benjamin/pull/151)
 
