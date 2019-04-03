@@ -9,6 +9,7 @@ class Http
     const OPERATION = 'payment_status_change';
     const UPDATE = 'update';
     const REFUND = 'refund';
+    const CHARGEBACK = 'chargeback';
 
     public static function isValidNotification(Notification $notification)
     {
@@ -25,7 +26,8 @@ class Http
     private static function isValidNotificationType(Notification $notification)
     {
         return $notification->getNotificationType() === self::UPDATE
-            || $notification->getNotificationType() === self::REFUND;
+            || $notification->getNotificationType() === self::REFUND
+            || $notification->getNotificationType() === self::CHARGEBACK;
     }
 
     private static function isValidHashCodes(Notification $notification)
