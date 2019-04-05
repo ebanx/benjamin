@@ -74,6 +74,20 @@ class EngineTest extends TestCase
         $response = $engine->post($url, $data);
         $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
-        $this->assertEquals('["X-Ebanx-Client-User-Agent: SDK-PHP\/'. Facade::VERSION . ' test_user_value"]', json_encode($response->getUserAgentInfo()));
+        $this->assertEquals('["X-Ebanx-Client-User-Agent: SDK-PHP\/'. Facade::VERSION . ' test_user_value"]', json_encode($response->getFormattedUserAgentInfo()));
+    }
+    public function testMultiplePostsWithCustomUserAgentData()
+    {
+        $url = 'http://portquiz.net';
+        $data = ['hash' => 'teste', 'key' => 'working'];
+        $engine = new Engine();
+        $engine->addUserAgentInfo('test_user_value');
+
+        $engine->post($url, $data);
+        $engine->post($url, $data);
+        $response = $engine->post($url, $data);
+        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
+        $this->assertEquals('["X-Ebanx-Client-User-Agent: SDK-PHP\/'. Facade::VERSION . ' test_user_value"]', json_encode($response->getFormattedUserAgentInfo()));
     }
 }

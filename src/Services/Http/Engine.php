@@ -19,7 +19,10 @@ class Engine
      * @var array;
      */
     private $userAgentInfo = [];
-
+    /**
+     * @var string;
+     */
+    private $formattedUserAgentInfo = '';
     /**
      * @param String $method
      * @param String $url
@@ -117,10 +120,17 @@ class Engine
         return $this->userAgentInfo;
     }
 
+    public function getFormattedUserAgentInfo()
+    {
+        return $this->formattedUserAgentInfo;
+    }
+
     private function formatUserAgentInfo()
     {
-        $formattedUserAgentInfo = ['X-Ebanx-Client-User-Agent: SDK-PHP/' . Facade::VERSION . ' ' . join(' ', $this->userAgentInfo)];
-        $this->userAgentInfo = $formattedUserAgentInfo;
-        return $formattedUserAgentInfo;
+        if (empty($this->formattedUserAgentInfo)) {
+            $formattedUserAgentInfo = ['X-Ebanx-Client-User-Agent: SDK-PHP/' . Facade::VERSION . ' ' . join(' ', $this->userAgentInfo)];
+            $this->formattedUserAgentInfo= $formattedUserAgentInfo;
+        }
+        return $this->formattedUserAgentInfo;
     }
 }
