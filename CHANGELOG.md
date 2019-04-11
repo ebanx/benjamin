@@ -1,4 +1,7 @@
 ## 1.18.1
+* Fix - Bug on sending UserAgent data [#155](https://github.com/ebanx/benjamin/pull/155)
+
+## 1.18.1
 * Fix - Add Chargeback action to Http Processing [#153](https://github.com/ebanx/benjamin/pull/153)
 
 ## 1.18.0
