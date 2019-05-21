@@ -1,4 +1,8 @@
-## 1.18.1
+## 1.18.3
+* Fix - Content-Type on Post requests [#158](https://github.com/ebanx/benjamin/pull/158)
+* Fix - Card token on request root [#157](https://github.com/ebanx/benjamin/pull/157)
+
+## 1.18.2
 * Fix - Bug on sending UserAgent data [#155](https://github.com/ebanx/benjamin/pull/155)
 
 ## 1.18.1
