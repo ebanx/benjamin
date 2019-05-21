@@ -24,6 +24,10 @@ class Engine
      */
     private $formattedUserAgentInfo = '';
     /**
+     * @var string;
+     */
+    private $contentType = 'application/x-www-form-urlencoded';
+    /**
      * @param String $method
      * @param String $url
      * @param array|object|boolean $data
@@ -34,12 +38,12 @@ class Engine
     private function sendRequest($method, $url, $data = false)
     {
         $curlHandler = curl_init();
-        curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->formatUserAgentInfo());
 
         if ($method === 'POST') {
             curl_setopt($curlHandler, CURLOPT_POST, 1);
 
             if ($data) {
+                $this->contentType = 'application/json';
                 curl_setopt($curlHandler, CURLOPT_POSTFIELDS, json_encode($data));
             }
         }
@@ -47,7 +51,7 @@ class Engine
         if ($method === 'GET' && $data) {
             $url = sprintf("%s?%s", $url, http_build_query($data));
         }
-
+        curl_setopt($curlHandler, CURLOPT_HTTPHEADER, $this->buildHeaders());
         curl_setopt($curlHandler, CURLOPT_URL, $url);
         curl_setopt($curlHandler, CURLOPT_RETURNTRANSFER, 1);
 
@@ -129,8 +133,21 @@ class Engine
     {
         if (empty($this->formattedUserAgentInfo)) {
             $formattedUserAgentInfo = ['X-Ebanx-Client-User-Agent: SDK-PHP/' . Facade::VERSION . ' ' . join(' ', $this->userAgentInfo)];
-            $this->formattedUserAgentInfo= $formattedUserAgentInfo;
+            $this->formattedUserAgentInfo = $formattedUserAgentInfo;
         }
         return $this->formattedUserAgentInfo;
+    }
+
+    private function buildHeaders()
+    {
+        return array_merge(
+            $this->formatUserAgentInfo(),
+            $this->getContentTypeHeader()
+        );
+    }
+
+    private function getContentTypeHeader()
+    {
+        return ['Content-Type: ' . $this->contentType];
     }
 }
