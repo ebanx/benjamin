@@ -8,7 +8,6 @@ class CardPaymentAdapter extends BrazilPaymentAdapter
         $transformed = parent::transformPayment();
         $transformed->payment_type_code = $this->payment->card->type;
         $transformed->create_token = $this->payment->card->createToken;
-        $transformed->token = $this->payment->card->token;
         $transformed->instalments = $this->payment->instalments;
         $transformed->creditcard = $this->transformCard();
         $transformed->device_id = $this->payment->deviceId;
