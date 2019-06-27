@@ -9,7 +9,7 @@
         "ext-curl": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^4.8 || ^8.0",
         "fzaninotto/Faker": "^1.6@dev",
         "justinrainbow/json-schema": "^5.0@dev",
         "vlucas/phpdotenv": "^2.4@dev",
