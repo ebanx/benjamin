@@ -13,7 +13,7 @@
         "fzaninotto/Faker": "^1.6@dev",
         "justinrainbow/json-schema": "^5.0@dev",
         "vlucas/phpdotenv": "^2.4@dev",
-        "sebastian/phpcpd": "^2.0.4",
+        "sebastian/phpcpd": "^2.0.4 || ^3.0.0",
         "friendsofphp/php-cs-fixer": "^2.2.3"
     },
     "autoload": {
