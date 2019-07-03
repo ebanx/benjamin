@@ -1,3 +1,6 @@
+## 1.19.0
+* Feature - Add support fot Bolivian Pagosnet[#164](https://github.com/ebanx/benjamin/pull/164)
+
 ## 1.18.3
 * Fix - Content-Type on Post requests [#158](https://github.com/ebanx/benjamin/pull/158)
 * Fix - Card token on request root [#157](https://github.com/ebanx/benjamin/pull/157)
