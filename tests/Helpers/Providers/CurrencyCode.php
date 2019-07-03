@@ -20,6 +20,7 @@ class CurrencyCode extends BaseProvider
             CurrencyModel::PEN,
             CurrencyModel::COP,
             CurrencyModel::CLP,
+            CurrencyModel::BOB,
         ]);
     }
 

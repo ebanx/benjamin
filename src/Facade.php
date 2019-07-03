@@ -309,6 +309,15 @@ class Facade
         return new Gateways\OtrosCupones($this->config, $this->getHttpClient());
     }
 
+
+    /**
+     * @return Gateways\PagosNet
+     */
+    public function PagosNet()
+    {
+        return new Gateways\PagosNet($this->config, $this->getHttpClient());
+    }
+
     /**
      * @return Gateways\Hosted
      */

@@ -46,7 +46,6 @@ class EngineTest extends TestCase
         $engine = new Engine();
 
         $response = $engine->post($url, $data);
-
         $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
     }
