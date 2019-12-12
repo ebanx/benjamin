@@ -1,3 +1,6 @@
+## 1.20.1
+* Fix - Fix faker version [#169](https://github.com/ebanx/benjamin/pull/169)
+
 ## 1.20.0
 * Feature - Add support to Metadata Node [#166](https://github.com/ebanx/benjamin/pull/166)
 
