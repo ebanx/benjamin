@@ -1,5 +1,8 @@
+## 1.20.0
+* Feature - Add support to Metadata Node [#166](https://github.com/ebanx/benjamin/pull/166)
+
 ## 1.19.0
-* Feature - Add support fot Bolivian Pagosnet[#164](https://github.com/ebanx/benjamin/pull/164)
+* Feature - Add support for Bolivian Pagosnet[#164](https://github.com/ebanx/benjamin/pull/164)
 
 ## 1.18.3
 * Fix - Content-Type on Post requests [#158](https://github.com/ebanx/benjamin/pull/158)
