@@ -62,6 +62,13 @@ class Payment extends BaseModel
     public $items = [];
 
     /**
+     * An array of Metadata.
+     *
+     * @var Metadata[]
+     */
+    public $metadata = [];
+
+    /**
      * Object containing the company’s responsible person information.
      *
      * @var Person

@@ -98,12 +98,16 @@ class PaymentAdapter extends BaseAdapter
 
     private function transformMetadata()
     {
-        $metadata = [
-            'risk' => (object) [
-                'profile_id' => $this->payment->riskProfileId
-            ]
-        ];
+        if (!empty($this->payment->metadata)) {
+            $metadata = $this->payment->metadata;
+        } else {
+            $metadata = [];
+        }
 
-        return (object) $metadata;
+        if (empty($metadata['risk']['profile_id'])) {
+            $metadata['risk']['profile_id'] = $this->payment->riskProfileId;
+        }
+
+        return json_decode(json_encode($metadata));
     }
 }
