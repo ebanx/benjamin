@@ -48,6 +48,8 @@ class RequestAdapter extends BaseAdapter
         $result = array_replace($result, $this->transformAddress($this->request->address));
         $result = array_replace($result, $this->transformUserValues($this->request->userValues));
         $result = array_replace($result, $this->transformSubAccount($this->request->subAccount));
+        $result = array_replace($result, $this->transformMetadata($this->request->metadata));
+        $result = array_replace($result, $this->transformItems($this->request->items));
 
         return (object) $result;
     }
@@ -113,6 +115,41 @@ class RequestAdapter extends BaseAdapter
         return [
             'sub_acc_name' => $this->request->subAccount->name,
             'sub_acc_image_url' => $this->request->subAccount->imageUrl,
+        ];
+    }
+
+    protected function transformMetadata(array $metadata= null)
+    {
+        if (!$metadata) {
+            return [];
+        }
+
+        return [
+            'metadata' => $metadata,
+        ];
+    }
+
+    protected function transformItems(array $items= null)
+    {
+        if (!$items) {
+            return [];
+        }
+
+        $itemCollection = [];
+        foreach ($items as $item) {
+            $properties = [
+                'name' => $item->name,
+                'description' => $item->description,
+                'unit_price' => $item->unitPrice,
+                'quantity' => $item->quantity,
+                'type' => $item->type,
+            ];
+
+            $itemCollection[] = (object) $properties;
+        }
+
+        return [
+            'items' => (object) $itemCollection,
         ];
     }
 }

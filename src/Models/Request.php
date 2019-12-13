@@ -71,6 +71,20 @@ class Request extends BaseModel
     public $userValues = [];
 
     /**
+     * Extra information for risk analysis.
+     *
+     * @var array
+     */
+    public $metadata = [];
+
+    /**
+     * Extra Physical Goods information for risk analysis.
+     *
+     * @var array
+     */
+    public $items = [];
+
+    /**
      * A Person object.
      *
      * @var Person
