@@ -1,3 +1,6 @@
+## 1.21.0
+* Feature - Add support to metadata and Items on request API [#170](https://github.com/ebanx/benjamin/pull/170)
+
 ## 1.20.1
 * Fix - Fix faker version [#169](https://github.com/ebanx/benjamin/pull/169)
 
