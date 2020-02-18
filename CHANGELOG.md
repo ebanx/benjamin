@@ -1,3 +1,6 @@
+## 1.22.0
+* Feature - Add support for Chilean creditcard [#172](https://github.com/ebanx/benjamin/pull/170)
+
 ## 1.21.0
 * Feature - Add support to metadata and Items on request API [#170](https://github.com/ebanx/benjamin/pull/170)
 
