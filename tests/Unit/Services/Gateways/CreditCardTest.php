@@ -71,6 +71,7 @@ class CreditCardTest extends GatewayTestCase
             Country::MEXICO,
             Country::COLOMBIA,
             Country::ARGENTINA,
+            Country::CHILE,
         ];
 
         $this->assertAvailableForCountries($gateway, $expectedCountries);
@@ -117,6 +118,14 @@ class CreditCardTest extends GatewayTestCase
         $this->assertAvailableForCountries($gateway, [
             Country::ARGENTINA,
         ]);
+
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::CLP,
+        ]), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, [
+            Country::CHILE,
+        ]);
     }
 
     public function testAvailabilityWithWrongLocalCurrency()
@@ -124,7 +133,7 @@ class CreditCardTest extends GatewayTestCase
         $creditCardConfig = new CreditCardConfig();
 
         $gateway = new CreditCard(new Config([
-            'baseCurrency' => Currency::CLP,
+            'baseCurrency' => Currency::BOB,
         ]), $creditCardConfig);
 
         $this->assertNotAvailableAnywhere($gateway);
@@ -306,6 +315,22 @@ class CreditCardTest extends GatewayTestCase
         $totalInstalments = 12;
         $usdToBrlRate = 1;
         $creditCard = $this->setupGateway($usdToBrlRate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $expectedInstalmentsArray[$i] = $i;
+        }
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsChile()
+    {
+        $country = Country::CHILE;
+        $totalInstalments = 12;
+        $exchange_rate = 1;
+        $creditCard = $this->setupGateway($exchange_rate, new Config());
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
         for ($i = 1; $i <= 12; $i++) {
