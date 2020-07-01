@@ -21,6 +21,7 @@ class CurrencyCode extends BaseProvider
             CurrencyModel::COP,
             CurrencyModel::CLP,
             CurrencyModel::BOB,
+            CurrencyModel::UYU,
         ]);
     }
 

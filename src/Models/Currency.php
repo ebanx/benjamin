@@ -12,6 +12,7 @@ class Currency extends BaseModel
     const COP = 'COP';
     const PEN = 'PEN';
     const BOB = 'BOB';
+    const UYU = 'UYU';
 
     public static function all()
     {
@@ -25,6 +26,7 @@ class Currency extends BaseModel
             self::COP,
             self::PEN,
             self::BOB,
+            self::UYU,
         ];
     }
 
@@ -51,6 +53,7 @@ class Currency extends BaseModel
             Country::MEXICO => self::MXN,
             Country::PERU => self::PEN,
             Country::BOLIVIA => self::BOB,
+            Country::URUGUAY => self::UYU,
         ];
 
         return $relation[$country];
