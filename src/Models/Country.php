@@ -11,6 +11,7 @@ class Country extends BaseModel
     const MEXICO = 'Mexico';
     const PERU = 'Peru';
     const BOLIVIA = 'Bolivia';
+    const URUGUAY = 'Uruguay';
 
     /**
      * @return array
@@ -26,6 +27,7 @@ class Country extends BaseModel
             self::MEXICO,
             self::PERU,
             self::BOLIVIA,
+            self::URUGUAY,
         ];
     }
 
@@ -72,6 +74,7 @@ class Country extends BaseModel
             'MX' => self::MEXICO,
             'PE' => self::PERU,
             'BO' => self::BOLIVIA,
+            'UY' => self::URUGUAY,
         ];
     }
 }

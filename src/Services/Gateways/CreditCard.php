@@ -24,6 +24,7 @@ class CreditCard extends DirectGateway
             Country::COLOMBIA,
             Country::ARGENTINA,
             Country::CHILE,
+            Country::URUGUAY,
         ];
     }
 
@@ -37,6 +38,7 @@ class CreditCard extends DirectGateway
             Currency::USD,
             Currency::EUR,
             Currency::CLP,
+            Currency::UYU,
         ];
     }
 
@@ -46,6 +48,7 @@ class CreditCard extends DirectGateway
         Country::MEXICO => 3,
         Country::ARGENTINA => 3,
         Country::CHILE => 1,
+        Country::URUGUAY => 1,
     ];
 
     public static $maxInstalmentCountry = [
@@ -54,6 +57,7 @@ class CreditCard extends DirectGateway
         Country::MEXICO   => 12,
         Country::ARGENTINA => 12,
         Country::CHILE => 12,
+        Country::URUGUAY => 12,
     ];
 
     private $creditCardConfig;

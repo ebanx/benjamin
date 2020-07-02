@@ -72,6 +72,7 @@ class CreditCardTest extends GatewayTestCase
             Country::COLOMBIA,
             Country::ARGENTINA,
             Country::CHILE,
+            Country::URUGUAY,
         ];
 
         $this->assertAvailableForCountries($gateway, $expectedCountries);
@@ -125,6 +126,14 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertAvailableForCountries($gateway, [
             Country::CHILE,
+        ]);
+
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::UYU,
+        ]), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, [
+            Country::URUGUAY,
         ]);
     }
 
@@ -368,6 +377,22 @@ class CreditCardTest extends GatewayTestCase
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
         for ($i = 1; $i <= 36; $i++) {
+            $expectedInstalmentsArray[$i] = $i;
+        }
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsUruguay()
+    {
+        $country = Country::URUGUAY;
+        $totalInstalments = 12;
+        $exchange_rate = 1;
+        $creditCard = $this->setupGateway($exchange_rate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = [];
+        for ($i = 1; $i <= 12; $i++) {
             $expectedInstalmentsArray[$i] = $i;
         }
 
