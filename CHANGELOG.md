@@ -1,3 +1,6 @@
+## 1.24.0
+* Feature - Add support for Uruguayan Debitcard [#176](https://github.com/ebanx/benjamin/pull/176)
+
 ## 1.23.0
 * Feature - Add support for Uruguayan Creditcard [#174](https://github.com/ebanx/benjamin/pull/174)
 
