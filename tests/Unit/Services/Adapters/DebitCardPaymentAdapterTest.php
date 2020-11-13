@@ -78,7 +78,7 @@ class DebitCardPaymentAdapterTest extends PaymentAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->emptydebitCard()->businessPerson()->build();
+        $payment = $factory->payment()->emptyDebitCard()->businessPerson()->build();
 
         $adapter = new DebitCardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
