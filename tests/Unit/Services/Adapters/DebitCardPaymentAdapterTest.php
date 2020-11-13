@@ -32,7 +32,7 @@ class DebitCardPaymentAdapterTest extends PaymentAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->emptyCreditCard()->businessPerson()->build();
+        $payment = $factory->payment()->emptydebitCard()->businessPerson()->build();
 
         $adapter = new DebitCardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
@@ -46,7 +46,7 @@ class DebitCardPaymentAdapterTest extends PaymentAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->creditCard()->businessPerson()->manualReview(true)->build();
+        $payment = $factory->payment()->debitCard()->businessPerson()->manualReview(true)->build();
 
         $adapter = new DebitCardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
@@ -62,7 +62,7 @@ class DebitCardPaymentAdapterTest extends PaymentAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->creditCard()->businessPerson()->build();
+        $payment = $factory->payment()->debitCard()->businessPerson()->build();
 
         $adapter = new DebitCardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
@@ -78,7 +78,7 @@ class DebitCardPaymentAdapterTest extends PaymentAdapterTest
             'sandboxIntegrationKey' => 'testIntegrationKey'
         ]);
         $factory = new BuilderFactory('pt_BR');
-        $payment = $factory->payment()->emptyCreditCard()->businessPerson()->build();
+        $payment = $factory->payment()->emptydebitCard()->businessPerson()->build();
 
         $adapter = new DebitCardPaymentAdapter($payment, $config);
         $result = $adapter->transform();
