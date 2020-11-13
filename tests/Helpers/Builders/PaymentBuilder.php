@@ -97,11 +97,10 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
-    public function emptyDebitCard($instalmentNumber = 1)
+    public function emptyDebitCard()
     {
         $this->instance->type = 'deditcard';
         $this->instance->card = new DebitCard();
-        $this->instance->instalments = $instalmentNumber;
 
         return $this;
     }
