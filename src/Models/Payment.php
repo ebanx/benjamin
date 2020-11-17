@@ -117,6 +117,14 @@ class Payment extends BaseModel
      */
     public $card = null;
 
+    #CARD
+    /**
+     * A Debit Card object.
+     *
+     * @var DebitCard
+     */
+    public $debit_card = null;
+
     /**
      * Extra information for reports.
      *

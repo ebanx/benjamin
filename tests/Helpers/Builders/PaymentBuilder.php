@@ -2,6 +2,7 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
+use Ebanx\Benjamin\Models\DebitCard;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
@@ -92,6 +93,14 @@ class PaymentBuilder extends BaseBuilder
         $this->instance->type = 'debitcard';
         $this->instance->card = $this->faker->cardModel();
         $this->instance->card->number = '4242424242424242';
+
+        return $this;
+    }
+
+    public function emptyDebitCard()
+    {
+        $this->instance->type = 'deditcard';
+        $this->instance->card = new DebitCard();
 
         return $this;
     }
