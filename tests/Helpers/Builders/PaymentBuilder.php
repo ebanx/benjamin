@@ -91,8 +91,11 @@ class PaymentBuilder extends BaseBuilder
     public function debitCard()
     {
         $this->instance->type = 'debitcard';
-        $this->instance->card = $this->faker->cardModel();
-        $this->instance->card->number = '4242424242424242';
+        $this->instance->debit_card = $this->faker->cardModel();
+        $this->instance->debit_card->threeds_eci = '05';
+        $this->instance->debit_card->threeds_xid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
+        $this->instance->debit_card->threeds_version = '2';
+        $this->instance->debit_card->threeds_trxid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
 
         return $this;
     }
@@ -100,7 +103,7 @@ class PaymentBuilder extends BaseBuilder
     public function emptyDebitCard()
     {
         $this->instance->type = 'deditcard';
-        $this->instance->card = new DebitCard();
+        $this->instance->debit_card = new DebitCard();
 
         return $this;
     }
