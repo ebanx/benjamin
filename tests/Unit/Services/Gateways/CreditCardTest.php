@@ -10,7 +10,6 @@ use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 
 use Ebanx\Benjamin\Services\Gateways\CreditCard;
-use Ebanx\Benjamin\Services\Http\Client;
 
 class CreditCardTest extends GatewayTestCase
 {
@@ -73,6 +72,7 @@ class CreditCardTest extends GatewayTestCase
             Country::ARGENTINA,
             Country::CHILE,
             Country::URUGUAY,
+            Country::PERU
         ];
 
         $this->assertAvailableForCountries($gateway, $expectedCountries);
@@ -134,6 +134,14 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertAvailableForCountries($gateway, [
             Country::URUGUAY,
+        ]);
+
+        $gateway = new CreditCard(new Config([
+            'baseCurrency' => Currency::PEN,
+        ]), $creditCardConfig);
+
+        $this->assertAvailableForCountries($gateway, [
+            Country::PERU,
         ]);
     }
 
@@ -387,6 +395,22 @@ class CreditCardTest extends GatewayTestCase
     public function testInstalmentsUruguay()
     {
         $country = Country::URUGUAY;
+        $totalInstalments = 12;
+        $exchange_rate = 1;
+        $creditCard = $this->setupGateway($exchange_rate, new Config());
+        $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
+        $expectedInstalmentsArray = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $expectedInstalmentsArray[$i] = $i;
+        }
+
+        $this->assertEquals($totalInstalments, count($instalmentsArray));
+        $this->assertEquals($expectedInstalmentsArray, $instalmentsArray);
+    }
+
+    public function testInstalmentsPeru()
+    {
+        $country = Country::PERU;
         $totalInstalments = 12;
         $exchange_rate = 1;
         $creditCard = $this->setupGateway($exchange_rate, new Config());
