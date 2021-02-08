@@ -3,3 +3,4 @@
 /.env
 /clover.xml
 .php_cs.cache
+/.idea/
