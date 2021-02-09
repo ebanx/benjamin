@@ -1,3 +1,6 @@
+## 1.25.0
+* Feature - Add support for Peru Creditcard [#182](https://github.com/ebanx/benjamin/pull/182)
+
 ## 1.24.0
 * Feature - Add support for Uruguayan Debitcard [#176](https://github.com/ebanx/benjamin/pull/176)
 
