@@ -319,6 +319,14 @@ class Facade
     }
 
     /**
+     * @return Gateways\Pix
+     */
+    public function pix()
+    {
+        return new Gateways\Pix($this->config, $this->getHttpClient());
+    }
+
+    /**
      * @return Gateways\Hosted
      */
     public function hosted()

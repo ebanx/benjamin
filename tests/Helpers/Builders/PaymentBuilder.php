@@ -2,6 +2,8 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
+use Ebanx\Benjamin\Models\DigitalWallet;
+use Ebanx\Benjamin\Services\Gateways\Wallet;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
@@ -50,6 +52,13 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'boleto';
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
+
+        return $this;
+    }
+
+    public function pix()
+    {
+        $this->instance->type = 'pix';
 
         return $this;
     }
