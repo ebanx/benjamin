@@ -60,8 +60,8 @@ class CreditCard extends DirectGateway
         Country::MEXICO   => 12,
         Country::ARGENTINA => 12,
         Country::CHILE => 12,
-        Country::URUGUAY => 12,
-        Country::PERU => 12,
+        Country::URUGUAY => 6,
+        Country::PERU => 48,
     ];
 
     private $creditCardConfig;
