@@ -2,6 +2,7 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
+use Ebanx\Benjamin\Models\Wallet;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
@@ -100,6 +101,14 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'tef';
         $this->instance->bankCode = Bank::BANCO_DO_BRASIL;
+
+        return $this;
+    }
+
+    public function wallet()
+    {
+        $this->instance->type = 'wallet';
+        $this->instance->wallet = Wallet::PAYPAL;
 
         return $this;
     }
