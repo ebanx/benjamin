@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 
 class CreditCardConfig extends BaseModel implements AddableConfig
 {
-    const MAX_INSTALMENTS = 36;
+    const MAX_INSTALMENTS = 48;
 
     /**
      * Number of max instalments, defaults to 12.

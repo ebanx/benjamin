@@ -400,7 +400,7 @@ class CreditCardTest extends GatewayTestCase
         $creditCard = $this->setupGateway($exchange_rate, new Config());
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= $totalInstalments; $i++) {
             $expectedInstalmentsArray[$i] = $i;
         }
 
@@ -415,8 +415,9 @@ class CreditCardTest extends GatewayTestCase
         $exchange_rate = 1;
         $creditCard = $this->setupGateway($exchange_rate, new Config());
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
+
         $expectedInstalmentsArray = [];
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= $totalInstalments; $i++) {
             $expectedInstalmentsArray[$i] = $i;
         }
 
