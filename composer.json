@@ -32,7 +32,10 @@
         "test": "phpunit",
         "test-only": "phpunit --filter",
         "dup-check": "phpcpd src && phpcpd tests",
-        "test-all": "composer test && composer dup-check",
+        "test-all": [
+            "@putenv XDEBUG_MODE=coverage",
+            "composer test && composer dup-check"
+        ],
         "style-check" : "php-cs-fixer fix --dry-run --verbose --diff ./",
         "style-fix" : "php-cs-fixer fix --verbose ./"
     }
