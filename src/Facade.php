@@ -1,20 +1,22 @@
 <?php
+
 namespace Ebanx\Benjamin;
 
+use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Configs\CreditCardConfig;
-use Ebanx\Benjamin\Models\Configs\AddableConfig;
 use Ebanx\Benjamin\Models\Payment;
+use Ebanx\Benjamin\Models\Wallet;
 use Ebanx\Benjamin\Services\CancelPayment;
-use Ebanx\Benjamin\Services\Gateways;
-use Ebanx\Benjamin\Services\PaymentInfo;
 use Ebanx\Benjamin\Services\Exchange;
-use Ebanx\Benjamin\Services\Refund;
+use Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Services\Http\Client as HttpClient;
+use Ebanx\Benjamin\Services\PaymentInfo;
+use Ebanx\Benjamin\Services\Refund;
 
 class Facade
 {
-    const VERSION="1.25.0";
+    const VERSION = "1.25.0";
     /**
      * Mock this in your tests extending and using ClientForTests
      * and any Engine you like (we provide EchoEngine)
@@ -34,6 +36,7 @@ class Facade
 
     /**
      * @param AddableConfig $config,... Configuration objects
+     *
      * @return Facade
      */
     public function addConfig(AddableConfig $config)
@@ -41,7 +44,7 @@ class Facade
         $args = func_get_args();
         foreach ($args as $config) {
             $class = $config->getShortClassName();
-            call_user_func([$this, 'with'.$class], $config);
+            call_user_func([$this, 'with' . $class], $config);
         }
 
         return $this;
@@ -49,26 +52,31 @@ class Facade
 
     /**
      * @param Config $config
+     *
      * @return Facade
      */
     public function withConfig(Config $config)
     {
         $this->config = $config;
+
         return $this;
     }
 
     /**
      * @param CreditCardConfig $creditCardConfig
+     *
      * @return Facade
      */
     public function withCreditCardConfig(CreditCardConfig $creditCardConfig)
     {
         $this->creditCardConfig = $creditCardConfig;
+
         return $this;
     }
 
     /**
      * @param Payment $payment
+     *
      * @return array
      * @throws \InvalidArgumentException
      */
@@ -78,16 +86,18 @@ class Facade
             throw new \InvalidArgumentException('Invalid payment type');
         }
 
-        if (!method_exists($this, $payment->type)) {
+        if (! method_exists($this, $payment->type)) {
             throw new \InvalidArgumentException('Invalid payment type');
         }
 
         $instance = call_user_func([$this, $payment->type]);
+
         return $instance->create($payment);
     }
 
     /**
      * @param string $hash
+     *
      * @return string
      */
     public function getTicketHtml($hash)
@@ -95,12 +105,12 @@ class Facade
         $info = $this->paymentInfo()->findByHash($hash);
 
         $gatewayName = $this->getGatewayNameFromType($info['payment']['payment_type_code']);
-        if (!$gatewayName) {
+        if (! $gatewayName) {
             return null;
         }
 
         $gateway = $this->{$gatewayName}();
-        if (!method_exists($gateway, 'getTicketHtml')) {
+        if (! method_exists($gateway, 'getTicketHtml')) {
             return null;
         }
 
@@ -169,7 +179,8 @@ class Facade
     }
 
     /**
-     * @param  CreditCardConfig $creditCardConfig (optional) credit card config
+     * @param CreditCardConfig $creditCardConfig (optional) credit card config
+     *
      * @return Gateways\CreditCard
      */
     public function creditCard(CreditCardConfig $creditCardConfig = null)
@@ -235,6 +246,46 @@ class Facade
     public function tef()
     {
         return new Gateways\Tef($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Wallet\MACHPay
+     */
+    public function walletMACHPay()
+    {
+        return new Gateways\Wallet\MACHPay($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Wallet\MercadoPago
+     */
+    public function walletMercadoPago()
+    {
+        return new Gateways\Wallet\MercadoPago($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Wallet\Nequi
+     */
+    public function walletNequi()
+    {
+        return new Gateways\Wallet\Nequi($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Wallet\PayPal
+     */
+    public function walletPaypal()
+    {
+        return new Gateways\Wallet\PayPal($this->config, $this->getHttpClient());
+    }
+
+    /**
+     * @return Gateways\Wallet\Picpay
+     */
+    public function walletPicpay()
+    {
+        return new Gateways\Wallet\Picpay($this->config, $this->getHttpClient());
     }
 
     /**
@@ -377,6 +428,7 @@ class Facade
             $this->httpClient = new HttpClient();
             $this->httpClient->switchMode($this->config->isSandbox);
         }
+
         return $this->httpClient;
     }
 
@@ -385,7 +437,7 @@ class Facade
         foreach ($this->getAllPublicServices() as $method => $service) {
             $class = get_class($service);
 
-            if (!defined($class.'::API_TYPE')) {
+            if (! defined($class . '::API_TYPE')) {
                 continue;
             }
 
@@ -407,8 +459,8 @@ class Facade
         foreach ($methods as $method) {
             $reflection = new \ReflectionMethod($this, $method);
 
-            if (!$reflection->isPublic()
-                || $reflection->getNumberOfRequiredParameters() > 0) {
+            if (! $reflection->isPublic()
+                 || $reflection->getNumberOfRequiredParameters() > 0) {
                 continue;
             }
 
