@@ -395,12 +395,12 @@ class CreditCardTest extends GatewayTestCase
     public function testInstalmentsUruguay()
     {
         $country = Country::URUGUAY;
-        $totalInstalments = 12;
+        $totalInstalments = 6;
         $exchange_rate = 1;
         $creditCard = $this->setupGateway($exchange_rate, new Config());
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
         $expectedInstalmentsArray = [];
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= $totalInstalments; $i++) {
             $expectedInstalmentsArray[$i] = $i;
         }
 
@@ -411,12 +411,13 @@ class CreditCardTest extends GatewayTestCase
     public function testInstalmentsPeru()
     {
         $country = Country::PERU;
-        $totalInstalments = 12;
+        $totalInstalments = 48;
         $exchange_rate = 1;
         $creditCard = $this->setupGateway($exchange_rate, new Config());
         $instalmentsArray = $creditCard->getInstalmentsByCountry($country);
+
         $expectedInstalmentsArray = [];
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= $totalInstalments; $i++) {
             $expectedInstalmentsArray[$i] = $i;
         }
 
