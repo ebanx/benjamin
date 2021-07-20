@@ -8,7 +8,9 @@ class Country extends BaseModel
     const CHILE = 'Chile';
     const COLOMBIA = 'Colombia';
     const ECUADOR = 'Ecuador';
+    const GUATEMALA = 'Guatemala';
     const MEXICO = 'Mexico';
+    const PARAGUAY = 'Paraguay';
     const PERU = 'Peru';
     const BOLIVIA = 'Bolivia';
     const URUGUAY = 'Uruguay';
@@ -24,7 +26,9 @@ class Country extends BaseModel
             self::CHILE,
             self::COLOMBIA,
             self::ECUADOR,
+            self::GUATEMALA,
             self::MEXICO,
+            self::PARAGUAY,
             self::PERU,
             self::BOLIVIA,
             self::URUGUAY,
@@ -71,7 +75,9 @@ class Country extends BaseModel
             'CL' => self::CHILE,
             'CO' => self::COLOMBIA,
             'EC' => self::ECUADOR,
+            'GT' => self::GUATEMALA,
             'MX' => self::MEXICO,
+            'PY' => self::PARAGUAY,
             'PE' => self::PERU,
             'BO' => self::BOLIVIA,
             'UY' => self::URUGUAY,

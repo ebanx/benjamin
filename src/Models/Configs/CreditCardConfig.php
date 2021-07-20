@@ -40,6 +40,8 @@ class CreditCardConfig extends BaseModel implements AddableConfig
             Currency::CLP => 1,
             Currency::UYU => 1,
             Currency::PEN => 1,
+            Currency::PYG => 1,
+            Currency::GTQ => 1,
         ];
 
         return isset($relation[$currency])

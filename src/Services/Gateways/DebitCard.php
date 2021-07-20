@@ -15,6 +15,8 @@ class DebitCard extends DirectGateway
         return [
             Country::MEXICO,
             Country::URUGUAY,
+            Country::PARAGUAY,
+            Country::GUATEMALA,
         ];
     }
     protected static function getEnabledCurrencies()
@@ -24,6 +26,8 @@ class DebitCard extends DirectGateway
             Currency::USD,
             Currency::EUR,
             Currency::UYU,
+            Currency::GTQ,
+            Currency::PYG,
         ];
     }
 
