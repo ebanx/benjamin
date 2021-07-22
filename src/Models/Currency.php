@@ -13,6 +13,8 @@ class Currency extends BaseModel
     const PEN = 'PEN';
     const BOB = 'BOB';
     const UYU = 'UYU';
+    const GTQ = 'GTQ';
+    const PYG = 'PYG';
 
     public static function all()
     {
@@ -27,6 +29,8 @@ class Currency extends BaseModel
             self::PEN,
             self::BOB,
             self::UYU,
+            self::GTQ,
+            self::PYG,
         ];
     }
 
@@ -50,7 +54,9 @@ class Currency extends BaseModel
             Country::CHILE => self::CLP,
             Country::COLOMBIA => self::COP,
             Country::ECUADOR => self::USD,
+            Country::GUATEMALA => self::GTQ,
             Country::MEXICO => self::MXN,
+            Country::PARAGUAY => self::PYG,
             Country::PERU => self::PEN,
             Country::BOLIVIA => self::BOB,
             Country::URUGUAY => self::UYU,
