@@ -16,7 +16,7 @@ use Ebanx\Benjamin\Services\Refund;
 
 class Facade
 {
-    const VERSION = "1.25.0";
+    const VERSION = "1.26.0";
     /**
      * Mock this in your tests extending and using ClientForTests
      * and any Engine you like (we provide EchoEngine)
