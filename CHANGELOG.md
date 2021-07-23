@@ -1,3 +1,6 @@
+## 1.26.0
+* Feature - Add support for Guatemala and Paraguay Credit/Debit cards [#192](https://github.com/ebanx/benjamin/pull/192/)
+
 ## 1.25.0
 * Feature - Add support for Peru Creditcard [#182](https://github.com/ebanx/benjamin/pull/182)
 
