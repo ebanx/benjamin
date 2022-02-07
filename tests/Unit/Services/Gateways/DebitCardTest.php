@@ -35,6 +35,8 @@ class DebitCardTest extends GatewayTestCase
         $this->assertAvailableForCountries($gateway, [
             Country::MEXICO,
             Country::URUGUAY,
+            Country::PARAGUAY,
+            Country::GUATEMALA
         ]);
 
         $gateway = new DebitCard(new Config([
@@ -44,6 +46,8 @@ class DebitCardTest extends GatewayTestCase
         $this->assertAvailableForCountries($gateway, [
             Country::MEXICO,
             Country::URUGUAY,
+            Country::PARAGUAY,
+            Country::GUATEMALA,
         ]);
     }
 

@@ -15,6 +15,8 @@ class CountryTest extends TestCase
         $this->assertEquals(Country::ECUADOR, Country::fromIso('EC'));
         $this->assertEquals(Country::MEXICO, Country::fromIso('MX'));
         $this->assertEquals(Country::PERU, Country::fromIso('PE'));
+        $this->assertEquals(Country::GUATEMALA, Country::fromIso('GT'));
+        $this->assertEquals(Country::PARAGUAY, Country::fromIso('PY'));
         $this->assertNull(Country::fromIso('ZZ'));
     }
 
@@ -27,6 +29,8 @@ class CountryTest extends TestCase
         $this->assertEquals('EC', Country::toIso(Country::ECUADOR));
         $this->assertEquals('MX', Country::toIso(Country::MEXICO));
         $this->assertEquals('PE', Country::toIso(Country::PERU));
+        $this->assertEquals('GT', Country::toIso(Country::GUATEMALA));
+        $this->assertEquals('PY', Country::toIso(Country::PARAGUAY));
         $this->assertNull(Country::toIso('Ebanxland'));
     }
 }
