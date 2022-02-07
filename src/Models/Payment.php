@@ -144,4 +144,11 @@ class Payment extends BaseModel
      *  Flag to use `Under Review` risk analysis tool.
      */
     public $manualReview = null;
+
+    /**
+     * Digital wallet - a.k.a. MercadoPago, PayPal, Picpay, MACH Pay, Nequi, etc.
+     *
+     * @var string
+     */
+    public $wallet;
 }

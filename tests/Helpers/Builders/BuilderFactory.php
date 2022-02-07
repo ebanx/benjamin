@@ -65,6 +65,7 @@ class BuilderFactory
             $this->faker->addProvider(new Providers\Item($this->faker));
             $this->faker->addProvider(new Providers\Payment($this->faker));
             $this->faker->addProvider(new Providers\Card($this->faker));
+            $this->faker->addProvider(new Providers\DebitCard($this->faker));
             $this->faker->addProvider(new Providers\Request($this->faker));
 
             $personProviderClass = $localProviderDir.'\Person';

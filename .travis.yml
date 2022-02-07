@@ -2,8 +2,7 @@ language: php
 dist: trusty
 sudo: false
 php:
-  - '5.4'
-  - '7.2'
+  - '7.3'
 install:
   - composer update
   - composer dump-autoload

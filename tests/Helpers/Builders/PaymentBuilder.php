@@ -2,6 +2,7 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
+use Ebanx\Benjamin\Models\Wallet;
 use Ebanx\Benjamin\Models\DebitCard;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
@@ -55,6 +56,13 @@ class PaymentBuilder extends BaseBuilder
         return $this;
     }
 
+    public function pix()
+    {
+        $this->instance->type = 'pix';
+
+        return $this;
+    }
+
     public function baloto()
     {
         $this->instance->type = 'baloto';
@@ -91,8 +99,11 @@ class PaymentBuilder extends BaseBuilder
     public function debitCard()
     {
         $this->instance->type = 'debitcard';
-        $this->instance->card = $this->faker->cardModel();
-        $this->instance->card->number = '4242424242424242';
+        $this->instance->debit_card = $this->faker->debitCardModel();
+        $this->instance->debit_card->threeds_eci = '05';
+        $this->instance->debit_card->threeds_xid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
+        $this->instance->debit_card->threeds_version = '2';
+        $this->instance->debit_card->threeds_trxid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
 
         return $this;
     }
@@ -100,7 +111,7 @@ class PaymentBuilder extends BaseBuilder
     public function emptyDebitCard()
     {
         $this->instance->type = 'deditcard';
-        $this->instance->card = new DebitCard();
+        $this->instance->debit_card = new DebitCard();
 
         return $this;
     }
@@ -109,6 +120,14 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'tef';
         $this->instance->bankCode = Bank::BANCO_DO_BRASIL;
+
+        return $this;
+    }
+
+    public function wallet()
+    {
+        $this->instance->type = 'wallet';
+        $this->instance->wallet = Wallet::PAYPAL;
 
         return $this;
     }
