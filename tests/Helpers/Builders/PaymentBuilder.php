@@ -2,6 +2,7 @@
 namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
+use Ebanx\Benjamin\Models\Wallet;
 use Ebanx\Benjamin\Models\DebitCard;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
@@ -51,6 +52,13 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'boleto';
         $this->instance->dueDate = $this->faker->dateTimeBetween('+1 days', '+3 days');
+
+        return $this;
+    }
+
+    public function pix()
+    {
+        $this->instance->type = 'pix';
 
         return $this;
     }
@@ -112,6 +120,14 @@ class PaymentBuilder extends BaseBuilder
     {
         $this->instance->type = 'tef';
         $this->instance->bankCode = Bank::BANCO_DO_BRASIL;
+
+        return $this;
+    }
+
+    public function wallet()
+    {
+        $this->instance->type = 'wallet';
+        $this->instance->wallet = Wallet::PAYPAL;
 
         return $this;
     }

@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 
 class CreditCardConfig extends BaseModel implements AddableConfig
 {
-    const MAX_INSTALMENTS = 36;
+    const MAX_INSTALMENTS = 48;
 
     /**
      * Number of max instalments, defaults to 12.
@@ -39,6 +39,9 @@ class CreditCardConfig extends BaseModel implements AddableConfig
             Currency::ARS => 1,
             Currency::CLP => 1,
             Currency::UYU => 1,
+            Currency::PEN => 1,
+            Currency::PYG => 1,
+            Currency::GTQ => 1,
         ];
 
         return isset($relation[$currency])
