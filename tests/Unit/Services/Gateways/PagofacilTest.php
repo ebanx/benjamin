@@ -78,7 +78,7 @@ class PagofacilTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway($this->getMockedClient('<html></html>'));
         // TODO: assert something better
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<html',
             $gateway->getTicketHtml('59dd4830ba89b516ba301a73a18c0f5cc09d58660a888575')
         );

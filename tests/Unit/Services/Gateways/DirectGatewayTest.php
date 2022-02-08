@@ -17,28 +17,22 @@ class DirectGatewayTest extends TestCase
         $this->assertEquals(Client::MODE_LIVE, $gateway->getClient()->getMode());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testThrowWithInvalidCountry()
     {
+        $this->expectException( \InvalidArgumentException::class );
         $gateway = new TestGateway(new Config());
         $gateway->countryNotAvailable();
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testEnabledCountriesGetterNotOverridden()
     {
+        $this->expectException( \BadMethodCallException::class );
         NoCountryNoCurrencyGateway::acceptsCountry('test');
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testEnabledCurrenciesGetterNotOverridden()
     {
+        $this->expectException( \BadMethodCallException::class );
         NoCountryNoCurrencyGateway::acceptsCurrency('test');
     }
 }

@@ -1,3 +1,6 @@
+## 1.26.1
+* Update dependency versions
+
 ## 1.26.0
 * Feature - Add support for Guatemala and Paraguay Credit/Debit cards [#192](https://github.com/ebanx/benjamin/pull/192/)
 

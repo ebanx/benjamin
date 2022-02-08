@@ -26,10 +26,10 @@ class ValidationHelperTest extends TestCase
                 ->test('High value', 12)
         );
 
-        $this->assertContains('Low value', $errors[0]);
-        $this->assertContains('10', $errors[0]);
+        $this->assertStringContainsString('Low value', $errors[0]);
+        $this->assertStringContainsString('10', $errors[0]);
 
-        $this->assertContains('High value', $errors[1]);
-        $this->assertContains('11', $errors[1]);
+        $this->assertStringContainsString('High value', $errors[1]);
+        $this->assertStringContainsString('11', $errors[1]);
     }
 }

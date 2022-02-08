@@ -17,7 +17,7 @@ class EngineTest extends TestCase
 
         $response = $engine->get($url);
 
-        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertStringContainsString('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
     }
 
@@ -32,7 +32,7 @@ class EngineTest extends TestCase
 
         $response = $engine->get($url, $data);
 
-        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertStringContainsString('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/?hash=teste', $engine->getInfo()['url']);
     }
 
@@ -46,7 +46,7 @@ class EngineTest extends TestCase
         $engine = new Engine();
 
         $response = $engine->post($url, $data);
-        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertStringContainsString('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
     }
 
@@ -71,7 +71,7 @@ class EngineTest extends TestCase
         $engine->addUserAgentInfo('test_user_value');
 
         $response = $engine->post($url, $data);
-        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertStringContainsString('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
         $this->assertEquals('["X-Ebanx-Client-User-Agent: SDK-PHP\/'. Facade::VERSION . ' test_user_value"]', json_encode($response->getFormattedUserAgentInfo()));
     }
@@ -85,7 +85,7 @@ class EngineTest extends TestCase
         $engine->post($url, $data);
         $engine->post($url, $data);
         $response = $engine->post($url, $data);
-        $this->assertContains('You have reached this page on port <b>80</b>', $response->getContents());
+        $this->assertStringContainsString('You have reached this page on port <b>80</b>', $response->getContents());
         $this->assertEquals('http://portquiz.net/', $engine->getInfo()['url']);
         $this->assertEquals('["X-Ebanx-Client-User-Agent: SDK-PHP\/'. Facade::VERSION . ' test_user_value"]', json_encode($response->getFormattedUserAgentInfo()));
     }

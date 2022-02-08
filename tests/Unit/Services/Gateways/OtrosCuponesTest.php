@@ -78,7 +78,7 @@ class OtrosCuponesTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway($this->getMockedClient('<html></html>'));
         // TODO: assert something better
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<html',
             $gateway->getTicketHtml('59dd49e565e80d37b1995a9dfa2767e2494060237b13c3b8')
         );

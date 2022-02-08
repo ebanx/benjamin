@@ -1,13 +1,12 @@
 <?php
 namespace Tests\Unit\Services\Gateways;
 
-use Tests\Helpers\Builders\BuilderFactory;
-
 use Ebanx\Benjamin\Models\Configs\Config;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Services\Gateways\Spei;
 use Ebanx\Benjamin\Services\Http\Client;
+use Tests\Helpers\Builders\BuilderFactory;
 
 class SpeiTest extends GatewayTestCase
 {
@@ -77,8 +76,9 @@ class SpeiTest extends GatewayTestCase
     public function testTicketContent()
     {
         $gateway = $this->getTestGateway($this->getMockedClient('<html></html>'));
+
         // TODO: assert something better
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<html',
             $gateway->getTicketHtml('5a53bc54679dbc1f3baf868e9d5d257ee7367fd5c47983fc')
         );
