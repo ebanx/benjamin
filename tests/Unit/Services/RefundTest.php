@@ -14,7 +14,7 @@ class RefundTest extends TestCase
     private $config;
     private $client;
 
-    public function setup()
+    public function setup(): void
     {
         $env = new Environment();
         $this->config = new Config([

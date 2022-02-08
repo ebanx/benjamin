@@ -66,21 +66,23 @@ class FacadeTest extends TestCase
 
     /**
      * @param Facade $ebanx
+     *
      * @depends testMainObject
-     * @expectedException \InvalidArgumentException
      */
     public function testCreatePaymentWithoutPaymentType($ebanx)
     {
+        $this->expectException( \InvalidArgumentException::class );
         $ebanx->create(new Payment());
     }
 
     /**
      * @param Facade $ebanx
+     *
      * @depends testMainObject
-     * @expectedException \InvalidArgumentException
      */
     public function testCreatePaymentWithWrongPaymentType($ebanx)
     {
+        $this->expectException( \InvalidArgumentException::class );
         $ebanx->create(new Payment([
             'type' => 'invalidType',
         ]));
@@ -180,11 +182,9 @@ class FacadeTest extends TestCase
         $this->assertFalse($subject);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testCheckPublicKeyWithOtherWrongResponse()
     {
+        $this->expectException( \Exception::class );
         $integrationKey = 'invalidKey';
         $publicKeyUrl = 'ws/merchantIntegrationProperties/isValidPublicIntegrationKey';
 

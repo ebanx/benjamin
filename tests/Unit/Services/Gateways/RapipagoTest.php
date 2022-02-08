@@ -78,7 +78,7 @@ class RapipagoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway($this->getMockedClient('<html></html>'));
         // TODO: assert something better
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<html',
             $gateway->getTicketHtml('59dd440f947b5097c8f6985c6a5cb71f935d80f745f37d5e')
         );

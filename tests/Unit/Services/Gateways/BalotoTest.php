@@ -78,7 +78,7 @@ class BalotoTest extends GatewayTestCase
     {
         $gateway = $this->getTestGateway($this->getMockedClient('<html></html>'));
         // TODO: assert something better
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<html',
             $gateway->getTicketHtml('591b803da5549b6a1bac524b31e6eef55c2e67af8e40e1e4')
         );

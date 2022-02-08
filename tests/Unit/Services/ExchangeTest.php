@@ -17,7 +17,7 @@ class ExchangeTest extends TestCase
     private $config;
     private $client;
 
-    public function setup()
+    public function setup(): void
     {
         $text = json_encode([
             'currency_rate' => [

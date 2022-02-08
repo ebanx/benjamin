@@ -13,11 +13,14 @@ class BaseValidatorTest extends TestCase
         $this->assertFalse($validator->hasErrors());
         $validator->validate();
         $this->assertTrue($validator->hasErrors());
-        $this->assertArraySubset([
-            'Error 1',
-            'Error 2',
-            'Error 3',
-        ], $validator->getErrors());
+
+        foreach ($validator->getErrors() as $error) {
+            $this->assertContains($error, [
+                'Error 1',
+                'Error 2',
+                'Error 3',
+            ]);
+        }
     }
 }
 
