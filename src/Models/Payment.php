@@ -117,6 +117,14 @@ class Payment extends BaseModel
      */
     public $card = null;
 
+    #CARD
+    /**
+     * A Debit Card object.
+     *
+     * @var DebitCard
+     */
+    public $debit_card = null;
+
     /**
      * Extra information for reports.
      *
@@ -143,4 +151,11 @@ class Payment extends BaseModel
      * @var string
      */
     public $wallet;
+
+    /**
+     * Expiration time in seconds.
+     *
+     * @var integer
+     */
+    public $expirationTimeInSeconds;
 }

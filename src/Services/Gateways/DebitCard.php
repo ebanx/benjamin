@@ -4,7 +4,7 @@ namespace Ebanx\Benjamin\Services\Gateways;
 use Ebanx\Benjamin\Models\Country;
 use Ebanx\Benjamin\Models\Currency;
 use Ebanx\Benjamin\Models\Payment;
-use Ebanx\Benjamin\Services\Adapters\CardPaymentAdapter;
+use Ebanx\Benjamin\Services\Adapters\DebitCardPaymentAdapter;
 
 class DebitCard extends DirectGateway
 {
@@ -33,9 +33,9 @@ class DebitCard extends DirectGateway
 
     protected function getPaymentData(Payment $payment)
     {
-        $payment->card->type = self::API_TYPE;
+        $payment->debit_card->type = self::API_TYPE;
 
-        $adapter = new CardPaymentAdapter($payment, $this->config);
+        $adapter = new DebitCardPaymentAdapter($payment, $this->config);
         return $adapter->transform();
     }
 }
