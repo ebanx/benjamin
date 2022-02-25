@@ -151,4 +151,11 @@ class Payment extends BaseModel
      * @var string
      */
     public $wallet;
+
+    /**
+     * Expiration time in seconds.
+     *
+     * @var integer
+     */
+    public $expirationTimeInSeconds;
 }

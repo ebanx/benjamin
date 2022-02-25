@@ -61,6 +61,7 @@ class PaymentAdapter extends BaseAdapter
             'device_id' => $this->payment->deviceId,
             'payment_type_code' => $this->payment->type,
             'user_value_5' => 'Benjamin',
+            'expiration_time_in_seconds' => $this->payment->expirationTimeInSeconds,
         ];
         if ($birthdate = $this->payment->person->birthdate) {
             $payload['birth_date'] = $birthdate->format('d/m/Y');
