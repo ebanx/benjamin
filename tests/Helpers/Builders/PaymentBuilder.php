@@ -3,6 +3,7 @@ namespace Tests\Helpers\Builders;
 
 use Ebanx\Benjamin\Models\Card;
 use Ebanx\Benjamin\Models\Wallet;
+use Ebanx\Benjamin\Models\DebitCard;
 use Faker;
 use Ebanx\Benjamin\Models\Bank;
 use Ebanx\Benjamin\Models\Payment;
@@ -98,8 +99,19 @@ class PaymentBuilder extends BaseBuilder
     public function debitCard()
     {
         $this->instance->type = 'debitcard';
-        $this->instance->card = $this->faker->cardModel();
-        $this->instance->card->number = '4242424242424242';
+        $this->instance->debit_card = $this->faker->debitCardModel();
+        $this->instance->debit_card->threeds_eci = '05';
+        $this->instance->debit_card->threeds_xid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
+        $this->instance->debit_card->threeds_version = '2';
+        $this->instance->debit_card->threeds_trxid = 'AAIBAkl0NwmHglFBAXQ3AAAAAAA';
+
+        return $this;
+    }
+
+    public function emptyDebitCard()
+    {
+        $this->instance->type = 'deditcard';
+        $this->instance->debit_card = new DebitCard();
 
         return $this;
     }
