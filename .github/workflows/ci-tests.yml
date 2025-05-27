@@ -1,0 +1,48 @@
+name: CI - Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          coverage: xdebug
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.composer/cache
+            vendor
+          key: composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer-
+
+      - name: Install dependencies
+        run: composer update
+
+      - name: Dump autoload
+        run: composer dump-autoload
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: Run tests
+        run: composer test
+
+      - name: Display code coverage summary
+        run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --colors=never
+
+      - name: Run dup-check
+        run: composer dup-check
+        continue-on-error: true
