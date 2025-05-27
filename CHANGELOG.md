@@ -1,3 +1,6 @@
+## 1.27.0
+* Update - Adjust brazilian local tax (IOF) rate. [#198](https://github.com/ebanx/benjamin/pull/198)
+
 ## 1.26.0
 * Feature - Add support for Guatemala and Paraguay Credit/Debit cards [#192](https://github.com/ebanx/benjamin/pull/192/)
 
