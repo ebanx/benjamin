@@ -56,6 +56,6 @@ class PixTest extends GatewayTestCase
 
     public function getPixSuccessfulResponseJson()
     {
-        return '{"payment":{"hash":"6006eda8694708f8032b19911e86d4a904cfe8e9b35303bd","pin":"067483265","country":"br","merchant_payment_code":"8FA1240A6C84","order_number":null,"status":"OP","status_date":null,"open_date":"2021-01-19 14:33:11","confirm_date":null,"transfer_date":null,"amount_br":103.50,"amount_ext":100,"amount_iof":3.5,"currency_rate":1,"currency_ext":"BRL","due_date":"2021-01-22","instalments":1,"payment_type_code":"pix","pre_approved":false,"capture_available":null,"customer":null},"redirect_url":"https://checkout.ebanx.com/checkout?hash=6006eda8694708f8032b19911e86d4a904cfe8e9b35303bd","status":"SUCCESS"}';
+        return '{"payment":{"hash":"6006eda8694708f8032b19911e86d4a904cfe8e9b35303bd","pin":"067483265","country":"br","merchant_payment_code":"8FA1240A6C84","order_number":null,"status":"OP","status_date":null,"open_date":"2021-01-19 14:33:11","confirm_date":null,"transfer_date":null,"amount_br":100.38,"amount_ext":100,"amount_iof":0.38,"currency_rate":1,"currency_ext":"BRL","due_date":"2021-01-22","instalments":1,"payment_type_code":"pix","pre_approved":false,"capture_available":null,"customer":null},"redirect_url":"https://checkout.ebanx.com/checkout?hash=6006eda8694708f8032b19911e86d4a904cfe8e9b35303bd","status":"SUCCESS"}';
     }
 }
