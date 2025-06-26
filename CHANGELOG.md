@@ -1,3 +1,6 @@
+## 1.28.0
+* Update - revert brazilian local tax (IOF) rate. [#202](https://github.com/ebanx/benjamin/pull/202)
+
 ## 1.27.0
 * Update - Adjust brazilian local tax (IOF) rate. [#198](https://github.com/ebanx/benjamin/pull/198)
 
