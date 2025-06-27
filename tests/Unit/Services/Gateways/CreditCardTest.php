@@ -205,7 +205,7 @@ class CreditCardTest extends GatewayTestCase
 
         $this->assertTrue(is_array($paymentTerms), 'Failed to return array of payment terms');
         $this->assertEquals(
-            10,
+            9,
             count($paymentTerms),
             'Wrong number of payment terms'
         );
@@ -221,7 +221,7 @@ class CreditCardTest extends GatewayTestCase
         }
 
         $interest = 0.1;
-        for ($i = 6; $i < 10; $i++) {
+        for ($i = 6; $i < 9; $i++) {
             $this->assertInterestInPaymentTerm($paymentTerms[$i], $value, $interest);
         }
     }

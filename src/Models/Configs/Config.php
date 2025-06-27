@@ -6,7 +6,7 @@ use Ebanx\Benjamin\Models\Currency;
 
 class Config extends BaseModel implements AddableConfig
 {
-    const IOF = 0.035;
+    const IOF = 0.0038;
 
     /**
      * Live integration key.
